@@ -4,15 +4,12 @@ import "../styles/global.css";
 const { title = "NikolayP2" } = Astro.props;
 
 import avatarSrc from "../images/avatar.jpg";
+import { profileLinks } from "../config/links";
 
 const header = {
   name: "Nikolai Posvezhnyi",
   avatarSrc: avatarSrc.src,
-  cvUrl: "https://drive.google.com/file/d/17ssZK6m1n5E03IY5ayUKIM8S82joZaFt/view",
-  linkedInUrl: "https://linkedin.com/in/nickposvezhnyi",
-  aboutUrl: "/about",
-  email: "kelsnoopy@gmail.com",
-  telegramUrl: "https://t.me/kelsnoopy",
+  ...profileLinks,
 };
 ---
 
@@ -92,11 +89,6 @@ const header = {
 
       nav {
         display: flex;
-        gap: 18px;
-      }
-
-      nav a:hover {
-        text-decoration: underline;
       }
     </style>
   </body>

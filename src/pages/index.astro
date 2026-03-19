@@ -1,18 +1,86 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PrimaryButton from "../components/PrimaryButton.astro";
+import { profileLinks } from "../config/links";
+import "../styles/icons.css";
 ---
 
 <BaseLayout title="Home">
-  <h1>Home</h1>
-  <p>
-    Static site base powered by Astro. Primary styles use Inter Tight and your
-    color palette.
-  </p>
-  <div
-    style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap;"
-  >
-    <PrimaryButton href="/cases" text="View cases" />
-    <PrimaryButton href="/about" text="About us" />
-  </div>
+  <section class="hero">
+    <div class="heroInner">
+      <h1 class="heroTitle">Senior Product Designer</h1>
+      <h2 class="heroAccent">7+ Years in Web3 / Crypto / Growth</h2>
+      <p class="heroDescription">
+        Designing web &amp; mobile experiences where data-driven thinking meets
+        emotional design. Inspiring teams. Delivering efficiently.
+      </p>
+
+      <div class="heroActions">
+        <a
+          class="primaryButton heroEmail"
+          href={`mailto:${profileLinks.email}`}
+        >
+          Email Me
+        </a>
+        <a
+          class="primaryButton heroTelegram"
+          href={profileLinks.telegramUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Telegram"
+        >
+          <span class="icon-telegram" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      padding: 6.9444vw 0;
+    }
+
+    .heroInner {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .heroTitle {
+      color: var(--color-fg);
+      font-weight: 500;
+      font-size: 3.472vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .heroAccent {
+      margin: 0 0 1.388vw 0;
+      font-weight: 500;
+      font-size: 3.472vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--color-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .heroDescription {
+      margin: 0 auto 0;
+      max-width: 33.333vw;
+    }
+
+    .heroActions {
+      margin-top: 1.736vw;
+      display: flex;
+      justify-content: center;
+      gap: 0.3472vw;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .heroEmail {
+      width: 12.5vw;
+    }
+    .heroTelegram {
+    }
+  </style>
 </BaseLayout>

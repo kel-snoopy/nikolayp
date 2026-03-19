@@ -2,6 +2,7 @@
   --color-bg: #ffffff;
   --color-fg: #000000;
   --color-primary: #ff4001;
+  --color-primary-hover: #404040;
 }
 
 *,
@@ -21,7 +22,7 @@ body {
   color: var(--color-fg);
   font-family: "Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
-  font-size: 16px;
+  font-size: 1.111vw;
   font-weight: 500;
   line-height: 1.25;
 }
@@ -32,40 +33,41 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 main {
-  padding: 32px 16px;
 }
 
 .container {
-  max-width: 960px;
+  max-width: 80.90vw;
   margin: 0 auto;
 }
 
 .primaryButton {
+  align-items: center;
   appearance: none;
   border: 0;
-  border-radius: 10px;
+  border-radius: 2.083vw;
   background: var(--color-primary);
-  color: var(--color-fg);
-  font-weight: 600;
-  padding: 12px 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  color: var(--color-bg);
   cursor: pointer;
-  transition: transform 120ms ease, filter 120ms ease;
+  display: inline-flex;
+  height: 4.1667vw;
+  font-weight: 600;
+  justify-content: center;
+  padding: 1.388vw 1.388vw;
+  text-decoration: none;
 }
 
 .primaryButton:hover {
-  filter: brightness(0.98);
-  transform: translateY(-1px);
+  background: var(--color-primary-hover);
+  text-decoration: none;
 }
 
 .primaryButton:active {
   transform: translateY(0px);
+  text-decoration: none;
 }
 
