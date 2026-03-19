@@ -8,4 +8,14 @@
   mask-position: center;
   mask-size: contain;
 }
+.icon-plus {
+  width: 1.3889vw;
+  height: 1.3889vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/plus.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 

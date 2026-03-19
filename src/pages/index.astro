@@ -78,9 +78,43 @@ import "../styles/icons.css";
     </section>
   ))}
 
+  <section class="homeBottom" aria-label="Extra shots and contact call to action">
+    <div class="extraShots">
+      <span class="extraShotsLabel">See Some Extra Shots</span>
+      <span class="extraShotsPlus" aria-hidden="true">
+        <span class="icon-plus" aria-hidden="true"></span>
+      </span>
+      <a class="extraShotsLink" href="/cases"></a>
+    </div>
+
+    <div class="hero __bottom">
+      <div class="heroInner">
+        <h3 class="heroTitle">Building something bold?</h3>
+        <p class="heroAccent">Let&apos;s design it right.</p>
+        <div class="heroActions">
+          <a class="primaryButton heroEmail" href={`mailto:${profileLinks.email}`}>
+            Email Me
+          </a>
+          <a
+            class="primaryButton heroTelegram"
+            href={profileLinks.telegramUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Telegram"
+          >
+            <span class="icon-telegram" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <style>
     .hero {
       padding: 6.9444vw 0;
+    }
+    .hero.__bottom {
+      padding: 12.5vw 0;
     }
 
     .heroInner {
@@ -194,7 +228,66 @@ import "../styles/icons.css";
       height: auto;
     }
 
-    @media (max-width: 900px) {
+    .homeBottom {
+      border-top: 1px solid #d9d9d9;
+      padding: 0 0 1.736vw;
+    }
+
+    .extraShots {
+      display: flex;
+      align-items: center;
+      height: 5.5556vw;
+      justify-content: space-between;
+      border-bottom: 1px solid #d9d9d9;
+      padding: 2.0833vw 0;
+      position: relative;
+    }
+
+    .extraShotsLabel {
+      color: var(--color-primary);
+      font-size: 1.3889vw;
+      line-height: 1;
+    }
+    .extraShotsLink {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .extraShotsPlus {
+      color: var(--color-primary);
+      height: 1.3889vw;
+      width: 1.3889vw;
+    }
+
+    .bottomCta {
+      padding: 10.416vw 0;
+      text-align: center;
+    }
+
+    .bottomCtaTitle {
+      margin: 0;
+      color: var(--color-fg);
+      font-weight: 500;
+      font-size: 3.472vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .bottomCtaAccent {
+      margin: 0 0 1.388vw 0;
+      font-weight: 500;
+      font-size: 3.472vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--color-primary);
+    }
+
+
+    @media (max-width: 600px) {
       .caseTop,
       .caseInfo {
         grid-template-columns: 1fr;
@@ -212,6 +305,23 @@ import "../styles/icons.css";
 
       .casePreview {
         margin-top: 22px;
+      }
+
+      .extraShotsLink {
+        font-size: 18px;
+      }
+
+      .extraShotsPlus {
+        font-size: 28px;
+      }
+
+      .bottomCta {
+        padding: 88px 0;
+      }
+
+      .bottomCtaTitle,
+      .bottomCtaAccent {
+        font-size: 36px;
       }
     }
   </style>
