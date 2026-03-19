@@ -40,12 +40,19 @@ const header = {
           </a>
         </div>
 
-        <nav class="navLinks" aria-label="External links">
+        <nav class="navLinks desktop-only" aria-label="External links">
           <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
           <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
           <a href={header.aboutUrl}>About</a>
           <a href={`mailto:${header.email}`}>Email</a>
           <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+        </nav>
+
+        <nav class="navLinks mobile-only" aria-label="External links">
+          <button>
+            <span class="navLinksLabel">Contacts</span>
+            <span class="icon-plus" aria-hidden="true"></span>
+          </button>
         </nav>
       </div>
     </header>
@@ -100,6 +107,17 @@ const header = {
         display: flex;
         gap: 1.388vw;
       }
+      .navLinks.mobile-only {
+        display: none;
+      }
+
+      .navLinks button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+      }
 
       nav {
         display: flex;
@@ -129,6 +147,24 @@ const header = {
       }
 
       @media (max-width: 600px) {
+        .navLinks.desktop-only {
+          display: none;
+        }
+        .navLinks.mobile-only {
+          display: block;
+        }
+        .navLinks button {
+          display: flex;
+          font-size: 4vw;
+          line-height: 1.25;
+          gap: 1.333vw;
+        }
+        .navLinks .icon-plus {
+          width: 3.73vw;
+          height: 3.73vw;
+          margin-top: 0.633vw;
+          vertical-align: top;
+        }
         .header {
           padding: 4vw;
         }
