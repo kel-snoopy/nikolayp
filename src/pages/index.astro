@@ -65,6 +65,7 @@ import "../styles/icons.css";
             <p>{caseItem.impact}</p>
           </div>
         </div>
+        <a class="caseLink" href={caseItem.detailsUrl}></a>
       </div>
 
       <div class="casePreview">
@@ -163,7 +164,7 @@ import "../styles/icons.css";
 
     .homeCase {
       border-top: 1px solid #d9d9d9;
-      padding: 3.472vw 0;
+      padding: 0 0 3.472vw 0;
     }
 
     .caseTop {
@@ -171,6 +172,16 @@ import "../styles/icons.css";
       grid-template-columns: 1fr 1fr;
       gap: 0.700vw;
       align-items: start;
+      padding: 3.472vw 0;
+      position: relative;
+    }
+    .caseLink {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
 
     .caseBrand {
@@ -215,8 +226,12 @@ import "../styles/icons.css";
       color: var(--color-primary);
     }
 
+    .caseTop:hover .caseTitle,
+    .caseTop:hover .caseDetails {
+      color: var(--color-primary-hover);
+    }
+
     .casePreview {
-      margin-top: 3.472vw;
       border-radius: 0.833vw;
       background: #efefef;
       overflow: hidden;

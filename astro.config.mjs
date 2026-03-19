@@ -5,4 +5,9 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   // Ensure a fully static site output.
   output: 'static',
+  vite: {
+    server: {
+      allowedHosts: ["8266-94-199-21-85.ngrok-free.app"],
+    },
+  },
 });

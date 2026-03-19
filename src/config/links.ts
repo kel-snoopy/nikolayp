@@ -4,5 +4,6 @@ export const profileLinks = {
   aboutUrl: "/about",
   email: "kelsnoopy@gmail.com",
   telegramUrl: "https://t.me/kelsnoopy",
+  telegramHandle: "@kelsnoopy",
 } as const;
 
