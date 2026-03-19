@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PrimaryButton from "../components/PrimaryButton.astro";
+---
+
+<BaseLayout title="Cases">
+  <h1>Cases</h1>
+  <p>Examples of work can live here. Use `PrimaryButton` to keep actions consistent.</p>
+
+  <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap;">
+    <PrimaryButton href="/" text="Back home" />
+    <PrimaryButton href="/about" text="About" />
+  </div>
+
+  <style>
+    .caseGrid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .caseCard {
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 12px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .caseCard h2 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .caseCard p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  </style>
+
+  <div class="caseGrid">
+    <div class="caseCard">
+      <h2>Case A</h2>
+      <p>Short description of the project.</p>
+    </div>
+    <div class="caseCard">
+      <h2>Case B</h2>
+      <p>Short description of the project.</p>
+    </div>
+    <div class="caseCard">
+      <h2>Case C</h2>
+      <p>Short description of the project.</p>
+    </div>
+  </div>
+</BaseLayout>
+

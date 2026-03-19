@@ -1,0 +1,104 @@
+---
+import "../styles/global.css";
+
+const { title = "NikolayP2" } = Astro.props;
+
+import avatarSrc from "../images/avatar.jpg";
+
+const header = {
+  name: "Nikolai Posvezhnyi",
+  avatarSrc: avatarSrc.src,
+  cvUrl: "https://drive.google.com/file/d/17ssZK6m1n5E03IY5ayUKIM8S82joZaFt/view",
+  linkedInUrl: "https://linkedin.com/in/nickposvezhnyi",
+  aboutUrl: "/about",
+  email: "kelsnoopy@gmail.com",
+  telegramUrl: "https://t.me/kelsnoopy",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav">
+        <div class="brand" aria-label="Author">
+          <a class="brandLink" href="/">
+            <img
+              class="avatar"
+              src={header.avatarSrc}
+              alt={`${header.name} avatar`}
+            />
+            <span class="brandName">{header.name}</span>
+          </a>
+        </div>
+
+        <nav class="navLinks" aria-label="External links">
+          <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
+          <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
+          <a href={header.aboutUrl}>About</a>
+          <a href={`mailto:${header.email}`}>Email</a>
+          <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <style>
+      .header {
+        padding: 1.388vw 2.083vw 1.388vw 1.388vw;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brandLink {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .avatar {
+        border-radius: 999px;
+        display: block;
+        object-fit: cover;
+        width: 2.778vw;
+        height: 2.778vw;
+      }
+
+      .brandName {
+      }
+
+      .navLinks {
+        display: flex;
+        gap: 1.388vw;
+      }
+
+      nav {
+        display: flex;
+        gap: 18px;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </body>
+</html>
+

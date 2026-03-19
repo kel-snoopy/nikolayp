@@ -1,0 +1,19 @@
+---
+type Props = {
+  text?: string;
+  href?: string;
+};
+
+const { text = "Primary", href } = Astro.props as Props;
+---
+
+{href ? (
+  <a class="primaryButton" href={href}>
+    {text}
+  </a>
+) : (
+  <button class="primaryButton" type="button">
+    {text}
+  </button>
+)}
+
