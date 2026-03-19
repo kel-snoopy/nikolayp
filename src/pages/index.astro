@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
+import { homeCases } from "../config/homeCases";
 import "../styles/icons.css";
 ---
 
@@ -33,6 +34,49 @@ import "../styles/icons.css";
       </div>
     </div>
   </section>
+
+  {homeCases.map((caseItem) => (
+    <section class="homeCase" aria-labelledby={`case-${caseItem.id}-title`}>
+      <div class="caseTop">
+        <div class="caseHeading">
+          <div class="caseBrand">{caseItem.brand}</div>
+          <h3 id={`case-${caseItem.id}-title`} class="caseTitle">
+            {caseItem.title}
+          </h3>
+          <div class="caseMeta">
+            <div class="caseMeta-item">{caseItem.meta.dateRange}</div>
+            <div class="caseMeta-item">/</div>
+            <div class="caseMeta-item">{caseItem.meta.location}</div>
+            <div class="caseMeta-item">/</div>
+            <div class="caseMeta-item">{caseItem.meta.stack}</div>
+            <div class="caseMeta-item">/</div>
+            <div class="caseMeta-item">{caseItem.meta.roles}</div>
+          </div>
+        </div>
+
+        <div class="caseInfo">
+          <div>
+            <h4>Goal</h4>
+            <p>{caseItem.goal}</p>
+            <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+          </div>
+          <div>
+            <h4>Impact</h4>
+            <p>{caseItem.impact}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="casePreview">
+        <img
+          class="casePreviewImage"
+          src={caseItem.image.src}
+          alt={caseItem.imageAlt}
+          loading="lazy"
+        />
+      </div>
+    </section>
+  ))}
 
   <style>
     .hero {
@@ -81,6 +125,94 @@ import "../styles/icons.css";
       width: 12.5vw;
     }
     .heroTelegram {
+    }
+
+    .homeCase {
+      border-top: 1px solid #d9d9d9;
+      padding: 3.472vw 0;
+    }
+
+    .caseTop {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.700vw;
+      align-items: start;
+    }
+
+    .caseBrand {
+      color: var(--color-primary);
+      font-size: 1.388vw;
+      line-height: 1;
+      margin: 0 0 1.04167vw;
+    }
+
+    .caseTitle {
+      margin: 0;
+      font-size: 2.43056vw;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      font-weight: 500;
+      margin: 0 0 1.04167vw;
+    }
+
+    .caseMeta {
+      color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      gap: 0.6944vw;
+    }
+
+    .caseInfo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.736vw;
+    }
+
+    .caseInfo h4 {
+      font-size: 1.3889vw;
+      font-weight: 500;
+      margin: 0 0 1.04167vw;
+    }
+
+    .caseInfo p {
+      margin: 0 0 1.04167vw;
+    }
+
+    .caseDetails {
+      color: var(--color-primary);
+    }
+
+    .casePreview {
+      margin-top: 3.472vw;
+      border-radius: 0.833vw;
+      background: #efefef;
+      overflow: hidden;
+    }
+
+    .casePreviewImage {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 900px) {
+      .caseTop,
+      .caseInfo {
+        grid-template-columns: 1fr;
+      }
+
+      .caseTitle {
+        font-size: 36px;
+      }
+
+      .caseMeta,
+      .caseInfo p,
+      .caseInfo h4 {
+        font-size: 14px;
+      }
+
+      .casePreview {
+        margin-top: 22px;
+      }
     }
   </style>
 </BaseLayout>
