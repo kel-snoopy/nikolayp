@@ -19,3 +19,14 @@
   mask-size: contain;
 }
 
+@media screen and (max-width: 600px) {
+  .icon-telegram {
+    width: 5.8666vw;
+    height: 4.8vw;
+  }
+  .icon-plus {
+    width: 5.3vw;
+    height: 5.3vw;
+  }
+}
+

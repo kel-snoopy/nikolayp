@@ -38,9 +38,6 @@ a:hover {
   text-decoration: none;
 }
 
-main {
-}
-
 .container {
   max-width: 80.90vw;
   margin: 0 auto;
@@ -74,3 +71,28 @@ main {
   text-decoration: none;
 }
 
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+  body {
+    font-size: 4vw;
+    line-height: 1.25;
+  }
+  .container {
+    max-width: 100vw;
+    padding: 0 4vw;
+  }
+  .primaryButton {
+    border-radius: 8vw;
+    height: 16vw;
+    padding: 5.333vw 5.333vw;
+  }
+}

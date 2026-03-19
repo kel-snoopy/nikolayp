@@ -5,11 +5,11 @@ import { homeCases } from "../config/homeCases";
 import "../styles/icons.css";
 ---
 
-<BaseLayout title="Home">
+<BaseLayout title="Nikolai Posvezhnyi - Senior Product Designer">
   <section class="hero">
     <div class="heroInner">
-      <h1 class="heroTitle">Senior Product Designer</h1>
-      <h2 class="heroAccent">7+ Years in Web3 / Crypto / Growth</h2>
+      <h1 class="heroTitle">Senior Product&nbsp;Designer</h1>
+      <h2 class="heroAccent">7+ Years in Web3 <span class="desktop-only">/</span> Crypto / Growth</h2>
       <p class="heroDescription">
         Designing web &amp; mobile experiences where data-driven thinking meets
         emotional design. Inspiring teams. Delivering efficiently.
@@ -47,11 +47,20 @@ import "../styles/icons.css";
             <div class="caseMeta-item">{caseItem.meta.dateRange}</div>
             <div class="caseMeta-item">/</div>
             <div class="caseMeta-item">{caseItem.meta.location}</div>
-            <div class="caseMeta-item">/</div>
-            <div class="caseMeta-item">{caseItem.meta.stack}</div>
-            <div class="caseMeta-item">/</div>
-            <div class="caseMeta-item">{caseItem.meta.roles}</div>
+            <div class="caseMeta-item desktop-only">/</div>
+            <div class="caseMeta-item desktop-only">{caseItem.meta.stack}</div>
+            <div class="caseMeta-item desktop-only">/</div>
+            <div class="caseMeta-item desktop-only">{caseItem.meta.roles}</div>
           </div>
+        </div>
+
+        <div class="casePreview mobile-only">
+          <img
+            class="casePreviewImage"
+            src={caseItem.image.src}
+            alt={caseItem.imageAlt}
+            loading="lazy"
+          />
         </div>
 
         <div class="caseInfo">
@@ -68,7 +77,7 @@ import "../styles/icons.css";
         <a class="caseLink" href={caseItem.detailsUrl}></a>
       </div>
 
-      <div class="casePreview">
+      <div class="casePreview desktop-only">
         <img
           class="casePreviewImage"
           src={caseItem.image.src}
@@ -227,7 +236,7 @@ import "../styles/icons.css";
     }
 
     .caseTop:hover .caseTitle,
-    .caseTop:hover .caseDetails {
+    .caseTop:hover .caseTitle {
       color: var(--color-primary-hover);
     }
 
@@ -303,31 +312,93 @@ import "../styles/icons.css";
 
 
     @media (max-width: 600px) {
-      .caseTop,
-      .caseInfo {
+      .hero {
+        padding: 34.6667vw 0 26.6667vw;
+      }
+      .hero.__bottom {
+        padding: 40vw 0;
+      }
+      .heroTitle {
+        font-size: 12vw;
+        line-height: 1;
+        margin: 0 0 1.333vw 0;
+      }
+      .heroAccent {
+        font-size: 12vw;
+        line-height: 1;
+        margin: 0 0 6.6667vw 0;
+      }
+
+      .heroDescription {
+        max-width: 100vw;
+      }
+
+      .heroActions {
+        margin-top: 6.666vw;
+        gap: 1.333vw;
+      }
+
+      .heroEmail {
+        width: 48vw;
+      }
+      .heroTelegram {
+        width: 16vw;
+      }
+
+      .homeCase {
+        padding: 0 0 5.3vw 0;
+      }
+      
+      .caseTop {
         grid-template-columns: 1fr;
       }
 
+      .caseTop {
+        gap: 8vw;
+        padding: 8vw 0;
+      }
+      .caseBrand {
+        font-size: 4.8vw;
+        line-height: 5.3333vw;
+        margin: 0 0 2.6667vw;
+      }
       .caseTitle {
-        font-size: 36px;
+        font-size: 8vw;
+        line-height: 8.533vw;
+        margin: 0 0 2.6667vw;
       }
-
-      .caseMeta,
-      .caseInfo p,
+      .caseMeta {
+        gap: 1.333vw;
+      }
+      .caseInfo {
+        gap: 1.736vw;
+      }
       .caseInfo h4 {
-        font-size: 14px;
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+        margin: 0 0 2.6667vw;
       }
-
+      .caseInfo p {
+        margin: 0 0 2.6667vw;
+      }
       .casePreview {
-        margin-top: 22px;
+        border-radius: 0.833vw;
+        margin: 0;
       }
 
+      .extraShots {
+        height: 18.6667vw;
+        padding: 6.6667vw 0;
+      }
+      .extraShotsLabel {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+      }
       .extraShotsLink {
-        font-size: 18px;
       }
-
       .extraShotsPlus {
-        font-size: 28px;
+        width: 5.3vw;
+        height: 5.3vw;
       }
 
       .bottomCta {

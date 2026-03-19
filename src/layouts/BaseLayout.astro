@@ -57,7 +57,7 @@ const header = {
     <footer class="footer">
       <div class="container footerInner">
         <div class="footerCopy">© 2026 Nikolai Posvezhnyi + AI = ❤</div>
-        <div class="footerLinks">
+        <div class="footerLinks desktop-only">
           <div class="footerLink">
             <a href={`mailto:${profileLinks.email}`}>{profileLinks.email}</a>
           </div>
@@ -85,7 +85,7 @@ const header = {
       .brandLink {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.6944vw;
       }
 
       .avatar {
@@ -94,9 +94,6 @@ const header = {
         object-fit: cover;
         width: 2.778vw;
         height: 2.778vw;
-      }
-
-      .brandName {
       }
 
       .navLinks {
@@ -132,9 +129,28 @@ const header = {
       }
 
       @media (max-width: 600px) {
+        .header {
+          padding: 4vw;
+        }
+        .brandLink {
+          gap: 1.3333vw;
+        }
+
+        .avatar {
+          width: 5.3333vw;
+          height: 5.3333vw;
+        }
+
         .footer {
           flex-direction: column;
           align-items: flex-start;
+          padding: 0 4vw;
+        }
+        .footerInner {
+          padding: 6.6667vw 0;
+        }
+        .footerLinks {
+          display: none;
         }
       }
     </style>
