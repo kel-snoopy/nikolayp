@@ -205,7 +205,9 @@ const header = {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(0,0,0,0.8);
+        background: rgba(0, 0, 0, 0.8);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
         padding: 0;
         color: var(--color-bg, #ffffff);
       }
@@ -216,8 +218,8 @@ const header = {
 
       .contactsFullscreenClose {
         position: absolute;
-        top: max(16px, env(safe-area-inset-top));
-        right: max(16px, env(safe-area-inset-right));
+        top: 4vw;
+        right: 4vw;
         border: none;
         background: transparent;
         font-size: 4vw;
@@ -227,6 +229,8 @@ const header = {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 0;
+        gap: 0.5333vw;
       }
 
       .contactsFullscreenNav {
