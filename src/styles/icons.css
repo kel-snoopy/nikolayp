@@ -18,6 +18,16 @@
   mask-position: center;
   mask-size: contain;
 }
+.icon-minus {
+  width: 1.3889vw;
+  height: 1.3889vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/minus.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 
 @media screen and (max-width: 600px) {
   .icon-telegram {
@@ -25,6 +35,10 @@
     height: 4.8vw;
   }
   .icon-plus {
+    width: 5.3vw;
+    height: 5.3vw;
+  }
+  .icon-minus {
     width: 5.3vw;
     height: 5.3vw;
   }

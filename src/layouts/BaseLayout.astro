@@ -49,7 +49,14 @@ const header = {
         </nav>
 
         <nav class="navLinks mobile-only" aria-label="External links">
-          <button>
+          <button
+            type="button"
+            id="contacts-menu-open"
+            class="contactsMenuOpen"
+            aria-expanded="false"
+            aria-controls="contacts-menu"
+            aria-haspopup="dialog"
+          >
             <span class="navLinksLabel">Contacts</span>
             <span class="icon-plus" aria-hidden="true"></span>
           </button>
@@ -77,6 +84,76 @@ const header = {
         </div>
       </div>
     </footer>
+
+    <div
+      id="contacts-menu"
+      class="contactsFullscreen"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Contacts"
+      hidden
+    >
+      <button
+        type="button"
+        id="contacts-menu-close"
+        class="contactsFullscreenClose"
+        aria-label="Close menu"
+      >
+        <span class="contactsFullscreenCloseLabel">Close</span>
+        <span class="icon-minus"></span>
+      </button>
+      <nav class="contactsFullscreenNav" aria-label="Contact links">
+        <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
+        <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
+        <a href={header.aboutUrl}>About</a>
+        <a href={`mailto:${header.email}`}>Email</a>
+        <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+      </nav>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var openBtn = document.getElementById("contacts-menu-open");
+        var menu = document.getElementById("contacts-menu");
+        var closeBtn = document.getElementById("contacts-menu-close");
+        if (!openBtn || !menu) return;
+
+        function openMenu() {
+          menu.hidden = false;
+          menu.setAttribute("aria-hidden", "false");
+          openBtn.setAttribute("aria-expanded", "true");
+          document.body.style.overflow = "hidden";
+          if (closeBtn) closeBtn.focus();
+        }
+
+        function closeMenu() {
+          menu.hidden = true;
+          menu.setAttribute("aria-hidden", "true");
+          openBtn.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+          openBtn.focus();
+        }
+
+        openBtn.addEventListener("click", openMenu);
+        if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+
+        menu.addEventListener("click", function (e) {
+          if (e.target === menu) closeMenu();
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !menu.hidden) {
+            e.preventDefault();
+            closeMenu();
+          }
+        });
+
+        var navLinks = menu.querySelectorAll(".contactsFullscreenNav a");
+        for (var i = 0; i < navLinks.length; i++) {
+          navLinks[i].addEventListener("click", closeMenu);
+        }
+      })();
+    </script>
 
     <style>
       .header {
@@ -111,12 +188,66 @@ const header = {
         display: none;
       }
 
-      .navLinks button {
+      .navLinks button,
+      .contactsMenuOpen {
         background: none;
         border: none;
         cursor: pointer;
         padding: 0;
         margin: 0;
+      }
+
+      .contactsFullscreen {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.8);
+        padding: 0;
+        color: var(--color-bg, #ffffff);
+      }
+
+      .contactsFullscreen[hidden] {
+        display: none;
+      }
+
+      .contactsFullscreenClose {
+        position: absolute;
+        top: max(16px, env(safe-area-inset-top));
+        right: max(16px, env(safe-area-inset-right));
+        border: none;
+        background: transparent;
+        font-size: 4vw;
+        line-height: 5.333vw;
+        cursor: pointer;
+        color: var(--color-bg, #000);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contactsFullscreenNav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5.333vw;
+      }
+
+      .contactsFullscreenNav a {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+        font-weight: 500;
+        color: var(--color-bg, #ffffff);
+        text-decoration: none;
+      }
+
+      .contactsFullscreenNav a:hover {
+        color: var(--color-primary, #ff4001);
+        text-decoration: none;
       }
 
       nav {
@@ -153,7 +284,8 @@ const header = {
         .navLinks.mobile-only {
           display: block;
         }
-        .navLinks button {
+        .navLinks button,
+        .contactsMenuOpen {
           display: flex;
           font-size: 4vw;
           line-height: 1.25;
