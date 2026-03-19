@@ -28,6 +28,26 @@
   mask-position: center;
   mask-size: contain;
 }
+.icon-close {
+  width: 1.3889vw;
+  height: 1.3889vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/close.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+.icon-play {
+  height: 3.472vw;
+  width: 2.5vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/play.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 
 @media screen and (max-width: 600px) {
   .icon-telegram {
@@ -39,6 +59,10 @@
     height: 5.3vw;
   }
   .icon-minus {
+    width: 5.3vw;
+    height: 5.3vw;
+  }
+  .icon-close {
     width: 5.3vw;
     height: 5.3vw;
   }

@@ -5,5 +5,7 @@ export const profileLinks = {
   email: "kelsnoopy@gmail.com",
   telegramUrl: "https://t.me/kelsnoopy",
   telegramHandle: "@kelsnoopy",
+  /** Replace with your intro video (YouTube, Vimeo, etc.) */
+  introVideoUrl: "https://www.youtube.com/",
 } as const;
 

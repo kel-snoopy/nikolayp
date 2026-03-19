@@ -4,6 +4,7 @@ import "../styles/global.css";
 const { title = "NikolayP2" } = Astro.props;
 
 import avatarSrc from "../images/avatar.jpg";
+import videoCtaSrc from "../images/video-cta.png";
 import { profileLinks } from "../config/links";
 
 const header = {
@@ -85,6 +86,36 @@ const header = {
       </div>
     </footer>
 
+    <div class="videoCta" id="video-cta-widget">
+      <div class="videoCtaInner">
+        <button
+          type="button"
+          class="videoCtaClose"
+          id="video-cta-close"
+          aria-label="Close intro"
+        >
+          <span class="icon-close"></span>
+        </button>
+        <a
+          class="videoCtaCircle"
+          href={profileLinks.introVideoUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Watch a Quick Intro"
+        >
+          <img
+            class="videoCtaPhoto"
+            src={videoCtaSrc.src}
+            alt=""
+            width="240"
+            height="240"
+            loading="lazy"
+          />
+          <span class="videoCtaPlay icon-play"></span>
+        </a>
+      </div>
+    </div>
+
     <div
       id="contacts-menu"
       class="contactsFullscreen"
@@ -152,6 +183,19 @@ const header = {
         for (var i = 0; i < navLinks.length; i++) {
           navLinks[i].addEventListener("click", closeMenu);
         }
+      })();
+    </script>
+
+    <script is:inline>
+      (function () {
+        var widget = document.getElementById("video-cta-widget");
+        var closeBtn = document.getElementById("video-cta-close");
+        if (!widget || !closeBtn) return;
+        closeBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          widget.hidden = true;
+        });
       })();
     </script>
 
@@ -252,6 +296,92 @@ const header = {
       .contactsFullscreenNav a:hover {
         color: var(--color-primary, #ff4001);
         text-decoration: none;
+      }
+
+      .videoCta {
+        position: fixed;
+        z-index: 9000;
+        bottom: 1.3889vw;
+        right: 1.3889vw;
+        width: 12.5vw;
+        pointer-events: none;
+      }
+
+      .videoCtaInner {
+        position: relative;
+        pointer-events: auto;
+      }
+
+      .videoCta[hidden] {
+        display: none;
+      }
+
+      .videoCtaClose {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        border: none;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        color: var(--color-gray);
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .videoCtaClose:hover {
+        color: var(--color-primary);
+      }
+
+      .videoCtaCircle {
+        position: relative;
+        display: block;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+        text-decoration: none;
+      }
+
+      .videoCtaPhoto {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .videoCtaPlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        pointer-events: none;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+      }
+
+      .videoCtaPlay svg {
+        width: min(26%, 52px);
+        height: auto;
+      }
+
+      .videoCtaArc {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 52%;
+        pointer-events: none;
+      }
+
+      .videoCtaArcText {
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
       }
 
       nav {
