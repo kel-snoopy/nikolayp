@@ -47,6 +47,7 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
+  transition: all 0.2s ease-in-out;
 }
 .icon-play-small {
   width: 0.625vw;

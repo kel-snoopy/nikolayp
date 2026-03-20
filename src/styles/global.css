@@ -31,13 +31,14 @@ body {
 button {
   font-family: "Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
+  transition: all 0.2s ease-in-out;
 }
 
 a {
   color: inherit;
   outline: none;
   text-decoration: none;
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 a:hover {
@@ -64,7 +65,7 @@ a:hover {
   justify-content: center;
   padding: 1.388vw 1.388vw;
   text-decoration: none;
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .primaryButton:hover {

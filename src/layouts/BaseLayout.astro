@@ -425,6 +425,16 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         align-items: center;
         gap: 0.6944vw;
       }
+      .brandLinkButton:hover {
+        color: var(--color-primary);
+      }
+      .brandLinkButton:hover .icon-play-small {
+        background-color: var(--color-primary);
+      }
+      .brandLinkButton:hover .brandVideoTime {
+        color: var(--color-primary);
+        opacity: 0.3;
+      }
 
       .brandVideo {
         display: flex;
@@ -580,6 +590,7 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         width: 100%;
       }
       .videoCtaCircle:hover .videoCtaPlay {
+        color: #f1f1f1;
         transform: translate(-50%,-50%) scale(1.2);
       }
 

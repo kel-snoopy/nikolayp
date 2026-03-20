@@ -135,7 +135,7 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       display: block;
     }
 
-    .caseRight p {
+    .caseRight :global(p) {
       font-size: 1.1111vw;
       line-height: 1.3889vw;
       margin: 0 0 1.042vw;
@@ -157,16 +157,17 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       margin: 3.472vw 0 1.042vw;
     }
 
-    .caseParagraphText {
-
-    }
-    .caseParagraphText p {
+    .caseParagraphText :global(p) {
       font-size: 1.1111vw;
       line-height: 1.3889vw;
       margin: 0 0 1.042vw;
     }
-    .caseParagraphText a {
+    .caseParagraphText :global(a) {
       color: var(--color-primary);
+    }
+    .caseParagraphText :global(a:hover) {
+      color: var(--color-primary-hover);
+      text-decoration: underline;
     }
 
     .caseBottom {
@@ -288,7 +289,7 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       font-size: 1.3889vw;
       line-height: 1.25;
     }
-    .caseReviewText p {
+    .caseReviewText :global(p) {
       font-size: 1.3889vw;
       line-height: 1.25;
       margin: 0 0 1.3889vw;
@@ -323,7 +324,7 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
         line-height: 5.333vw;
         margin: 8vw 0 4vw;
       }
-      .caseParagraphText p {
+      .caseParagraphText :global(p) {
         font-size: 4vw;
         line-height: 1.33;
         margin: 0 0 4vw;
@@ -377,7 +378,7 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
         font-size: 4vw;
         line-height: 1.25;
       }
-      .caseReviewText p {
+      .caseReviewText :global(p) {
         font-size: 4vw;
         line-height: 1.25;
         margin: 0 0 4vw;
