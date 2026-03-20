@@ -173,21 +173,77 @@ function videoUrl(video: string | { src: string }): string {
 
     {caseItem.caseReviews.length > 0 && (
       <section class="caseReviews" aria-label="Case reviews">
-        {caseItem.caseReviews.map((review) => (
-          <article class="caseReviewCard">
-            <div class="caseReviewContent">
-              <img
-                class="caseReviewAvatar"
-                src={review.avatar.src}
-                alt={`${review.author} avatar`}
-                loading="lazy"
-              />
-              <div class="caseReviewAuthor">{review.author}</div>
-              <div class="caseReviewRole">{review.role}</div>
-              <div class="caseReviewText" set:html={review.text}></div>
+        <div
+          class="caseReviewsSlider"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Case reviews"
+        >
+          <div class="caseReviewsSliderInner">
+            <div
+              class="caseReviewsSliderViewport"
+              tabindex={caseItem.caseReviews.length > 1 ? 0 : undefined}
+            >
+              <div class="caseReviewsSliderTrack">
+                {caseItem.caseReviews.map((review, reviewIndex) => (
+                  <article
+                    class="caseReviewCard caseReviewsSliderSlide"
+                    aria-hidden={reviewIndex === 0 ? "false" : "true"}
+                  >
+                    <div class="caseReviewContent">
+                      <img
+                        class="caseReviewAvatar"
+                        src={review.avatar.src}
+                        alt={`${review.author} avatar`}
+                        loading={reviewIndex === 0 ? "eager" : "lazy"}
+                      />
+                      <div class="caseReviewAuthor">{review.author}</div>
+                      <div class="caseReviewRole">{review.role}</div>
+                      <div class="caseReviewText" set:html={review.text}></div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
-          </article>
-        ))}
+            {caseItem.caseReviews.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  class="caseReviewsSliderNav caseReviewsSliderNavPrev"
+                  aria-label="Previous review"
+                >
+                  <span class="icon-arrow-right" aria-hidden="true"></span>
+                </button>
+                <button
+                  type="button"
+                  class="caseReviewsSliderNav caseReviewsSliderNavNext"
+                  aria-label="Next review"
+                >
+                  <span class="icon-arrow-right" aria-hidden="true"></span>
+                </button>
+              </>
+            )}
+          </div>
+          {caseItem.caseReviews.length > 1 && (
+            <div
+              class="caseReviewsSliderDots"
+              role="tablist"
+              aria-label="Reviews"
+            >
+              {caseItem.caseReviews.map((_, dotIndex) => (
+                <button
+                  type="button"
+                  class:list={[
+                    "caseReviewsSliderDot",
+                    dotIndex === 0 && "is-active",
+                  ]}
+                  aria-label={`Go to review ${dotIndex + 1}`}
+                  aria-current={dotIndex === 0 ? "true" : "false"}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
     )}
   </section>
@@ -373,7 +429,113 @@ function videoUrl(video: string | { src: string }): string {
         }
       }
 
+      function initReviewsSlider(root) {
+        var viewport = root.querySelector(".caseReviewsSliderViewport");
+        var slides = root.querySelectorAll(".caseReviewsSliderSlide");
+        var dots = root.querySelectorAll(".caseReviewsSliderDot");
+        var prev = root.querySelector(".caseReviewsSliderNavPrev");
+        var next = root.querySelector(".caseReviewsSliderNavNext");
+        if (!viewport || slides.length < 2) return;
+
+        var index = 0;
+        var scrollEndTimer;
+
+        function updateDots() {
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle("is-active", i === index);
+            dots[i].setAttribute(
+              "aria-current",
+              i === index ? "true" : "false"
+            );
+          }
+        }
+
+        function updateAria() {
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].setAttribute(
+              "aria-hidden",
+              i === index ? "false" : "true"
+            );
+          }
+        }
+
+        function goTo(i) {
+          var n = slides.length;
+          if (n === 0) return;
+          var nextIdx = ((i % n) + n) % n;
+          var wrapAround =
+            (index === n - 1 && nextIdx === 0) ||
+            (index === 0 && nextIdx === n - 1);
+          index = nextIdx;
+          var slide = slides[index];
+          viewport.scrollTo({
+            left: slide.offsetLeft,
+            behavior: wrapAround ? "auto" : "smooth",
+          });
+          updateDots();
+          updateAria();
+        }
+
+        function readIndexFromScroll() {
+          var w = viewport.clientWidth;
+          var x = viewport.scrollLeft + w / 2;
+          var closest = 0;
+          var best = Infinity;
+          for (var i = 0; i < slides.length; i++) {
+            var s = slides[i];
+            var mid = s.offsetLeft + s.offsetWidth / 2;
+            var d = Math.abs(mid - x);
+            if (d < best) {
+              best = d;
+              closest = i;
+            }
+          }
+          if (closest !== index) {
+            index = closest;
+            updateDots();
+            updateAria();
+          }
+        }
+
+        if (prev)
+          prev.addEventListener("click", function () {
+            goTo(index - 1);
+          });
+        if (next)
+          next.addEventListener("click", function () {
+            goTo(index + 1);
+          });
+        for (var d = 0; d < dots.length; d++) {
+          (function (i) {
+            dots[i].addEventListener("click", function () {
+              goTo(i);
+            });
+          })(d);
+        }
+
+        viewport.addEventListener(
+          "scroll",
+          function () {
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
+          },
+          { passive: true }
+        );
+
+        viewport.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goTo(index - 1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goTo(index + 1);
+          }
+        });
+      }
+
       document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
+      document.querySelectorAll(".caseReviewsSlider").forEach(initReviewsSlider);
     })();
   </script>
 
@@ -679,6 +841,139 @@ function videoUrl(video: string | { src: string }): string {
       width: 1.3889vw;
     }
 
+    .caseReviews {
+      margin-top: 3.472vw;
+    }
+
+    .caseReviewsSlider {
+      display: flex;
+      flex-direction: column;
+      gap: 1.042vw;
+      position: relative;
+    }
+
+    .caseReviewsSliderInner {
+      position: relative;
+    }
+
+    .caseReviewsSliderViewport {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      border-radius: 0.694vw;
+      scrollbar-width: none;
+    }
+
+    .caseReviewsSliderViewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .caseReviewsSliderViewport:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .caseReviewsSliderTrack {
+      display: flex;
+      gap: 2.083vw;
+    }
+
+    .caseReviewsSliderSlide.caseReviewCard {
+      flex: 0 0 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .caseReviewsSliderNav {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 3.472vw;
+      height: 3.472vw;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: var(--color-primary);
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: border-color 0.15s ease, color 0.15s ease,
+        background-color 0.15s ease;
+    }
+
+    .caseReviewsSliderNav:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .caseReviewsSliderNavPrev {
+      left: 1.042vw;
+    }
+
+    .caseReviewsSliderNavNext {
+      right: 1.042vw;
+    }
+
+    .caseReviewsSliderNavPrev .icon-arrow-right {
+      transform: rotate(180deg);
+    }
+
+    .caseReviewsSliderNavPrev .icon-arrow-right,
+    .caseReviewsSliderNavNext .icon-arrow-right {
+      color: var(--color-fg);
+    }
+
+    .caseReviewsSliderNav:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary-hover);
+      background-color: var(--color-primary);
+    }
+
+    .caseReviewsSliderNavPrev:hover .icon-arrow-right,
+    .caseReviewsSliderNavNext:hover .icon-arrow-right {
+      color: var(--color-bg);
+    }
+
+    .caseReviewsSliderDots {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .caseReviewsSliderDot {
+      width: 1.6vw;
+      height: 1.6vw;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: #d9d9d9;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .caseReviewsSliderDot:hover {
+      background: rgba(255, 64, 1, 0.45);
+    }
+
+    .caseReviewsSliderDot.is-active {
+      background: var(--color-primary);
+    }
+
+    .caseReviewsSliderDot:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
     .caseReviewCard {
       border: 1px solid #d9d9d9;
       border-radius: 0.694vw;
@@ -852,6 +1147,44 @@ function videoUrl(video: string | { src: string }): string {
         height: 20px;
       }
 
+      .caseReviews {
+        margin-top: 50px;
+      }
+
+      .caseReviewsSlider {
+        gap: 15px;
+      }
+
+      .caseReviewsSliderTrack {
+        gap: 10px;
+      }
+
+      .caseReviewsSliderViewport {
+        border-radius: 10px;
+      }
+
+      .caseReviewsSliderNav {
+        width: 50px;
+        height: 50px;
+      }
+
+      .caseReviewsSliderNavPrev {
+        left: 15px;
+      }
+
+      .caseReviewsSliderNavNext {
+        right: 15px;
+      }
+
+      .caseReviewsSliderDots {
+        gap: 10px;
+      }
+
+      .caseReviewsSliderDot {
+        width: 8px;
+        height: 8px;
+      }
+
       .caseReviewCard {
         border-radius: 10px;
         gap: 20px;
@@ -975,6 +1308,50 @@ function videoUrl(video: string | { src: string }): string {
         height: 1.6vw;
       }
 
+      .caseReviews {
+        margin-top: 8vw;
+        padding-bottom: 8vw;
+      }
+
+      .caseReviewsSlider {
+        gap: 3.2vw;
+      }
+
+      .caseReviewsSliderTrack {
+        gap: 1.33vw;
+      }
+
+      .caseReviewsSliderViewport {
+        border-radius: 2.6667vw;
+      }
+
+      .caseReviewsSliderNav {
+        display: none;
+      }
+
+      .caseReviewsSliderNavPrev {
+        left: 2.667vw;
+      }
+
+      .caseReviewsSliderNavNext {
+        right: 2.667vw;
+      }
+
+      .caseReviewsSliderDots {
+        display: flex;
+        gap: 0.8vw;
+        position: absolute;
+        bottom: -3.6vw;
+        z-index: 1;
+        left: 0;
+        right: 0;
+      }
+
+      .caseReviewsSliderDot {
+        width: 2.133vw;
+        height: 2.133vw;
+      }
+
       .caseImage, .caseVideo {
         border-radius: 2.6667vw;
       }
@@ -1003,7 +1380,7 @@ function videoUrl(video: string | { src: string }): string {
         min-height: 133.33vw;
         padding: 0 3.7vw;
       }
-      .caseReviewContent {;
+      .caseReviewContent {
         max-width: 100%;
       }
       .caseReviewAvatar {

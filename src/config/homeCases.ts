@@ -51,9 +51,10 @@ import ankrTurboscaleSliderImage2 from "../images/cases/ankr/turboscale-slider-2
 import ankrTurboscaleSliderImage3 from "../images/cases/ankr/turboscale-slider-3.png";
 import ankrTurboscaleSliderImage4 from "../images/cases/ankr/turboscale-slider-4.png";
 import ankrTurboscaleSliderImage5 from "../images/cases/ankr/turboscale-slider-5.png";
+
 import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
-
-
+import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
+import reviewerAlexandreMortreuxImage from "../images/reviewers/alexandre-mortreux.jpg";
 
 import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
@@ -331,6 +332,18 @@ export const homeCases = [
         role: "Head of Product",
         avatar: reviewerTylerSloanImage,
         text: "<p>I had the pleasure of working closely with Nikolay at Ankr where he contributed to the design and launch of several successful products. He has a strong understanding of Web3 UI/UX and consistently translates complex blockchain concepts into clear, intuitive user experiences. Nikolay also works exceptionally quickly while maintaining a high bar for quality, which helped our product and engineering teams move fast without sacrificing thoughtful design.</p><p>He’s a collaborative and reliable partner, and I’d highly recommend him to any team looking for a talented Web3 designer who delivers high-impact work.</p>",
+      },
+      {
+        author: "Alexandre Mortreux",
+        role: "Head of Design",
+        avatar: reviewerAlexandreMortreuxImage,
+        text: "<p>Nikolai was a core designer at Ankr for five years, joining the team early. He worked across UI/UX for both Ankr’s products and multiple Web3 client projects. A self-driven and passionate professional, he knows how to build beautiful products end-to-end from the ground up.</p><p>Nikolai collaborated closely with PMs, designers, and engineers to shape the visual direction and ensure high-quality implementation. His work consistently led to high customer satisfaction and measurable business outcomes. I would gladly work with him again in the future.</p>",
+      },
+      {
+        author: "Aleksandr Ishchenko",
+        role: "Head of Frontend",
+        avatar: reviewerAleksandrIshchenkoImage,
+        text: "<p>From a frontend perspective, working with Nikolai was always smooth and productive. He collaborated closely with engineers, understood technical constraints, and ensured that designs were not only visually strong but also practical to implement. His attention to detail and involvement during implementation helped us maintain a high level of quality across the products. I would gladly work with him again in the future. I highly recommend him.</p>",
       },
     ],
   },
