@@ -1,7 +1,8 @@
 import ankrImage from "../images/cases/ankr.jpg";
+import ankrVideo from "../images/cases/ankr.mp4";
 import ankrContextImage from "../images/cases/ankr/context.png";
 import ankrMyRoleImage from "../images/cases/ankr/my-role.png";
-import ankrBrandVisualizationImage from "../images/cases/ankr/brand-visualization1.jpg";
+import ankrBrandVisualizationVideo from "../images/cases/ankr/brand-visualization1.mp4";
 import ankrNavigationImage from "../images/cases/ankr/navigation.png";
 import ankrNavigationSlider1Image1 from "../images/cases/ankr/navigation-slider1-1.jpg";
 import ankrNavigationSlider2Image1 from "../images/cases/ankr/navigation-slider2-1.png";
@@ -9,7 +10,7 @@ import ankrNavigationSlider2Image2 from "../images/cases/ankr/navigation-slider2
 import ankrNavigationSlider2Image3 from "../images/cases/ankr/navigation-slider2-3.png";
 import ankrNavigationSlider2Image4 from "../images/cases/ankr/navigation-slider2-4.png";
 import ankrNavigation2Image from "../images/cases/ankr/navigation2.jpg";
-import ankrNavigation3Image from "../images/cases/ankr/navigation3.jpg";
+import ankrNavigation3Video from "../images/cases/ankr/navigation3.mp4";
 import ankrProductSlider1Image1 from "../images/cases/ankr/product-slider1-1.jpg";
 import ankrProductSlider1Image2 from "../images/cases/ankr/product-slider1-2.png";
 import ankrProductSlider1Image3 from "../images/cases/ankr/product-slider1-3.png";
@@ -28,7 +29,7 @@ import ankrContent2 from "../images/cases/ankr/content2.png";
 import ankrProductWorkImage from "../images/cases/ankr/product-work.png";
 import ankrProductWork2Image from "../images/cases/ankr/product-work2.png";
 import ankrLittleBigImage from "../images/cases/ankr/little-big.png";
-import ankrPageNotFoundImage from "../images/cases/ankr/page-not-found.jpg";
+import ankrPageNotFoundVideo from "../images/cases/ankr/page-not-found.mp4";
 import ankrPrimeBlockSliderImage1 from "../images/cases/ankr/prime-block-slider-1.jpg";
 import ankrSwirlSliderImage1 from "../images/cases/ankr/swirl-slider-1.png";
 import ankrSwirlSliderImage2 from "../images/cases/ankr/swirl-slider-2.png";
@@ -75,9 +76,8 @@ export const homeCases = [
     },
     paragraphs: [
       {
-        type: "image",
-        image: ankrImage,
-        imageAlt: "Ankr case preview",
+        type: "video",
+        video: ankrVideo,
       },
       {
         type: "text",
@@ -105,9 +105,8 @@ export const homeCases = [
         text: "<p>The visual language combines a signature blue palette, refined grotesque typography, and geometric primitives to express the precision and reliability of the infrastructure. Glass surfaces and refracted light introduce depth and motion, evoking network speed, adoption, and the continuous flow of transactions.</p>",
       },
       {
-        type: "image",
-        image: ankrBrandVisualizationImage,
-        imageAlt: "Ankr brand visualization",
+        type: "video",
+        video: ankrBrandVisualizationVideo,
       },
       {
         type: "text",
@@ -139,9 +138,8 @@ export const homeCases = [
         text: "<p>I also introduced a scrolling announcement banner to highlight new services, case studies, and releases. These features improved new product acquisition and feature adoption rate by increasing cross-product visibility.</p>",
       },
       {
-        type: "image",
-        image: ankrNavigation3Image,
-        imageAlt: "Ankr navigation 3",
+        type: "video",
+        video: ankrNavigation3Video,
       },
       {
         type: "text",
@@ -236,9 +234,8 @@ export const homeCases = [
         text: "<p>I also proposed adding a subtle blockchain-themed animation for the 404 page, which the team executed beautifully. The header and footer remain visible, allowing users to quickly navigate to any other page instead of reaching a dead end.</p>",
       },
       {
-        type: "image",
-        image: ankrPageNotFoundImage,
-        imageAlt: "Ankr page not found",
+        type: "video",
+        video: ankrPageNotFoundVideo,
       },
       {
         type: "text",
