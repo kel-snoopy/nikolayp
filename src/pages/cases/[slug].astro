@@ -207,6 +207,7 @@ function videoUrl(video: string | { src: string }): string {
     (function () {
       function initSlider(root) {
         var viewport = root.querySelector(".caseImagesSliderViewport");
+        var inner = root.querySelector(".caseImagesSliderInner");
         var slides = root.querySelectorAll(".caseImagesSliderSlide");
         var dots = root.querySelectorAll(".caseImagesSliderDot");
         var prev = root.querySelector(".caseImagesSliderNavPrev");
@@ -346,6 +347,30 @@ function videoUrl(video: string | { src: string }): string {
         viewport.addEventListener("pointercancel", function (e) {
           if (tapTrack && tapTrack.id === e.pointerId) tapTrack = null;
         });
+
+        /* Hover arrow that matches left/right half of slider (mouse / pen only). */
+        if (inner && prev && next) {
+          function clearHalfHover() {
+            root.classList.remove("caseImagesSlider--half-left");
+            root.classList.remove("caseImagesSlider--half-right");
+          }
+          function updateHalfHover(clientX) {
+            var rect = inner.getBoundingClientRect();
+            var x = clientX - rect.left;
+            if (x < rect.width * 0.5) {
+              root.classList.add("caseImagesSlider--half-left");
+              root.classList.remove("caseImagesSlider--half-right");
+            } else {
+              root.classList.remove("caseImagesSlider--half-left");
+              root.classList.add("caseImagesSlider--half-right");
+            }
+          }
+          inner.addEventListener("pointermove", function (e) {
+            if (e.pointerType === "touch") return;
+            updateHalfHover(e.clientX);
+          });
+          inner.addEventListener("pointerleave", clearHalfHover);
+        }
       }
 
       document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
@@ -490,11 +515,6 @@ function videoUrl(video: string | { src: string }): string {
       transition: border-color 0.15s ease, color 0.15s ease;
     }
 
-    .caseImagesSliderNav:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary-hover);
-    }
-
     .caseImagesSliderNav:focus-visible {
       outline: 2px solid var(--color-primary);
       outline-offset: 2px;
@@ -516,11 +536,17 @@ function videoUrl(video: string | { src: string }): string {
     .caseImagesSliderNavNext .icon-arrow-right {
       color: var(--color-fg);
     }
-    .caseImagesSliderNav:hover {
+    .caseImagesSliderNav:hover,
+    .caseImagesSlider--half-left .caseImagesSliderNavPrev,
+    .caseImagesSlider--half-right .caseImagesSliderNavNext {
+      border-color: var(--color-primary);
+      color: var(--color-primary-hover);
       background-color: var(--color-primary);
     }
     .caseImagesSliderNavPrev:hover .icon-arrow-right,
-    .caseImagesSliderNavNext:hover .icon-arrow-right {
+    .caseImagesSliderNavNext:hover .icon-arrow-right,
+    .caseImagesSlider--half-left .caseImagesSliderNavPrev .icon-arrow-right,
+    .caseImagesSlider--half-right .caseImagesSliderNavNext .icon-arrow-right {
       color: var(--color-bg);
     }
 
