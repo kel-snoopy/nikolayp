@@ -1,7 +1,18 @@
 ---
 import "../styles/global.css";
 
-const { title = "NikolayP2" } = Astro.props;
+const { title = "NikolayP2", page: pageOverride } = Astro.props;
+
+/** Maps URL to `home` | `about` | `case` for the `<html>` class (override with `page` prop). */
+function pageClassFromPathname(pathname: string): string {
+  const normalized = pathname.replace(/\/$/, "") || "/";
+  if (normalized === "/") return "home";
+  if (normalized === "/about") return "about";
+  if (normalized === "/cases") return "case";
+  return "";
+}
+
+const pageClass = pageOverride ?? pageClassFromPathname(Astro.url.pathname);
 
 import avatarSrc from "../images/avatar.jpg";
 import videoCtaSrc from "../images/video-cta.png";
@@ -19,7 +30,7 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class:list={[pageClass].filter(Boolean)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -345,6 +356,9 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         display: flex;
         align-items: center;
         gap: 0.6944vw;
+      }
+      html.home .brandLink:hover {
+        color: var(--color-fg);
       }
 
       .avatar {
