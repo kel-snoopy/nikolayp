@@ -5,6 +5,9 @@ import ankrMyRoleImage from "../images/cases/ankr/my-role.png";
 import ankrBrandVisualizationVideo from "../images/cases/ankr/brand-visualization1.mp4";
 import ankrNavigationImage from "../images/cases/ankr/navigation.png";
 import ankrNavigationSlider1Image1 from "../images/cases/ankr/navigation-slider1-1.jpg";
+import ankrNavigationSlider1Image2 from "../images/cases/ankr/navigation-slider1-2.png";
+import ankrNavigationSlider1Image3 from "../images/cases/ankr/navigation-slider1-3.png";
+import ankrNavigationSlider1Image4 from "../images/cases/ankr/navigation-slider1-4.png";
 import ankrNavigationSlider2Image1 from "../images/cases/ankr/navigation-slider2-1.png";
 import ankrNavigationSlider2Image2 from "../images/cases/ankr/navigation-slider2-2.png";
 import ankrNavigationSlider2Image3 from "../images/cases/ankr/navigation-slider2-3.png";
@@ -119,9 +122,13 @@ export const homeCases = [
         imageAlt: "Ankr navigation",
       },
       {
-        type: "image",
-        image: ankrNavigationSlider1Image1,
-        imageAlt: "Ankr navigation slider 1",
+        type: "images",
+        images: [
+          { image: ankrNavigationSlider1Image1, imageAlt: "Ankr navigation slider 1" },
+          { image: ankrNavigationSlider1Image2, imageAlt: "Ankr navigation slider 2" },
+          { image: ankrNavigationSlider1Image3, imageAlt: "Ankr navigation slider 3" },
+          { image: ankrNavigationSlider1Image4, imageAlt: "Ankr navigation slider 4" },
+        ],
       },
       {
         type: "image",

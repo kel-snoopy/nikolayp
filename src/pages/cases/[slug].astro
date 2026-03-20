@@ -66,6 +66,80 @@ function videoUrl(video: string | { src: string }): string {
             />
           </div>
         )}
+        {p.type === "images" && (
+          <div class="caseImagesPanel">
+            <div
+              class="caseImagesSlider"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Case image gallery"
+            >
+              <div class="caseImagesSliderInner">
+                <div
+                  class:list={[
+                    "caseImagesSliderViewport",
+                    p.images.length > 1 && "caseImagesSliderViewport--seek",
+                  ]}
+                  tabindex={p.images.length > 1 ? 0 : undefined}
+                >
+                  <div class="caseImagesSliderTrack">
+                    {p.images.map((image, slideIndex) => (
+                      <figure
+                        class="caseImagesSliderSlide"
+                        aria-hidden={slideIndex === 0 ? "false" : "true"}
+                      >
+                        <img
+                          class="caseImage caseImagesSliderImg"
+                          src={image.image.src}
+                          alt={image.imageAlt}
+                          loading={slideIndex === 0 ? "eager" : "lazy"}
+                          draggable="false"
+                        />
+                      </figure>
+                    ))}
+                  </div>
+                </div>
+                {p.images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      class="caseImagesSliderNav caseImagesSliderNavPrev"
+                      aria-label="Previous slide"
+                    >
+                      <span class="icon-arrow-right" aria-hidden="true"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="caseImagesSliderNav caseImagesSliderNavNext"
+                      aria-label="Next slide"
+                    >
+                      <span class="icon-arrow-right" aria-hidden="true"></span>
+                    </button>
+                  </>
+                )}
+              </div>
+              {p.images.length > 1 && (
+                <div
+                  class="caseImagesSliderDots mobile-only"
+                  role="tablist"
+                  aria-label="Slides"
+                >
+                  {p.images.map((_, dotIndex) => (
+                    <button
+                      type="button"
+                      class:list={[
+                        "caseImagesSliderDot",
+                        dotIndex === 0 && "is-active",
+                      ]}
+                      aria-label={`Go to slide ${dotIndex + 1}`}
+                      aria-current={dotIndex === 0 ? "true" : "false"}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         {p.type === "text" && (
           <div class="caseParagraph">
             {"textBeforeTitle" in p && p.textBeforeTitle && (
@@ -109,6 +183,155 @@ function videoUrl(video: string | { src: string }): string {
     </span>
     <a class="extraShotsLink" href={`/cases/${caseItem.nextCase.id}`}></a>
   </div>
+
+  <script is:inline>
+    (function () {
+      function initSlider(root) {
+        var viewport = root.querySelector(".caseImagesSliderViewport");
+        var slides = root.querySelectorAll(".caseImagesSliderSlide");
+        var dots = root.querySelectorAll(".caseImagesSliderDot");
+        var prev = root.querySelector(".caseImagesSliderNavPrev");
+        var next = root.querySelector(".caseImagesSliderNavNext");
+        if (!viewport || slides.length < 2) return;
+
+        var index = 0;
+        var scrollEndTimer;
+
+        function updateDots() {
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle("is-active", i === index);
+            dots[i].setAttribute(
+              "aria-current",
+              i === index ? "true" : "false"
+            );
+          }
+        }
+
+        function updateAria() {
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].setAttribute(
+              "aria-hidden",
+              i === index ? "false" : "true"
+            );
+          }
+        }
+
+        function goTo(i) {
+          var n = slides.length;
+          if (n === 0) return;
+          var next = ((i % n) + n) % n;
+          var wrapAround =
+            (index === n - 1 && next === 0) ||
+            (index === 0 && next === n - 1);
+          index = next;
+          var slide = slides[index];
+          viewport.scrollTo({
+            left: slide.offsetLeft,
+            behavior: wrapAround ? "auto" : "smooth",
+          });
+          updateDots();
+          updateAria();
+        }
+
+        function readIndexFromScroll() {
+          var w = viewport.clientWidth;
+          var x = viewport.scrollLeft + w / 2;
+          var closest = 0;
+          var best = Infinity;
+          for (var i = 0; i < slides.length; i++) {
+            var s = slides[i];
+            var mid = s.offsetLeft + s.offsetWidth / 2;
+            var d = Math.abs(mid - x);
+            if (d < best) {
+              best = d;
+              closest = i;
+            }
+          }
+          if (closest !== index) {
+            index = closest;
+            updateDots();
+            updateAria();
+          }
+        }
+
+        if (prev)
+          prev.addEventListener("click", function () {
+            goTo(index - 1);
+          });
+        if (next)
+          next.addEventListener("click", function () {
+            goTo(index + 1);
+          });
+        for (var d = 0; d < dots.length; d++) {
+          (function (i) {
+            dots[i].addEventListener("click", function () {
+              goTo(i);
+            });
+          })(d);
+        }
+
+        viewport.addEventListener(
+          "scroll",
+          function () {
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
+          },
+          { passive: true }
+        );
+
+        viewport.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goTo(index - 1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goTo(index + 1);
+          }
+        });
+
+        /* Tap left/right half of viewport to prev/next (ignore if user dragged to scroll). */
+        var tapTrack = null;
+        var TAP_MOVE_PX = 14;
+        viewport.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          tapTrack = {
+            id: e.pointerId,
+            x: e.clientX,
+            y: e.clientY,
+            cancelled: false,
+          };
+        });
+        viewport.addEventListener("pointermove", function (e) {
+          if (!tapTrack || tapTrack.id !== e.pointerId) return;
+          if (
+            Math.abs(e.clientX - tapTrack.x) > TAP_MOVE_PX ||
+            Math.abs(e.clientY - tapTrack.y) > TAP_MOVE_PX
+          ) {
+            tapTrack.cancelled = true;
+          }
+        });
+        function clearTap(e) {
+          if (!tapTrack || tapTrack.id !== e.pointerId) return;
+          var t = tapTrack;
+          tapTrack = null;
+          if (t.cancelled) return;
+          var rect = viewport.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+          if (x < rect.width / 2) goTo(index - 1);
+          else goTo(index + 1);
+        }
+        viewport.addEventListener("pointerup", clearTap);
+        viewport.addEventListener("pointercancel", function (e) {
+          if (tapTrack && tapTrack.id === e.pointerId) tapTrack = null;
+        });
+      }
+
+      document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
+    })();
+  </script>
 
   <style>
     .casePage {
@@ -173,6 +396,148 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseImagePanel {
       margin: 1.388vw 0;
+    }
+
+    .caseImagesPanel {
+      margin: 1.388vw 0;
+    }
+
+    .caseImagesSlider {
+      display: flex;
+      flex-direction: column;
+      gap: 1.042vw;
+    }
+
+    .caseImagesSliderInner {
+      position: relative;
+    }
+
+    .caseImagesSliderViewport {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      border-radius: 0.694vw;
+      scrollbar-width: none;
+    }
+
+    .caseImagesSliderViewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .caseImagesSliderViewport--seek {
+      cursor: pointer;
+    }
+
+    .caseImagesSliderTrack {
+      display: flex;
+    }
+
+    .caseImagesSliderSlide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      margin: 0;
+    }
+
+    .caseImagesSliderImg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.694vw;
+      user-select: none;
+    }
+
+    .caseImagesSliderNav {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 3.472vw;
+      height: 3.472vw;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      color: var(--color-primary);
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .caseImagesSliderNav:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary-hover);
+    }
+
+    .caseImagesSliderNav:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    .caseImagesSliderNavPrev {
+      left: 1.042vw;
+    }
+
+    .caseImagesSliderNavNext {
+      right: 1.042vw;
+    }
+
+    .caseImagesSliderNavPrev .icon-arrow-right {
+      transform: rotate(180deg);
+    }
+
+    .caseImagesSliderNavPrev .icon-arrow-right,
+    .caseImagesSliderNavNext .icon-arrow-right {
+      color: var(--color-fg);
+    }
+    .caseImagesSliderNav:hover {
+      background-color: var(--color-primary);
+    }
+    .caseImagesSliderNavPrev:hover .icon-arrow-right,
+    .caseImagesSliderNavNext:hover .icon-arrow-right {
+      color: var(--color-bg);
+    }
+
+    .caseImagesSliderDots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.694vw;
+    }
+    .caseImagesSliderDots.mobile-only {
+      display: none;
+    }
+
+    .caseImagesSliderDot {
+      width: 0.556vw;
+      height: 0.556vw;
+      padding: 0;
+      border: none;
+      border-radius: 999px;
+      background: #d9d9d9;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .caseImagesSliderDot:hover {
+      background: rgba(255, 64, 1, 0.45);
+    }
+
+    .caseImagesSliderDot.is-active {
+      background: var(--color-primary);
+      transform: scale(1.15);
+    }
+
+    .caseImagesSliderDot:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
 
     .caseImage, .caseVideo {
@@ -365,6 +730,44 @@ function videoUrl(video: string | { src: string }): string {
         margin: 20px 0;
       }
 
+      .caseImagesPanel {
+        margin: 20px 0;
+      }
+
+      .caseImagesSlider {
+        gap: 15px;
+      }
+
+      .caseImagesSliderViewport {
+        border-radius: 10px;
+      }
+
+      .caseImagesSliderImg {
+        border-radius: 10px;
+      }
+
+      .caseImagesSliderNav {
+        width: 50px;
+        height: 50px;
+      }
+
+      .caseImagesSliderNavPrev {
+        left: 15px;
+      }
+
+      .caseImagesSliderNavNext {
+        right: 15px;
+      }
+
+      .caseImagesSliderDots {
+        gap: 10px;
+      }
+
+      .caseImagesSliderDot {
+        width: 8px;
+        height: 8px;
+      }
+
       .caseImage, .caseVideo {
         border-radius: 10px;
       }
@@ -478,6 +881,45 @@ function videoUrl(video: string | { src: string }): string {
       .caseImagePanel {
         margin: 5.333vw 0;
       }
+
+      .caseImagesPanel {
+        margin: 5.333vw 0;
+      }
+
+      .caseImagesSlider {
+        gap: 3.2vw;
+      }
+
+      .caseImagesSliderViewport {
+        border-radius: 2.6667vw;
+      }
+
+      .caseImagesSliderImg {
+        border-radius: 2.6667vw;
+      }
+
+      .caseImagesSliderNav {
+        width: 10.667vw;
+        height: 10.667vw;
+      }
+
+      .caseImagesSliderNavPrev {
+        left: 2.667vw;
+      }
+
+      .caseImagesSliderNavNext {
+        right: 2.667vw;
+      }
+
+      .caseImagesSliderDots {
+        gap: 2.133vw;
+      }
+
+      .caseImagesSliderDot {
+        width: 2.133vw;
+        height: 2.133vw;
+      }
+
       .caseImage, .caseVideo {
         border-radius: 2.6667vw;
       }
