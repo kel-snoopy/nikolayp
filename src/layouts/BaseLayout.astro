@@ -1,14 +1,15 @@
 ---
 import "../styles/global.css";
+import "../styles/icons.css";
 
 const { title = "NikolayP2", page: pageOverride } = Astro.props;
 
 /** Maps URL to `home` | `about` | `case` for the `<html>` class (override with `page` prop). */
 function pageClassFromPathname(pathname: string): string {
-  const normalized = pathname.replace(/\/$/, "") || "/";
+  const normalized = pathname.replace(/\/+$/, "") || "/";
   if (normalized === "/") return "home";
-  if (normalized === "/about") return "about";
-  if (normalized === "/cases") return "case";
+  if (normalized === "/about" || normalized.startsWith("/about/")) return "about";
+  if (normalized === "/cases" || normalized.startsWith("/cases/")) return "case";
   return "";
 }
 
@@ -96,6 +97,29 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
     <main class="container">
       <slot />
     </main>
+
+    <section class="homeBottom" aria-label="Extra shots and contact call to action">
+      <div class="hero __bottom">
+        <div class="heroInner">
+          <h3 class="heroTitle">Building something bold?</h3>
+          <p class="heroAccent">Let&apos;s design it right.</p>
+          <div class="heroActions">
+            <a class="primaryButton heroEmail" href={`mailto:${profileLinks.email}`}>
+              Email Me
+            </a>
+            <a
+              class="primaryButton heroTelegram"
+              href={profileLinks.telegramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Telegram"
+            >
+              <span class="icon-telegram" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="container footerInner">
@@ -707,6 +731,57 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         display: flex;
       }
 
+      .hero {
+        padding: 6.9444vw 0;
+      }
+      .hero.__bottom {
+        padding: 12.5vw 0;
+      }
+
+      .heroInner {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .heroTitle {
+        color: var(--color-fg);
+        font-weight: 500;
+        font-size: 3.472vw;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .heroAccent {
+        margin: 0 0 1.388vw 0;
+        font-weight: 500;
+        font-size: 3.472vw;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: var(--color-primary);
+        letter-spacing: -0.02em;
+      }
+
+      .heroDescription {
+        margin: 0 auto 0;
+        max-width: 33.333vw;
+      }
+
+      .heroActions {
+        margin-top: 1.736vw;
+        display: flex;
+        justify-content: center;
+        gap: 0.3472vw;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .heroEmail {
+        width: 12.5vw;
+      }
+      .heroTelegram {
+      }
+
       .footerInner {
         border-top: 1px solid var(--color-gray);
         color: rgba(0, 0, 0, 0.3);
@@ -760,6 +835,39 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         .avatar {
           width: 5.3333vw;
           height: 5.3333vw;
+        }
+
+        .hero {
+          padding: 34.6667vw 0 26.6667vw;
+        }
+        .hero.__bottom {
+          padding: 40vw 0;
+        }
+        .heroTitle {
+          font-size: 12vw;
+          line-height: 1;
+          margin: 0 0 1.333vw 0;
+        }
+        .heroAccent {
+          font-size: 12vw;
+          line-height: 1;
+          margin: 0 0 6.6667vw 0;
+        }
+
+        .heroDescription {
+          max-width: 100vw;
+        }
+
+        .heroActions {
+          margin-top: 6.666vw;
+          gap: 1.333vw;
+        }
+
+        .heroEmail {
+          width: 48vw;
+        }
+        .heroTelegram {
+          width: 16vw;
         }
 
         .footer {

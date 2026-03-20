@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
 import { homeCases } from "../config/homeCases";
-import "../styles/icons.css";
 ---
 
 <BaseLayout title="Nikolai Posvezhnyi - Senior Product Designer">
@@ -86,9 +85,6 @@ import "../styles/icons.css";
         />
       </div>
     </section>
-  ))}
-
-  <section class="homeBottom" aria-label="Extra shots and contact call to action">
     <div class="extraShots">
       <span class="extraShotsLabel">See Some Extra Shots</span>
       <span class="extraShotsPlus" aria-hidden="true">
@@ -96,28 +92,7 @@ import "../styles/icons.css";
       </span>
       <a class="extraShotsLink" href="/cases"></a>
     </div>
-
-    <div class="hero __bottom">
-      <div class="heroInner">
-        <h3 class="heroTitle">Building something bold?</h3>
-        <p class="heroAccent">Let&apos;s design it right.</p>
-        <div class="heroActions">
-          <a class="primaryButton heroEmail" href={`mailto:${profileLinks.email}`}>
-            Email Me
-          </a>
-          <a
-            class="primaryButton heroTelegram"
-            href={profileLinks.telegramUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label="Telegram"
-          >
-            <span class="icon-telegram" aria-hidden="true"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  ))}
 
   <style>
     .hero {
@@ -263,6 +238,7 @@ import "../styles/icons.css";
       height: 5.5556vw;
       justify-content: space-between;
       border-bottom: 1px solid #d9d9d9;
+      border-top: 1px solid #d9d9d9;
       padding: 2.0833vw 0;
       position: relative;
     }

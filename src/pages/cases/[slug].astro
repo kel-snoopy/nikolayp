@@ -1,0 +1,253 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { homeCases } from "../../config/homeCases";
+
+export function getStaticPaths() {
+  return homeCases.map((c) => ({
+    params: { slug: c.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const slugStr = typeof slug === "string" ? slug : String(slug ?? "");
+const caseItem = homeCases.find((c) => c.id === slugStr)!;
+---
+
+<BaseLayout title={caseItem.brand}>
+  <section class="casePage">
+    <div class="caseTop">
+      <div class="caseLeft">
+        <p class="caseBrand">{caseItem.brand}</p>
+        <h1 class="caseTitle">{caseItem.title}</h1>
+
+        <div class="caseMeta">
+          <span>{caseItem.meta.dateRange}</span>
+          <span class="sep">/</span>
+          <span>{caseItem.meta.location}</span>
+          <span class="sep">/</span>
+          <span>{caseItem.meta.stack}</span>
+          <span class="sep">/</span>
+          <span>{caseItem.meta.roles}</span>
+        </div>
+      </div>
+
+      <div class="caseRight" set:html={caseItem.fullStoryText}></div>
+    </div>
+
+    {caseItem.paragraphs.map((p) => (
+      <>
+        {p.type === "image" && (
+          <div class="caseImagePanel">
+            <img
+              class="caseImage"
+              src={p.image.src}
+              alt={p.imageAlt}
+              loading="lazy"
+            />
+          </div>
+        )}
+        {p.type === "text" && (
+          <div class="caseParagraph">
+            {p.textBeforeTitle && <div class="caseParagraphText" set:html={p.textBeforeTitle}></div>}
+            {p.title && <h2 class="caseParagraphTitle">{p.title}</h2>}
+            <div class="caseParagraphText" set:html={p.text}></div>
+          </div>
+        )}
+      </>
+    ))}
+  </section>
+  <div class="extraShots">
+    <div class="extraShotsLeft">
+      <span class="extraShotsLabel">Next Case:</span>
+      <span class="extraShotsNextCase">{caseItem.nextCase.title}</span>
+    </div>
+    <span class="extraShotsPlus" aria-hidden="true">
+      <span class="icon-plus" aria-hidden="true"></span>
+    </span>
+    <a class="extraShotsLink" href="/cases"></a>
+  </div>
+
+  <style>
+    .casePage {
+      padding: 6.944vw 0 6vw;
+    }
+
+    .caseTop {
+      margin: 0 auto 2.7778vw;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6944vw;
+      align-items: start;
+    }
+
+    .caseBrand {
+      color: var(--color-primary);
+      font-weight: 500;
+      font-size: 1.3889vw;
+      line-height: 1;
+      margin: 0 0 1.042vw;
+    }
+
+    .caseTitle {
+      margin: 0;
+      font-weight: 500;
+      font-size: 3.472vw;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin: 0 0 1.042vw;
+    }
+
+    .caseMeta {
+      color: rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.694vw;
+      font-size: 1.1111vw;
+      line-height: 1.3889vw;
+    }
+
+    .caseMeta .sep {
+      opacity: 0.6;
+    }
+
+    .caseImage {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caseRight p {
+      font-size: 1.1111vw;
+      line-height: 1.3889vw;
+      margin: 0 0 1.042vw;
+    }
+
+    .caseImagePanel {
+      margin: 1.388vw 0;
+    }
+
+    .caseParagraph {
+      margin: 3.472vw auto;
+      max-width: 48.26vw;
+    }
+
+    .caseParagraphTitle {
+      font-size: 1.3889vw;
+      font-weight: 500;
+      line-height: 1;
+      margin: 3.472vw 0 1.042vw;
+    }
+
+    .caseParagraphText {
+
+    }
+    .caseParagraphText p {
+      font-size: 1.1111vw;
+      line-height: 1.3889vw;
+      margin: 0 0 1.042vw;
+    }
+    .caseParagraphText a {
+      color: var(--color-primary);
+    }
+
+    .caseBottom {
+      margin-top: 2.5vw;
+      text-align: center;
+    }
+
+    .caseBackLink {
+      color: rgba(0, 0, 0, 0.4);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .caseBackLink:hover {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    .extraShots {
+      display: flex;
+      align-items: center;
+      height: 5.5556vw;
+      justify-content: space-between;
+      border-bottom: 1px solid #d9d9d9;
+      border-top: 1px solid #d9d9d9;
+      padding: 2.0833vw 0;
+      position: relative;
+    }
+
+    .extraShotsLeft {
+      display: flex;
+      align-items: center;
+      gap: 0.6944vw;
+    }
+    .extraShotsLabel {
+      color: var(--color-primary);
+      font-size: 1.3889vw;
+      line-height: 1;
+    }
+    .extraShotsNextCase {
+      font-size: 1.3889vw;
+      line-height: 1;
+    }
+    .extraShotsLink {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .extraShotsPlus {
+      color: var(--color-primary);
+      height: 1.3889vw;
+      width: 1.3889vw;
+    }
+
+    @media (max-width: 600px) {
+      .caseTop {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .caseBrand {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .caseMeta {
+        font-size: 14px;
+        margin-top: 14px;
+      }
+
+      .caseLead,
+      .caseStory,
+      .caseFullStory {
+        font-size: 14px;
+      }
+
+      .caseImagePanel {
+        padding: 18px;
+        margin-top: 22px;
+      }
+
+      .extraShots {
+        height: 18.6667vw;
+        padding: 6.6667vw 0;
+      }
+      .extraShotsLabel {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+      }
+      .extraShotsLink {
+      }
+      .extraShotsPlus {
+        width: 5.3vw;
+        height: 5.3vw;
+      }
+    }
+  </style>
+</BaseLayout>
+

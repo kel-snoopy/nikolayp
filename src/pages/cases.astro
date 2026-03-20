@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PrimaryButton from "../components/PrimaryButton.astro";
+import { homeCases } from "../config/homeCases";
 ---
 
 <BaseLayout title="Cases">
@@ -26,6 +27,14 @@ import PrimaryButton from "../components/PrimaryButton.astro";
       background: rgba(255, 255, 255, 0.6);
     }
 
+    .caseThumb {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      margin: 0 0 12px 0;
+    }
+
     .caseCard h2 {
       margin: 0 0 8px 0;
       font-size: 16px;
@@ -40,18 +49,16 @@ import PrimaryButton from "../components/PrimaryButton.astro";
   </style>
 
   <div class="caseGrid">
-    <div class="caseCard">
-      <h2>Case A</h2>
-      <p>Short description of the project.</p>
-    </div>
-    <div class="caseCard">
-      <h2>Case B</h2>
-      <p>Short description of the project.</p>
-    </div>
-    <div class="caseCard">
-      <h2>Case C</h2>
-      <p>Short description of the project.</p>
-    </div>
+    {homeCases.map((c) => (
+      <div class="caseCard">
+        <img class="caseThumb" src={c.image.src} alt={c.imageAlt} loading="lazy" />
+        <h2>{c.brand}</h2>
+        <p>{c.title}</p>
+        <div style="margin-top: 12px;">
+          <PrimaryButton href={c.detailsUrl} text="Open case" />
+        </div>
+      </div>
+    ))}
   </div>
 </BaseLayout>
 
