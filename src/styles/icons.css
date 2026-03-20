@@ -79,6 +79,41 @@
   mask-size: contain;
 }
 
+@media screen and (min-width: 1440px) {
+  .icon-telegram {
+    width: 22px;
+    height: 18px;
+  }
+  .icon-plus {
+    width: 20px;
+    height: 20px;
+  }
+  .icon-minus {
+    width: 20px;
+    height: 20px;
+  }
+  .icon-close {
+    width: 20px;
+    height: 20px;
+  }
+  .icon-play {
+    height: 50px;
+    width: 36px;
+  }
+  .icon-play-small {
+    width: 9px;
+    height: 15px;
+  }
+  .icon-close-circle {
+    width: 50px;
+    height: 50px;
+  }
+  .icon-arrow-right {
+    width: 18px;
+    height: 16px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .icon-telegram {
     width: 5.8666vw;

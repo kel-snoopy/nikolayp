@@ -295,6 +295,109 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       margin: 0 0 1.3889vw;
     }
 
+    @media (min-width: 1440px) {
+      .casePage {
+        padding: 100px 0 50px;
+      }
+
+      .caseTop {
+        margin-bottom: 40px;
+        gap: 10px;
+      }
+
+      .caseBrand {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .caseTitle {
+        font-size: 50px;
+        margin-bottom: 15px;
+      }
+
+      .caseMeta {
+        font-size: 16px;
+        line-height: 20px;
+        gap: 10px;
+      }
+
+      .caseRight :global(p) {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 15px;
+      }
+
+      .caseImagePanel {
+        margin: 20px 0;
+      }
+
+      .caseParagraph {
+        margin: 50px auto;
+        max-width: 695px;
+      }
+
+      .caseParagraphTitle {
+        font-size: 20px;
+        margin: 50px 0 15px;
+      }
+
+      .caseParagraphText :global(p) {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 15px;
+      }
+
+      .extraShots {
+        height: 80px;
+        padding: 30px 0;
+      }
+
+      .extraShotsLeft {
+        gap: 10px;
+      }
+
+      .extraShotsLabel,
+      .extraShotsNextCase {
+        font-size: 20px;
+      }
+
+      .extraShotsPlus {
+        width: 20px;
+        height: 20px;
+      }
+
+      .caseReviewCard {
+        border-radius: 10px;
+        gap: 20px;
+        min-height: 655px;
+      }
+
+      .caseReviewContent {
+        max-width: 695px;
+      }
+
+      .caseReviewAvatar {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+      }
+
+      .caseReviewAuthor {
+        font-size: 16px;
+      }
+
+      .caseReviewRole {
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .caseReviewText,
+      .caseReviewText :global(p) {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+    }
+
     @media (max-width: 600px) {
       .caseTop {
         grid-template-columns: 1fr;

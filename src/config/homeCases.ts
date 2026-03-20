@@ -57,14 +57,6 @@ export const homeCases = [
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
       shortTitle: "Path Crypto",
     },
-    caseReviews: [
-      {
-        author: "Tyler Sloan",
-        role: "Head of Product",
-        avatar: reviewerTylerSloanImage,
-        text: "<p>I had the pleasure of working closely with Nikolay at Ankr where he contributed to the design and launch of several successful products. He has a strong understanding of Web3 UI/UX and consistently translates complex blockchain concepts into clear, intuitive user experiences. Nikolay also works exceptionally quickly while maintaining a high bar for quality, which helped our product and engineering teams move fast without sacrificing thoughtful design.</p><p>He’s a collaborative and reliable partner, and I’d highly recommend him to any team looking for a talented Web3 designer who delivers high-impact work.</p>",
-      },
-    ],
     paragraphs: [
       {
         type: "image",
