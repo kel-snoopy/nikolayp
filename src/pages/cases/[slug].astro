@@ -48,13 +48,35 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
         )}
         {p.type === "text" && (
           <div class="caseParagraph">
-            {p.textBeforeTitle && <div class="caseParagraphText" set:html={p.textBeforeTitle}></div>}
-            {p.title && <h2 class="caseParagraphTitle">{p.title}</h2>}
+            {"textBeforeTitle" in p && p.textBeforeTitle && (
+              <div class="caseParagraphText" set:html={p.textBeforeTitle}></div>
+            )}
+            {"title" in p && p.title && <h2 class="caseParagraphTitle">{p.title}</h2>}
             <div class="caseParagraphText" set:html={p.text}></div>
           </div>
         )}
       </>
     ))}
+
+    {caseItem.caseReviews.length > 0 && (
+      <section class="caseReviews" aria-label="Case reviews">
+        {caseItem.caseReviews.map((review) => (
+          <article class="caseReviewCard">
+            <div class="caseReviewContent">
+              <img
+                class="caseReviewAvatar"
+                src={review.avatar.src}
+                alt={`${review.author} avatar`}
+                loading="lazy"
+              />
+              <div class="caseReviewAuthor">{review.author}</div>
+              <div class="caseReviewRole">{review.role}</div>
+              <div class="caseReviewText" set:html={review.text}></div>
+            </div>
+          </article>
+        ))}
+      </section>
+    )}
   </section>
   <div class="extraShots">
     <div class="extraShotsLeft">
@@ -70,7 +92,7 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
 
   <style>
     .casePage {
-      padding: 6.944vw 0 6vw;
+      padding: 6.944vw 0 3.472vw;
     }
 
     .caseTop {
@@ -205,6 +227,77 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       width: 1.3889vw;
     }
 
+    .caseReviews {
+    }
+
+    .caseReviewCard {
+      border: 1px solid #d9d9d9;
+      border-radius: 0.694vw;
+      display: grid;
+      align-items: center;
+      gap: 1.3889vw;
+      min-height: 45.486vw;
+    }
+
+    .caseReviewArrow {
+      width: 3.472vw;
+      height: 3.472vw;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--color-fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .caseReviewArrow.isPrev .icon-arrow-right {
+      transform: rotate(180deg);
+    }
+
+    .caseReviewArrow:hover {
+      color: var(--color-primary);
+    }
+
+    .caseReviewContent {
+      text-align: center;
+      max-width: 48.264vw;
+      margin: 0 auto;
+    }
+
+    .caseReviewAvatar {
+      width: 4.1667vw;
+      height: 4.1667vw;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 0.694vw;
+    }
+
+    .caseReviewAuthor {
+      font-size: 1.111vw;
+      line-height: 1.25;
+      margin: 0 0 0 0;
+    }
+
+    .caseReviewRole {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 1.111vw;
+      line-height: 1.25;
+      margin: 0 0 1.042vw;
+    }
+
+    .caseReviewText {
+      font-size: 1.3889vw;
+      line-height: 1.25;
+    }
+    .caseReviewText p {
+      font-size: 1.3889vw;
+      line-height: 1.25;
+      margin: 0 0 1.3889vw;
+    }
+
     @media (max-width: 600px) {
       .caseTop {
         grid-template-columns: 1fr;
@@ -260,6 +353,60 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       .extraShotsPlus {
         width: 5.3vw;
         height: 5.3vw;
+      }
+
+      .caseReviews {
+        margin-top: 10.6667vw;
+      }
+
+      .caseReviewCard {
+        border-radius: 3.2vw;
+        padding: 8vw 3.2vw;
+        grid-template-columns: 1fr;
+        gap: 5.333vw;
+        min-height: auto;
+      }
+
+      .caseReviewArrow {
+        width: 9.6vw;
+        height: 9.6vw;
+        border-radius: 999px;
+      }
+
+      .caseReviewArrow.isPrev {
+        order: 2;
+        justify-self: start;
+      }
+
+      .caseReviewArrow.isNext {
+        order: 3;
+        justify-self: end;
+      }
+
+      .caseReviewContent {
+        max-width: 100%;
+      }
+
+      .caseReviewAvatar {
+        width: 12vw;
+        height: 12vw;
+        margin-bottom: 3.2vw;
+      }
+
+      .caseReviewAuthor {
+        font-size: 5.333vw;
+        margin-bottom: 1.333vw;
+      }
+
+      .caseReviewRole {
+        font-size: 4vw;
+        margin-bottom: 4.8vw;
+      }
+
+      .caseReviewText p {
+        margin-bottom: 4vw;
+        font-size: 6.4vw;
+        line-height: 1.2;
       }
     }
   </style>

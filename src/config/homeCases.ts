@@ -24,6 +24,8 @@ import ankrPrimeBlockSliderImage1 from "../images/cases/ankr/prime-block-slider-
 import ankrSwirlSliderImage1 from "../images/cases/ankr/swirl-slider-1.jpg";
 import ankrTurboscaleSliderImage1 from "../images/cases/ankr/turboscale-slider-1.jpg";
 
+import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
+
 
 
 import chatAppImage from "../images/cases/chat-app.jpg";
@@ -55,6 +57,14 @@ export const homeCases = [
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
       shortTitle: "Path Crypto",
     },
+    caseReviews: [
+      {
+        author: "Tyler Sloan",
+        role: "Head of Product",
+        avatar: reviewerTylerSloanImage,
+        text: "<p>I had the pleasure of working closely with Nikolay at Ankr where he contributed to the design and launch of several successful products. He has a strong understanding of Web3 UI/UX and consistently translates complex blockchain concepts into clear, intuitive user experiences. Nikolay also works exceptionally quickly while maintaining a high bar for quality, which helped our product and engineering teams move fast without sacrificing thoughtful design.</p><p>He’s a collaborative and reliable partner, and I’d highly recommend him to any team looking for a talented Web3 designer who delivers high-impact work.</p>",
+      },
+    ],
     paragraphs: [
       {
         type: "image",
@@ -261,6 +271,14 @@ export const homeCases = [
         text: "<p>Over five years, Ankr’s revenue grew <strong>~30% YoY</strong>, monthly RPC requests exceeded <strong>1T</strong>, social media audience increased by <strong>+205%</strong>, and the company formed partnerships with <strong>Binance, Microsoft, and Tencent</strong>.</p>",
       },
     ],
+    caseReviews: [
+      {
+        author: "Tyler Sloan",
+        role: "Head of Product",
+        avatar: reviewerTylerSloanImage,
+        text: "<p>I had the pleasure of working closely with Nikolay at Ankr where he contributed to the design and launch of several successful products. He has a strong understanding of Web3 UI/UX and consistently translates complex blockchain concepts into clear, intuitive user experiences. Nikolay also works exceptionally quickly while maintaining a high bar for quality, which helped our product and engineering teams move fast without sacrificing thoughtful design.</p><p>He’s a collaborative and reliable partner, and I’d highly recommend him to any team looking for a talented Web3 designer who delivers high-impact work.</p>",
+      },
+    ],
   },
   {
     id: "path-crypto",
@@ -286,6 +304,7 @@ export const homeCases = [
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
       shortTitle: "Neura",
     },
+    caseReviews: [],
     paragraphs: [
       {
         type: "image",
@@ -318,6 +337,7 @@ export const homeCases = [
       title: "Chat App. Messaging meets DeFi: Designed a crypto-native superapp. ",
       shortTitle: "Chat App",
     },
+    caseReviews: [],
     paragraphs: [
       {
         type: "image",
@@ -350,6 +370,7 @@ export const homeCases = [
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
       shortTitle: "Ankr",
     },
+    caseReviews: [],
     paragraphs: [
       {
         type: "image",
