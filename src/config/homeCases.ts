@@ -4,7 +4,7 @@ import ankrContextImage from "../images/cases/ankr/context.png";
 import ankrMyRoleImage from "../images/cases/ankr/my-role.png";
 import ankrBrandVisualizationVideo from "../images/cases/ankr/brand-visualization1.mp4";
 import ankrNavigationImage from "../images/cases/ankr/navigation.png";
-import ankrNavigationSlider1Image1 from "../images/cases/ankr/navigation-slider1-1.jpg";
+import ankrNavigationSlider1Video1 from "../images/cases/ankr/navigation-slider1-1.mp4";
 import ankrNavigationSlider1Image2 from "../images/cases/ankr/navigation-slider1-2.png";
 import ankrNavigationSlider1Image3 from "../images/cases/ankr/navigation-slider1-3.png";
 import ankrNavigationSlider1Image4 from "../images/cases/ankr/navigation-slider1-4.png";
@@ -14,13 +14,17 @@ import ankrNavigationSlider2Image3 from "../images/cases/ankr/navigation-slider2
 import ankrNavigationSlider2Image4 from "../images/cases/ankr/navigation-slider2-4.png";
 import ankrNavigation2Image from "../images/cases/ankr/navigation2.jpg";
 import ankrNavigation3Video from "../images/cases/ankr/navigation3.mp4";
-import ankrProductSlider1Image1 from "../images/cases/ankr/product-slider1-1.jpg";
+import ankrProductSlider1Video1 from "../images/cases/ankr/product-slider1-1.mp4";
 import ankrProductSlider1Image2 from "../images/cases/ankr/product-slider1-2.png";
 import ankrProductSlider1Image3 from "../images/cases/ankr/product-slider1-3.png";
 import ankrProductSlider2Image1 from "../images/cases/ankr/product-slider2-1.png";
 import ankrProductSlider2Image2 from "../images/cases/ankr/product-slider2-2.png";
-import ankrProductSlider3Image1 from "../images/cases/ankr/product-slider3-1.jpg";
-import ankrProductSlider4Image1 from "../images/cases/ankr/product-slider4-1.jpg";
+import ankrProductSlider3Video1 from "../images/cases/ankr/product-slider3-1.mp4";
+import ankrProductSlider3Image2 from "../images/cases/ankr/product-slider3-2.png";
+import ankrProductSlider4Video1 from "../images/cases/ankr/product-slider4-1.mp4";
+import ankrProductSlider4Image2 from "../images/cases/ankr/product-slider4-2.png";
+import ankrProductSlider4Image3 from "../images/cases/ankr/product-slider4-3.png";
+import ankrProductSlider4Image4 from "../images/cases/ankr/product-slider4-4.png";
 import ankrDataResearchImage from "../images/cases/ankr/data-research.png";
 import ankrContentSlider1Image1 from "../images/cases/ankr/content-slider1-1.png";
 import ankrContentSlider1Image2 from "../images/cases/ankr/content-slider1-2.png";
@@ -33,13 +37,16 @@ import ankrProductWorkImage from "../images/cases/ankr/product-work.png";
 import ankrProductWork2Image from "../images/cases/ankr/product-work2.png";
 import ankrLittleBigImage from "../images/cases/ankr/little-big.png";
 import ankrPageNotFoundVideo from "../images/cases/ankr/page-not-found.mp4";
-import ankrPrimeBlockSliderImage1 from "../images/cases/ankr/prime-block-slider-1.jpg";
+import ankrPrimeBlockSliderVideo1 from "../images/cases/ankr/prime-block-slider-1.mp4";
+import ankrPrimeBlockSliderImage2 from "../images/cases/ankr/prime-block-slider-2.png";
+import ankrPrimeBlockSliderImage3 from "../images/cases/ankr/prime-block-slider-3.png";
+import ankrPrimeBlockSliderImage4 from "../images/cases/ankr/prime-block-slider-4.png";
 import ankrSwirlSliderImage1 from "../images/cases/ankr/swirl-slider-1.png";
 import ankrSwirlSliderImage2 from "../images/cases/ankr/swirl-slider-2.png";
 import ankrSwirlSliderImage3 from "../images/cases/ankr/swirl-slider-3.png";
 import ankrSwirlSliderImage4 from "../images/cases/ankr/swirl-slider-4.png";
 import ankrSwirlSliderImage5 from "../images/cases/ankr/swirl-slider-5.png";
-import ankrTurboscaleSliderImage1 from "../images/cases/ankr/turboscale-slider-1.jpg";
+import ankrTurboscaleSliderVideo1 from "../images/cases/ankr/turboscale-slider-1.mp4";
 import ankrTurboscaleSliderImage2 from "../images/cases/ankr/turboscale-slider-2.png";
 import ankrTurboscaleSliderImage3 from "../images/cases/ankr/turboscale-slider-3.png";
 import ankrTurboscaleSliderImage4 from "../images/cases/ankr/turboscale-slider-4.png";
@@ -124,7 +131,7 @@ export const homeCases = [
       {
         type: "images",
         images: [
-          { image: ankrNavigationSlider1Image1, imageAlt: "Ankr navigation slider 1" },
+          { video: ankrNavigationSlider1Video1 },
           { image: ankrNavigationSlider1Image2, imageAlt: "Ankr navigation slider 2" },
           { image: ankrNavigationSlider1Image3, imageAlt: "Ankr navigation slider 3" },
           { image: ankrNavigationSlider1Image4, imageAlt: "Ankr navigation slider 4" },
@@ -161,7 +168,7 @@ export const homeCases = [
       {
         type: "images",
         images: [
-          { image: ankrProductSlider1Image1, imageAlt: "Ankr product slider 1" },
+          { video: ankrProductSlider1Video1 },
           { image: ankrProductSlider1Image2, imageAlt: "Ankr product slider 2" },
           { image: ankrProductSlider1Image3, imageAlt: "Ankr product slider 3" },
         ],
@@ -174,14 +181,20 @@ export const homeCases = [
         ],
       },
       {
-        type: "image",
-        image: ankrProductSlider3Image1,
-        imageAlt: "Ankr product slider 3",
+        type: "images",
+        images: [
+          { video: ankrProductSlider3Video1 },
+          { image: ankrProductSlider3Image2, imageAlt: "Ankr product slider 3" },
+        ],
       },
       {
-        type: "image",
-        image: ankrProductSlider4Image1,
-        imageAlt: "Ankr product slider 4",
+        type: "images",
+        images: [
+          { video: ankrProductSlider4Video1 },
+          { image: ankrProductSlider4Image2, imageAlt: "Ankr product slider 2" },
+          { image: ankrProductSlider4Image3, imageAlt: "Ankr product slider 3" },
+          { image: ankrProductSlider4Image4, imageAlt: "Ankr product slider 4" },
+        ],
       },
       {
         title: "Data & Research",
@@ -265,9 +278,13 @@ export const homeCases = [
         text: "<p>Alongside core product work, I also contributed to client and side projects built on Ankr’s infrastructure. With the same level of care and attention, I helped design and launch over ten websites, web applications, brands, and design systems for Web3 products, including DeFi interfaces, wallets, and developer tools.</p><p>Several of these projects went on to achieve meaningful traction and remain active today. Three notable examples include:</p><p><strong>PrimeBlock</strong> — a provider of hash infrastructure and digital asset mining solutions. I designed the company’s website and contributed to its brand direction. As of 2026, PrimeBlock remains a private company with an estimated valuation of ~$1.3B (private unicorn) according to business profile reports.</p>",
       },
       {
-        type: "image",
-        image: ankrPrimeBlockSliderImage1,
-        imageAlt: "Ankr page not found",
+        type: "images",
+        images: [
+          { video: ankrPrimeBlockSliderVideo1 },
+          { image: ankrPrimeBlockSliderImage2, imageAlt: "Ankr prime block slider 2" },
+          { image: ankrPrimeBlockSliderImage3, imageAlt: "Ankr prime block slider 3" },
+          { image: ankrPrimeBlockSliderImage4, imageAlt: "Ankr prime block slider 4" },
+        ],
       },
       {
         type: "text",
@@ -290,7 +307,7 @@ export const homeCases = [
       {
         type: "images",
         images: [
-          { image: ankrTurboscaleSliderImage1, imageAlt: "Ankr turboscale slider 1" },
+          { video: ankrTurboscaleSliderVideo1 },
           { image: ankrTurboscaleSliderImage2, imageAlt: "Ankr turboscale slider 2" },
           { image: ankrTurboscaleSliderImage3, imageAlt: "Ankr turboscale slider 3" },
           { image: ankrTurboscaleSliderImage4, imageAlt: "Ankr turboscale slider 4" },

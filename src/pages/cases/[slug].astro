@@ -84,18 +84,37 @@ function videoUrl(video: string | { src: string }): string {
                 >
                   <div class="caseImagesSliderTrack">
                     {p.images.map((image, slideIndex) => (
-                      <figure
-                        class="caseImagesSliderSlide"
-                        aria-hidden={slideIndex === 0 ? "false" : "true"}
-                      >
-                        <img
-                          class="caseImage caseImagesSliderImg"
-                          src={image.image.src}
-                          alt={image.imageAlt}
-                          loading={slideIndex === 0 ? "eager" : "lazy"}
-                          draggable="false"
-                        />
-                      </figure>
+                      image.video ? (
+                        <figure
+                          class="caseImagesSliderSlide"
+                          aria-hidden={slideIndex === 0 ? "false" : "true"}
+                        >
+                          <video
+                            class="caseVideo caseImagesSliderImg"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                            preload="auto"
+                            src={videoUrl(image.video)}
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        </figure>
+                      ) : (
+                        <figure
+                          class="caseImagesSliderSlide"
+                          aria-hidden={slideIndex === 0 ? "false" : "true"}
+                        >
+                          <img
+                            class="caseImage caseImagesSliderImg"
+                            src={image.image.src}
+                            alt={image.imageAlt}
+                            loading={slideIndex === 0 ? "eager" : "lazy"}
+                            draggable="false"
+                          />
+                        </figure>
+                      )
                     ))}
                   </div>
                 </div>
