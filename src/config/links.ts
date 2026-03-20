@@ -5,7 +5,11 @@ export const profileLinks = {
   email: "kelsnoopy@gmail.com",
   telegramUrl: "https://t.me/kelsnoopy",
   telegramHandle: "@kelsnoopy",
-  /** Replace with your intro video (YouTube, Vimeo, etc.) */
-  introVideoUrl: "https://www.youtube.com/",
+  /**
+   * Intro modal: direct video file URL (https://…/file.mp4 or site path like /intro.mp4 from `public/`),
+   * or a YouTube / Vimeo page URL.
+   */
+  introVideoUrl:
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
 } as const;
 
