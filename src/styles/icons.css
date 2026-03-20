@@ -93,5 +93,9 @@
     width: 2.4vw;
     height: 4vw;
   }
+  .icon-close-circle {
+    width: 13.333vw;
+    height: 13.333vw;
+  }
 }
 

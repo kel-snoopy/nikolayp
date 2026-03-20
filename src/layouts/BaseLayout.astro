@@ -54,7 +54,14 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
             />
             <span class="brandName">{header.name}</span>
           </a>
-          <button type="button" class="brandLinkButton" aria-label="Toggle theme">
+          <button
+            type="button"
+            class="brandLinkButton"
+            id="brand-intro-open"
+            aria-haspopup="dialog"
+            aria-controls="video-intro-modal"
+            aria-label="Watch a Quick Intro"
+          >
             <span class="brandName">Intro</span>
             <span class="brandVideo">
               <span class="icon-play-small"></span>
@@ -276,10 +283,12 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         var widget = document.getElementById("video-cta-widget");
         var widgetClose = document.getElementById("video-cta-close");
         var openBtn = document.getElementById("video-cta-open");
+        var brandIntroBtn = document.getElementById("brand-intro-open");
         var modal = document.getElementById("video-intro-modal");
         var modalClose = document.getElementById("video-intro-close");
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
+        var lastIntroOpener = null;
 
         if (widget && widgetClose) {
           widgetClose.addEventListener("click", function (e) {
@@ -289,7 +298,8 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
           });
         }
 
-        function openVideoModal() {
+        function openVideoModal(e) {
+          if (e && e.currentTarget) lastIntroOpener = e.currentTarget;
           if (!modal) return;
           modal.hidden = false;
           modal.setAttribute("aria-hidden", "false");
@@ -323,10 +333,16 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
               htmlVideo.load();
             } catch (err) {}
           }
-          if (openBtn) openBtn.focus();
+          if (lastIntroOpener && document.body.contains(lastIntroOpener)) {
+            try {
+              lastIntroOpener.focus();
+            } catch (err2) {}
+          } else if (openBtn) openBtn.focus();
+          lastIntroOpener = null;
         }
 
         if (openBtn) openBtn.addEventListener("click", openVideoModal);
+        if (brandIntroBtn) brandIntroBtn.addEventListener("click", openVideoModal);
         if (modalClose) modalClose.addEventListener("click", closeVideoModal);
         if (modal) {
           modal.addEventListener("click", function (e) {
@@ -758,6 +774,14 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         }
         .footerLinks {
           display: none;
+        }
+
+        .videoIntroModal {
+          padding: 4vw;
+        }
+        .videoIntroModalClose {
+          top: 4vw;
+          right: 4vw;
         }
 
         .videoCta {
