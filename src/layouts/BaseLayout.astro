@@ -5,6 +5,7 @@ const { title = "NikolayP2" } = Astro.props;
 
 import avatarSrc from "../images/avatar.jpg";
 import videoCtaSrc from "../images/video-cta.png";
+import videoCtaMobileSrc from "../images/video-cta-mobile.png";
 import { profileLinks } from "../config/links";
 
 const header = {
@@ -104,11 +105,15 @@ const header = {
           aria-label="Watch a Quick Intro"
         >
           <img
-            class="videoCtaPhoto"
+            class="videoCtaPhoto desktop-only"
             src={videoCtaSrc.src}
             alt=""
-            width="240"
-            height="240"
+            loading="lazy"
+          />
+          <img
+            class="videoCtaPhoto mobile-only"
+            src={videoCtaMobileSrc.src}
+            alt=""
             loading="lazy"
           />
           <span class="videoCtaPlay icon-play"></span>
@@ -346,6 +351,9 @@ const header = {
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
         text-decoration: none;
       }
+      .videoCtaCircle:hover .videoCtaPlay {
+        transform: translate(-50%,-50%) scale(1.2);
+      }
 
       .videoCtaPhoto {
         width: 100%;
@@ -353,21 +361,25 @@ const header = {
         object-fit: cover;
         display: block;
       }
+      .videoCtaPhoto.mobile-only {
+        display: none;
+      }
 
       .videoCtaPlay {
         position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         color: #ffffff;
         pointer-events: none;
         filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+        transition: transform 0.2s ease-in-out;
       }
 
-      .videoCtaPlay svg {
-        width: min(26%, 52px);
-        height: auto;
+      /* Mask icon is inline-block globally; block + no margin avoids baseline shift */
+      .videoCtaPlay.icon-play {
+        display: block;
+        margin: 0;
       }
 
       .videoCtaArc {
@@ -453,6 +465,22 @@ const header = {
         }
         .footerLinks {
           display: none;
+        }
+
+        .videoCta {
+          bottom: 4vw;
+          right: 2.397vw;
+          width: 33.6vw;
+        }
+        .videoCtaClose {
+          top: -1vw;
+          right: -1vw;
+        }
+        .videoCtaPhoto.desktop-only {
+          display: none;
+        }
+        .videoCtaPhoto.mobile-only {
+          display: block;
         }
       }
     </style>

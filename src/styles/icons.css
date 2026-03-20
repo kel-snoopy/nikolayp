@@ -63,8 +63,12 @@
     height: 5.3vw;
   }
   .icon-close {
-    width: 5.3vw;
-    height: 5.3vw;
+    width: 5.33vw;
+    height: 5.33vw;
+  }
+  .icon-play {
+    height: 10.667vw;
+    width: 7.68vw;
   }
 }
 
