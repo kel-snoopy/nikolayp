@@ -54,6 +54,13 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
             />
             <span class="brandName">{header.name}</span>
           </a>
+          <button type="button" class="brandLinkButton" aria-label="Toggle theme">
+            <span class="brandName">Intro</span>
+            <span class="brandVideo">
+              <span class="icon-play-small"></span>
+              <span class="brandVideoTime desktop-only">1:04</span>
+            </span>
+          </button>
         </div>
 
         <nav class="navLinks desktop-only" aria-label="External links">
@@ -352,6 +359,12 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         justify-content: space-between;
       }
 
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 1.388vw;
+      }
+
       .brandLink {
         display: flex;
         align-items: center;
@@ -359,6 +372,30 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
       }
       html.home .brandLink:hover {
         color: var(--color-fg);
+      }
+
+      .brandLinkButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.111vw;
+        font-weight: 500;
+        line-height: 1.25;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.6944vw;
+      }
+
+      .brandVideo {
+        display: flex;
+        align-items: center;
+        gap: 0.3125vw;
+      }
+
+      .brandVideoTime {
+        color: rgba(0, 0, 0, 0.3);
       }
 
       .avatar {
@@ -737,6 +774,15 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
         }
         .videoCtaPhoto.mobile-only {
           display: block;
+        }
+
+        .brand {
+          gap: 5.333vw;
+        }
+        .brandLinkButton {
+          font-size: 4vw;
+          line-height: 1.33;
+          gap: 2.6667vw;
         }
       }
     </style>

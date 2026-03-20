@@ -28,6 +28,11 @@ body {
   line-height: 1.25;
 }
 
+button {
+  font-family: "Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+}
+
 a {
   color: inherit;
   text-decoration: none;

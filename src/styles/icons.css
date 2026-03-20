@@ -48,6 +48,16 @@
   mask-position: center;
   mask-size: contain;
 }
+.icon-play-small {
+  width: 0.625vw;
+  height: 1.042vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/play-small.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 .icon-close-circle {
   width: 3.472vw;
   height: 3.472vw;
@@ -78,6 +88,10 @@
   .icon-play {
     height: 10.667vw;
     width: 7.68vw;
+  }
+  .icon-play-small {
+    width: 2.4vw;
+    height: 4vw;
   }
 }
 
