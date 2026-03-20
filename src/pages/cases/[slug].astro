@@ -406,6 +406,7 @@ function videoUrl(video: string | { src: string }): string {
       display: flex;
       flex-direction: column;
       gap: 1.042vw;
+      position: relative;
     }
 
     .caseImagesSliderInner {
@@ -516,8 +517,8 @@ function videoUrl(video: string | { src: string }): string {
     }
 
     .caseImagesSliderDot {
-      width: 0.556vw;
-      height: 0.556vw;
+      width: 1.6vw;
+      height: 1.6vw;
       padding: 0;
       border: none;
       border-radius: 999px;
@@ -532,7 +533,6 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseImagesSliderDot.is-active {
       background: var(--color-primary);
-      transform: scale(1.15);
     }
 
     .caseImagesSliderDot:focus-visible {
@@ -899,6 +899,7 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .caseImagesSliderNav {
+        display: none;
         width: 10.667vw;
         height: 10.667vw;
       }
@@ -912,12 +913,21 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .caseImagesSliderDots {
-        gap: 2.133vw;
+        gap: 0.8vw;
+        position: absolute;
+        bottom: -2.83vw;
+        z-index: 1;
+        left: 0;
+        right: 0;
+      }
+
+      .caseImagesSliderDots.mobile-only {
+        display: flex;
       }
 
       .caseImagesSliderDot {
-        width: 2.133vw;
-        height: 2.133vw;
+        width: 1.6vw;
+        height: 1.6vw;
       }
 
       .caseImage, .caseVideo {

@@ -131,9 +131,13 @@ export const homeCases = [
         ],
       },
       {
-        type: "image",
-        image: ankrNavigationSlider2Image1,
-        imageAlt: "Ankr navigation slider 2",
+        type: "images",
+        images: [
+          { image: ankrNavigationSlider2Image1, imageAlt: "Ankr navigation slider 2" },
+          { image: ankrNavigationSlider2Image2, imageAlt: "Ankr navigation slider 3" },
+          { image: ankrNavigationSlider2Image3, imageAlt: "Ankr navigation slider 4" },
+          { image: ankrNavigationSlider2Image4, imageAlt: "Ankr navigation slider 5" },
+        ],
       },
       {
         type: "image",
@@ -155,14 +159,19 @@ export const homeCases = [
         text: "<p>The new design was rolled out across all product and service pages: from existing offerings like Web3 API and Staking to new launches including Rollup-as-a-Service, Enterprise Solutions, and Bitcoin-Secured Infrastructure.</p><p>Beyond unifying the visual language, these pages were designed as <strong>high-converting</strong> landing pages, with CTAs placed throughout key sections to guide users toward the next step at the moment of highest intent. Many pages also feature blocks linking to our social channels and blog to strengthen ecosystem <strong>engagement</strong>, while SEO optimization helps attract qualified organic traffic and lower <strong>customer acquisition costs</strong>.</p><p>The pages also became a practical asset for the Sales team, who could share them directly with prospects during outreach and negotiations.</p>",
       },
       {
-        type: "image",
-        image: ankrProductSlider1Image1,
-        imageAlt: "Ankr product slider 1",
+        type: "images",
+        images: [
+          { image: ankrProductSlider1Image1, imageAlt: "Ankr product slider 1" },
+          { image: ankrProductSlider1Image2, imageAlt: "Ankr product slider 2" },
+          { image: ankrProductSlider1Image3, imageAlt: "Ankr product slider 3" },
+        ],
       },
       {
-        type: "image",
-        image: ankrProductSlider2Image1,
-        imageAlt: "Ankr product slider 2",
+        type: "images",
+        images: [
+          { image: ankrProductSlider2Image1, imageAlt: "Ankr product slider 2" },
+          { image: ankrProductSlider2Image2, imageAlt: "Ankr product slider 3" },
+        ],
       },
       {
         type: "image",
@@ -191,9 +200,11 @@ export const homeCases = [
         text: "<p>I designed the core content platform of the website, including the blog, design asset library, press pages, and the case studies hub with individual case pages.</p><p>Each section was structured to maximize <strong>task success rate</strong>, enabling users to quickly understand the story, download relevant assets, or reach the right contact. The UX patterns were informed by best practices from leading media platforms, news publishers, and industry competitors.</p>",
       },
       {
-        type: "image",
-        image: ankrContentSlider1Image1,
-        imageAlt: "Ankr content slider 1",
+        type: "images",
+        images: [
+          { image: ankrContentSlider1Image1, imageAlt: "Ankr content slider 1" },
+          { image: ankrContentSlider1Image2, imageAlt: "Ankr content slider 2" },
+        ],
       },
       {
         type: "image",
@@ -201,14 +212,18 @@ export const homeCases = [
         imageAlt: "Ankr content 2",
       },
       {
-        type: "image",
-        image: ankrContentSlider2Image1,
-        imageAlt: "Ankr content slider 2",
+        type: "images",
+        images: [
+          { image: ankrContentSlider2Image1, imageAlt: "Ankr content slider 2" },
+          { image: ankrContentSlider2Image2, imageAlt: "Ankr content slider 3" },
+        ],
       },
       {
-        type: "image",
-        image: ankrContentSlider3Image1,
-        imageAlt: "Ankr content slider 3",
+        type: "images",
+        images: [
+          { image: ankrContentSlider3Image1, imageAlt: "Ankr content slider 3" },
+          { image: ankrContentSlider3Image2, imageAlt: "Ankr content slider 4" },
+        ],
       },
       {
         type: "text",
@@ -259,18 +274,28 @@ export const homeCases = [
         text: "<p><strong>Swirl</strong> — a liquid staking protocol within the IOTA ecosystem. I designed the product landing page and contributed to the visual positioning of the project. According to the team, around 50% of all IOTA tokens have been staked through Swirl, making it one of the key DeFi protocols in the ecosystem.</p>",
       },
       {
-        type: "image",
-        image: ankrSwirlSliderImage1,
-        imageAlt: "Ankr swirl slider",
+        type: "images",
+        images: [
+          { image: ankrSwirlSliderImage1, imageAlt: "Ankr swirl slider 1" },
+          { image: ankrSwirlSliderImage2, imageAlt: "Ankr swirl slider 2" },
+          { image: ankrSwirlSliderImage3, imageAlt: "Ankr swirl slider 3" },
+          { image: ankrSwirlSliderImage4, imageAlt: "Ankr swirl slider 4" },
+          { image: ankrSwirlSliderImage5, imageAlt: "Ankr swirl slider 5" },
+        ],
       },
       {
         type: "text",
         text: "<p><strong>TurboScale</strong> — a high-performance computing and AI infrastructure company. I designed the website and contributed to the product’s visual positioning. The company builds GPU clusters and modular data centers for training and running AI models. In 2024, TurboScale was acquired by the public company ShiftPixy in a deal worth approximately $150M.</p>",
       },
       {
-        type: "image",
-        image: ankrTurboscaleSliderImage1,
-        imageAlt: "Ankr turboscale slider",
+        type: "images",
+        images: [
+          { image: ankrTurboscaleSliderImage1, imageAlt: "Ankr turboscale slider 1" },
+          { image: ankrTurboscaleSliderImage2, imageAlt: "Ankr turboscale slider 2" },
+          { image: ankrTurboscaleSliderImage3, imageAlt: "Ankr turboscale slider 3" },
+          { image: ankrTurboscaleSliderImage4, imageAlt: "Ankr turboscale slider 4" },
+          { image: ankrTurboscaleSliderImage5, imageAlt: "Ankr turboscale slider 5" },
+        ],
       },
       {
         type: "text",
