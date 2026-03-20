@@ -59,12 +59,13 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
   <div class="extraShots">
     <div class="extraShotsLeft">
       <span class="extraShotsLabel">Next Case:</span>
-      <span class="extraShotsNextCase">{caseItem.nextCase.title}</span>
+      <span class="extraShotsNextCase desktop-only">{caseItem.nextCase.title}</span>
+      <span class="extraShotsNextCase mobile-only">{caseItem.nextCase.shortTitle}</span>
     </div>
     <span class="extraShotsPlus" aria-hidden="true">
-      <span class="icon-plus" aria-hidden="true"></span>
+      <span class="icon-arrow-right" aria-hidden="true"></span>
     </span>
-    <a class="extraShotsLink" href="/cases"></a>
+    <a class="extraShotsLink" href={`/cases/${caseItem.nextCase.id}`}></a>
   </div>
 
   <style>
@@ -104,10 +105,6 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
       gap: 0.694vw;
       font-size: 1.1111vw;
       line-height: 1.3889vw;
-    }
-
-    .caseMeta .sep {
-      opacity: 0.6;
     }
 
     .caseImage {
@@ -201,7 +198,9 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
     }
 
     .extraShotsPlus {
+      align-items: center;
       color: var(--color-primary);
+      display: flex;
       height: 1.3889vw;
       width: 1.3889vw;
     }
@@ -209,28 +208,39 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
     @media (max-width: 600px) {
       .caseTop {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 8vw;
       }
 
       .caseBrand {
-        font-size: 18px;
-        margin-bottom: 10px;
+        font-size: 5.333vw;
+        margin-bottom: 4vw;
       }
-
+      .caseTitle {
+        font-size: 12vw;
+        margin: 0 0 4vw;
+      }
       .caseMeta {
-        font-size: 14px;
-        margin-top: 14px;
+        font-size: 4vw;
+        line-height: 1.33;
+        gap: 1.333vw;
       }
 
-      .caseLead,
-      .caseStory,
-      .caseFullStory {
-        font-size: 14px;
+      .caseParagraph {
+        margin: 8vw auto;
+        max-width: 100%;
       }
-
+      .caseParagraphTitle {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+        margin: 8vw 0 4vw;
+      }
+      .caseParagraphText p {
+        font-size: 4vw;
+        line-height: 1.33;
+        margin: 0 0 4vw;
+      }
       .caseImagePanel {
-        padding: 18px;
-        margin-top: 22px;
+        margin: 5.333vw 0;
       }
 
       .extraShots {
@@ -238,6 +248,10 @@ const caseItem = homeCases.find((c) => c.id === slugStr)!;
         padding: 6.6667vw 0;
       }
       .extraShotsLabel {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
+      }
+      .extraShotsNextCase {
         font-size: 4.8vw;
         line-height: 5.333vw;
       }

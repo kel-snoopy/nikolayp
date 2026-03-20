@@ -67,6 +67,16 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.icon-arrow-right {
+  width: 1.25vw;
+  height: 1.111vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/arrow-right.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
 
 @media screen and (max-width: 600px) {
   .icon-telegram {
@@ -96,6 +106,10 @@
   .icon-close-circle {
     width: 13.333vw;
     height: 13.333vw;
+  }
+  .icon-arrow-right {
+    width: 4.8vw;
+    height: 4.2667vw;
   }
 }
 

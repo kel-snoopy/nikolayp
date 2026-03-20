@@ -53,6 +53,7 @@ export const homeCases = [
     nextCase: {
       id: "path-crypto",
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
+      shortTitle: "Path Crypto",
     },
     paragraphs: [
       {
@@ -280,6 +281,18 @@ export const homeCases = [
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
+    nextCase: {
+      id: "neura",
+      title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
+      shortTitle: "Neura",
+    },
+    paragraphs: [
+      {
+        type: "image",
+        image: pathCryptoImage,
+        imageAlt: "Path Crypto case preview",
+      },
+    ],
   },
   {
     id: "neura",
@@ -300,6 +313,18 @@ export const homeCases = [
     detailsUrl: "/cases/neura",
     image: neuraImage,
     imageAlt: "Neura case preview",
+    nextCase: {
+      id: "chat-app",
+      title: "Chat App. Messaging meets DeFi: Designed a crypto-native superapp. ",
+      shortTitle: "Chat App",
+    },
+    paragraphs: [
+      {
+        type: "image",
+        image: neuraImage,
+        imageAlt: "Neura case preview",
+      },
+    ],
   },
   {
     id: "chat-app",
@@ -320,6 +345,18 @@ export const homeCases = [
     detailsUrl: "/cases/chat-app",
     image: chatAppImage,
     imageAlt: "Chat App case preview",
+    nextCase: {
+      id: "ankr",
+      title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
+      shortTitle: "Ankr",
+    },
+    paragraphs: [
+      {
+        type: "image",
+        image: chatAppImage,
+        imageAlt: "Chat App case preview",
+      },
+    ],
   },
 ] as const;
 
