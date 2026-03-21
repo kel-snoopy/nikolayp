@@ -12,7 +12,8 @@ import ankrNavigationSlider2Image1 from "../images/cases/ankr/navigation-slider2
 import ankrNavigationSlider2Image2 from "../images/cases/ankr/navigation-slider2-2.png";
 import ankrNavigationSlider2Image3 from "../images/cases/ankr/navigation-slider2-3.png";
 import ankrNavigationSlider2Image4 from "../images/cases/ankr/navigation-slider2-4.png";
-import ankrNavigation2Image from "../images/cases/ankr/navigation2.jpg";
+import ankrNavigation2Image from "../images/cases/ankr/navigation2-2.png";
+import ankrNavigation2Video from "../images/cases/ankr/navigation2-1.mp4";
 import ankrNavigation3Video from "../images/cases/ankr/navigation3.mp4";
 import ankrProductSlider1Video1 from "../images/cases/ankr/product-slider1-1.mp4";
 import ankrProductSlider1Image2 from "../images/cases/ankr/product-slider1-2.png";
@@ -80,6 +81,7 @@ export const homeCases = [
     detailsUrl: "/cases/ankr",
     image: ankrImage,
     imageAlt: "Ankr case preview",
+    previewVideo: ankrVideo,
     nextCase: {
       id: "path-crypto",
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
@@ -148,9 +150,11 @@ export const homeCases = [
         ],
       },
       {
-        type: "image",
-        image: ankrNavigation2Image,
-        imageAlt: "Ankr navigation 2",
+        type: "half",
+        images: [
+          { video: ankrNavigation2Video },
+          { image: ankrNavigation2Image, imageAlt: "Ankr navigation 2" },
+        ],
       },
       {
         type: "text",

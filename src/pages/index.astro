@@ -2,6 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
 import { homeCases } from "../config/homeCases";
+
+function previewVideoUrl(video: string | { src: string }): string {
+  return typeof video === "string" ? video : video.src;
+}
 ---
 
 <BaseLayout title="Nikolai Posvezhnyi - Senior Product Designer">
@@ -54,12 +58,25 @@ import { homeCases } from "../config/homeCases";
         </div>
 
         <div class="casePreview mobile-only">
-          <img
-            class="casePreviewImage"
-            src={caseItem.image.src}
-            alt={caseItem.imageAlt}
-            loading="lazy"
-          />
+          {"previewVideo" in caseItem && caseItem.previewVideo ? (
+            <video
+              class="casePreviewVideo"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="auto"
+              src={previewVideoUrl(caseItem.previewVideo)}
+              aria-label={caseItem.imageAlt}
+            />
+          ) : (
+            <img
+              class="casePreviewImage"
+              src={caseItem.image.src}
+              alt={caseItem.imageAlt}
+              loading="lazy"
+            />
+          )}
         </div>
 
         <div class="caseInfo">
@@ -77,12 +94,25 @@ import { homeCases } from "../config/homeCases";
       </div>
 
       <div class="casePreview desktop-only">
-        <img
-          class="casePreviewImage"
-          src={caseItem.image.src}
-          alt={caseItem.imageAlt}
-          loading="lazy"
-        />
+        {"previewVideo" in caseItem && caseItem.previewVideo ? (
+          <video
+            class="casePreviewVideo"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            src={previewVideoUrl(caseItem.previewVideo)}
+            aria-label={caseItem.imageAlt}
+          />
+        ) : (
+          <img
+            class="casePreviewImage"
+            src={caseItem.image.src}
+            alt={caseItem.imageAlt}
+            loading="lazy"
+          />
+        )}
       </div>
     </section>
   ))}
@@ -221,7 +251,8 @@ import { homeCases } from "../config/homeCases";
       overflow: hidden;
     }
 
-    .casePreviewImage {
+    .casePreviewImage,
+    .casePreviewVideo {
       display: block;
       width: 100%;
       height: auto;

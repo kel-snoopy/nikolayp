@@ -66,6 +66,38 @@ function videoUrl(video: string | { src: string }): string {
             />
           </div>
         )}
+        {p.type === "half" && (
+          <div class="caseHalfPanel">
+            <div
+              class="caseHalfGrid"
+              role="group"
+              aria-label="Split layout: UI and media"
+            >
+              {p.images.map((it) => (
+                it.image ? (
+                  <img
+                    class="caseHalfImg"
+                    src={it.image.src}
+                    alt={it.imageAlt}
+                    loading="lazy"
+                  />
+                ) : (
+                  <video
+                    class="caseHalfVideo"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    preload="auto"
+                    src={videoUrl(it.video)}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                )
+              ))}
+            </div>
+          </div>
+        )}
         {p.type === "images" && (
           <div class="caseImagesPanel">
             <div
@@ -604,6 +636,37 @@ function videoUrl(video: string | { src: string }): string {
       margin: 1.388vw 0;
     }
 
+    .caseHalfPanel {
+      margin: 1.388vw 0;
+    }
+
+    .caseHalfGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.042vw;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    .caseHalfImg {
+      border-radius: 0.694vw;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Show right half of the video (full-bleed mockup), like the reference */
+    .caseHalfVideo {
+      border-radius: 0.694vw;
+      display: block;
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      margin-left: 0;
+    }
+
     .caseImagesPanel {
       margin: 1.388vw 0;
     }
@@ -1072,6 +1135,14 @@ function videoUrl(video: string | { src: string }): string {
         margin: 20px 0;
       }
 
+      .caseHalfPanel {
+        margin: 20px 0;
+      }
+
+      .caseHalfGrid {
+        border-radius: 10px;
+      }
+
       .caseImagesPanel {
         margin: 20px 0;
       }
@@ -1260,6 +1331,26 @@ function videoUrl(video: string | { src: string }): string {
       }
       .caseImagePanel {
         margin: 5.333vw 0;
+      }
+
+      .caseHalfPanel {
+        margin: 5.333vw 0;
+      }
+
+      .caseHalfGrid {
+        grid-template-columns: 1fr;
+        border-radius: 2.6667vw;
+      }
+
+      .caseHalfVideo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+        object-fit: cover;
+        object-position: center;
       }
 
       .caseImagesPanel {
