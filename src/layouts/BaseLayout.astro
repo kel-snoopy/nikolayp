@@ -18,6 +18,15 @@ const pageClass = pageOverride ?? pageClassFromPathname(Astro.url.pathname);
 import avatarSrc from "../images/avatar.jpg";
 import videoCtaSrc from "../images/video-cta.png";
 import videoCtaMobileSrc from "../images/video-cta-mobile.png";
+import faviconIco from "../images/favicon/favicon.ico?url";
+import favicon16 from "../images/favicon/favicon-16x16.png?url";
+import favicon32 from "../images/favicon/favicon-32x32.png?url";
+import appleTouchIcon from "../images/favicon/apple-touch-icon.png?url";
+import androidChrome96 from "../images/favicon/android-chrome-96x96.png?url";
+import androidChrome192 from "../images/favicon/android-chrome-192x192.png?url";
+import androidChrome256 from "../images/favicon/android-chrome-256x256.png?url";
+import safariPinnedTab from "../images/favicon/safari-pinned-tab.svg?url";
+import mstile150 from "../images/favicon/mstile-150x150.png?url";
 import { profileLinks } from "../config/links";
 import { getIntroVideoMedia } from "../config/introVideo";
 
@@ -28,6 +37,22 @@ const header = {
 };
 
 const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
+
+const siteManifest = {
+  name: header.name,
+  short_name: "Portfolio",
+  icons: [
+    { src: androidChrome96, sizes: "96x96", type: "image/png" },
+    { src: androidChrome192, sizes: "192x192", type: "image/png" },
+    { src: androidChrome256, sizes: "256x256", type: "image/png" },
+  ],
+  theme_color: "#ffffff",
+  background_color: "#ffffff",
+  display: "standalone" as const,
+};
+const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeURIComponent(
+  JSON.stringify(siteManifest)
+)}`;
 ---
 
 <!doctype html>
@@ -42,6 +67,14 @@ const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
       rel="stylesheet"
     />
     <title>{title}</title>
+    <link rel="icon" href={faviconIco} sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
+    <link rel="icon" type="image/png" sizes="16x16" href={favicon16} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
+    <link rel="manifest" href={siteManifestHref} />
+    <link rel="mask-icon" href={safariPinnedTab} color="#000000" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="msapplication-TileImage" content={mstile150} />
   </head>
   <body>
     <header class="header">
