@@ -52,6 +52,7 @@ import ankrTurboscaleSliderImage2 from "../images/cases/ankr/turboscale-slider-2
 import ankrTurboscaleSliderImage3 from "../images/cases/ankr/turboscale-slider-3.png";
 import ankrTurboscaleSliderImage4 from "../images/cases/ankr/turboscale-slider-4.png";
 import ankrTurboscaleSliderImage5 from "../images/cases/ankr/turboscale-slider-5.png";
+import ankrAiVideo from "../images/cases/ankr/ankr-ad.mp4";
 
 import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
 import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
@@ -260,7 +261,7 @@ export const homeCases = [
       },
       {
         type: "text",
-        textBeforeTitle: "<p>For a deeper look at the final results of the redesign and our collaboration, see the case studies by <a href='https://www.behance.net/gallery/222640275/Web3-API-Dashboard?tracking_source=search_projects|web3+api&l=1' target='_blank'>Kirill Surguchyov — Web3 API</a> and <a href='https://nickillarionov.xyz/staking' target='_blank'>Nick Illarionov — Staking</a>, who led these products.</p>",
+        textBeforeTitle: "<p>For a deeper look at the final results of the redesign and our collaboration, see the case studies by <a href='https://www.behance.net/gallery/222640275/Web3-API-Dashboard?tracking_source=search_projects|web3+api&l=1' target='_blank'>Kirill Surguchyov — Web3 API</a> and <a href='https://nickillarionov.framer.website/staking' target='_blank'>Nick Illarionov — Staking</a>, who led these products.</p>",
         title: "Little Big Details",
         text: "<p>When time and resources allow, I like adding small interaction details that most users might overlook. But those who notice tend to remember.</p><p>For example, users sometimes right-click a logo to download it. On the Ankr website, doing so opens a popup offering the logo in multiple formats and color variants, with a shortcut to the Design Assets section.</p>",
       },
@@ -323,6 +324,10 @@ export const homeCases = [
         type: "text",
         title: "AI",
         text: "<p>My time on the project coincided with the rapid rise of AI in design, which led me to actively explore ways to integrate it into my workflow. I began using AI for copywriting, concept development, and research, and later expanded into generating visual assets for mockups and experimenting with AI-driven video production.</p><p>Below is a result of that exploration: a promotional video for Ankr created during the AI Movies course. I developed the concept, generated scenes, and edited the final piece using models such as Seedance Pro, Nano Banana, ChatGTP, and Krea AI.</p>",
+      },
+      {
+        type: "video",
+        video: ankrAiVideo,
       },
       {
         type: "text",
@@ -404,9 +409,9 @@ export const homeCases = [
     image: neuraImage,
     imageAlt: "Neura case preview",
     nextCase: {
-      id: "chat-app",
-      title: "Chat App. Messaging meets DeFi: Designed a crypto-native superapp. ",
-      shortTitle: "Chat App",
+      id: "ankr",
+      title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
+      shortTitle: "Ankr",
     },
     caseReviews: [],
     paragraphs: [
