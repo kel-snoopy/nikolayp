@@ -625,7 +625,8 @@ function videoUrl(video: string | { src: string }): string {
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
+      /* pan-x alone blocks vertical page scroll on touch; allow both axes */
+      touch-action: pan-x pan-y;
       border-radius: 0.694vw;
       scrollbar-width: none;
     }
@@ -862,7 +863,8 @@ function videoUrl(video: string | { src: string }): string {
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-x;
+      /* pan-x alone blocks vertical page scroll on touch; allow both axes */
+      touch-action: pan-x pan-y;
       border-radius: 0.694vw;
       scrollbar-width: none;
     }
