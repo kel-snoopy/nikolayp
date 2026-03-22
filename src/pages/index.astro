@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
-import { homeCases } from "../config/homeCases";
+import { cases } from "../config/cases";
 
 function previewVideoUrl(video: string | { src: string }): string {
   return typeof video === "string" ? video : video.src;
@@ -38,7 +38,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     </div>
   </section>
 
-  {homeCases.map((caseItem) => (
+  {cases.map((caseItem) => (
     <section class="homeCase" aria-labelledby={`case-${caseItem.id}-title`}>
       <div class="caseTop">
         <div class="caseHeading">
@@ -83,14 +83,18 @@ function previewVideoUrl(video: string | { src: string }): string {
           <div>
             <h4>Goal</h4>
             <p>{caseItem.goal}</p>
-            <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+            {caseItem.public ? (
+              <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+            ) : (
+              <span class="caseDetails __coming-soon">Details Coming Soon</span>
+            )}
           </div>
           <div>
             <h4>Impact</h4>
             <p>{caseItem.impact}</p>
           </div>
         </div>
-        <a class="caseLink" href={caseItem.detailsUrl}></a>
+        {caseItem.public && <a class="caseLink" href={caseItem.detailsUrl}></a>}
       </div>
 
       <div class="casePreview desktop-only">
@@ -239,10 +243,21 @@ function previewVideoUrl(video: string | { src: string }): string {
 
     .caseDetails {
       color: var(--color-primary);
+      position: relative;
+      z-index: 2;
+    }
+    .caseDetails:hover {
+      color: var(--color-primary-hover);
+    }
+    .caseDetails.__coming-soon {
+      color: rgba(0, 0, 0, 0.3);
+      cursor: default;
+    }
+    .caseDetails.__coming-soon:hover {
+      color: rgba(0, 0, 0, 0.3);
     }
 
-    .caseTop:hover .caseTitle,
-    .caseTop:hover .caseDetails {
+    .caseTop:hover .caseTitle {
       color: var(--color-primary-hover);
     }
 
@@ -373,11 +388,11 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
 
       .caseMeta {
-        gap: 10px;
+        gap: 11px;
       }
 
       .caseInfo {
-        gap: 25px;
+        gap: 20px;
       }
 
       .caseInfo h4 {
@@ -394,7 +409,7 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
 
       .extraShots {
-        height: 80px;
+        height: 82px;
         padding: 30px 0;
       }
 
@@ -485,7 +500,7 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
 
       .extraShots {
-        height: 18.6667vw;
+        height: 5.694vw;
         padding: 6.6667vw 0;
       }
       .extraShotsLabel {

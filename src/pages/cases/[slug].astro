@@ -1,16 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { homeCases } from "../../config/homeCases";
+import { cases } from "../../config/cases";
 
 export function getStaticPaths() {
-  return homeCases.map((c) => ({
+  return cases.map((c) => ({
     params: { slug: c.id },
   }));
 }
 
 const { slug } = Astro.params;
 const slugStr = typeof slug === "string" ? slug : String(slug ?? "");
-const caseItem = homeCases.find((c) => c.id === slugStr)!;
+const caseItem = cases.find((c) => c.id === slugStr)!;
 
 /** Vite imports `.mp4` as a string URL; images use `{ src }`. */
 function videoUrl(video: string | { src: string }): string {

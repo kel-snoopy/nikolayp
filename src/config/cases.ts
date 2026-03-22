@@ -62,9 +62,10 @@ import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
 
-export const homeCases = [
+export const cases = [
   {
     id: "ankr",
+    public: true,
     brand: "Ankr",
     title: "Elevated the market position of a blockchain infrastructure provider.",
     meta: {
@@ -358,6 +359,7 @@ export const homeCases = [
   },
   {
     id: "path-crypto",
+    public: true,
     brand: "Path Crypto",
     title: "End-to-end design for an SEC-approved crypto investing platform.",
     meta: {
@@ -391,6 +393,7 @@ export const homeCases = [
   },
   {
     id: "neura",
+    public: false,
     brand: "Neura",
     title: "Drove blockchain adoption by gamifying ecosystem products.",
     meta: {
@@ -424,6 +427,7 @@ export const homeCases = [
   },
   {
     id: "chat-app",
+    public: false,
     brand: "Chat App",
     title: "Messaging meets DeFi: Designed a crypto-native superapp. ",
     meta: {
