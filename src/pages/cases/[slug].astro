@@ -65,6 +65,8 @@ function videoUrl(video: string | { src: string }): string {
               playsinline
               muted
               src={videoUrl(p.video)}
+              poster={p.preview?.src}
+              alt={p.previewAlt}
             >
               Your browser does not support the video tag.
             </video>

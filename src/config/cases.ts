@@ -53,6 +53,7 @@ import ankrTurboscaleSliderImage3 from "../images/cases/ankr/turboscale-slider-3
 import ankrTurboscaleSliderImage4 from "../images/cases/ankr/turboscale-slider-4.png";
 import ankrTurboscaleSliderImage5 from "../images/cases/ankr/turboscale-slider-5.png";
 import ankrAiVideo from "../images/cases/ankr/ankr-ad.mp4";
+import ankrAiPreviewVideo from "../images/cases/ankr/ankr-ad.jpg";
 
 import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
 import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
@@ -344,6 +345,8 @@ export const cases = [
       {
         type: "video",
         video: ankrAiVideo,
+        preview: ankrAiPreviewVideo,
+        previewAlt: "Ankr AI preview",
         autoPlay: false,
       },
       {
