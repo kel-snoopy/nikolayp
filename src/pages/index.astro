@@ -125,7 +125,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     <span class="extraShotsPlus" aria-hidden="true">
       <span class="icon-plus" aria-hidden="true"></span>
     </span>
-    <a class="extraShotsLink" href="/cases"></a>
+    <button class="extraShotsLink" type="button"></button>
   </div>
 
   <style>
@@ -289,13 +289,23 @@ function previewVideoUrl(video: string | { src: string }): string {
       padding: 2.0833vw 0;
       position: relative;
     }
+    .extraShots:hover .extraShotsLabel,
+    .extraShots:hover .extraShotsPlus {
+      color: var(--color-primary-hover);
+    }
 
     .extraShotsLabel {
       color: var(--color-primary);
       font-size: 1.3889vw;
       line-height: 1;
+      transition: all 0.2s ease-in-out;
     }
     .extraShotsLink {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
       position: absolute;
       top: 0;
       left: 0;
@@ -307,6 +317,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     .extraShotsPlus {
       color: var(--color-primary);
       height: 1.3889vw;
+      transition: all 0.2s ease-in-out;
       width: 1.3889vw;
     }
 

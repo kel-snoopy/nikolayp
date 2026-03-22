@@ -849,9 +849,19 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         display: flex;
         gap: 1.736vw;
       }
+      .footerLinkLabel {
+        transition: all 0.2s ease-in-out;
+      }
 
       .footerLink a {
         color: var(--color-fg);
+      }
+      .footerLink:hover  a{
+        color: var(--color-primary);
+      }
+      .footerLink:hover .footerLinkLabel {
+        color: var(--color-primary);
+        opacity: 0.3;
       }
 
       @media (min-width: 1440px) {
