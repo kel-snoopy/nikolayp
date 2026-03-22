@@ -75,6 +75,37 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
     <link rel="mask-icon" href={safariPinnedTab} color="#000000" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="msapplication-TileImage" content={mstile150} />
+    <!-- First paint already “raised from below” — avoids flash at final position then snap-down. -->
+    <script is:inline>
+      (function () {
+        try {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+            return;
+        } catch (e) {}
+        document.documentElement.classList.add("reveal-boot");
+      })();
+    </script>
+    <style is:inline>
+      html.reveal-boot main.container > section,
+      html.reveal-boot main.container > details,
+      html.reveal-boot main.container > article,
+      html.reveal-boot main.container > div.extraShots,
+      html.reveal-boot main.container .casePage > .caseTop,
+      html.reveal-boot main.container .casePage > .caseVideoPanel,
+      html.reveal-boot main.container .casePage > .caseImagePanel,
+      html.reveal-boot main.container .casePage > .caseHalfPanel,
+      html.reveal-boot main.container .casePage > .caseImagesPanel,
+      html.reveal-boot main.container .casePage > .caseParagraph,
+      html.reveal-boot main.container .casePage > section.caseReviews,
+      html.reveal-boot section.homeBottom,
+      html.reveal-boot .caseParagraphBlocks > .caseVideoPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagePanel,
+      html.reveal-boot .caseParagraphBlocks > .caseHalfPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagesPanel {
+        opacity: 0;
+        transform: translate3d(0, 1.25rem, 0);
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -476,19 +507,43 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         }
 
         function initRevealOnScroll() {
-          if (!motionOk()) return;
+          if (!motionOk()) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
           var nodes = collectRevealNodes();
-          if (!nodes.length) return;
+          if (!nodes.length) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
 
           for (var i = 0; i < nodes.length; i++) {
             nodes[i].classList.add("reveal-on-scroll");
           }
+
+          void document.documentElement.offsetHeight;
+          document.documentElement.classList.remove("reveal-boot");
 
           if (!("IntersectionObserver" in window)) {
             for (var r = 0; r < nodes.length; r++) {
               nodes[r].classList.add("is-revealed");
             }
             return;
+          }
+
+          function isInViewport(el) {
+            var r = el.getBoundingClientRect();
+            var h = window.innerHeight || document.documentElement.clientHeight;
+            return r.bottom > -32 && r.top < h * 0.92;
+          }
+
+          /* Above-the-fold prefix: revealed only via timeouts (not IO — IO fires sync and skips the transition). */
+          var staggerEls = [];
+          var maxAboveFold = 5;
+          for (var p = 0; p < nodes.length; p++) {
+            if (!isInViewport(nodes[p])) break;
+            if (staggerEls.length >= maxAboveFold) break;
+            staggerEls.push(nodes[p]);
           }
 
           var io = new IntersectionObserver(
@@ -508,8 +563,24 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           );
 
           for (var k = 0; k < nodes.length; k++) {
+            if (staggerEls.indexOf(nodes[k]) >= 0) continue;
             io.observe(nodes[k]);
           }
+
+          var firstDelayMs = 110;
+          var staggerMs = 100;
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              for (var s = 0; s < staggerEls.length; s++) {
+                (function (el, delay) {
+                  window.setTimeout(function () {
+                    el.classList.add("is-revealed");
+                  }, delay);
+                })(staggerEls[s], firstDelayMs + s * staggerMs);
+              }
+            });
+          });
         }
 
         if (document.readyState === "loading") {
