@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/case-paragraph-blocks.css";
+import "../../styles/case-images-slider.css";
 import { cases } from "../../config/cases";
 import playIconUrl from "../../images/icons/play.svg?url";
 
@@ -740,18 +742,6 @@ function videoUrl(video: string | { src: string }): string {
       line-height: 1.3889vw;
     }
 
-    .caseVideo {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .caseImage {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
     .caseRight {
       padding-top: 2.5vw;
     }
@@ -760,10 +750,6 @@ function videoUrl(video: string | { src: string }): string {
       font-size: 1.1111vw;
       line-height: 1.3889vw;
       margin: 0 0 1.042vw;
-    }
-
-    .caseVideoPanel {
-      margin: 1.388vw 0;
     }
 
     .caseVideoPanel--manualPlay {
@@ -800,189 +786,6 @@ function videoUrl(video: string | { src: string }): string {
       height: auto;
       display: block;
       filter: drop-shadow(0 0.139vw 0.694vw rgba(0, 0, 0, 0.45));
-    }
-
-    .caseImagePanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseHalfPanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseHalfGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.042vw;
-      align-items: stretch;
-      overflow: hidden;
-    }
-
-    .caseHalfImg {
-      border-radius: 0.694vw;
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* Show right half of the video (full-bleed mockup), like the reference */
-    .caseHalfVideo {
-      border-radius: 0.694vw;
-      display: block;
-      width: 100%;
-      max-width: none;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      margin-left: 0;
-    }
-
-    .caseImagesPanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseImagesSlider {
-      display: flex;
-      flex-direction: column;
-      gap: 1.042vw;
-      position: relative;
-    }
-
-    .caseImagesSliderInner {
-      position: relative;
-    }
-
-    .caseImagesSliderViewport {
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      /* pan-x alone blocks vertical page scroll on touch; allow both axes */
-      touch-action: pan-x pan-y;
-      border-radius: 0.694vw;
-      scrollbar-width: none;
-    }
-
-    .caseImagesSliderViewport::-webkit-scrollbar {
-      display: none;
-    }
-
-    .caseImagesSliderViewport--seek {
-      cursor: pointer;
-    }
-
-    .caseImagesSliderTrack {
-      display: flex;
-    }
-
-    .caseImagesSliderSlide {
-      flex: 0 0 100%;
-      min-width: 100%;
-      scroll-snap-align: start;
-      margin: 0;
-    }
-
-    .caseImagesSliderImg {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 0.694vw;
-      user-select: none;
-    }
-
-    .caseImagesSliderNav {
-      position: absolute;
-      top: 50%;
-      z-index: 2;
-      width: 3.472vw;
-      height: 3.472vw;
-      margin: 0;
-      padding: 0;
-      border: none;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-      color: var(--color-primary);
-      cursor: pointer;
-      transform: translateY(-50%);
-      transition: all 0.2s ease-in-out;
-    }
-
-    .caseImagesSliderNav:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-
-    .caseImagesSliderNavPrev {
-      left: 1.042vw;
-    }
-
-    .caseImagesSliderNavNext {
-      right: 1.042vw;
-    }
-
-    .caseImagesSliderNavPrev .icon-arrow-right {
-      transform: rotate(180deg);
-    }
-
-    .caseImagesSliderNavPrev .icon-arrow-right,
-    .caseImagesSliderNavNext .icon-arrow-right {
-      color: var(--color-fg);
-    }
-    .caseImagesSliderNav:hover,
-    .caseImagesSlider--half-left .caseImagesSliderNavPrev,
-    .caseImagesSlider--half-right .caseImagesSliderNavNext {
-      border-color: var(--color-primary);
-      color: var(--color-primary-hover);
-      background-color: var(--color-primary);
-    }
-    .caseImagesSliderNavPrev:hover .icon-arrow-right,
-    .caseImagesSliderNavNext:hover .icon-arrow-right,
-    .caseImagesSlider--half-left .caseImagesSliderNavPrev .icon-arrow-right,
-    .caseImagesSlider--half-right .caseImagesSliderNavNext .icon-arrow-right {
-      color: var(--color-bg);
-    }
-
-    .caseImagesSliderDots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.694vw;
-    }
-    .caseImagesSliderDots.mobile-only {
-      display: none;
-    }
-
-    .caseImagesSliderDot {
-      width: 1.6vw;
-      height: 1.6vw;
-      padding: 0;
-      border: none;
-      border-radius: 999px;
-      background: #d9d9d9;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.15s ease;
-    }
-
-    .caseImagesSliderDot:hover {
-      background: rgba(255, 64, 1, 0.45);
-    }
-
-    .caseImagesSliderDot.is-active {
-      background: var(--color-primary);
-    }
-
-    .caseImagesSliderDot:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-
-    .caseImage, .caseVideo {
-      border-radius: 0.694vw;
     }
 
     .caseParagraph {
@@ -1317,60 +1120,6 @@ function videoUrl(video: string | { src: string }): string {
         margin-bottom: 15px;
       }
 
-      .caseImagePanel {
-        margin: 20px 0;
-      }
-
-      .caseHalfPanel {
-        margin: 20px 0;
-      }
-
-      .caseHalfGrid {
-        border-radius: 10px;
-      }
-
-      .caseImagesPanel {
-        margin: 20px 0;
-      }
-
-      .caseImagesSlider {
-        gap: 15px;
-      }
-
-      .caseImagesSliderViewport {
-        border-radius: 10px;
-      }
-
-      .caseImagesSliderImg {
-        border-radius: 10px;
-      }
-
-      .caseImagesSliderNav {
-        width: 50px;
-        height: 50px;
-      }
-
-      .caseImagesSliderNavPrev {
-        left: 15px;
-      }
-
-      .caseImagesSliderNavNext {
-        right: 15px;
-      }
-
-      .caseImagesSliderDots {
-        gap: 10px;
-      }
-
-      .caseImagesSliderDot {
-        width: 8px;
-        height: 8px;
-      }
-
-      .caseImage, .caseVideo {
-        border-radius: 10px;
-      }
-
       .caseParagraph {
         margin: 50px auto;
         max-width: 695px;
@@ -1533,69 +1282,6 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 4.8vw;
         line-height: 5.333vw;
       }
-      .caseImagePanel {
-        margin: 5.333vw 0;
-      }
-
-      .caseHalfPanel {
-        margin: 5.333vw 0;
-      }
-
-      .caseHalfVideo {
-        border-radius: 2.6667vw;
-      }
-      .caseHalfImg {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesPanel {
-        margin: 5.333vw 0;
-      }
-
-      .caseImagesSlider {
-        gap: 3.2vw;
-      }
-
-      .caseImagesSliderViewport {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesSliderImg {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesSliderNav {
-        display: none;
-        width: 10.667vw;
-        height: 10.667vw;
-      }
-
-      .caseImagesSliderNavPrev {
-        left: 2.667vw;
-      }
-
-      .caseImagesSliderNavNext {
-        right: 2.667vw;
-      }
-
-      .caseImagesSliderDots {
-        gap: 0.8vw;
-        position: absolute;
-        bottom: -3vw;
-        z-index: 1;
-        left: 0;
-        right: 0;
-      }
-
-      .caseImagesSliderDots.mobile-only {
-        display: flex;
-      }
-
-      .caseImagesSliderDot {
-        width: 1.6vw;
-        height: 1.6vw;
-      }
-
       .caseReviews {
         margin-top: 8vw;
         padding-bottom: 8vw;
@@ -1638,10 +1324,6 @@ function videoUrl(video: string | { src: string }): string {
       .caseReviewsSliderDot {
         width: 2.133vw;
         height: 2.133vw;
-      }
-
-      .caseImage, .caseVideo {
-        border-radius: 2.6667vw;
       }
 
       .extraShots {

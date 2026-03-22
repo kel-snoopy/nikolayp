@@ -27,6 +27,7 @@
   touch-action: pan-x pan-y;
   border-radius: 0.694vw;
   scrollbar-width: none;
+  background-color: var(--case-media-placeholder-bg);
 }
 
 .caseImagesSliderViewport::-webkit-scrollbar {
@@ -46,11 +47,16 @@
   min-width: 100%;
   scroll-snap-align: start;
   margin: 0;
+  aspect-ratio: 16 / 9;
+  background-color: var(--case-media-placeholder-bg);
+  overflow: hidden;
 }
 
 .caseImagesSliderImg {
   width: 100%;
-  height: auto;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
   display: block;
   border-radius: 0.694vw;
   user-select: none;

@@ -4,6 +4,8 @@
   --color-primary: #ff4001;
   --color-primary-hover: #404040;
   --color-gray: #d9d9d9;
+  /* Skeleton under images/videos while loading (case pages, sliders, extra shots) */
+  --case-media-placeholder-bg: #F0F0F0;
   /* Space for fixed header (padding top + bottom + avatar row); see BaseLayout .header */
   --header-height: calc(1.388vw + 1.388vw + 2.778vw);
 }
