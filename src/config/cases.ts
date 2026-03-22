@@ -342,6 +342,7 @@ export const cases = [
       },
       {
         type: "text",
+        class: "__result",
         title: "Result",
         text: "<p>Over five years, Ankr’s revenue grew <strong>~30% YoY</strong>, monthly RPC requests exceeded <strong>1T</strong>, social media audience increased by <strong>+205%</strong>, and the company formed partnerships with <strong>Binance, Microsoft, and Tencent</strong>.</p>",
       },

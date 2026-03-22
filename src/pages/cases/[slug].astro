@@ -192,7 +192,7 @@ function videoUrl(video: string | { src: string }): string {
           </div>
         )}
         {p.type === "text" && (
-          <div class="caseParagraph">
+          <div class:list={["caseParagraph", p.class]}>
             {"textBeforeTitle" in p && p.textBeforeTitle && (
               <div class="caseParagraphText" set:html={p.textBeforeTitle}></div>
             )}
@@ -910,6 +910,11 @@ function videoUrl(video: string | { src: string }): string {
       color: var(--color-primary-hover);
       text-decoration: underline;
     }
+    .caseParagraph.__result .caseParagraphText :global(p) {
+      font-size: 1.3889vw;
+      font-weight: 500;
+      line-height: 1.25;
+    }
 
     .caseBottom {
       margin-top: 2.5vw;
@@ -1282,6 +1287,9 @@ function videoUrl(video: string | { src: string }): string {
         line-height: 20px;
         margin-bottom: 15px;
       }
+      .caseParagraph.__result .caseParagraphText :global(p) {
+        font-size: 20px;
+      }
 
       .extraShots {
         height: 80px;
@@ -1417,6 +1425,10 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 4vw;
         line-height: 1.27;
         margin: 0 0 4vw;
+      }
+      .caseParagraph.__result .caseParagraphText :global(p) {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
       }
       .caseImagePanel {
         margin: 5.333vw 0;
