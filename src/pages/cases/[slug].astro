@@ -1054,11 +1054,15 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseReviewAvatar {
       width: 4.1667vw;
-      height: 4.1667vw;
+      height: auto;
+      aspect-ratio: 1;
+      min-width: 4.1667vw;
+      min-height: 4.1667vw;
       border-radius: 999px;
       object-fit: cover;
       display: block;
       margin: 0 auto 0.694vw;
+      background-color: var(--case-media-placeholder-bg);
     }
 
     .caseReviewAuthor {
@@ -1208,7 +1212,8 @@ function videoUrl(video: string | { src: string }): string {
 
       .caseReviewAvatar {
         width: 60px;
-        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
         margin-bottom: 10px;
       }
 
@@ -1358,7 +1363,8 @@ function videoUrl(video: string | { src: string }): string {
       }
       .caseReviewAvatar {
         width: 16vw;
-        height: 16vw;
+        min-width: 16vw;
+        min-height: 16vw;
         margin: 0 auto 2.667vw;
       }
       .caseReviewAuthor {

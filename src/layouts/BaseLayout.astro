@@ -962,9 +962,14 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .avatar {
         border-radius: 999px;
         display: block;
-        object-fit: cover;
+        flex-shrink: 0;
+        aspect-ratio: 1;
         width: 2.778vw;
-        height: 2.778vw;
+        height: auto;
+        min-width: 2.778vw;
+        min-height: 2.778vw;
+        object-fit: cover;
+        background-color: var(--case-media-placeholder-bg);
       }
 
       .navLinksLabel {
@@ -1057,6 +1062,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaInner {
         position: relative;
         pointer-events: auto;
+        width: 100%;
+        aspect-ratio: 1;
       }
 
       .videoCta[hidden] {
@@ -1092,6 +1099,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         overflow: hidden;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
         text-decoration: none;
+        background-color: var(--case-media-placeholder-bg);
       }
 
       button.videoCtaCircle {
@@ -1099,7 +1107,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         -webkit-appearance: none;
         font: inherit;
         color: inherit;
-        background: transparent;
+        background: var(--case-media-placeholder-bg);
         border: none;
         padding: 0;
         margin: 0;
@@ -1114,6 +1122,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaPhoto {
         width: 100%;
         height: 100%;
+        min-height: 0;
         object-fit: cover;
         display: block;
       }
@@ -1367,7 +1376,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 40px;
-          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
         }
 
         .navLinks {
@@ -1471,7 +1481,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 5.3333vw;
-          height: 5.3333vw;
+          min-width: 5.3333vw;
+          min-height: 5.3333vw;
         }
 
         .hero {
