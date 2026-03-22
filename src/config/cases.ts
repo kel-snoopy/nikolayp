@@ -53,6 +53,7 @@ import ankrTurboscaleSliderImage3 from "../images/cases/ankr/turboscale-slider-3
 import ankrTurboscaleSliderImage4 from "../images/cases/ankr/turboscale-slider-4.png";
 import ankrTurboscaleSliderImage5 from "../images/cases/ankr/turboscale-slider-5.png";
 import ankrAiVideo from "../images/cases/ankr/ankr-ad.mp4";
+import ankrAiPreviewVideo from "../images/cases/ankr/ankr-ad.jpg";
 
 import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
 import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
@@ -62,9 +63,10 @@ import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
 
-export const homeCases = [
+export const cases = [
   {
     id: "ankr",
+    public: true,
     brand: "Ankr",
     title: "Elevated the market position of a blockchain infrastructure provider.",
     meta: {
@@ -82,7 +84,18 @@ export const homeCases = [
     detailsUrl: "/cases/ankr",
     image: ankrImage,
     imageAlt: "Ankr case preview",
-    previewVideo: ankrVideo,
+    preview: [
+      {
+        type: "video",
+        video: ankrVideo,
+        autoPlay: true,
+      },
+      {
+        type: "image",
+        image: ankrContextImage,
+        imageAlt: "Ankr context preview",
+      },
+    ],
     nextCase: {
       id: "path-crypto",
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
@@ -92,6 +105,7 @@ export const homeCases = [
       {
         type: "video",
         video: ankrVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -121,6 +135,7 @@ export const homeCases = [
       {
         type: "video",
         video: ankrBrandVisualizationVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -164,6 +179,7 @@ export const homeCases = [
       {
         type: "video",
         video: ankrNavigation3Video,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -277,6 +293,7 @@ export const homeCases = [
       {
         type: "video",
         video: ankrPageNotFoundVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -328,9 +345,13 @@ export const homeCases = [
       {
         type: "video",
         video: ankrAiVideo,
+        preview: ankrAiPreviewVideo,
+        previewAlt: "Ankr AI preview",
+        autoPlay: false,
       },
       {
         type: "text",
+        class: "__result",
         title: "Result",
         text: "<p>Over five years, Ankr’s revenue grew <strong>~30% YoY</strong>, monthly RPC requests exceeded <strong>1T</strong>, social media audience increased by <strong>+205%</strong>, and the company formed partnerships with <strong>Binance, Microsoft, and Tencent</strong>.</p>",
       },
@@ -358,6 +379,7 @@ export const homeCases = [
   },
   {
     id: "path-crypto",
+    public: true,
     brand: "Path Crypto",
     title: "End-to-end design for an SEC-approved crypto investing platform.",
     meta: {
@@ -375,6 +397,13 @@ export const homeCases = [
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
+    preview: [
+      {
+        type: "image",
+        image: pathCryptoImage,
+        imageAlt: "Path Crypto case preview",
+      },
+    ],
     nextCase: {
       id: "neura",
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
@@ -391,6 +420,7 @@ export const homeCases = [
   },
   {
     id: "neura",
+    public: false,
     brand: "Neura",
     title: "Drove blockchain adoption by gamifying ecosystem products.",
     meta: {
@@ -408,6 +438,13 @@ export const homeCases = [
     detailsUrl: "/cases/neura",
     image: neuraImage,
     imageAlt: "Neura case preview",
+    preview: [
+      {
+        type: "image",
+        image: neuraImage,
+        imageAlt: "Neura case preview",
+      },
+    ],
     nextCase: {
       id: "ankr",
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
@@ -424,6 +461,7 @@ export const homeCases = [
   },
   {
     id: "chat-app",
+    public: false,
     brand: "Chat App",
     title: "Messaging meets DeFi: Designed a crypto-native superapp. ",
     meta: {
@@ -441,6 +479,13 @@ export const homeCases = [
     detailsUrl: "/cases/chat-app",
     image: chatAppImage,
     imageAlt: "Chat App case preview",
+    preview: [
+      {
+        type: "image",
+        image: chatAppImage,
+        imageAlt: "Chat App case preview",
+      },
+    ],
     nextCase: {
       id: "ankr",
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",

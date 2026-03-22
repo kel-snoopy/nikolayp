@@ -1,0 +1,200 @@
+---
+/**
+ * Renders the same block types as case `paragraphs` (video, image, images, half).
+ * Used on the home "extra shots" panel and can be reused elsewhere.
+ */
+import "../styles/case-paragraph-blocks.css";
+import "../styles/case-images-slider.css";
+
+interface Props {
+  blocks: ReadonlyArray<
+    | { type: "video"; video: string | { src: string } }
+    | { type: "image"; image: { src: string }; imageAlt: string }
+    | {
+        type: "images";
+        images: ReadonlyArray<
+          | { video: string | { src: string } }
+          | { image: { src: string }; imageAlt: string }
+        >;
+      }
+    | {
+        type: "half";
+        images: ReadonlyArray<
+          | { video: string | { src: string } }
+          | { image: { src: string }; imageAlt: string }
+        >;
+      }
+  >;
+}
+
+const { blocks } = Astro.props;
+
+function videoUrl(video: string | { src: string }): string {
+  return typeof video === "string" ? video : video.src;
+}
+---
+
+<div class="caseParagraphBlocks">
+  {blocks.map((p) => (
+    <>
+      {p.type === "video" && (
+        <div class="caseVideoPanel">
+          <video
+            class="caseVideo"
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            src={videoUrl(p.video)}
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      )}
+      {p.type === "image" && (
+        <div class="caseImagePanel">
+          <img
+            class="caseImage"
+            src={p.image.src}
+            alt={p.imageAlt}
+            loading="lazy"
+          />
+        </div>
+      )}
+      {p.type === "half" && (
+        <div class="caseHalfPanel">
+          <div
+            class="caseHalfGrid"
+            role="group"
+            aria-label="Split layout: UI and media"
+          >
+            {p.images.map((it) =>
+              "image" in it && it.image ? (
+                <img
+                  class="caseHalfImg"
+                  src={it.image.src}
+                  alt={it.imageAlt}
+                  loading="lazy"
+                />
+              ) : (
+                <video
+                  class="caseHalfVideo"
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="auto"
+                  src={videoUrl(
+                    (it as { video: string | { src: string } }).video
+                  )}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              )
+            )}
+          </div>
+        </div>
+      )}
+      {p.type === "images" && (
+        <div class="caseImagesPanel">
+          <div
+            class="caseImagesSlider"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Image gallery"
+          >
+            <div class="caseImagesSliderInner">
+              <div
+                class:list={[
+                  "caseImagesSliderViewport",
+                  p.images.length > 1 && "caseImagesSliderViewport--seek",
+                ]}
+                tabindex={p.images.length > 1 ? 0 : undefined}
+              >
+                <div class="caseImagesSliderTrack">
+                  {p.images.map((image, slideIndex) =>
+                    "video" in image ? (
+                      <figure
+                        class="caseImagesSliderSlide"
+                        aria-hidden={slideIndex === 0 ? "false" : "true"}
+                      >
+                        <video
+                          class="caseVideo caseImagesSliderImg"
+                          autoplay
+                          loop
+                          muted
+                          playsinline
+                          preload="auto"
+                          src={videoUrl(image.video)}
+                        >
+                          Your browser does not support the video tag.
+                        </video>
+                      </figure>
+                    ) : (
+                      <figure
+                        class="caseImagesSliderSlide"
+                        aria-hidden={slideIndex === 0 ? "false" : "true"}
+                      >
+                        <img
+                          class="caseImage caseImagesSliderImg"
+                          src={
+                            (image as { image: { src: string }; imageAlt: string })
+                              .image.src
+                          }
+                          alt={
+                            (image as { image: { src: string }; imageAlt: string })
+                              .imageAlt
+                          }
+                          loading={slideIndex === 0 ? "eager" : "lazy"}
+                          draggable="false"
+                        />
+                      </figure>
+                    )
+                  )}
+                </div>
+              </div>
+              {p.images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    class="caseImagesSliderNav caseImagesSliderNavPrev"
+                    aria-label="Previous slide"
+                  >
+                    <span class="icon-arrow-right" aria-hidden="true"></span>
+                  </button>
+                  <button
+                    type="button"
+                    class="caseImagesSliderNav caseImagesSliderNavNext"
+                    aria-label="Next slide"
+                  >
+                    <span class="icon-arrow-right" aria-hidden="true"></span>
+                  </button>
+                </>
+              )}
+            </div>
+            {p.images.length > 1 && (
+              <div
+                class="caseImagesSliderDots mobile-only"
+                role="tablist"
+                aria-label="Slides"
+              >
+                {p.images.map((_, dotIndex) => (
+                  <button
+                    type="button"
+                    class:list={[
+                      "caseImagesSliderDot",
+                      dotIndex === 0 && "is-active",
+                    ]}
+                    aria-label={`Go to slide ${dotIndex + 1}`}
+                    aria-current={dotIndex === 0 ? "true" : "false"}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  ))}
+</div>

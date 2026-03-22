@@ -1,10 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
-import { homeCases } from "../config/homeCases";
+import { cases } from "../config/cases";
+import HomePreviewSlider from "../components/HomePreviewSlider.astro";
+import CaseParagraphBlocks from "../components/CaseParagraphBlocks.astro";
+import { extraShots } from "../config/extraShots";
 
-function previewVideoUrl(video: string | { src: string }): string {
-  return typeof video === "string" ? video : video.src;
+function previewItems(caseItem: (typeof cases)[number]) {
+  if (
+    "preview" in caseItem &&
+    Array.isArray(caseItem.preview) &&
+    caseItem.preview.length > 0
+  ) {
+    return caseItem.preview;
+  }
+  return [
+    {
+      type: "image" as const,
+      image: caseItem.image,
+      imageAlt: caseItem.imageAlt,
+    },
+  ];
 }
 ---
 
@@ -38,7 +54,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     </div>
   </section>
 
-  {homeCases.map((caseItem) => (
+  {cases.map((caseItem) => (
     <section class="homeCase" aria-labelledby={`case-${caseItem.id}-title`}>
       <div class="caseTop">
         <div class="caseHeading">
@@ -58,71 +74,236 @@ function previewVideoUrl(video: string | { src: string }): string {
         </div>
 
         <div class="casePreview mobile-only">
-          {"previewVideo" in caseItem && caseItem.previewVideo ? (
-            <video
-              class="casePreviewVideo"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="auto"
-              src={previewVideoUrl(caseItem.previewVideo)}
-              aria-label={caseItem.imageAlt}
-            />
-          ) : (
-            <img
-              class="casePreviewImage"
-              src={caseItem.image.src}
-              alt={caseItem.imageAlt}
-              loading="lazy"
-            />
-          )}
+          <HomePreviewSlider
+            items={previewItems(caseItem)}
+            ariaLabel={`${caseItem.brand} preview`}
+          />
         </div>
 
         <div class="caseInfo">
           <div>
             <h4>Goal</h4>
             <p>{caseItem.goal}</p>
-            <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+            {caseItem.public ? (
+              <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+            ) : (
+              <span class="caseDetails __coming-soon">Details Coming Soon</span>
+            )}
           </div>
           <div>
             <h4>Impact</h4>
             <p>{caseItem.impact}</p>
           </div>
         </div>
-        <a class="caseLink" href={caseItem.detailsUrl}></a>
+        {caseItem.public && <a class="caseLink" href={caseItem.detailsUrl}></a>}
       </div>
 
       <div class="casePreview desktop-only">
-        {"previewVideo" in caseItem && caseItem.previewVideo ? (
-          <video
-            class="casePreviewVideo"
-            autoplay
-            loop
-            muted
-            playsinline
-            preload="auto"
-            src={previewVideoUrl(caseItem.previewVideo)}
-            aria-label={caseItem.imageAlt}
-          />
-        ) : (
-          <img
-            class="casePreviewImage"
-            src={caseItem.image.src}
-            alt={caseItem.imageAlt}
-            loading="lazy"
-          />
-        )}
+        <HomePreviewSlider
+          items={previewItems(caseItem)}
+          ariaLabel={`${caseItem.brand} preview`}
+        />
       </div>
     </section>
   ))}
-  <div class="extraShots">
-    <span class="extraShotsLabel">See Some Extra Shots</span>
-    <span class="extraShotsPlus" aria-hidden="true">
-      <span class="icon-plus" aria-hidden="true"></span>
-    </span>
-    <a class="extraShotsLink" href="/cases"></a>
-  </div>
+  <details class="extraShotsDetails">
+    <summary class="extraShots">
+      <span class="extraShotsLabel extraShotsLabel--closed">See Some Extra Shots</span>
+      <span class="extraShotsLabel extraShotsLabel--open">Hide Extra Shots</span>
+      <span class="extraShotsPlus" aria-hidden="true">
+        <span class="icon-plus extraShotsIcon extraShotsIcon--closed" aria-hidden="true"></span>
+        <span class="icon-minus extraShotsIcon extraShotsIcon--open" aria-hidden="true"></span>
+      </span>
+    </summary>
+    <div class="extraShotsBody">
+      <CaseParagraphBlocks blocks={extraShots} />
+    </div>
+  </details>
+
+  <script is:inline>
+    (function () {
+      function initSlider(root) {
+        if (root.getAttribute("data-slider-inited") === "1") return;
+        root.setAttribute("data-slider-inited", "1");
+        var viewport = root.querySelector(".caseImagesSliderViewport");
+        var inner = root.querySelector(".caseImagesSliderInner");
+        var slides = root.querySelectorAll(".caseImagesSliderSlide");
+        var dots = root.querySelectorAll(".caseImagesSliderDot");
+        var prev = root.querySelector(".caseImagesSliderNavPrev");
+        var next = root.querySelector(".caseImagesSliderNavNext");
+        if (!viewport || slides.length < 2) return;
+
+        var index = 0;
+        var scrollEndTimer;
+
+        function updateDots() {
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].classList.toggle("is-active", i === index);
+            dots[i].setAttribute(
+              "aria-current",
+              i === index ? "true" : "false"
+            );
+          }
+        }
+
+        function updateAria() {
+          for (var i = 0; i < slides.length; i++) {
+            slides[i].setAttribute(
+              "aria-hidden",
+              i === index ? "false" : "true"
+            );
+          }
+        }
+
+        function goTo(i) {
+          var n = slides.length;
+          if (n === 0) return;
+          var nextIdx = ((i % n) + n) % n;
+          var wrapAround =
+            (index === n - 1 && nextIdx === 0) ||
+            (index === 0 && nextIdx === n - 1);
+          index = nextIdx;
+          var slide = slides[index];
+          viewport.scrollTo({
+            left: slide.offsetLeft,
+            behavior: wrapAround ? "auto" : "smooth",
+          });
+          updateDots();
+          updateAria();
+        }
+
+        function readIndexFromScroll() {
+          var w = viewport.clientWidth;
+          var x = viewport.scrollLeft + w / 2;
+          var closest = 0;
+          var best = Infinity;
+          for (var i = 0; i < slides.length; i++) {
+            var s = slides[i];
+            var mid = s.offsetLeft + s.offsetWidth / 2;
+            var d = Math.abs(mid - x);
+            if (d < best) {
+              best = d;
+              closest = i;
+            }
+          }
+          if (closest !== index) {
+            index = closest;
+            updateDots();
+            updateAria();
+          }
+        }
+
+        if (prev)
+          prev.addEventListener("click", function () {
+            goTo(index - 1);
+          });
+        if (next)
+          next.addEventListener("click", function () {
+            goTo(index + 1);
+          });
+        for (var d = 0; d < dots.length; d++) {
+          (function (i) {
+            dots[i].addEventListener("click", function () {
+              goTo(i);
+            });
+          })(d);
+        }
+
+        viewport.addEventListener(
+          "scroll",
+          function () {
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
+          },
+          { passive: true }
+        );
+
+        viewport.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goTo(index - 1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goTo(index + 1);
+          }
+        });
+
+        var tapTrack = null;
+        var TAP_MOVE_PX = 14;
+        viewport.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          tapTrack = {
+            id: e.pointerId,
+            x: e.clientX,
+            y: e.clientY,
+            cancelled: false,
+          };
+        });
+        viewport.addEventListener("pointermove", function (e) {
+          if (!tapTrack || tapTrack.id !== e.pointerId) return;
+          if (
+            Math.abs(e.clientX - tapTrack.x) > TAP_MOVE_PX ||
+            Math.abs(e.clientY - tapTrack.y) > TAP_MOVE_PX
+          ) {
+            tapTrack.cancelled = true;
+          }
+        });
+        function clearTap(e) {
+          if (!tapTrack || tapTrack.id !== e.pointerId) return;
+          var t = tapTrack;
+          tapTrack = null;
+          if (t.cancelled) return;
+          var rect = viewport.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+          if (x < rect.width / 2) goTo(index - 1);
+          else goTo(index + 1);
+        }
+        viewport.addEventListener("pointerup", clearTap);
+        viewport.addEventListener("pointercancel", function (e) {
+          if (tapTrack && tapTrack.id === e.pointerId) tapTrack = null;
+        });
+
+        if (inner && prev && next) {
+          function clearHalfHover() {
+            root.classList.remove("caseImagesSlider--half-left");
+            root.classList.remove("caseImagesSlider--half-right");
+          }
+          function updateHalfHover(clientX) {
+            var rect = inner.getBoundingClientRect();
+            var x = clientX - rect.left;
+            if (x < rect.width * 0.5) {
+              root.classList.add("caseImagesSlider--half-left");
+              root.classList.remove("caseImagesSlider--half-right");
+            } else {
+              root.classList.remove("caseImagesSlider--half-left");
+              root.classList.add("caseImagesSlider--half-right");
+            }
+          }
+          inner.addEventListener("pointermove", function (e) {
+            if (e.pointerType === "touch") return;
+            updateHalfHover(e.clientX);
+          });
+          inner.addEventListener("pointerleave", clearHalfHover);
+        }
+      }
+
+      document
+        .querySelectorAll(".homePreviewSliderWrap .caseImagesSlider")
+        .forEach(initSlider);
+
+      document.querySelectorAll(".extraShotsDetails").forEach(function (det) {
+        det.addEventListener("toggle", function () {
+          if (!det.open) return;
+          det
+            .querySelectorAll(".extraShotsBody .caseImagesSlider")
+            .forEach(initSlider);
+        });
+      });
+    })();
+  </script>
 
   <style>
     .hero {
@@ -208,7 +389,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     .caseTitle {
       margin: 0;
       font-size: 2.43056vw;
-      line-height: 1;
+      line-height: 1.2;
       letter-spacing: -0.015em;
       font-weight: 500;
       margin: 0 0 1.04167vw;
@@ -229,6 +410,7 @@ function previewVideoUrl(video: string | { src: string }): string {
     .caseInfo h4 {
       font-size: 1.3889vw;
       font-weight: 500;
+      line-height: 1;
       margin: 0 0 1.04167vw;
     }
 
@@ -238,24 +420,31 @@ function previewVideoUrl(video: string | { src: string }): string {
 
     .caseDetails {
       color: var(--color-primary);
+      position: relative;
+      z-index: 2;
+    }
+    .caseDetails:hover {
+      color: var(--color-primary-hover);
+    }
+    .caseDetails.__coming-soon {
+      color: rgba(0, 0, 0, 0.3);
+      cursor: default;
+    }
+    .caseDetails.__coming-soon:hover {
+      color: rgba(0, 0, 0, 0.3);
     }
 
-    .caseTop:hover .caseTitle,
-    .caseTop:hover .caseDetails {
+    .caseTop:hover .caseTitle {
       color: var(--color-primary-hover);
     }
 
     .casePreview {
-      border-radius: 0.833vw;
-      background: #efefef;
-      overflow: hidden;
+      position: relative;
+      z-index: 2;
     }
 
-    .casePreviewImage,
-    .casePreviewVideo {
-      display: block;
-      width: 100%;
-      height: auto;
+    .casePreview:has(.caseImagesSlider) {
+      overflow: visible;
     }
 
     .homeBottom {
@@ -263,34 +452,84 @@ function previewVideoUrl(video: string | { src: string }): string {
       padding: 0 0 1.736vw;
     }
 
-    .extraShots {
+    .extraShotsDetails {
+      border-bottom: 1px solid #d9d9d9;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    .extraShotsDetails[open] {
+      border-bottom: none;
+    }
+
+    .extraShotsDetails summary.extraShots {
       display: flex;
       align-items: center;
       height: 5.5556vw;
       justify-content: space-between;
-      border-bottom: 1px solid #d9d9d9;
-      border-top: 1px solid #d9d9d9;
+      list-style: none;
+      cursor: pointer;
       padding: 2.0833vw 0;
       position: relative;
+    }
+
+    .extraShotsDetails summary.extraShots::-webkit-details-marker {
+      display: none;
+    }
+
+    .extraShotsDetails:hover .extraShotsLabel,
+    .extraShotsDetails:hover .extraShotsPlus {
+      color: var(--color-primary-hover);
+    }
+
+    .extraShotsDetails[open] summary.extraShots {
+      height: auto;
+      min-height: 5.5556vw;
+    }
+
+    .extraShotsBody {
+      margin-top: -1.3889vw;
+      padding: 0 0 2.0833vw;
+    }
+
+    .extraShotsLabel--open {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsLabel--closed {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsLabel--open {
+      display: block;
+    }
+
+    .extraShotsIcon {
+      display: inline-block;
+    }
+
+    .extraShotsIcon--open {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsIcon--closed {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsIcon--open {
+      display: inline-block;
     }
 
     .extraShotsLabel {
       color: var(--color-primary);
       font-size: 1.3889vw;
       line-height: 1;
-    }
-    .extraShotsLink {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
+      transition: all 0.2s ease-in-out;
     }
 
     .extraShotsPlus {
       color: var(--color-primary);
       height: 1.3889vw;
+      transition: all 0.2s ease-in-out;
       width: 1.3889vw;
     }
 
@@ -372,11 +611,11 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
 
       .caseMeta {
-        gap: 10px;
+        gap: 11px;
       }
 
       .caseInfo {
-        gap: 25px;
+        gap: 20px;
       }
 
       .caseInfo h4 {
@@ -392,9 +631,18 @@ function previewVideoUrl(video: string | { src: string }): string {
         border-radius: 12px;
       }
 
-      .extraShots {
-        height: 80px;
+      .extraShotsDetails summary.extraShots {
+        height: 82px;
         padding: 30px 0;
+      }
+
+      .extraShotsDetails[open] summary.extraShots {
+        min-height: 82px;
+      }
+
+      .extraShotsBody {
+        margin-top: -20px;
+        padding: 0 0 30px;
       }
 
       .extraShotsPlus {
@@ -461,14 +709,14 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
       .caseTitle {
         font-size: 8vw;
-        line-height: 8.533vw;
+        line-height: 8.7vw;
         margin: 0 0 2.6667vw;
       }
       .caseMeta {
         gap: 1.333vw;
       }
       .caseInfo {
-        gap: 1.736vw;
+        gap: 3.8vw;
       }
       .caseInfo h4 {
         font-size: 4.8vw;
@@ -477,22 +725,33 @@ function previewVideoUrl(video: string | { src: string }): string {
       }
       .caseInfo p {
         margin: 0 0 2.6667vw;
+        line-height: 1.27;
       }
       .casePreview {
         border-radius: 0.833vw;
         margin: 0;
       }
 
-      .extraShots {
-        height: 18.6667vw;
+      .casePreview:has(.homePreviewSliderWrap) {
+        padding-bottom: 0;
+      }
+
+      .extraShotsDetails summary.extraShots {
+        height: auto;
+        min-height: 5.694vw;
         padding: 6.6667vw 0;
       }
+
+      .extraShotsBody {
+        margin-top: -5.333vw;
+        padding: 0 0 4vw;
+      }
+
       .extraShotsLabel {
         font-size: 4.8vw;
         line-height: 5.333vw;
       }
-      .extraShotsLink {
-      }
+
       .extraShotsPlus {
         width: 5.3vw;
         height: 5.3vw;
