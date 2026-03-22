@@ -4,6 +4,8 @@
   --color-primary: #ff4001;
   --color-primary-hover: #404040;
   --color-gray: #d9d9d9;
+  /* Space for fixed header (padding top + bottom + avatar row); see BaseLayout .header */
+  --header-height: calc(1.388vw + 1.388vw + 2.778vw);
 }
 
 *,
@@ -17,6 +19,10 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-padding-top: var(--header-height);
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -26,6 +32,10 @@ body {
   font-size: 1.111vw;
   font-weight: 500;
   line-height: 1.25;
+}
+
+main.container {
+  padding-top: var(--header-height);
 }
 
 button {
@@ -85,6 +95,10 @@ a:hover {
 }
 
 @media (min-width: 1440px) {
+  :root {
+    --header-height: 80px;
+  }
+
   body {
     font-size: 16px;
   }
@@ -101,6 +115,10 @@ a:hover {
 }
 
 @media (max-width: 600px) {
+  :root {
+    --header-height: calc(4vw + 4vw + 5.3333vw);
+  }
+
   .desktop-only {
     display: none;
   }

@@ -421,7 +421,13 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
     <style>
       .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
         padding: 1.388vw 2.083vw 1.388vw 1.388vw;
+        background: var(--color-bg);
       }
 
       .nav {
