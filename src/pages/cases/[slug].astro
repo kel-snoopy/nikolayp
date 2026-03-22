@@ -45,10 +45,10 @@ function videoUrl(video: string | { src: string }): string {
           <div class="caseVideoPanel">
             <video
               class="caseVideo"
-              autoplay
-              loop
-              muted
-              playsinline
+              autoplay={p.autoPlay}
+              loop={p.autoPlay}
+              muted={p.autoPlay}
+              playsinline={p.autoPlay}
               preload="auto"
               src={videoUrl(p.video)}
             >

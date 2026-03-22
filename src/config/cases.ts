@@ -87,6 +87,7 @@ export const cases = [
       {
         type: "video",
         video: ankrVideo,
+        autoPlay: true,
       },
       {
         type: "image",
@@ -103,6 +104,7 @@ export const cases = [
       {
         type: "video",
         video: ankrVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -132,6 +134,7 @@ export const cases = [
       {
         type: "video",
         video: ankrBrandVisualizationVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -175,6 +178,7 @@ export const cases = [
       {
         type: "video",
         video: ankrNavigation3Video,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -288,6 +292,7 @@ export const cases = [
       {
         type: "video",
         video: ankrPageNotFoundVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -339,6 +344,7 @@ export const cases = [
       {
         type: "video",
         video: ankrAiVideo,
+        autoPlay: false,
       },
       {
         type: "text",
