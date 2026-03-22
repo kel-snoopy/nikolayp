@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { cases } from "../../config/cases";
+import playIconUrl from "../../images/icons/play.svg?url";
 
 export function getStaticPaths() {
   return cases.map((c) => ({
@@ -41,19 +42,47 @@ function videoUrl(video: string | { src: string }): string {
 
     {caseItem.paragraphs.map((p) => (
       <>
-        {p.type === "video" && (
+        {p.type === "video" && p.autoPlay !== false && (
           <div class="caseVideoPanel">
             <video
               class="caseVideo"
-              autoplay={p.autoPlay}
-              loop={p.autoPlay}
-              muted={p.autoPlay}
-              playsinline={p.autoPlay}
+              autoplay
+              loop
+              muted
+              playsinline
               preload="auto"
               src={videoUrl(p.video)}
             >
               Your browser does not support the video tag.
             </video>
+          </div>
+        )}
+        {p.type === "video" && p.autoPlay === false && (
+          <div class="caseVideoPanel caseVideoPanel--manualPlay">
+            <video
+              class="caseVideo"
+              preload="metadata"
+              playsinline
+              muted
+              src={videoUrl(p.video)}
+            >
+              Your browser does not support the video tag.
+            </video>
+            <button
+              type="button"
+              class="caseVideoPlay"
+              aria-label="Play video"
+            >
+              <img
+                src={playIconUrl}
+                alt=""
+                width="35"
+                height="47"
+                loading="eager"
+                decoding="async"
+                draggable="false"
+              />
+            </button>
           </div>
         )}
         {p.type === "image" && (
@@ -633,8 +662,40 @@ function videoUrl(video: string | { src: string }): string {
         }
       }
 
+      function initManualVideo(panel) {
+        var video = panel.querySelector(".caseVideo");
+        var btn = panel.querySelector(".caseVideoPlay");
+        if (!video || !btn) return;
+
+        function hideOverlay() {
+          panel.classList.add("is-overlay-hidden");
+        }
+        function showOverlay() {
+          panel.classList.remove("is-overlay-hidden");
+        }
+
+        video.addEventListener("play", function () {
+          hideOverlay();
+          video.controls = true;
+          btn.setAttribute("aria-hidden", "true");
+        });
+        video.addEventListener("ended", function () {
+          showOverlay();
+          video.controls = false;
+          video.currentTime = 0;
+          btn.setAttribute("aria-hidden", "false");
+        });
+
+        btn.addEventListener("click", function () {
+          video.muted = false;
+          if (video.ended) video.currentTime = 0;
+          video.play().catch(function () {});
+        });
+      }
+
       document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
       document.querySelectorAll(".caseReviewsSlider").forEach(initReviewsSlider);
+      document.querySelectorAll(".caseVideoPanel--manualPlay").forEach(initManualVideo);
     })();
   </script>
 
@@ -701,6 +762,42 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseVideoPanel {
       margin: 1.388vw 0;
+    }
+
+    .caseVideoPanel--manualPlay {
+      position: relative;
+    }
+
+    .caseVideoPlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s ease;
+    }
+
+    .caseVideoPanel--manualPlay.is-overlay-hidden .caseVideoPlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .caseVideoPlay:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 4px;
+    }
+
+    .caseVideoPlay img {
+      width: 5vw;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0.139vw 0.694vw rgba(0, 0, 0, 0.45));
     }
 
     .caseImagePanel {
@@ -1378,6 +1475,10 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 20px;
         margin-bottom: 20px;
       }
+
+      .caseVideoPlay img {
+        width: 72px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1593,6 +1694,10 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 4vw;
         line-height: 1.25;
         margin: 0 0 4vw;
+      }
+
+      .caseVideoPlay img {
+        width: 7.733vw;
       }
     }
   </style>
