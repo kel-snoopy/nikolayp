@@ -55,7 +55,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
   </section>
 
   {cases.map((caseItem) => (
-    <section class="homeCase" aria-labelledby={`case-${caseItem.id}-title`}>
+    <section
+      class:list={["homeCase", !caseItem.public && "homeCase--private"]}
+      aria-labelledby={`case-${caseItem.id}-title`}
+    >
       <div class="caseTop">
         <div class="caseHeading">
           <div class="caseBrand">{caseItem.brand}</div>
@@ -436,6 +439,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
 
     .caseTop:hover .caseTitle {
       color: var(--color-primary-hover);
+    }
+
+    .homeCase--private .caseTop:hover .caseTitle {
+      color: var(--color-fg);
     }
 
     .casePreview {
