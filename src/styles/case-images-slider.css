@@ -237,7 +237,7 @@
   .caseImagesSliderDots {
     gap: 0.8vw;
     position: absolute;
-    bottom: -2.83vw;
+    bottom: -3vw;
     z-index: 1;
     left: 0;
     right: 0;

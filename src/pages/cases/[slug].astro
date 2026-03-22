@@ -644,7 +644,7 @@ function videoUrl(video: string | { src: string }): string {
     }
 
     .caseTop {
-      margin: 0 auto 2.7778vw;
+      margin: 0 auto 2.361vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.6944vw;
@@ -664,7 +664,7 @@ function videoUrl(video: string | { src: string }): string {
       font-weight: 500;
       font-size: 3.472vw;
       letter-spacing: -0.02em;
-      line-height: 1;
+      line-height: 1.2;
       margin: 0 0 1.042vw;
     }
 
@@ -672,7 +672,7 @@ function videoUrl(video: string | { src: string }): string {
       color: rgba(0, 0, 0, 0.35);
       display: flex;
       flex-wrap: wrap;
-      gap: 0.694vw;
+      gap: 0.764vw;
       font-size: 1.1111vw;
       line-height: 1.3889vw;
     }
@@ -687,6 +687,10 @@ function videoUrl(video: string | { src: string }): string {
       width: 100%;
       height: auto;
       display: block;
+    }
+
+    .caseRight {
+      padding-top: 2.5vw;
     }
 
     .caseRight :global(p) {
@@ -1179,7 +1183,7 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .caseTop {
-        margin-bottom: 40px;
+        margin-bottom: 34px;
         gap: 10px;
       }
 
@@ -1196,7 +1200,11 @@ function videoUrl(video: string | { src: string }): string {
       .caseMeta {
         font-size: 16px;
         line-height: 20px;
-        gap: 10px;
+        gap: 11px;
+      }
+
+      .caseRight {
+        padding-top: 36px;
       }
 
       .caseRight :global(p) {
@@ -1368,14 +1376,18 @@ function videoUrl(video: string | { src: string }): string {
       .caseTop {
         grid-template-columns: 1fr;
         gap: 8vw;
+        margin: 0 auto 3.7vw;
       }
-
+      .casePage {
+        padding: 13.3vw 0 3.472vw;
+      }
       .caseBrand {
         font-size: 5.333vw;
         margin-bottom: 4vw;
       }
       .caseTitle {
         font-size: 12vw;
+        line-height: 1;
         margin: 0 0 4vw;
       }
       .caseMeta {
@@ -1383,9 +1395,12 @@ function videoUrl(video: string | { src: string }): string {
         line-height: 1.33;
         gap: 1.333vw;
       }
+      .caseRight {
+        padding-top: 0;
+      }
       .caseRight :global(p) {
         font-size: 4vw;
-        line-height: 1.25;
+        line-height: 1.27;
         margin: 0 0 4vw;
       }
 
@@ -1400,7 +1415,7 @@ function videoUrl(video: string | { src: string }): string {
       }
       .caseParagraphText :global(p) {
         font-size: 4vw;
-        line-height: 1.33;
+        line-height: 1.27;
         margin: 0 0 4vw;
       }
       .caseImagePanel {
@@ -1451,7 +1466,7 @@ function videoUrl(video: string | { src: string }): string {
       .caseImagesSliderDots {
         gap: 0.8vw;
         position: absolute;
-        bottom: -2.83vw;
+        bottom: -3vw;
         z-index: 1;
         left: 0;
         right: 0;
@@ -1515,8 +1530,11 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .extraShots {
-        height: 18.6667vw;
+        height: 19.4vw;
         padding: 6.6667vw 0;
+      }
+      .extraShotsLeft {
+        gap: 1.4vw;
       }
       .extraShotsLabel {
         font-size: 4.8vw;

@@ -439,9 +439,6 @@ function previewItems(caseItem: (typeof cases)[number]) {
     }
 
     .casePreview {
-      border-radius: 0.833vw;
-      background: #efefef;
-      overflow: hidden;
       position: relative;
       z-index: 2;
     }
@@ -712,14 +709,14 @@ function previewItems(caseItem: (typeof cases)[number]) {
       }
       .caseTitle {
         font-size: 8vw;
-        line-height: 8.533vw;
+        line-height: 8.7vw;
         margin: 0 0 2.6667vw;
       }
       .caseMeta {
         gap: 1.333vw;
       }
       .caseInfo {
-        gap: 1.736vw;
+        gap: 3.8vw;
       }
       .caseInfo h4 {
         font-size: 4.8vw;
@@ -728,6 +725,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
       }
       .caseInfo p {
         margin: 0 0 2.6667vw;
+        line-height: 1.27;
       }
       .casePreview {
         border-radius: 0.833vw;
@@ -735,7 +733,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
       }
 
       .casePreview:has(.homePreviewSliderWrap) {
-        padding-bottom: 8vw;
+        padding-bottom: 0;
       }
 
       .extraShotsDetails summary.extraShots {
