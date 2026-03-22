@@ -106,6 +106,22 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         transform: translate3d(0, 1.25rem, 0);
       }
     </style>
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem("videoIntroCtaDismissed") === "1") {
+            document.documentElement.classList.add("video-cta-dismissed");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style is:inline>
+      html.video-cta-dismissed #video-cta-widget {
+        display: none !important;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -386,11 +402,25 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
         var lastIntroOpener = null;
+        var CTA_DISMISS_KEY = "videoIntroCtaDismissed";
+
+        if (widget) {
+          try {
+            if (localStorage.getItem(CTA_DISMISS_KEY) === "1") {
+              widget.hidden = true;
+              document.documentElement.classList.add("video-cta-dismissed");
+            }
+          } catch (e0) {}
+        }
 
         if (widget && widgetClose) {
           widgetClose.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
+            try {
+              localStorage.setItem(CTA_DISMISS_KEY, "1");
+            } catch (err) {}
+            document.documentElement.classList.add("video-cta-dismissed");
             widget.hidden = true;
           });
         }
