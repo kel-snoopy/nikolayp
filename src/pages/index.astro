@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { profileLinks } from "../config/links";
 import { cases } from "../config/cases";
 import HomePreviewSlider from "../components/HomePreviewSlider.astro";
+import CaseParagraphBlocks from "../components/CaseParagraphBlocks.astro";
+import { extraShots } from "../config/extraShots";
 
 function previewItems(caseItem: (typeof cases)[number]) {
   if (
@@ -104,17 +106,23 @@ function previewItems(caseItem: (typeof cases)[number]) {
       </div>
     </section>
   ))}
-  <div class="extraShots">
-    <span class="extraShotsLabel">See Some Extra Shots</span>
-    <span class="extraShotsPlus" aria-hidden="true">
-      <span class="icon-plus" aria-hidden="true"></span>
-    </span>
-    <button class="extraShotsLink" type="button"></button>
-  </div>
+  <details class="extraShotsDetails">
+    <summary class="extraShots">
+      <span class="extraShotsLabel">See Some Extra Shots</span>
+      <span class="extraShotsPlus" aria-hidden="true">
+        <span class="icon-plus extraShotsToggleIcon" aria-hidden="true"></span>
+      </span>
+    </summary>
+    <div class="extraShotsBody">
+      <CaseParagraphBlocks blocks={extraShots} />
+    </div>
+  </details>
 
   <script is:inline>
     (function () {
       function initSlider(root) {
+        if (root.getAttribute("data-slider-inited") === "1") return;
+        root.setAttribute("data-slider-inited", "1");
         var viewport = root.querySelector(".caseImagesSliderViewport");
         var inner = root.querySelector(".caseImagesSliderInner");
         var slides = root.querySelectorAll(".caseImagesSliderSlide");
@@ -280,7 +288,18 @@ function previewItems(caseItem: (typeof cases)[number]) {
         }
       }
 
-      document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
+      document
+        .querySelectorAll(".homePreviewSliderWrap .caseImagesSlider")
+        .forEach(initSlider);
+
+      document.querySelectorAll(".extraShotsDetails").forEach(function (det) {
+        det.addEventListener("toggle", function () {
+          if (!det.open) return;
+          det
+            .querySelectorAll(".extraShotsBody .caseImagesSlider")
+            .forEach(initSlider);
+        });
+      });
     })();
   </script>
 
@@ -434,19 +453,49 @@ function previewItems(caseItem: (typeof cases)[number]) {
       padding: 0 0 1.736vw;
     }
 
-    .extraShots {
+    .extraShotsDetails {
+      border-bottom: 1px solid #d9d9d9;
+      border-top: 1px solid #d9d9d9;
+    }
+
+    .extraShotsDetails summary.extraShots {
       display: flex;
       align-items: center;
       height: 5.5556vw;
       justify-content: space-between;
-      border-bottom: 1px solid #d9d9d9;
-      border-top: 1px solid #d9d9d9;
+      list-style: none;
+      cursor: pointer;
       padding: 2.0833vw 0;
       position: relative;
     }
-    .extraShots:hover .extraShotsLabel,
-    .extraShots:hover .extraShotsPlus {
+
+    .extraShotsDetails summary.extraShots::-webkit-details-marker {
+      display: none;
+    }
+
+    .extraShotsDetails:hover .extraShotsLabel,
+    .extraShotsDetails:hover .extraShotsPlus {
       color: var(--color-primary-hover);
+    }
+
+    .extraShotsDetails[open] summary.extraShots {
+      border-bottom: 1px solid #d9d9d9;
+      margin-bottom: 2.0833vw;
+      height: auto;
+      min-height: 5.5556vw;
+    }
+
+    .extraShotsBody {
+      padding: 0 0 2.0833vw;
+    }
+
+    .extraShotsToggleIcon {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .extraShotsDetails[open] .extraShotsToggleIcon {
+      transform: rotate(45deg);
     }
 
     .extraShotsLabel {
@@ -454,19 +503,6 @@ function previewItems(caseItem: (typeof cases)[number]) {
       font-size: 1.3889vw;
       line-height: 1;
       transition: all 0.2s ease-in-out;
-    }
-    .extraShotsLink {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      margin: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
     }
 
     .extraShotsPlus {
@@ -574,9 +610,18 @@ function previewItems(caseItem: (typeof cases)[number]) {
         border-radius: 12px;
       }
 
-      .extraShots {
+      .extraShotsDetails summary.extraShots {
         height: 82px;
         padding: 30px 0;
+      }
+
+      .extraShotsDetails[open] summary.extraShots {
+        margin-bottom: 20px;
+        min-height: 82px;
+      }
+
+      .extraShotsBody {
+        padding: 0 0 30px;
       }
 
       .extraShotsPlus {
@@ -669,16 +714,25 @@ function previewItems(caseItem: (typeof cases)[number]) {
         padding-bottom: 8vw;
       }
 
-      .extraShots {
-        height: 5.694vw;
+      .extraShotsDetails summary.extraShots {
+        height: auto;
+        min-height: 5.694vw;
         padding: 6.6667vw 0;
       }
+
+      .extraShotsDetails[open] summary.extraShots {
+        margin-bottom: 4vw;
+      }
+
+      .extraShotsBody {
+        padding: 0 0 4vw;
+      }
+
       .extraShotsLabel {
         font-size: 4.8vw;
         line-height: 5.333vw;
       }
-      .extraShotsLink {
-      }
+
       .extraShotsPlus {
         width: 5.3vw;
         height: 5.3vw;

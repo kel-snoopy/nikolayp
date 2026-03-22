@@ -1,0 +1,102 @@
+/* Shared: case-like media blocks (video, image, half, images slider imports case-images-slider.css separately) */
+.caseVideoPanel {
+  margin: 1.388vw 0;
+}
+
+.caseVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.caseImagePanel {
+  margin: 1.388vw 0;
+}
+
+.caseImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.caseHalfPanel {
+  margin: 1.388vw 0;
+}
+
+.caseHalfGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.042vw;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.caseHalfImg {
+  border-radius: 0.694vw;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caseHalfVideo {
+  border-radius: 0.694vw;
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-left: 0;
+}
+
+.caseImage,
+.caseVideo {
+  border-radius: 0.694vw;
+}
+
+@media (min-width: 1440px) {
+  .caseVideoPanel {
+    margin: 20px 0;
+  }
+
+  .caseImagePanel {
+    margin: 20px 0;
+  }
+
+  .caseHalfPanel {
+    margin: 20px 0;
+  }
+
+  .caseHalfGrid {
+    border-radius: 10px;
+  }
+
+  .caseImage,
+  .caseVideo {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .caseVideoPanel {
+    margin: 5.333vw 0;
+  }
+
+  .caseImagePanel {
+    margin: 5.333vw 0;
+  }
+
+  .caseHalfPanel {
+    margin: 5.333vw 0;
+  }
+
+  .caseHalfVideo,
+  .caseHalfImg {
+    border-radius: 2.6667vw;
+  }
+
+  .caseImage,
+  .caseVideo {
+    border-radius: 2.6667vw;
+  }
+}
