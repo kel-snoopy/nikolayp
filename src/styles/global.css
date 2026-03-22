@@ -65,6 +65,34 @@ a:hover {
   text-decoration: none;
 }
 
+/*
+  iOS Safari: links in the header still get the system link blue unless both
+  `color` and `-webkit-text-fill-color` are set with explicit values (inherit is not enough).
+*/
+.header .brandLink,
+.header .brandLink:link,
+.header .brandLink:visited,
+.header .brandLink:active,
+.header .navLinks a,
+.header .navLinks a:link,
+.header .navLinks a:visited,
+.header .navLinks a:active {
+  color: var(--color-fg);
+  -webkit-text-fill-color: var(--color-fg);
+}
+
+.header .brandLink:hover,
+.header .navLinks a:hover {
+  color: var(--color-primary);
+  -webkit-text-fill-color: var(--color-primary);
+}
+
+/* Home: keep name link black on hover (matches BaseLayout html.home .brandLink:hover) */
+html.home .header .brandLink:hover {
+  color: var(--color-fg);
+  -webkit-text-fill-color: var(--color-fg);
+}
+
 .container {
   max-width: 80.90vw;
   margin: 0 auto;
