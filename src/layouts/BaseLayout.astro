@@ -430,6 +430,96 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       })();
     </script>
 
+    <script is:inline>
+      (function () {
+        function motionOk() {
+          return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+
+        function collectRevealNodes() {
+          var out = [];
+          var seen = new Set();
+          function add(el) {
+            if (!el || seen.has(el)) return;
+            seen.add(el);
+            out.push(el);
+          }
+
+          var main = document.querySelector("main.container");
+          if (main) {
+            main
+              .querySelectorAll(
+                ":scope > section, :scope > details, :scope > article, :scope > div.extraShots"
+              )
+              .forEach(function (el) {
+                if (el.classList.contains("casePage")) {
+                  el
+                    .querySelectorAll(
+                      ".caseTop, .caseVideoPanel, .caseImagePanel, .caseHalfPanel, .caseImagesPanel, .caseParagraph, section.caseReviews"
+                    )
+                    .forEach(add);
+                } else {
+                  add(el);
+                }
+              });
+          }
+
+          document.querySelectorAll("section.homeBottom").forEach(add);
+
+          document
+            .querySelectorAll(
+              ".caseParagraphBlocks > .caseVideoPanel, .caseParagraphBlocks > .caseImagePanel, .caseParagraphBlocks > .caseHalfPanel, .caseParagraphBlocks > .caseImagesPanel"
+            )
+            .forEach(add);
+
+          return out;
+        }
+
+        function initRevealOnScroll() {
+          if (!motionOk()) return;
+          var nodes = collectRevealNodes();
+          if (!nodes.length) return;
+
+          for (var i = 0; i < nodes.length; i++) {
+            nodes[i].classList.add("reveal-on-scroll");
+          }
+
+          if (!("IntersectionObserver" in window)) {
+            for (var r = 0; r < nodes.length; r++) {
+              nodes[r].classList.add("is-revealed");
+            }
+            return;
+          }
+
+          var io = new IntersectionObserver(
+            function (entries) {
+              for (var j = 0; j < entries.length; j++) {
+                var e = entries[j];
+                if (!e.isIntersecting) continue;
+                e.target.classList.add("is-revealed");
+                io.unobserve(e.target);
+              }
+            },
+            {
+              root: null,
+              rootMargin: "0px 0px -5% 0px",
+              threshold: [0, 0.08, 0.15],
+            }
+          );
+
+          for (var k = 0; k < nodes.length; k++) {
+            io.observe(nodes[k]);
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initRevealOnScroll);
+        } else {
+          initRevealOnScroll();
+        }
+      })();
+    </script>
+
     <style>
       .header {
         position: fixed;
