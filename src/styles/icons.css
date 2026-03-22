@@ -58,7 +58,7 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  transition: all 0.2s ease-in-out;
+  transition: currentColor 0.2s ease-in-out;
 }
 .icon-close-circle {
   width: 3.472vw;
@@ -78,7 +78,7 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s linear;
 }
 
 @media screen and (min-width: 1440px) {
@@ -99,8 +99,8 @@
     height: 20px;
   }
   .icon-play {
-    height: 50px;
-    width: 36px;
+    height: 60px;
+    width: 60px;
   }
   .icon-play-small {
     width: 9px;
@@ -138,8 +138,8 @@
     width: 7.68vw;
   }
   .icon-play-small {
-    width: 2.4vw;
-    height: 4vw;
+    width: 2.8vw;
+    height: 2.8vw;
   }
   .icon-close-circle {
     width: 13.333vw;

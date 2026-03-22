@@ -60,6 +60,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Stops iOS Safari from auto-linking plain text (blue tel/mail/address) -->
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -75,6 +77,53 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
     <link rel="mask-icon" href={safariPinnedTab} color="#000000" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="msapplication-TileImage" content={mstile150} />
+    <!-- First paint already “raised from below” — avoids flash at final position then snap-down. -->
+    <script is:inline>
+      (function () {
+        try {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+            return;
+        } catch (e) {}
+        document.documentElement.classList.add("reveal-boot");
+      })();
+    </script>
+    <style is:inline>
+      html.reveal-boot main.container > section,
+      html.reveal-boot main.container > details,
+      html.reveal-boot main.container > article,
+      html.reveal-boot main.container > div.extraShots,
+      html.reveal-boot main.container .casePage > .caseTop,
+      html.reveal-boot main.container .casePage > .caseVideoPanel,
+      html.reveal-boot main.container .casePage > .caseImagePanel,
+      html.reveal-boot main.container .casePage > .caseHalfPanel,
+      html.reveal-boot main.container .casePage > .caseImagesPanel,
+      html.reveal-boot main.container .casePage > .caseParagraph,
+      html.reveal-boot main.container .casePage > section.caseReviews,
+      html.reveal-boot section.homeBottom,
+      html.reveal-boot .caseParagraphBlocks > .caseVideoPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagePanel,
+      html.reveal-boot .caseParagraphBlocks > .caseHalfPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagesPanel {
+        opacity: 0;
+        transform: translate3d(0, 1.25rem, 0);
+      }
+    </style>
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem("videoIntroCtaDismissed") === "1") {
+            document.documentElement.classList.add("video-cta-dismissed");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style is:inline>
+      html.video-cta-dismissed #video-cta-widget {
+        display: none !important;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -355,11 +404,25 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
         var lastIntroOpener = null;
+        var CTA_DISMISS_KEY = "videoIntroCtaDismissed";
+
+        if (widget) {
+          try {
+            if (localStorage.getItem(CTA_DISMISS_KEY) === "1") {
+              widget.hidden = true;
+              document.documentElement.classList.add("video-cta-dismissed");
+            }
+          } catch (e0) {}
+        }
 
         if (widget && widgetClose) {
           widgetClose.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
+            try {
+              localStorage.setItem(CTA_DISMISS_KEY, "1");
+            } catch (err) {}
+            document.documentElement.classList.add("video-cta-dismissed");
             widget.hidden = true;
           });
         }
@@ -476,19 +539,43 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         }
 
         function initRevealOnScroll() {
-          if (!motionOk()) return;
+          if (!motionOk()) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
           var nodes = collectRevealNodes();
-          if (!nodes.length) return;
+          if (!nodes.length) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
 
           for (var i = 0; i < nodes.length; i++) {
             nodes[i].classList.add("reveal-on-scroll");
           }
+
+          void document.documentElement.offsetHeight;
+          document.documentElement.classList.remove("reveal-boot");
 
           if (!("IntersectionObserver" in window)) {
             for (var r = 0; r < nodes.length; r++) {
               nodes[r].classList.add("is-revealed");
             }
             return;
+          }
+
+          function isInViewport(el) {
+            var r = el.getBoundingClientRect();
+            var h = window.innerHeight || document.documentElement.clientHeight;
+            return r.bottom > -32 && r.top < h * 0.92;
+          }
+
+          /* Above-the-fold prefix: revealed only via timeouts (not IO — IO fires sync and skips the transition). */
+          var staggerEls = [];
+          var maxAboveFold = 5;
+          for (var p = 0; p < nodes.length; p++) {
+            if (!isInViewport(nodes[p])) break;
+            if (staggerEls.length >= maxAboveFold) break;
+            staggerEls.push(nodes[p]);
           }
 
           var io = new IntersectionObserver(
@@ -508,8 +595,24 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           );
 
           for (var k = 0; k < nodes.length; k++) {
+            if (staggerEls.indexOf(nodes[k]) >= 0) continue;
             io.observe(nodes[k]);
           }
+
+          var firstDelayMs = 110;
+          var staggerMs = 100;
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              for (var s = 0; s < staggerEls.length; s++) {
+                (function (el, delay) {
+                  window.setTimeout(function () {
+                    el.classList.add("is-revealed");
+                  }, delay);
+                })(staggerEls[s], firstDelayMs + s * staggerMs);
+              }
+            });
+          });
         }
 
         if (document.readyState === "loading") {
@@ -569,8 +672,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .headerGradientBlur::before {
         content: "";
         z-index: 1;
-        -webkit-backdrop-filter: blur(0.5px) saturate(1.35);
-        backdrop-filter: blur(0.5px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -597,8 +700,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(1) {
         z-index: 2;
-        -webkit-backdrop-filter: blur(0.5px) saturate(1.35);
-        backdrop-filter: blur(0.5px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -625,8 +728,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(2) {
         z-index: 3;
-        -webkit-backdrop-filter: blur(0.625px) saturate(1.35);
-        backdrop-filter: blur(0.625px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.625px);
+        backdrop-filter: blur(0.625px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -653,8 +756,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(3) {
         z-index: 4;
-        -webkit-backdrop-filter: blur(1.25px) saturate(1.4);
-        backdrop-filter: blur(1.25px) saturate(1.4);
+        -webkit-backdrop-filter: blur(1.25px);
+        backdrop-filter: blur(1.25px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -681,8 +784,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(4) {
         z-index: 5;
-        -webkit-backdrop-filter: blur(2.5px) saturate(1.45);
-        backdrop-filter: blur(2.5px) saturate(1.45);
+        -webkit-backdrop-filter: blur(2.5px);
+        backdrop-filter: blur(2.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -709,8 +812,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(5) {
         z-index: 6;
-        -webkit-backdrop-filter: blur(5px) saturate(1.5);
-        backdrop-filter: blur(5px) saturate(1.5);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -735,8 +838,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(6) {
         z-index: 7;
-        -webkit-backdrop-filter: blur(10px) saturate(1.55);
-        backdrop-filter: blur(10px) saturate(1.55);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.2) 0%,
@@ -762,8 +865,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .headerGradientBlur::after {
         content: "";
         z-index: 8;
-        -webkit-backdrop-filter: blur(20px) saturate(1.6);
-        backdrop-filter: blur(20px) saturate(1.6);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.95) 0%,
@@ -789,12 +892,13 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         inset: 0;
         z-index: 1;
         pointer-events: none;
+        /* Neutral frost; avoid strong white wash over content behind header */
         background: linear-gradient(
           to bottom,
-          rgba(255, 255, 255, 0.5) 0%,
-          rgba(255, 255, 255, 0.32) 28%,
-          rgba(255, 255, 255, 0.12) 58%,
-          rgba(255, 255, 255, 0.03) 82%,
+          rgba(255, 255, 255, 0.28) 0%,
+          rgba(255, 255, 255, 0.16) 28%,
+          rgba(255, 255, 255, 0.06) 58%,
+          rgba(255, 255, 255, 0.02) 82%,
           rgba(255, 255, 255, 0) 100%
         );
       }
@@ -860,9 +964,14 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .avatar {
         border-radius: 999px;
         display: block;
-        object-fit: cover;
+        flex-shrink: 0;
+        aspect-ratio: 1;
         width: 2.778vw;
-        height: 2.778vw;
+        height: auto;
+        min-width: 2.778vw;
+        min-height: 2.778vw;
+        object-fit: cover;
+        background-color: var(--case-media-placeholder-bg);
       }
 
       .navLinksLabel {
@@ -955,6 +1064,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaInner {
         position: relative;
         pointer-events: auto;
+        width: 100%;
+        aspect-ratio: 1;
       }
 
       .videoCta[hidden] {
@@ -990,6 +1101,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         overflow: hidden;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
         text-decoration: none;
+        background-color: var(--case-media-placeholder-bg);
       }
 
       button.videoCtaCircle {
@@ -997,7 +1109,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         -webkit-appearance: none;
         font: inherit;
         color: inherit;
-        background: transparent;
+        background: var(--case-media-placeholder-bg);
         border: none;
         padding: 0;
         margin: 0;
@@ -1012,6 +1124,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaPhoto {
         width: 100%;
         height: 100%;
+        min-height: 0;
         object-fit: cover;
         display: block;
       }
@@ -1265,7 +1378,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 40px;
-          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
         }
 
         .navLinks {
@@ -1369,7 +1483,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 5.3333vw;
-          height: 5.3333vw;
+          min-width: 5.3333vw;
+          min-height: 5.3333vw;
         }
 
         .hero {

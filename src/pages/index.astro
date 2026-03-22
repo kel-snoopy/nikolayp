@@ -55,7 +55,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
   </section>
 
   {cases.map((caseItem) => (
-    <section class="homeCase" aria-labelledby={`case-${caseItem.id}-title`}>
+    <section
+      class:list={["homeCase", !caseItem.public && "homeCase--private"]}
+      aria-labelledby={`case-${caseItem.id}-title`}
+    >
       <div class="caseTop">
         <div class="caseHeading">
           <div class="caseBrand">{caseItem.brand}</div>
@@ -134,7 +137,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
         if (!viewport || slides.length < 2) return;
 
         var index = 0;
-        var scrollEndTimer;
+        var scrollRaf = null;
 
         function updateDots() {
           for (var i = 0; i < dots.length; i++) {
@@ -209,14 +212,15 @@ function previewItems(caseItem: (typeof cases)[number]) {
           })(d);
         }
 
-        viewport.addEventListener(
-          "scroll",
-          function () {
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
-          },
-          { passive: true }
-        );
+        function onViewportScroll() {
+          if (scrollRaf !== null) return;
+          scrollRaf = requestAnimationFrame(function () {
+            scrollRaf = null;
+            readIndexFromScroll();
+          });
+        }
+
+        viewport.addEventListener("scroll", onViewportScroll, { passive: true });
 
         viewport.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
@@ -436,6 +440,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
 
     .caseTop:hover .caseTitle {
       color: var(--color-primary-hover);
+    }
+
+    .homeCase--private .caseTop:hover .caseTitle {
+      color: var(--color-fg);
     }
 
     .casePreview {
@@ -658,7 +666,11 @@ function previewItems(caseItem: (typeof cases)[number]) {
 
     @media (max-width: 600px) {
       .hero {
-        padding: 34.6667vw 0 26.6667vw;
+        /* padding: 34.6667vw 0 26.6667vw; */
+        height: 94vh;
+        align-items: center;
+        display: flex;
+        padding: 0;
       }
       .hero.__bottom {
         padding: 40vw 0;
