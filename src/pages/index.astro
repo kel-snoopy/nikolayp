@@ -108,9 +108,11 @@ function previewItems(caseItem: (typeof cases)[number]) {
   ))}
   <details class="extraShotsDetails">
     <summary class="extraShots">
-      <span class="extraShotsLabel">See Some Extra Shots</span>
+      <span class="extraShotsLabel extraShotsLabel--closed">See Some Extra Shots</span>
+      <span class="extraShotsLabel extraShotsLabel--open">Hide Extra Shots</span>
       <span class="extraShotsPlus" aria-hidden="true">
-        <span class="icon-plus extraShotsToggleIcon" aria-hidden="true"></span>
+        <span class="icon-plus extraShotsIcon extraShotsIcon--closed" aria-hidden="true"></span>
+        <span class="icon-minus extraShotsIcon extraShotsIcon--open" aria-hidden="true"></span>
       </span>
     </summary>
     <div class="extraShotsBody">
@@ -458,6 +460,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
       border-top: 1px solid #d9d9d9;
     }
 
+    .extraShotsDetails[open] {
+      border-bottom: none;
+    }
+
     .extraShotsDetails summary.extraShots {
       display: flex;
       align-items: center;
@@ -479,23 +485,41 @@ function previewItems(caseItem: (typeof cases)[number]) {
     }
 
     .extraShotsDetails[open] summary.extraShots {
-      border-bottom: 1px solid #d9d9d9;
-      margin-bottom: 2.0833vw;
       height: auto;
       min-height: 5.5556vw;
     }
 
     .extraShotsBody {
+      margin-top: -1.3889vw;
       padding: 0 0 2.0833vw;
     }
 
-    .extraShotsToggleIcon {
-      display: inline-block;
-      transition: transform 0.2s ease;
+    .extraShotsLabel--open {
+      display: none;
     }
 
-    .extraShotsDetails[open] .extraShotsToggleIcon {
-      transform: rotate(45deg);
+    .extraShotsDetails[open] .extraShotsLabel--closed {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsLabel--open {
+      display: block;
+    }
+
+    .extraShotsIcon {
+      display: inline-block;
+    }
+
+    .extraShotsIcon--open {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsIcon--closed {
+      display: none;
+    }
+
+    .extraShotsDetails[open] .extraShotsIcon--open {
+      display: inline-block;
     }
 
     .extraShotsLabel {
@@ -616,11 +640,11 @@ function previewItems(caseItem: (typeof cases)[number]) {
       }
 
       .extraShotsDetails[open] summary.extraShots {
-        margin-bottom: 20px;
         min-height: 82px;
       }
 
       .extraShotsBody {
+        margin-top: -20px;
         padding: 0 0 30px;
       }
 
@@ -720,11 +744,8 @@ function previewItems(caseItem: (typeof cases)[number]) {
         padding: 6.6667vw 0;
       }
 
-      .extraShotsDetails[open] summary.extraShots {
-        margin-bottom: 4vw;
-      }
-
       .extraShotsBody {
+        margin-top: -5.333vw;
         padding: 0 0 4vw;
       }
 
