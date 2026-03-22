@@ -46,15 +46,22 @@ button {
   transition: all 0.2s ease-in-out;
 }
 
-a {
+/* iOS Safari: default blue for :link/:visited; -webkit-text-fill-color overrides it */
+a,
+a:link,
+a:visited,
+a:active {
   color: inherit;
+  -webkit-text-fill-color: currentColor;
   outline: none;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:hover {
   color: var(--color-primary);
+  -webkit-text-fill-color: currentColor;
   text-decoration: none;
 }
 
@@ -101,6 +108,10 @@ a:hover {
   padding: 1.388vw 0.694vw;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+}
+a.primaryButton,
+button.primaryButton {
+  color: var(--color-bg);
 }
 
 .primaryButton:hover {

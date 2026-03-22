@@ -60,6 +60,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Stops iOS Safari from auto-linking plain text (blue tel/mail/address) -->
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
