@@ -70,8 +70,8 @@
   background-position: center;
 }
 .icon-arrow-right {
-  width: 1.25vw;
-  height: 1.111vw;
+  width: 1.3889vw;
+  height: 1.3889vw;
   display: inline-block;
   background-color: currentColor;
   mask-image: url("../images/icons/arrow-right.svg");
@@ -110,8 +110,8 @@
     height: 50px;
   }
   .icon-arrow-right {
-    width: 18px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -145,8 +145,8 @@
     height: 13.333vw;
   }
   .icon-arrow-right {
-    width: 4.8vw;
-    height: 4.2667vw;
+    width: 5.33vw;
+    height: 5.33vw;
   }
 }
 
