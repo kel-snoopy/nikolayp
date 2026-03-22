@@ -63,7 +63,7 @@ a:hover {
   height: 4.1667vw;
   font-weight: 600;
   justify-content: center;
-  padding: 1.388vw 1.388vw;
+  padding: 1.388vw 0.694vw;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
@@ -96,7 +96,7 @@ a:hover {
   .primaryButton {
     border-radius: 30px;
     height: 60px;
-    padding: 20px;
+    padding: 20px 10px;
   }
 }
 
@@ -118,6 +118,6 @@ a:hover {
   .primaryButton {
     border-radius: 8vw;
     height: 16vw;
-    padding: 5.333vw 5.333vw;
+    padding: 5.333vw 2.6667vw;
   }
 }
