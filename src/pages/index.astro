@@ -137,7 +137,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
         if (!viewport || slides.length < 2) return;
 
         var index = 0;
-        var scrollEndTimer;
+        var scrollRaf = null;
 
         function updateDots() {
           for (var i = 0; i < dots.length; i++) {
@@ -212,14 +212,15 @@ function previewItems(caseItem: (typeof cases)[number]) {
           })(d);
         }
 
-        viewport.addEventListener(
-          "scroll",
-          function () {
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
-          },
-          { passive: true }
-        );
+        function onViewportScroll() {
+          if (scrollRaf !== null) return;
+          scrollRaf = requestAnimationFrame(function () {
+            scrollRaf = null;
+            readIndexFromScroll();
+          });
+        }
+
+        viewport.addEventListener("scroll", onViewportScroll, { passive: true });
 
         viewport.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
