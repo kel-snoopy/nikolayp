@@ -83,7 +83,17 @@ export const cases = [
     detailsUrl: "/cases/ankr",
     image: ankrImage,
     imageAlt: "Ankr case preview",
-    previewVideo: ankrVideo,
+    preview: [
+      {
+        type: "video",
+        video: ankrVideo,
+      },
+      {
+        type: "image",
+        image: ankrContextImage,
+        imageAlt: "Ankr context preview",
+      },
+    ],
     nextCase: {
       id: "path-crypto",
       title: "Path Crypto. End-to-end design for an SEC-approved crypto investing platform.",
@@ -377,6 +387,13 @@ export const cases = [
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
+    preview: [
+      {
+        type: "image",
+        image: pathCryptoImage,
+        imageAlt: "Path Crypto case preview",
+      },
+    ],
     nextCase: {
       id: "neura",
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
@@ -411,6 +428,13 @@ export const cases = [
     detailsUrl: "/cases/neura",
     image: neuraImage,
     imageAlt: "Neura case preview",
+    preview: [
+      {
+        type: "image",
+        image: neuraImage,
+        imageAlt: "Neura case preview",
+      },
+    ],
     nextCase: {
       id: "ankr",
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
@@ -445,6 +469,13 @@ export const cases = [
     detailsUrl: "/cases/chat-app",
     image: chatAppImage,
     imageAlt: "Chat App case preview",
+    preview: [
+      {
+        type: "image",
+        image: chatAppImage,
+        imageAlt: "Chat App case preview",
+      },
+    ],
     nextCase: {
       id: "ankr",
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
