@@ -213,7 +213,11 @@ function videoUrl(video: string | { src: string }): string {
         >
           <div class="caseReviewsSliderInner">
             <div
-              class="caseReviewsSliderViewport"
+              class:list={[
+                "caseReviewsSliderViewport",
+                caseItem.caseReviews.length > 1 &&
+                  "caseReviewsSliderViewport--seek",
+              ]}
               tabindex={caseItem.caseReviews.length > 1 ? 0 : undefined}
             >
               <div class="caseReviewsSliderTrack">
@@ -463,6 +467,7 @@ function videoUrl(video: string | { src: string }): string {
 
       function initReviewsSlider(root) {
         var viewport = root.querySelector(".caseReviewsSliderViewport");
+        var inner = root.querySelector(".caseReviewsSliderInner");
         var slides = root.querySelectorAll(".caseReviewsSliderSlide");
         var dots = root.querySelectorAll(".caseReviewsSliderDot");
         var prev = root.querySelector(".caseReviewsSliderNavPrev");
@@ -564,6 +569,68 @@ function videoUrl(video: string | { src: string }): string {
             goTo(index + 1);
           }
         });
+
+        /* Tap left/right half of viewport (same as case images slider). */
+        var revTapTrack = null;
+        var REV_TAP_MOVE_PX = 14;
+        viewport.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          revTapTrack = {
+            id: e.pointerId,
+            x: e.clientX,
+            y: e.clientY,
+            cancelled: false,
+          };
+        });
+        viewport.addEventListener("pointermove", function (e) {
+          if (!revTapTrack || revTapTrack.id !== e.pointerId) return;
+          if (
+            Math.abs(e.clientX - revTapTrack.x) > REV_TAP_MOVE_PX ||
+            Math.abs(e.clientY - revTapTrack.y) > REV_TAP_MOVE_PX
+          ) {
+            revTapTrack.cancelled = true;
+          }
+        });
+        function clearRevTap(e) {
+          if (!revTapTrack || revTapTrack.id !== e.pointerId) return;
+          var t = revTapTrack;
+          revTapTrack = null;
+          if (t.cancelled) return;
+          var rect = viewport.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+          if (x < rect.width / 2) goTo(index - 1);
+          else goTo(index + 1);
+        }
+        viewport.addEventListener("pointerup", clearRevTap);
+        viewport.addEventListener("pointercancel", function (e) {
+          if (revTapTrack && revTapTrack.id === e.pointerId) revTapTrack = null;
+        });
+
+        /* Hover arrow by left/right half (mouse / pen). */
+        if (inner && prev && next) {
+          function clearRevHalfHover() {
+            root.classList.remove("caseReviewsSlider--half-left");
+            root.classList.remove("caseReviewsSlider--half-right");
+          }
+          function updateRevHalfHover(clientX) {
+            var rect = inner.getBoundingClientRect();
+            var x = clientX - rect.left;
+            if (x < rect.width * 0.5) {
+              root.classList.add("caseReviewsSlider--half-left");
+              root.classList.remove("caseReviewsSlider--half-right");
+            } else {
+              root.classList.remove("caseReviewsSlider--half-left");
+              root.classList.add("caseReviewsSlider--half-right");
+            }
+          }
+          inner.addEventListener("pointermove", function (e) {
+            if (e.pointerType === "touch") return;
+            updateRevHalfHover(e.clientX);
+          });
+          inner.addEventListener("pointerleave", clearRevHalfHover);
+        }
       }
 
       document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
@@ -936,6 +1003,10 @@ function videoUrl(video: string | { src: string }): string {
       display: none;
     }
 
+    .caseReviewsSliderViewport--seek {
+      cursor: pointer;
+    }
+
     .caseReviewsSliderViewport:focus-visible {
       outline: 2px solid var(--color-primary);
       outline-offset: 2px;
@@ -997,14 +1068,18 @@ function videoUrl(video: string | { src: string }): string {
       color: var(--color-fg);
     }
 
-    .caseReviewsSliderNav:hover {
+    .caseReviewsSliderNav:hover,
+    .caseReviewsSlider--half-left .caseReviewsSliderNavPrev,
+    .caseReviewsSlider--half-right .caseReviewsSliderNavNext {
       border-color: var(--color-primary);
       color: var(--color-primary-hover);
       background-color: var(--color-primary);
     }
 
     .caseReviewsSliderNavPrev:hover .icon-arrow-right,
-    .caseReviewsSliderNavNext:hover .icon-arrow-right {
+    .caseReviewsSliderNavNext:hover .icon-arrow-right,
+    .caseReviewsSlider--half-left .caseReviewsSliderNavPrev .icon-arrow-right,
+    .caseReviewsSlider--half-right .caseReviewsSliderNavNext .icon-arrow-right {
       color: var(--color-bg);
     }
 
