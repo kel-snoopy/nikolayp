@@ -943,17 +943,16 @@ function videoUrl(video: string | { src: string }): string {
       color: var(--color-primary);
       font-size: 1.3889vw;
       line-height: 1;
+      transition: color 0.2s ease-in-out;
     }
     .extraShotsNextCase {
       font-size: 1.3889vw;
       line-height: 1;
+      transition: color 0.2s ease-in-out;
     }
     .extraShots:hover .extraShotsLabel,
     .extraShots:hover .extraShotsNextCase {
-      color: var(--color-primary-hover);
-    }
-    .extraShots:hover .icon-arrow-right {
-      background-color: var(--color-primary-hover);
+      color: var(--color-primary);
     }
     .extraShotsLink {
       position: absolute;
