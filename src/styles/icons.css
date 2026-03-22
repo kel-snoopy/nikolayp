@@ -78,6 +78,7 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
+  transition: all 0.2s ease-in-out;
 }
 
 @media screen and (min-width: 1440px) {
