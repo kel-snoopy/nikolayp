@@ -640,8 +640,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .headerGradientBlur::before {
         content: "";
         z-index: 1;
-        -webkit-backdrop-filter: blur(0.5px) saturate(1.35);
-        backdrop-filter: blur(0.5px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -668,8 +668,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(1) {
         z-index: 2;
-        -webkit-backdrop-filter: blur(0.5px) saturate(1.35);
-        backdrop-filter: blur(0.5px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -696,8 +696,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(2) {
         z-index: 3;
-        -webkit-backdrop-filter: blur(0.625px) saturate(1.35);
-        backdrop-filter: blur(0.625px) saturate(1.35);
+        -webkit-backdrop-filter: blur(0.625px);
+        backdrop-filter: blur(0.625px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -724,8 +724,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(3) {
         z-index: 4;
-        -webkit-backdrop-filter: blur(1.25px) saturate(1.4);
-        backdrop-filter: blur(1.25px) saturate(1.4);
+        -webkit-backdrop-filter: blur(1.25px);
+        backdrop-filter: blur(1.25px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -752,8 +752,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(4) {
         z-index: 5;
-        -webkit-backdrop-filter: blur(2.5px) saturate(1.45);
-        backdrop-filter: blur(2.5px) saturate(1.45);
+        -webkit-backdrop-filter: blur(2.5px);
+        backdrop-filter: blur(2.5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -780,8 +780,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(5) {
         z-index: 6;
-        -webkit-backdrop-filter: blur(5px) saturate(1.5);
-        backdrop-filter: blur(5px) saturate(1.5);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0) 0%,
@@ -806,8 +806,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .headerGradientBlur > div:nth-of-type(6) {
         z-index: 7;
-        -webkit-backdrop-filter: blur(10px) saturate(1.55);
-        backdrop-filter: blur(10px) saturate(1.55);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.2) 0%,
@@ -833,8 +833,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .headerGradientBlur::after {
         content: "";
         z-index: 8;
-        -webkit-backdrop-filter: blur(20px) saturate(1.6);
-        backdrop-filter: blur(20px) saturate(1.6);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
         -webkit-mask-image: linear-gradient(
           to bottom,
           rgba(0, 0, 0, 0.95) 0%,
@@ -860,12 +860,13 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         inset: 0;
         z-index: 1;
         pointer-events: none;
+        /* Neutral frost; avoid strong white wash over content behind header */
         background: linear-gradient(
           to bottom,
-          rgba(255, 255, 255, 0.5) 0%,
-          rgba(255, 255, 255, 0.32) 28%,
-          rgba(255, 255, 255, 0.12) 58%,
-          rgba(255, 255, 255, 0.03) 82%,
+          rgba(255, 255, 255, 0.28) 0%,
+          rgba(255, 255, 255, 0.16) 28%,
+          rgba(255, 255, 255, 0.06) 58%,
+          rgba(255, 255, 255, 0.02) 82%,
           rgba(255, 255, 255, 0) 100%
         );
       }
