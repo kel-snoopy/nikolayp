@@ -281,7 +281,7 @@ export const homeCases = [
       {
         type: "text",
         title: "Client & Side Projects",
-        text: "<p>Alongside core product work, I also contributed to client and side projects built on Ankr’s infrastructure. With the same level of care and attention, I helped design and launch over ten websites, web applications, brands, and design systems for Web3 products, including DeFi interfaces, wallets, and developer tools.</p><p>Several of these projects went on to achieve meaningful traction and remain active today. Three notable examples include:</p><p><strong>PrimeBlock</strong> — a provider of hash infrastructure and digital asset mining solutions. I designed the company’s website and contributed to its brand direction. As of 2026, PrimeBlock remains a private company with an estimated valuation of ~$1.3B (private unicorn) according to business profile reports.</p>",
+        text: "<p>Alongside core product work, I also contributed to client and side projects built on Ankr’s infrastructure. With the same level of care and attention, I helped design and launch over ten websites, web applications, brands, and design systems for Web3 products, including DeFi interfaces, wallets, and developer tools.</p><p>Several of these projects went on to achieve meaningful traction and remain active today. Three notable examples include:</p><p><strong>PrimeBlock</strong> — a provider of hash infrastructure and digital asset mining solutions. I designed the company’s website and contributed to its brand direction. In 2022, the company reached an estimated valuation of <strong>~$1.25B</strong> during its planned SPAC merger, positioning it as a private unicorn.</p>",
       },
       {
         type: "images",
@@ -308,7 +308,7 @@ export const homeCases = [
       },
       {
         type: "text",
-        text: "<p><strong>TurboScale</strong> — a high-performance computing and AI infrastructure company. I designed the website and contributed to the product’s visual positioning. The company builds GPU clusters and modular data centers for training and running AI models. In 2024, TurboScale was acquired by the public company ShiftPixy in a deal worth approximately $150M.</p>",
+        text: "<p><strong>TurboScale</strong> — a high-performance computing and AI infrastructure company. I designed the website and contributed to the product’s visual positioning. The company builds GPU clusters and modular data centers for training and running AI models. In 2024, TurboScale announced a <strong>$150M</strong> acquisition deal with the public company ShiftPixy.</p>",
       },
       {
         type: "images",
