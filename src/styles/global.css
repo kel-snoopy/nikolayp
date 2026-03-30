@@ -4,6 +4,10 @@
   --color-primary: #ff4001;
   --color-primary-hover: #404040;
   --color-gray: #d9d9d9;
+  /* Skeleton under images/videos while loading (case pages, sliders, extra shots) */
+  --case-media-placeholder-bg: #F0F0F0;
+  /* Space for fixed header (padding top + bottom + avatar row); see BaseLayout .header */
+  --header-height: calc(1.388vw + 1.388vw + 2.778vw);
 }
 
 *,
@@ -17,6 +21,10 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-padding-top: var(--header-height);
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
@@ -28,27 +36,89 @@ body {
   line-height: 1.25;
 }
 
+main.container {
+  padding-top: var(--header-height);
+}
+
 button {
   font-family: "Inter Tight", system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
   transition: all 0.2s ease-in-out;
 }
 
-a {
+/* iOS Safari: default blue for :link/:visited; -webkit-text-fill-color overrides it */
+a,
+a:link,
+a:visited,
+a:active {
   color: inherit;
+  -webkit-text-fill-color: currentColor;
   outline: none;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:hover {
   color: var(--color-primary);
+  -webkit-text-fill-color: currentColor;
   text-decoration: none;
+}
+
+/*
+  iOS Safari: links in the header still get the system link blue unless both
+  `color` and `-webkit-text-fill-color` are set with explicit values (inherit is not enough).
+*/
+.header .brandLink,
+.header .brandLink:link,
+.header .brandLink:visited,
+.header .brandLink:active,
+.header .navLinks a,
+.header .navLinks a:link,
+.header .navLinks a:visited,
+.header .navLinks a:active {
+  color: var(--color-fg);
+  -webkit-text-fill-color: var(--color-fg);
+}
+
+.header .brandLink:hover,
+.header .navLinks a:hover {
+  color: var(--color-primary);
+  -webkit-text-fill-color: var(--color-primary);
+}
+
+/* Home: keep name link black on hover (matches BaseLayout html.home .brandLink:hover) */
+html.home .header .brandLink:hover {
+  color: var(--color-fg);
+  -webkit-text-fill-color: var(--color-fg);
 }
 
 .container {
   max-width: 80.90vw;
   margin: 0 auto;
+}
+
+/* Viewport reveal — targets get .reveal-on-scroll via BaseLayout script */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .primaryButton {
@@ -63,9 +133,13 @@ a:hover {
   height: 4.1667vw;
   font-weight: 600;
   justify-content: center;
-  padding: 1.388vw 1.388vw;
+  padding: 1.388vw 0.694vw;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
+}
+a.primaryButton,
+button.primaryButton {
+  color: var(--color-bg);
 }
 
 .primaryButton:hover {
@@ -85,6 +159,10 @@ a:hover {
 }
 
 @media (min-width: 1440px) {
+  :root {
+    --header-height: 80px;
+  }
+
   body {
     font-size: 16px;
   }
@@ -96,11 +174,15 @@ a:hover {
   .primaryButton {
     border-radius: 30px;
     height: 60px;
-    padding: 20px;
+    padding: 20px 10px;
   }
 }
 
 @media (max-width: 600px) {
+  :root {
+    --header-height: calc(4vw + 4vw + 5.3333vw);
+  }
+
   .desktop-only {
     display: none;
   }
@@ -118,6 +200,6 @@ a:hover {
   .primaryButton {
     border-radius: 8vw;
     height: 16vw;
-    padding: 5.333vw 5.333vw;
+    padding: 5.333vw 2.6667vw;
   }
 }

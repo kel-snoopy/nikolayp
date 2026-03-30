@@ -1,16 +1,19 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { homeCases } from "../../config/homeCases";
+import "../../styles/case-paragraph-blocks.css";
+import "../../styles/case-images-slider.css";
+import { cases } from "../../config/cases";
+import playIconUrl from "../../images/icons/play.svg?url";
 
 export function getStaticPaths() {
-  return homeCases.map((c) => ({
+  return cases.map((c) => ({
     params: { slug: c.id },
   }));
 }
 
 const { slug } = Astro.params;
 const slugStr = typeof slug === "string" ? slug : String(slug ?? "");
-const caseItem = homeCases.find((c) => c.id === slugStr)!;
+const caseItem = cases.find((c) => c.id === slugStr)!;
 
 /** Vite imports `.mp4` as a string URL; images use `{ src }`. */
 function videoUrl(video: string | { src: string }): string {
@@ -41,7 +44,7 @@ function videoUrl(video: string | { src: string }): string {
 
     {caseItem.paragraphs.map((p) => (
       <>
-        {p.type === "video" && (
+        {p.type === "video" && p.autoPlay !== false && (
           <div class="caseVideoPanel">
             <video
               class="caseVideo"
@@ -54,6 +57,36 @@ function videoUrl(video: string | { src: string }): string {
             >
               Your browser does not support the video tag.
             </video>
+          </div>
+        )}
+        {p.type === "video" && p.autoPlay === false && (
+          <div class="caseVideoPanel caseVideoPanel--manualPlay">
+            <video
+              class="caseVideo"
+              preload="metadata"
+              playsinline
+              muted
+              src={videoUrl(p.video)}
+              poster={p.preview?.src}
+              alt={p.previewAlt}
+            >
+              Your browser does not support the video tag.
+            </video>
+            <button
+              type="button"
+              class="caseVideoPlay"
+              aria-label="Play video"
+            >
+              <img
+                src={playIconUrl}
+                alt=""
+                width="35"
+                height="47"
+                loading="eager"
+                decoding="async"
+                draggable="false"
+              />
+            </button>
           </div>
         )}
         {p.type === "image" && (
@@ -192,7 +225,7 @@ function videoUrl(video: string | { src: string }): string {
           </div>
         )}
         {p.type === "text" && (
-          <div class="caseParagraph">
+          <div class:list={["caseParagraph", p.class]}>
             {"textBeforeTitle" in p && p.textBeforeTitle && (
               <div class="caseParagraphText" set:html={p.textBeforeTitle}></div>
             )}
@@ -213,7 +246,11 @@ function videoUrl(video: string | { src: string }): string {
         >
           <div class="caseReviewsSliderInner">
             <div
-              class="caseReviewsSliderViewport"
+              class:list={[
+                "caseReviewsSliderViewport",
+                caseItem.caseReviews.length > 1 &&
+                  "caseReviewsSliderViewport--seek",
+              ]}
               tabindex={caseItem.caseReviews.length > 1 ? 0 : undefined}
             >
               <div class="caseReviewsSliderTrack">
@@ -303,7 +340,7 @@ function videoUrl(video: string | { src: string }): string {
         if (!viewport || slides.length < 2) return;
 
         var index = 0;
-        var scrollEndTimer;
+        var scrollRaf = null;
 
         function updateDots() {
           for (var i = 0; i < dots.length; i++) {
@@ -378,14 +415,15 @@ function videoUrl(video: string | { src: string }): string {
           })(d);
         }
 
-        viewport.addEventListener(
-          "scroll",
-          function () {
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
-          },
-          { passive: true }
-        );
+        function onViewportScroll() {
+          if (scrollRaf !== null) return;
+          scrollRaf = requestAnimationFrame(function () {
+            scrollRaf = null;
+            readIndexFromScroll();
+          });
+        }
+
+        viewport.addEventListener("scroll", onViewportScroll, { passive: true });
 
         viewport.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
@@ -463,6 +501,7 @@ function videoUrl(video: string | { src: string }): string {
 
       function initReviewsSlider(root) {
         var viewport = root.querySelector(".caseReviewsSliderViewport");
+        var inner = root.querySelector(".caseReviewsSliderInner");
         var slides = root.querySelectorAll(".caseReviewsSliderSlide");
         var dots = root.querySelectorAll(".caseReviewsSliderDot");
         var prev = root.querySelector(".caseReviewsSliderNavPrev");
@@ -470,7 +509,7 @@ function videoUrl(video: string | { src: string }): string {
         if (!viewport || slides.length < 2) return;
 
         var index = 0;
-        var scrollEndTimer;
+        var scrollRaf = null;
 
         function updateDots() {
           for (var i = 0; i < dots.length; i++) {
@@ -545,14 +584,15 @@ function videoUrl(video: string | { src: string }): string {
           })(d);
         }
 
-        viewport.addEventListener(
-          "scroll",
-          function () {
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(readIndexFromScroll, 80);
-          },
-          { passive: true }
-        );
+        function onReviewsViewportScroll() {
+          if (scrollRaf !== null) return;
+          scrollRaf = requestAnimationFrame(function () {
+            scrollRaf = null;
+            readIndexFromScroll();
+          });
+        }
+
+        viewport.addEventListener("scroll", onReviewsViewportScroll, { passive: true });
 
         viewport.addEventListener("keydown", function (e) {
           if (e.key === "ArrowLeft") {
@@ -564,10 +604,104 @@ function videoUrl(video: string | { src: string }): string {
             goTo(index + 1);
           }
         });
+
+        /* Tap left/right half of viewport (same as case images slider). */
+        var revTapTrack = null;
+        var REV_TAP_MOVE_PX = 14;
+        viewport.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          revTapTrack = {
+            id: e.pointerId,
+            x: e.clientX,
+            y: e.clientY,
+            cancelled: false,
+          };
+        });
+        viewport.addEventListener("pointermove", function (e) {
+          if (!revTapTrack || revTapTrack.id !== e.pointerId) return;
+          if (
+            Math.abs(e.clientX - revTapTrack.x) > REV_TAP_MOVE_PX ||
+            Math.abs(e.clientY - revTapTrack.y) > REV_TAP_MOVE_PX
+          ) {
+            revTapTrack.cancelled = true;
+          }
+        });
+        function clearRevTap(e) {
+          if (!revTapTrack || revTapTrack.id !== e.pointerId) return;
+          var t = revTapTrack;
+          revTapTrack = null;
+          if (t.cancelled) return;
+          var rect = viewport.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          if (x < 0 || x > rect.width || y < 0 || y > rect.height) return;
+          if (x < rect.width / 2) goTo(index - 1);
+          else goTo(index + 1);
+        }
+        viewport.addEventListener("pointerup", clearRevTap);
+        viewport.addEventListener("pointercancel", function (e) {
+          if (revTapTrack && revTapTrack.id === e.pointerId) revTapTrack = null;
+        });
+
+        /* Hover arrow by left/right half (mouse / pen). */
+        if (inner && prev && next) {
+          function clearRevHalfHover() {
+            root.classList.remove("caseReviewsSlider--half-left");
+            root.classList.remove("caseReviewsSlider--half-right");
+          }
+          function updateRevHalfHover(clientX) {
+            var rect = inner.getBoundingClientRect();
+            var x = clientX - rect.left;
+            if (x < rect.width * 0.5) {
+              root.classList.add("caseReviewsSlider--half-left");
+              root.classList.remove("caseReviewsSlider--half-right");
+            } else {
+              root.classList.remove("caseReviewsSlider--half-left");
+              root.classList.add("caseReviewsSlider--half-right");
+            }
+          }
+          inner.addEventListener("pointermove", function (e) {
+            if (e.pointerType === "touch") return;
+            updateRevHalfHover(e.clientX);
+          });
+          inner.addEventListener("pointerleave", clearRevHalfHover);
+        }
+      }
+
+      function initManualVideo(panel) {
+        var video = panel.querySelector(".caseVideo");
+        var btn = panel.querySelector(".caseVideoPlay");
+        if (!video || !btn) return;
+
+        function hideOverlay() {
+          panel.classList.add("is-overlay-hidden");
+        }
+        function showOverlay() {
+          panel.classList.remove("is-overlay-hidden");
+        }
+
+        video.addEventListener("play", function () {
+          hideOverlay();
+          video.controls = true;
+          btn.setAttribute("aria-hidden", "true");
+        });
+        video.addEventListener("ended", function () {
+          showOverlay();
+          video.controls = false;
+          video.currentTime = 0;
+          btn.setAttribute("aria-hidden", "false");
+        });
+
+        btn.addEventListener("click", function () {
+          video.muted = false;
+          if (video.ended) video.currentTime = 0;
+          video.play().catch(function () {});
+        });
       }
 
       document.querySelectorAll(".caseImagesSlider").forEach(initSlider);
       document.querySelectorAll(".caseReviewsSlider").forEach(initReviewsSlider);
+      document.querySelectorAll(".caseVideoPanel--manualPlay").forEach(initManualVideo);
     })();
   </script>
 
@@ -577,7 +711,7 @@ function videoUrl(video: string | { src: string }): string {
     }
 
     .caseTop {
-      margin: 0 auto 2.7778vw;
+      margin: 0 auto 2.361vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.6944vw;
@@ -597,7 +731,7 @@ function videoUrl(video: string | { src: string }): string {
       font-weight: 500;
       font-size: 3.472vw;
       letter-spacing: -0.02em;
-      line-height: 1;
+      line-height: 1.2;
       margin: 0 0 1.042vw;
     }
 
@@ -605,21 +739,13 @@ function videoUrl(video: string | { src: string }): string {
       color: rgba(0, 0, 0, 0.35);
       display: flex;
       flex-wrap: wrap;
-      gap: 0.694vw;
+      gap: 0.764vw;
       font-size: 1.1111vw;
       line-height: 1.3889vw;
     }
 
-    .caseVideo {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .caseImage {
-      width: 100%;
-      height: auto;
-      display: block;
+    .caseRight {
+      padding-top: 2.5vw;
     }
 
     .caseRight :global(p) {
@@ -628,191 +754,40 @@ function videoUrl(video: string | { src: string }): string {
       margin: 0 0 1.042vw;
     }
 
-    .caseVideoPanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseImagePanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseHalfPanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseHalfGrid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.042vw;
-      align-items: stretch;
-      overflow: hidden;
-    }
-
-    .caseHalfImg {
-      border-radius: 0.694vw;
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* Show right half of the video (full-bleed mockup), like the reference */
-    .caseHalfVideo {
-      border-radius: 0.694vw;
-      display: block;
-      width: 100%;
-      max-width: none;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      margin-left: 0;
-    }
-
-    .caseImagesPanel {
-      margin: 1.388vw 0;
-    }
-
-    .caseImagesSlider {
-      display: flex;
-      flex-direction: column;
-      gap: 1.042vw;
+    .caseVideoPanel--manualPlay {
       position: relative;
     }
 
-    .caseImagesSliderInner {
-      position: relative;
-    }
-
-    .caseImagesSliderViewport {
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      /* pan-x alone blocks vertical page scroll on touch; allow both axes */
-      touch-action: pan-x pan-y;
-      border-radius: 0.694vw;
-      scrollbar-width: none;
-    }
-
-    .caseImagesSliderViewport::-webkit-scrollbar {
-      display: none;
-    }
-
-    .caseImagesSliderViewport--seek {
-      cursor: pointer;
-    }
-
-    .caseImagesSliderTrack {
-      display: flex;
-    }
-
-    .caseImagesSliderSlide {
-      flex: 0 0 100%;
-      min-width: 100%;
-      scroll-snap-align: start;
-      margin: 0;
-    }
-
-    .caseImagesSliderImg {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 0.694vw;
-      user-select: none;
-    }
-
-    .caseImagesSliderNav {
+    .caseVideoPlay {
       position: absolute;
-      top: 50%;
+      inset: 0;
       z-index: 2;
-      width: 3.472vw;
-      height: 3.472vw;
       margin: 0;
       padding: 0;
       border: none;
-      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
-      color: var(--color-primary);
-      cursor: pointer;
-      transform: translateY(-50%);
-      transition: border-color 0.15s ease, color 0.15s ease;
+      transition: opacity 0.2s ease;
     }
 
-    .caseImagesSliderNav:focus-visible {
+    .caseVideoPanel--manualPlay.is-overlay-hidden .caseVideoPlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .caseVideoPlay:focus-visible {
       outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
 
-    .caseImagesSliderNavPrev {
-      left: 1.042vw;
-    }
-
-    .caseImagesSliderNavNext {
-      right: 1.042vw;
-    }
-
-    .caseImagesSliderNavPrev .icon-arrow-right {
-      transform: rotate(180deg);
-    }
-
-    .caseImagesSliderNavPrev .icon-arrow-right,
-    .caseImagesSliderNavNext .icon-arrow-right {
-      color: var(--color-fg);
-    }
-    .caseImagesSliderNav:hover,
-    .caseImagesSlider--half-left .caseImagesSliderNavPrev,
-    .caseImagesSlider--half-right .caseImagesSliderNavNext {
-      border-color: var(--color-primary);
-      color: var(--color-primary-hover);
-      background-color: var(--color-primary);
-    }
-    .caseImagesSliderNavPrev:hover .icon-arrow-right,
-    .caseImagesSliderNavNext:hover .icon-arrow-right,
-    .caseImagesSlider--half-left .caseImagesSliderNavPrev .icon-arrow-right,
-    .caseImagesSlider--half-right .caseImagesSliderNavNext .icon-arrow-right {
-      color: var(--color-bg);
-    }
-
-    .caseImagesSliderDots {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.694vw;
-    }
-    .caseImagesSliderDots.mobile-only {
-      display: none;
-    }
-
-    .caseImagesSliderDot {
-      width: 1.6vw;
-      height: 1.6vw;
-      padding: 0;
-      border: none;
-      border-radius: 999px;
-      background: #d9d9d9;
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.15s ease;
-    }
-
-    .caseImagesSliderDot:hover {
-      background: rgba(255, 64, 1, 0.45);
-    }
-
-    .caseImagesSliderDot.is-active {
-      background: var(--color-primary);
-    }
-
-    .caseImagesSliderDot:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-    }
-
-    .caseImage, .caseVideo {
-      border-radius: 0.694vw;
+    .caseVideoPlay img {
+      width: 8.333vw;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0.139vw 0.694vw rgba(0, 0, 0, 0.45));
     }
 
     .caseParagraph {
@@ -838,6 +813,11 @@ function videoUrl(video: string | { src: string }): string {
     .caseParagraphText :global(a:hover) {
       color: var(--color-primary-hover);
       text-decoration: underline;
+    }
+    .caseParagraph.__result .caseParagraphText :global(p) {
+      font-size: 1.3889vw;
+      font-weight: 500;
+      line-height: 1.25;
     }
 
     .caseBottom {
@@ -876,17 +856,16 @@ function videoUrl(video: string | { src: string }): string {
       color: var(--color-primary);
       font-size: 1.3889vw;
       line-height: 1;
+      transition: color 0.2s ease-in-out;
     }
     .extraShotsNextCase {
       font-size: 1.3889vw;
       line-height: 1;
+      transition: color 0.2s ease-in-out;
     }
     .extraShots:hover .extraShotsLabel,
     .extraShots:hover .extraShotsNextCase {
-      color: var(--color-primary-hover);
-    }
-    .extraShots:hover .icon-arrow-right {
-      background-color: var(--color-primary-hover);
+      color: var(--color-primary);
     }
     .extraShotsLink {
       position: absolute;
@@ -934,6 +913,10 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseReviewsSliderViewport::-webkit-scrollbar {
       display: none;
+    }
+
+    .caseReviewsSliderViewport--seek {
+      cursor: pointer;
     }
 
     .caseReviewsSliderViewport:focus-visible {
@@ -997,14 +980,18 @@ function videoUrl(video: string | { src: string }): string {
       color: var(--color-fg);
     }
 
-    .caseReviewsSliderNav:hover {
+    .caseReviewsSliderNav:hover,
+    .caseReviewsSlider--half-left .caseReviewsSliderNavPrev,
+    .caseReviewsSlider--half-right .caseReviewsSliderNavNext {
       border-color: var(--color-primary);
       color: var(--color-primary-hover);
       background-color: var(--color-primary);
     }
 
     .caseReviewsSliderNavPrev:hover .icon-arrow-right,
-    .caseReviewsSliderNavNext:hover .icon-arrow-right {
+    .caseReviewsSliderNavNext:hover .icon-arrow-right,
+    .caseReviewsSlider--half-left .caseReviewsSliderNavPrev .icon-arrow-right,
+    .caseReviewsSlider--half-right .caseReviewsSliderNavNext .icon-arrow-right {
       color: var(--color-bg);
     }
 
@@ -1069,11 +1056,15 @@ function videoUrl(video: string | { src: string }): string {
 
     .caseReviewAvatar {
       width: 4.1667vw;
-      height: 4.1667vw;
+      height: auto;
+      aspect-ratio: 1;
+      min-width: 4.1667vw;
+      min-height: 4.1667vw;
       border-radius: 999px;
       object-fit: cover;
       display: block;
       margin: 0 auto 0.694vw;
+      background-color: var(--case-media-placeholder-bg);
     }
 
     .caseReviewAuthor {
@@ -1105,7 +1096,7 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .caseTop {
-        margin-bottom: 40px;
+        margin-bottom: 34px;
         gap: 10px;
       }
 
@@ -1122,67 +1113,17 @@ function videoUrl(video: string | { src: string }): string {
       .caseMeta {
         font-size: 16px;
         line-height: 20px;
-        gap: 10px;
+        gap: 11px;
+      }
+
+      .caseRight {
+        padding-top: 36px;
       }
 
       .caseRight :global(p) {
         font-size: 16px;
         line-height: 20px;
         margin-bottom: 15px;
-      }
-
-      .caseImagePanel {
-        margin: 20px 0;
-      }
-
-      .caseHalfPanel {
-        margin: 20px 0;
-      }
-
-      .caseHalfGrid {
-        border-radius: 10px;
-      }
-
-      .caseImagesPanel {
-        margin: 20px 0;
-      }
-
-      .caseImagesSlider {
-        gap: 15px;
-      }
-
-      .caseImagesSliderViewport {
-        border-radius: 10px;
-      }
-
-      .caseImagesSliderImg {
-        border-radius: 10px;
-      }
-
-      .caseImagesSliderNav {
-        width: 50px;
-        height: 50px;
-      }
-
-      .caseImagesSliderNavPrev {
-        left: 15px;
-      }
-
-      .caseImagesSliderNavNext {
-        right: 15px;
-      }
-
-      .caseImagesSliderDots {
-        gap: 10px;
-      }
-
-      .caseImagesSliderDot {
-        width: 8px;
-        height: 8px;
-      }
-
-      .caseImage, .caseVideo {
-        border-radius: 10px;
       }
 
       .caseParagraph {
@@ -1199,6 +1140,9 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 16px;
         line-height: 20px;
         margin-bottom: 15px;
+      }
+      .caseParagraph.__result .caseParagraphText :global(p) {
+        font-size: 20px;
       }
 
       .extraShots {
@@ -1270,7 +1214,8 @@ function videoUrl(video: string | { src: string }): string {
 
       .caseReviewAvatar {
         width: 60px;
-        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
         margin-bottom: 10px;
       }
 
@@ -1288,20 +1233,28 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 20px;
         margin-bottom: 20px;
       }
+
+      .caseVideoPlay img {
+        width: 120px;
+      }
     }
 
     @media (max-width: 600px) {
       .caseTop {
         grid-template-columns: 1fr;
         gap: 8vw;
+        margin: 0 auto 3.7vw;
       }
-
+      .casePage {
+        padding: 13.3vw 0 3.472vw;
+      }
       .caseBrand {
         font-size: 5.333vw;
         margin-bottom: 4vw;
       }
       .caseTitle {
         font-size: 12vw;
+        line-height: 1;
         margin: 0 0 4vw;
       }
       .caseMeta {
@@ -1309,9 +1262,12 @@ function videoUrl(video: string | { src: string }): string {
         line-height: 1.33;
         gap: 1.333vw;
       }
+      .caseRight {
+        padding-top: 0;
+      }
       .caseRight :global(p) {
         font-size: 4vw;
-        line-height: 1.25;
+        line-height: 1.27;
         margin: 0 0 4vw;
       }
 
@@ -1326,72 +1282,13 @@ function videoUrl(video: string | { src: string }): string {
       }
       .caseParagraphText :global(p) {
         font-size: 4vw;
-        line-height: 1.33;
+        line-height: 1.27;
         margin: 0 0 4vw;
       }
-      .caseImagePanel {
-        margin: 5.333vw 0;
+      .caseParagraph.__result .caseParagraphText :global(p) {
+        font-size: 4.8vw;
+        line-height: 5.333vw;
       }
-
-      .caseHalfPanel {
-        margin: 5.333vw 0;
-      }
-
-      .caseHalfVideo {
-        border-radius: 2.6667vw;
-      }
-      .caseHalfImg {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesPanel {
-        margin: 5.333vw 0;
-      }
-
-      .caseImagesSlider {
-        gap: 3.2vw;
-      }
-
-      .caseImagesSliderViewport {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesSliderImg {
-        border-radius: 2.6667vw;
-      }
-
-      .caseImagesSliderNav {
-        display: none;
-        width: 10.667vw;
-        height: 10.667vw;
-      }
-
-      .caseImagesSliderNavPrev {
-        left: 2.667vw;
-      }
-
-      .caseImagesSliderNavNext {
-        right: 2.667vw;
-      }
-
-      .caseImagesSliderDots {
-        gap: 0.8vw;
-        position: absolute;
-        bottom: -2.83vw;
-        z-index: 1;
-        left: 0;
-        right: 0;
-      }
-
-      .caseImagesSliderDots.mobile-only {
-        display: flex;
-      }
-
-      .caseImagesSliderDot {
-        width: 1.6vw;
-        height: 1.6vw;
-      }
-
       .caseReviews {
         margin-top: 8vw;
         padding-bottom: 8vw;
@@ -1436,13 +1333,12 @@ function videoUrl(video: string | { src: string }): string {
         height: 2.133vw;
       }
 
-      .caseImage, .caseVideo {
-        border-radius: 2.6667vw;
-      }
-
       .extraShots {
-        height: 18.6667vw;
+        height: 19.4vw;
         padding: 6.6667vw 0;
+      }
+      .extraShotsLeft {
+        gap: 1.4vw;
       }
       .extraShotsLabel {
         font-size: 4.8vw;
@@ -1469,7 +1365,8 @@ function videoUrl(video: string | { src: string }): string {
       }
       .caseReviewAvatar {
         width: 16vw;
-        height: 16vw;
+        min-width: 16vw;
+        min-height: 16vw;
         margin: 0 auto 2.667vw;
       }
       .caseReviewAuthor {
@@ -1489,6 +1386,10 @@ function videoUrl(video: string | { src: string }): string {
         font-size: 4vw;
         line-height: 1.25;
         margin: 0 0 4vw;
+      }
+
+      .caseVideoPlay img {
+        width: 12.8vw;
       }
     }
   </style>

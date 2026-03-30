@@ -60,6 +60,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Stops iOS Safari from auto-linking plain text (blue tel/mail/address) -->
+    <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -75,9 +77,67 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
     <link rel="mask-icon" href={safariPinnedTab} color="#000000" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="msapplication-TileImage" content={mstile150} />
+    <!-- First paint already “raised from below” — avoids flash at final position then snap-down. -->
+    <script is:inline>
+      (function () {
+        try {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+            return;
+        } catch (e) {}
+        document.documentElement.classList.add("reveal-boot");
+      })();
+    </script>
+    <style is:inline>
+      html.reveal-boot main.container > section,
+      html.reveal-boot main.container > details,
+      html.reveal-boot main.container > article,
+      html.reveal-boot main.container > div.extraShots,
+      html.reveal-boot main.container .casePage > .caseTop,
+      html.reveal-boot main.container .casePage > .caseVideoPanel,
+      html.reveal-boot main.container .casePage > .caseImagePanel,
+      html.reveal-boot main.container .casePage > .caseHalfPanel,
+      html.reveal-boot main.container .casePage > .caseImagesPanel,
+      html.reveal-boot main.container .casePage > .caseParagraph,
+      html.reveal-boot main.container .casePage > section.caseReviews,
+      html.reveal-boot section.homeBottom,
+      html.reveal-boot .caseParagraphBlocks > .caseVideoPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagePanel,
+      html.reveal-boot .caseParagraphBlocks > .caseHalfPanel,
+      html.reveal-boot .caseParagraphBlocks > .caseImagesPanel {
+        opacity: 0;
+        transform: translate3d(0, 1.25rem, 0);
+      }
+    </style>
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem("videoIntroCtaDismissed") === "1") {
+            document.documentElement.classList.add("video-cta-dismissed");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style is:inline>
+      html.video-cta-dismissed #video-cta-widget {
+        display: none !important;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
     <header class="header">
+      <div class="headerFx" aria-hidden="true">
+        <div class="headerGradientBlur">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="headerFxTint"></div>
+      </div>
       <div class="nav">
         <div class="brand" aria-label="Author">
           <a class="brandLink" href="/">
@@ -344,11 +404,25 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
         var lastIntroOpener = null;
+        var CTA_DISMISS_KEY = "videoIntroCtaDismissed";
+
+        if (widget) {
+          try {
+            if (localStorage.getItem(CTA_DISMISS_KEY) === "1") {
+              widget.hidden = true;
+              document.documentElement.classList.add("video-cta-dismissed");
+            }
+          } catch (e0) {}
+        }
 
         if (widget && widgetClose) {
           widgetClose.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
+            try {
+              localStorage.setItem(CTA_DISMISS_KEY, "1");
+            } catch (err) {}
+            document.documentElement.classList.add("video-cta-dismissed");
             widget.hidden = true;
           });
         }
@@ -419,12 +493,419 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       })();
     </script>
 
+    <script is:inline>
+      (function () {
+        function motionOk() {
+          return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+
+        function collectRevealNodes() {
+          var out = [];
+          var seen = new Set();
+          function add(el) {
+            if (!el || seen.has(el)) return;
+            seen.add(el);
+            out.push(el);
+          }
+
+          var main = document.querySelector("main.container");
+          if (main) {
+            main
+              .querySelectorAll(
+                ":scope > section, :scope > details, :scope > article, :scope > div.extraShots"
+              )
+              .forEach(function (el) {
+                if (el.classList.contains("casePage")) {
+                  el
+                    .querySelectorAll(
+                      ".caseTop, .caseVideoPanel, .caseImagePanel, .caseHalfPanel, .caseImagesPanel, .caseParagraph, section.caseReviews"
+                    )
+                    .forEach(add);
+                } else {
+                  add(el);
+                }
+              });
+          }
+
+          document.querySelectorAll("section.homeBottom").forEach(add);
+
+          document
+            .querySelectorAll(
+              ".caseParagraphBlocks > .caseVideoPanel, .caseParagraphBlocks > .caseImagePanel, .caseParagraphBlocks > .caseHalfPanel, .caseParagraphBlocks > .caseImagesPanel"
+            )
+            .forEach(add);
+
+          return out;
+        }
+
+        function initRevealOnScroll() {
+          if (!motionOk()) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
+          var nodes = collectRevealNodes();
+          if (!nodes.length) {
+            document.documentElement.classList.remove("reveal-boot");
+            return;
+          }
+
+          for (var i = 0; i < nodes.length; i++) {
+            nodes[i].classList.add("reveal-on-scroll");
+          }
+
+          void document.documentElement.offsetHeight;
+          document.documentElement.classList.remove("reveal-boot");
+
+          if (!("IntersectionObserver" in window)) {
+            for (var r = 0; r < nodes.length; r++) {
+              nodes[r].classList.add("is-revealed");
+            }
+            return;
+          }
+
+          function isInViewport(el) {
+            var r = el.getBoundingClientRect();
+            var h = window.innerHeight || document.documentElement.clientHeight;
+            return r.bottom > -32 && r.top < h * 0.92;
+          }
+
+          /* Above-the-fold prefix: revealed only via timeouts (not IO — IO fires sync and skips the transition). */
+          var staggerEls = [];
+          var maxAboveFold = 5;
+          for (var p = 0; p < nodes.length; p++) {
+            if (!isInViewport(nodes[p])) break;
+            if (staggerEls.length >= maxAboveFold) break;
+            staggerEls.push(nodes[p]);
+          }
+
+          var io = new IntersectionObserver(
+            function (entries) {
+              for (var j = 0; j < entries.length; j++) {
+                var e = entries[j];
+                if (!e.isIntersecting) continue;
+                e.target.classList.add("is-revealed");
+                io.unobserve(e.target);
+              }
+            },
+            {
+              root: null,
+              rootMargin: "0px 0px -5% 0px",
+              threshold: [0, 0.08, 0.15],
+            }
+          );
+
+          for (var k = 0; k < nodes.length; k++) {
+            if (staggerEls.indexOf(nodes[k]) >= 0) continue;
+            io.observe(nodes[k]);
+          }
+
+          var firstDelayMs = 110;
+          var staggerMs = 100;
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              for (var s = 0; s < staggerEls.length; s++) {
+                (function (el, delay) {
+                  window.setTimeout(function () {
+                    el.classList.add("is-revealed");
+                  }, delay);
+                })(staggerEls[s], firstDelayMs + s * staggerMs);
+              }
+            });
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initRevealOnScroll);
+        } else {
+          initRevealOnScroll();
+        }
+      })();
+    </script>
+
     <style>
       .header {
-        padding: 1.388vw 2.083vw 1.388vw 1.388vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1.388vw 2.083vw 2.083vw 1.388vw;
+        background: transparent;
+        isolation: isolate;
+      }
+
+      /*
+        Stacked backdrop blurs + band masks (gradient-blur technique).
+        Original snippet grows blur toward bottom; header mirrors bands so max blur is at top (Figma).
+        Blur steps scaled × (20/64) so peak ≈ 20px like design.
+      */
+      .headerFx {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .headerGradientBlur {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .headerGradientBlur::before,
+      .headerGradientBlur::after,
+      .headerGradientBlur > div {
+        position: absolute;
+        inset: 0;
+        transform: translateZ(0);
+        pointer-events: none;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+      }
+
+      /* Soft feathered masks (ease in/out) instead of hard 0→1 bands */
+      .headerGradientBlur::before {
+        content: "";
+        z-index: 1;
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 56%,
+          rgba(0, 0, 0, 0.35) 66%,
+          rgba(0, 0, 0, 0.85) 76%,
+          rgba(0, 0, 0, 1) 81%,
+          rgba(0, 0, 0, 0.85) 86%,
+          rgba(0, 0, 0, 0.35) 93%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 56%,
+          rgba(0, 0, 0, 0.35) 66%,
+          rgba(0, 0, 0, 0.85) 76%,
+          rgba(0, 0, 0, 1) 81%,
+          rgba(0, 0, 0, 0.85) 86%,
+          rgba(0, 0, 0, 0.35) 93%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(1) {
+        z-index: 2;
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 44%,
+          rgba(0, 0, 0, 0.35) 54%,
+          rgba(0, 0, 0, 0.9) 64%,
+          rgba(0, 0, 0, 1) 69%,
+          rgba(0, 0, 0, 0.9) 76%,
+          rgba(0, 0, 0, 0.35) 84%,
+          rgba(0, 0, 0, 0) 92%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 44%,
+          rgba(0, 0, 0, 0.35) 54%,
+          rgba(0, 0, 0, 0.9) 64%,
+          rgba(0, 0, 0, 1) 69%,
+          rgba(0, 0, 0, 0.9) 76%,
+          rgba(0, 0, 0, 0.35) 84%,
+          rgba(0, 0, 0, 0) 92%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(2) {
+        z-index: 3;
+        -webkit-backdrop-filter: blur(0.625px);
+        backdrop-filter: blur(0.625px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 32%,
+          rgba(0, 0, 0, 0.35) 42%,
+          rgba(0, 0, 0, 0.92) 52%,
+          rgba(0, 0, 0, 1) 57%,
+          rgba(0, 0, 0, 0.92) 65%,
+          rgba(0, 0, 0, 0.35) 74%,
+          rgba(0, 0, 0, 0) 82%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 32%,
+          rgba(0, 0, 0, 0.35) 42%,
+          rgba(0, 0, 0, 0.92) 52%,
+          rgba(0, 0, 0, 1) 57%,
+          rgba(0, 0, 0, 0.92) 65%,
+          rgba(0, 0, 0, 0.35) 74%,
+          rgba(0, 0, 0, 0) 82%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(3) {
+        z-index: 4;
+        -webkit-backdrop-filter: blur(1.25px);
+        backdrop-filter: blur(1.25px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 20%,
+          rgba(0, 0, 0, 0.4) 30%,
+          rgba(0, 0, 0, 0.95) 40%,
+          rgba(0, 0, 0, 1) 45%,
+          rgba(0, 0, 0, 0.95) 53%,
+          rgba(0, 0, 0, 0.4) 62%,
+          rgba(0, 0, 0, 0) 72%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 20%,
+          rgba(0, 0, 0, 0.4) 30%,
+          rgba(0, 0, 0, 0.95) 40%,
+          rgba(0, 0, 0, 1) 45%,
+          rgba(0, 0, 0, 0.95) 53%,
+          rgba(0, 0, 0, 0.4) 62%,
+          rgba(0, 0, 0, 0) 72%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(4) {
+        z-index: 5;
+        -webkit-backdrop-filter: blur(2.5px);
+        backdrop-filter: blur(2.5px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 8%,
+          rgba(0, 0, 0, 0.4) 18%,
+          rgba(0, 0, 0, 0.95) 28%,
+          rgba(0, 0, 0, 1) 33%,
+          rgba(0, 0, 0, 0.95) 41%,
+          rgba(0, 0, 0, 0.4) 50%,
+          rgba(0, 0, 0, 0) 60%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0) 8%,
+          rgba(0, 0, 0, 0.4) 18%,
+          rgba(0, 0, 0, 0.95) 28%,
+          rgba(0, 0, 0, 1) 33%,
+          rgba(0, 0, 0, 0.95) 41%,
+          rgba(0, 0, 0, 0.4) 50%,
+          rgba(0, 0, 0, 0) 60%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(5) {
+        z-index: 6;
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.35) 6%,
+          rgba(0, 0, 0, 0.95) 16%,
+          rgba(0, 0, 0, 1) 21%,
+          rgba(0, 0, 0, 0.95) 29%,
+          rgba(0, 0, 0, 0.35) 38%,
+          rgba(0, 0, 0, 0) 48%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.35) 6%,
+          rgba(0, 0, 0, 0.95) 16%,
+          rgba(0, 0, 0, 1) 21%,
+          rgba(0, 0, 0, 0.95) 29%,
+          rgba(0, 0, 0, 0.35) 38%,
+          rgba(0, 0, 0, 0) 48%
+        );
+      }
+
+      .headerGradientBlur > div:nth-of-type(6) {
+        z-index: 7;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 0.85) 10%,
+          rgba(0, 0, 0, 1) 16%,
+          rgba(0, 0, 0, 0.92) 24%,
+          rgba(0, 0, 0, 0.45) 34%,
+          rgba(0, 0, 0, 0.1) 44%,
+          rgba(0, 0, 0, 0) 54%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 0.85) 10%,
+          rgba(0, 0, 0, 1) 16%,
+          rgba(0, 0, 0, 0.92) 24%,
+          rgba(0, 0, 0, 0.45) 34%,
+          rgba(0, 0, 0, 0.1) 44%,
+          rgba(0, 0, 0, 0) 54%
+        );
+      }
+
+      .headerGradientBlur::after {
+        content: "";
+        z-index: 8;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.95) 0%,
+          rgba(0, 0, 0, 1) 4%,
+          rgba(0, 0, 0, 0.88) 12%,
+          rgba(0, 0, 0, 0.5) 22%,
+          rgba(0, 0, 0, 0.18) 32%,
+          rgba(0, 0, 0, 0) 42%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.95) 0%,
+          rgba(0, 0, 0, 1) 4%,
+          rgba(0, 0, 0, 0.88) 12%,
+          rgba(0, 0, 0, 0.5) 22%,
+          rgba(0, 0, 0, 0.18) 32%,
+          rgba(0, 0, 0, 0) 42%
+        );
+      }
+
+      .headerFxTint {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        /* Neutral frost; avoid strong white wash over content behind header */
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.28) 0%,
+          rgba(255, 255, 255, 0.16) 28%,
+          rgba(255, 255, 255, 0.06) 58%,
+          rgba(255, 255, 255, 0.02) 82%,
+          rgba(255, 255, 255, 0) 100%
+        );
       }
 
       .nav {
+        position: relative;
+        z-index: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -483,9 +964,18 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .avatar {
         border-radius: 999px;
         display: block;
-        object-fit: cover;
+        flex-shrink: 0;
+        aspect-ratio: 1;
         width: 2.778vw;
-        height: 2.778vw;
+        height: auto;
+        min-width: 2.778vw;
+        min-height: 2.778vw;
+        object-fit: cover;
+        background-color: var(--case-media-placeholder-bg);
+      }
+
+      .navLinksLabel {
+        font-weight: 500;
       }
 
       .navLinks {
@@ -574,6 +1064,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaInner {
         position: relative;
         pointer-events: auto;
+        width: 100%;
+        aspect-ratio: 1;
       }
 
       .videoCta[hidden] {
@@ -609,6 +1101,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         overflow: hidden;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
         text-decoration: none;
+        background-color: var(--case-media-placeholder-bg);
       }
 
       button.videoCtaCircle {
@@ -616,7 +1109,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         -webkit-appearance: none;
         font: inherit;
         color: inherit;
-        background: transparent;
+        background: var(--case-media-placeholder-bg);
         border: none;
         padding: 0;
         margin: 0;
@@ -631,6 +1124,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .videoCtaPhoto {
         width: 100%;
         height: 100%;
+        min-height: 0;
         object-fit: cover;
         display: block;
       }
@@ -845,14 +1339,24 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         display: flex;
         gap: 1.736vw;
       }
+      .footerLinkLabel {
+        transition: all 0.2s ease-in-out;
+      }
 
       .footerLink a {
         color: var(--color-fg);
       }
+      .footerLink:hover  a{
+        color: var(--color-primary);
+      }
+      .footerLink:hover .footerLinkLabel {
+        color: var(--color-primary);
+        opacity: 0.3;
+      }
 
       @media (min-width: 1440px) {
         .header {
-          padding: 20px 30px 20px 20px;
+          padding: 20px 30px 30px 20px;
         }
 
         .brand {
@@ -874,7 +1378,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 40px;
-          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
         }
 
         .navLinks {
@@ -970,7 +1475,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           vertical-align: top;
         }
         .header {
-          padding: 4vw;
+          padding: 4vw 5vw 10vw 4vw;
         }
         .brandLink {
           gap: 1.3333vw;
@@ -978,19 +1483,20 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .avatar {
           width: 5.3333vw;
-          height: 5.3333vw;
+          min-width: 5.3333vw;
+          min-height: 5.3333vw;
         }
 
         .hero {
           padding: 34.6667vw 0 26.6667vw;
         }
         .hero.__bottom {
-          padding: 40vw 4vw;
+          padding: 37vw 4vw;
         }
         .heroTitle {
           font-size: 12vw;
           line-height: 1;
-          margin: 0 0 1.333vw 0;
+          margin: 0 0 1.4vw 0;
         }
         .heroAccent {
           font-size: 12vw;
@@ -1003,7 +1509,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         }
 
         .heroActions {
-          margin-top: 6.666vw;
+          margin-top: 6.8vw;
           gap: 1.333vw;
         }
 
@@ -1014,13 +1520,18 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           width: 16vw;
         }
 
+        .homeBottom {
+          margin-top: 3.4vw;
+        }
+
         .footer {
           flex-direction: column;
           align-items: flex-start;
+          margin-top: 3.6vw;
           padding: 0 4vw;
         }
         .footerInner {
-          padding: 6.6667vw 0;
+          padding: 6.8vw 0;
         }
         .footerLinks {
           display: none;
