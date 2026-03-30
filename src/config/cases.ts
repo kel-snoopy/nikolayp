@@ -463,7 +463,6 @@ export const cases = [
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
       shortTitle: "Neura",
     },
-    caseReviews: [],
     paragraphs: [
       {
         type: "video",
