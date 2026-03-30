@@ -60,7 +60,55 @@ import reviewerAlexandreMortreuxImage from "../images/reviewers/alexandre-mortre
 
 import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
+
+import pathCryptoVideo from "../images/cases/path.mp4";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
+import pathCryptoContextImage from "../images/cases/path-crypto/context.png";
+import pathCryptoMyRoleImage from "../images/cases/path-crypto/path-my-role.png";
+import pathCryptoDashboardImage from "../images/cases/path-crypto/path-dashboard.png";
+import pathCryptoDashboardZeroVideo from "../images/cases/path-crypto/path-dashboard-zero.mp4";
+import pathCryptoStructureSlideImage1 from "../images/cases/path-crypto/path-stucture-slide1-1.png";
+import pathCryptoStructureSlideImage2 from "../images/cases/path-crypto/path-stucture-slide1-2.png";
+import pathCryptoResponsiveSliderImage1 from "../images/cases/path-crypto/path-responsive-slider1-1.png";
+import pathCryptoResponsiveSliderImage2 from "../images/cases/path-crypto/path-responsive-slider1-2.png";
+import pathCryptoWebsiteSlider1Image1 from "../images/cases/path-crypto/path-website-slider1-1.png";
+import pathCryptoWebsiteSlider1Image2 from "../images/cases/path-crypto/path-website-slider1-2.png";
+import pathCryptoWebsiteSlider2Image1 from "../images/cases/path-crypto/path-website-slider2-1.png";
+import pathCryptoWebsiteSlider2Image2 from "../images/cases/path-crypto/path-website-slider2-2.png";
+import pathCryptoWebsiteSlider3Image1 from "../images/cases/path-crypto/path-website-slider3-1.png";
+import pathCryptoWebsiteSlider3Image2 from "../images/cases/path-crypto/path-website-slider3-2.png";
+import pathCryptoWebsiteSlider3Image3 from "../images/cases/path-crypto/path-website-slider3-3.png";
+import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-website-slider3-4.png";
+import pathCryptoMobileSliderImage1 from "../images/cases/path-crypto/path-mobile-slider1-1.png";
+import pathCryptoMobileSliderImage2 from "../images/cases/path-crypto/path-mobile-slider1-2.png";
+import pathCryptoMobileHalfImage1 from "../images/cases/path-crypto/path-mobile-half1.png";
+import pathCryptoMobileHalfVideo2 from "../images/cases/path-crypto/path-mobile-half2.mp4";
+import pathCryptoWalletSliderImage1 from "../images/cases/path-crypto/path-wallet-slider1-1.png";
+import pathCryptoWalletSliderImage2 from "../images/cases/path-crypto/path-wallet-slider1-2.png";
+import pathCryptoWalletSwapSliderImage1 from "../images/cases/path-crypto/path-wallet-swap-slider1-1.png";
+import pathCryptoWalletSwapSliderImage2 from "../images/cases/path-crypto/path-wallet-swap-slider1-2.png";
+import pathCryptoWalletSwapSliderImage3 from "../images/cases/path-crypto/path-wallet-swap-slider1-3.png";
+import pathCryptoManagedSliderImage1 from "../images/cases/path-crypto/path-managed-slider1-1.png";
+import pathCryptoManagedSliderImage2 from "../images/cases/path-crypto/path-managed-slider1-2.png";
+import pathCryptoManagedSliderImage3 from "../images/cases/path-crypto/path-managed-slider1-3.png";
+import pathCryptoManagedSetupSliderImage1 from "../images/cases/path-crypto/path-managed-setup-slider1-1.png";
+import pathCryptoManagedSetupSliderImage2 from "../images/cases/path-crypto/path-managed-setup-slider1-2.png";
+import pathCryptoManagedSetupSliderImage3 from "../images/cases/path-crypto/path-managed-setup-slider1-3.png";
+import pathCryptoSelfDirectedDashboardSliderImage1 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-1.mp4";
+import pathCryptoSelfDirectedDashboardSliderImage2 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-2.png";
+import pathCryptoSelfDirectedDashboardSliderImage3 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-3.png";
+import pathCryptoSelfDirectedZeroSliderImage1 from "../images/cases/path-crypto/path-self-directed-zero-slider1-1.png";
+import pathCryptoSelfDirectedZeroSliderImage2 from "../images/cases/path-crypto/path-self-directed-zero-slider1-2.png";
+import pathCryptoSelfDirectedDetailsImage from "../images/cases/path-crypto/path-self-directed-details.png";
+import pathCryptoSettingsHalfVideo2 from "../images/cases/path-crypto/path-settings-half2.mp4";
+import pathCryptoNotificationsHalfImage1 from "../images/cases/path-crypto/path-notifications-half1.png";
+import pathCryptoNewsSliderImage1 from "../images/cases/path-crypto/path-news-slider1-1.png";
+import pathCryptoNewsSliderImage2 from "../images/cases/path-crypto/path-news-slider1-2.png";
+import pathCryptoDarkModeSliderImage1 from "../images/cases/path-crypto/dark-mode-slider1-1.png";
+import pathCryptoDarkModeSliderImage2 from "../images/cases/path-crypto/dark-mode-slider1-2.png";
+import pathCryptoDarkModeSliderImage3 from "../images/cases/path-crypto/dark-mode-slider1-3.png";
+import pathCryptoDarkModeImage2 from "../images/cases/path-crypto/dark-mode-2.png";
+import pathCryptoDarkModeVideo2 from "../images/cases/path-crypto/dark-mode-2.mp4";
 
 export const homeCases = [
   {
@@ -375,6 +423,7 @@ export const homeCases = [
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
+    previewVideo: pathCryptoVideo,
     nextCase: {
       id: "neura",
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
@@ -383,9 +432,8 @@ export const homeCases = [
     caseReviews: [],
     paragraphs: [
       {
-        type: "image",
-        image: pathCryptoImage,
-        imageAlt: "Path Crypto case preview",
+        type: "video",
+        video: pathCryptoVideo,
       },
     ],
   },
