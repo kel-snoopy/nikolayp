@@ -448,8 +448,13 @@ export const cases = [
     imageAlt: "Path Crypto case preview",
     preview: [
       {
+        type: "video",
+        video: pathCryptoVideo,
+        autoPlay: true,
+      },
+      {
         type: "image",
-        image: pathCryptoImage,
+        image: pathCryptoContextImage,
         imageAlt: "Path Crypto case preview",
       },
     ],
@@ -463,6 +468,235 @@ export const cases = [
       {
         type: "video",
         video: pathCryptoVideo,
+      },
+      {
+        type: "text",
+        title: "Context",
+        text: "<p>In 2021, a Chicago-based company raised $35M in funding and began assembling a team to build a new crypto investment platform — Path (prev. Staked). I joined <strong>as a Product Designer</strong>, brought in to establish a strong, scalable user experience. At that point, the brand foundation was already in place, including visual direction, color palette, and a friendly, approachable tone.</p><p>However, the product itself was still in its early stages. The UI/UX existed only as a set of fragmented concepts, without a cohesive structure or clear user flows.</p>",
+      },
+      {
+        type: "image",
+        image: pathCryptoContextImage,
+        imageAlt: "Path Crypto context",
+      },
+      {
+        type: "text",
+        title: "Task & My Role",
+        text: "<p>Our goal was to build the product from scratch <strong>under strict regulatory and compliance constraints</strong>, with a clear objective: pass SEC approval, while keeping the experience friendly and intuitive for mainstream users.</p><p>I worked on UI/UX across the web app and mobile app, collaborating with another designer who owned parallel flows, and a CGI artist who created custom visuals based on our direction. I also fully owned the marketing website, from design to launch, building it in Webflow.</p>",
+      },
+      {
+        type: "image",
+        image: pathCryptoMyRoleImage,
+        imageAlt: "Path Crypto my role",
+      },
+      {
+        type: "text",
+        title: "Product Structure & User Flows",
+        text: "<p>My first priority was to review existing product documentation and inputs from product owners, and translate them into clear, effective user flows. Below is the resulting product map.</p><p>Every item and connection in this system was carefully designed with both <strong>business outcomes and user satisfaction</strong> in mind. Marked items indicate areas designed by my colleague, while the rest was led by me.</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoStructureSlideImage1, imageAlt: "Path Crypto structure slide 1" },
+          { image: pathCryptoStructureSlideImage2, imageAlt: "Path Crypto structure slide 2" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Dashboard",
+        text: "<p>This section introduces users to two investment modes, <strong>managed and self-directed</strong>, allowing them to choose one or combine both, and track their portfolio performance over time. It also features Web3 market and product news, designed to be consumed directly within the interface without redirecting users to external sources.</p><p>The experience was designed to handle a full range of states, from empty to highly data-dense scenarios, ensuring clarity and usability at every stage. Special attention was given to edge cases to maximize <strong>feature adoption, task success rate, and overall engagement.</strong></p>",
+      },
+      {
+        type: "video",
+        video: pathCryptoDashboardZeroVideo,
+        autoPlay: true,
+      },
+      {
+        type: "image",
+        image: pathCryptoDashboardImage,
+        imageAlt: "Path Crypto dashboard",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoDashboardNewsSlider1, imageAlt: "Path Crypto dashboard news slider 1" },
+          { image: pathCryptoDashboardNewsSlider2, imageAlt: "Path Crypto dashboard news slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Self-Directed Investment",
+        text: "<p>This investment mode allows users to independently explore and purchase tokens. My goal was to make the process of discovering the crypto market and executing purchases <strong>as smooth, transparent, and conversion-efficient as possible.</strong></p><p>The journey centers around a page called <strong>Market Watch</strong> — Path’s token marketplace, where users can instantly see which assets are trending overall and in real time. This is where the user journey begins when selecting the self-directed path from the Dashboard.</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoSelfDirectedZeroSlider1, imageAlt: "Path Crypto self directed zero slider 1" },
+          { image: pathCryptoSelfDirectedZeroSlider2, imageAlt: "Path Crypto self directed zero slider 2" },
+        ],
+      },
+      {
+        type: "image",
+        image: pathCryptoSelfDirectedDetailsImage,
+        imageAlt: "Path Crypto self directed details",
+      },
+      {
+        type: "text",
+        text: "Purchased tokens are displayed on the right side, within the <strong>Self-Directed Dashboard</strong>, a dedicated subsection of the main dashboard.",
+      },
+      {
+        type: "images",
+        images: [
+          { video: pathCryptoSelfDirectedDashboardSlider1, imageAlt: "Path Crypto self directed dashboard slider 1" },
+          { image: pathCryptoSelfDirectedDashboardSlider2, imageAlt: "Path Crypto self directed dashboard slider 2" },
+          { image: pathCryptoSelfDirectedDashboardSlider3, imageAlt: "Path Crypto self directed dashboard slider 3" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Managed Portfolio",
+        text: "<p>This investment mode focuses on building a personalized portfolio based on a risk assessment. It was designed as <strong>a product within the product</strong>, with a different interaction model centered on minimal user input. The goal was to enable users to comfortably monitor performance through a widget-based insights.</p><p>This section was primarily led and designed by my colleague. I contributed by refining parts of the UI to ensure a consistent look and feel across the product.</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoManagedSliderImage1, imageAlt: "Path Crypto managed slider 1" }, 
+          { image: pathCryptoManagedSliderImage2, imageAlt: "Path Crypto managed slider 2" },
+          { image: pathCryptoManagedSliderImage3, imageAlt: "Path Crypto managed slider 3" },
+        ],
+      },
+      {
+        type: "text",
+        text: "The risk assessment, funding, and asset allocation flows were also designed by my colleague, so I won’t go into detail here and will instead highlight a few key snapshots.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoManagedSetupSliderImage1, imageAlt: "Path Crypto managed setup slider 1" },
+          { image: pathCryptoManagedSetupSliderImage2, imageAlt: "Path Crypto managed setup slider 2" },
+          { image: pathCryptoManagedSetupSliderImage3, imageAlt: "Path Crypto managed setup slider 3" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Path Wallet",
+        text: "<p>We built a native wallet that allows users to freely manage their tokens from the Self-Directed section. Users can track, send, deposit, and swap assets, similar to tools like MetaMask.</p><p>The wallet experience and UI were fully designed by me.</p>",
+      },
+      {
+      type: "images",
+      images: [
+        { image: pathCryptoWalletSliderImage1, imageAlt: "Path Crypto wallet slider 1" },
+        { image: pathCryptoWalletSliderImage2, imageAlt: "Path Crypto wallet slider 2" },
+      ],
+      },
+      {
+        type: "text",
+        text: "Special attention was given to swap flows, where I designed not only standard one-to-one swaps, but also more advanced scenarios such as many-to-one and one-to-many conversions.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: pathCryptoWalletSwapSliderImage1, imageAlt: "Path Crypto wallet swap slider 1" },
+          { image: pathCryptoWalletSwapSliderImage2, imageAlt: "Path Crypto wallet swap slider 2" },
+          { image: pathCryptoWalletSwapSliderImage3, imageAlt: "Path Crypto wallet swap slider 3" },
+        ],
+        },
+        {
+          type: "text",
+          title: "Notifications & Settings",
+          text: "<p>All notification types and scenarios were carefully designed within a unified pop-up system to support <strong>engagement</strong> and timely user awareness. The settings menu and its user flows were also fully structured, covering all key sections to ensure clarity, control, and ease of navigation.</p>",
+        },
+        {
+          type: "half",
+          images: [
+            { image: pathCryptoNotificationsHalf1, imageAlt: "Path Crypto notifications half 1" },
+            { video: pathCryptoSettingsHalf2, imageAlt: "Path Crypto settings half 2" },
+          ],
+        },
+        {
+          type: "text",
+          title: "Responsive Design",
+          text: "<p>The web app was designed to work seamlessly across a wide range of devices, from mobile phones and tablets to large 4K displays. Clear rules were defined for how layouts and components adapt to different screen sizes and orientations, ensuring consistency, readability, and usability across all contexts.</p>",
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoResponsiveSliderImage1, imageAlt: "Path Crypto responsive slider 1" },
+            { image: pathCryptoResponsiveSliderImage2, imageAlt: "Path Crypto responsive slider 2" },
+          ],
+        },
+        {
+          type: "text",
+          title: "Mobile App",
+          text: "<p>All core functionality was adapted for the iOS app, with a focus on preserving familiar patterns from the web experience. At the same time, mobile-specific UX constraints and Apple Human Interface Guidelines required rethinking several interactions. In many cases, flows had to be redesigned from the ground up to feel native and efficient on mobile.</p>",
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoMobileSliderImage1, imageAlt: "Path Crypto mobile slider 1" },
+            { image: pathCryptoMobileSliderImage2, imageAlt: "Path Crypto mobile slider 2" },
+          ],
+        },
+        {
+          type: "half",
+          images: [
+            { image: pathCryptoMobileHalfImage1, imageAlt: "Path Crypto mobile half 1" },
+            { video: pathCryptoMobileHalfVideo2, imageAlt: "Path Crypto mobile half 2" },
+          ],
+        },
+        {
+          type: "text",
+          title: "Dark Mode",
+          text: "All the above screens are also available in a thoughtfully designed dark mode.",
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoDarkModeSliderImage1, imageAlt: "Path Crypto dark mode slider 1" },
+            { image: pathCryptoDarkModeSliderImage2, imageAlt: "Path Crypto dark mode slider 2" },
+            { image: pathCryptoDarkModeSliderImage3, imageAlt: "Path Crypto dark mode slider 3" },
+          ],
+        },
+        {
+          type: "video",
+          video: pathCryptoDarkModeVideo,
+          autoPlay: true,
+        },
+        {
+          type: "text",
+          title: "Website",
+          text: "<p>My task was to clearly communicate the product and company through a cohesive web experience. While the content was provided by product owners, I took full ownership of the visual concept, layout design, art direction, and the complete implementation in <strong>Webflow</strong>.</p><p>The challenge was to <strong>maximize CTR</strong> while staying fully compliant with SEC regulations. This meant avoiding unrealistic visual promises, dark patterns, or any manipulative design tactics, and instead building trust through clarity and transparency.</p>",
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoWebsiteSlider1Image1, imageAlt: "Path Crypto website slider 1-1" },
+            { image: pathCryptoWebsiteSlider1Image2, imageAlt: "Path Crypto website slider 1-2" },
+          ],
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoWebsiteSlider2Image1, imageAlt: "Path Crypto website slider 2-1" },
+            { image: pathCryptoWebsiteSlider2Image2, imageAlt: "Path Crypto website slider 2-2" },
+          ],
+        },
+        {
+          type: "images",
+          images: [
+            { image: pathCryptoWebsiteSlider3Image1, imageAlt: "Path Crypto website slider 3-1" },
+            { image: pathCryptoWebsiteSlider3Image2, imageAlt: "Path Crypto website slider 3-2" },
+            { image: pathCryptoWebsiteSlider3Image3, imageAlt: "Path Crypto website slider 3-3" },
+            { image: pathCryptoWebsiteSlider3Image4, imageAlt: "Path Crypto website slider 3-4" },
+          ],
+        },
+    ],
+    caseReviews: [
+      {
+        author: "Aaron Aslop",
+        role: "Chief Product Officer",
+        avatar: reviewerAaronAslopImage,
+        text: "It was awesome working with Nikolay as he is an extremely talented designer. Always professional and a self starter — I could rely on him to deliver high quality work on time with very little direction needed. He was great in our team working with other designers and product owners on websites and both mobile and SaaS application designs. I would highly recommend Nikolay for any design roles and working in a team.",
       },
     ],
   },
