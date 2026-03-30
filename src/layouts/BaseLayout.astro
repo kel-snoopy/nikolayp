@@ -138,7 +138,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         </div>
         <div class="headerFxTint"></div>
       </div>
-      <div class="nav">
+      <div class="navBlock">
         <div class="brand" aria-label="Author">
           <a class="brandLink" href="/">
             <img
@@ -171,7 +171,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
         </nav>
 
-        <nav class="navLinks mobile-only" aria-label="External links">
+        <div class="navLinks mobile-only" aria-label="External links">
           <button
             type="button"
             id="contacts-menu-open"
@@ -183,7 +183,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             <span class="navLinksLabel">Contacts</span>
             <span class="icon-plus" aria-hidden="true"></span>
           </button>
-        </nav>
+        </div>
       </div>
     </header>
 
@@ -341,12 +341,12 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         <span class="contactsFullscreenCloseLabel">Close</span>
         <span class="icon-minus"></span>
       </button>
-      <nav class="contactsFullscreenNav" aria-label="Contact links">
+      <div class="contactsFullscreenNav" aria-label="Contact links">
         <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
         <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
         <a href={`mailto:${header.email}`}>Email</a>
         <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
-      </nav>
+      </div>
     </div>
 
     <script is:inline>
@@ -903,7 +903,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         );
       }
 
-      .nav {
+      .navBlock {
         position: relative;
         z-index: 1;
         display: flex;
@@ -929,6 +929,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .brandLinkButton {
         background: none;
         border: none;
+        color: var(--color-fg);
         cursor: pointer;
         font-size: 1.111vw;
         font-weight: 500;
@@ -975,6 +976,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       }
 
       .navLinksLabel {
+        color: var(--color-fg);
         font-weight: 500;
       }
 
@@ -993,6 +995,9 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         cursor: pointer;
         padding: 0;
         margin: 0;
+      }
+      .contactsMenuOpen {
+        color: var(--color-fg);
       }
 
       .contactsFullscreen {
