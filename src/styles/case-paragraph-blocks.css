@@ -53,6 +53,7 @@
 }
 
 .caseHalfVideo {
+  aspect-ratio: auto;
   border-radius: 0.694vw;
   display: block;
   width: 100%;
