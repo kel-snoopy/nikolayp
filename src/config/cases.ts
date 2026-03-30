@@ -61,7 +61,56 @@ import reviewerAlexandreMortreuxImage from "../images/reviewers/alexandre-mortre
 
 import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
+
+import pathCryptoVideo from "../images/cases/path.mp4";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
+import pathCryptoContextImage from "../images/cases/path-crypto/context.png";
+import pathCryptoMyRoleImage from "../images/cases/path-crypto/path-my-role.png";
+import pathCryptoStructureSlideImage1 from "../images/cases/path-crypto/path-stucture-slide1-1.png";
+import pathCryptoStructureSlideImage2 from "../images/cases/path-crypto/path-stucture-slide1-2.png";
+import pathCryptoDashboardZeroVideo from "../images/cases/path-crypto/path-dashboard-zero.mp4";
+import pathCryptoDashboardImage from "../images/cases/path-crypto/path-dashboard.png";
+import pathCryptoDashboardNewsSlider1 from "../images/cases/path-crypto/path-news-slider1-1.png";
+import pathCryptoDashboardNewsSlider2 from "../images/cases/path-crypto/path-news-slider1-2.png";
+import pathCryptoSelfDirectedZeroSlider1 from "../images/cases/path-crypto/path-self-directed-zero-slider1-1.png";
+import pathCryptoSelfDirectedZeroSlider2 from "../images/cases/path-crypto/path-self-directed-zero-slider1-2.png";
+import pathCryptoSelfDirectedDetailsImage from "../images/cases/path-crypto/path-self-directed-details.png";
+import pathCryptoSelfDirectedDashboardSlider1 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-1.mp4";
+import pathCryptoSelfDirectedDashboardSlider2 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-2.png";
+import pathCryptoSelfDirectedDashboardSlider3 from "../images/cases/path-crypto/path-self-directed-dahsboard-slider1-3.png";
+import pathCryptoManagedSliderImage1 from "../images/cases/path-crypto/path-managed-slider1-1.png";
+import pathCryptoManagedSliderImage2 from "../images/cases/path-crypto/path-managed-slider1-2.png";
+import pathCryptoManagedSliderImage3 from "../images/cases/path-crypto/path-managed-slider1-3.png";
+import pathCryptoManagedSetupSliderImage1 from "../images/cases/path-crypto/path-managed-setup-slider1-1.png";
+import pathCryptoManagedSetupSliderImage2 from "../images/cases/path-crypto/path-managed-setup-slider1-2.png";
+import pathCryptoManagedSetupSliderImage3 from "../images/cases/path-crypto/path-managed-setup-slider1-3.png";
+import pathCryptoWalletSliderImage1 from "../images/cases/path-crypto/path-wallet-slider1-1.png";
+import pathCryptoWalletSliderImage2 from "../images/cases/path-crypto/path-wallet-slider1-2.png";
+import pathCryptoWalletSwapSliderImage1 from "../images/cases/path-crypto/path-wallet-swap-slider1-1.png";
+import pathCryptoWalletSwapSliderImage2 from "../images/cases/path-crypto/path-wallet-swap-slider1-2.png";
+import pathCryptoWalletSwapSliderImage3 from "../images/cases/path-crypto/path-wallet-swap-slider1-3.png";
+import pathCryptoNotificationsHalf1 from "../images/cases/path-crypto/path-notifications-half1.png";
+import pathCryptoSettingsHalf2 from "../images/cases/path-crypto/path-settings-half2.mp4";
+import pathCryptoResponsiveSliderImage1 from "../images/cases/path-crypto/path-responsive-slider1-1.png";
+import pathCryptoResponsiveSliderImage2 from "../images/cases/path-crypto/path-responsive-slider1-2.png";
+import pathCryptoMobileSliderImage1 from "../images/cases/path-crypto/path-mobile-slider1-1.png";
+import pathCryptoMobileSliderImage2 from "../images/cases/path-crypto/path-mobile-slider1-2.png";
+import pathCryptoMobileHalfImage1 from "../images/cases/path-crypto/path-mobile-half1.png";
+import pathCryptoMobileHalfVideo2 from "../images/cases/path-crypto/path-mobile-half2.mp4";
+import pathCryptoDarkModeSliderImage1 from "../images/cases/path-crypto/dark-mode-slider1-1.png";
+import pathCryptoDarkModeSliderImage2 from "../images/cases/path-crypto/dark-mode-slider1-2.png";
+import pathCryptoDarkModeSliderImage3 from "../images/cases/path-crypto/dark-mode-slider1-3.png";
+import pathCryptoDarkModeVideo from "../images/cases/path-crypto/dark-mode-2.mp4";
+import pathCryptoWebsiteSlider1Image1 from "../images/cases/path-crypto/path-website-slider1-1.png";
+import pathCryptoWebsiteSlider1Image2 from "../images/cases/path-crypto/path-website-slider1-2.png";
+import pathCryptoWebsiteSlider2Image1 from "../images/cases/path-crypto/path-website-slider2-1.png";
+import pathCryptoWebsiteSlider2Image2 from "../images/cases/path-crypto/path-website-slider2-2.png";
+import pathCryptoWebsiteSlider3Image1 from "../images/cases/path-crypto/path-website-slider3-1.png";
+import pathCryptoWebsiteSlider3Image2 from "../images/cases/path-crypto/path-website-slider3-2.png";
+import pathCryptoWebsiteSlider3Image3 from "../images/cases/path-crypto/path-website-slider3-3.png";
+import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-website-slider3-4.png";
+
+import reviewerAaronAslopImage from "../images/reviewers/aaron-aslop.jpg";
 
 export const cases = [
   {
@@ -298,7 +347,7 @@ export const cases = [
       {
         type: "text",
         title: "Client & Side Projects",
-        text: "<p>Alongside core product work, I also contributed to client and side projects built on Ankr’s infrastructure. With the same level of care and attention, I helped design and launch over ten websites, web applications, brands, and design systems for Web3 products, including DeFi interfaces, wallets, and developer tools.</p><p>Several of these projects went on to achieve meaningful traction and remain active today. Three notable examples include:</p><p><strong>PrimeBlock</strong> — a provider of hash infrastructure and digital asset mining solutions. I designed the company’s website and contributed to its brand direction. As of 2026, PrimeBlock remains a private company with an estimated valuation of ~$1.3B (private unicorn) according to business profile reports.</p>",
+        text: "<p>Alongside core product work, I also contributed to client and side projects built on Ankr’s infrastructure. With the same level of care and attention, I helped design and launch over ten websites, web applications, brands, and design systems for Web3 products, including DeFi interfaces, wallets, and developer tools.</p><p>Several of these projects went on to achieve meaningful traction and remain active today. Three notable examples include:</p><p><strong>PrimeBlock</strong> — a provider of hash infrastructure and digital asset mining solutions. I designed the company’s website and contributed to its brand direction. In 2022, the company reached an estimated valuation of <strong>~$1.25B</strong> during its planned SPAC merger, positioning it as a private unicorn.</p>",
       },
       {
         type: "images",
@@ -325,7 +374,7 @@ export const cases = [
       },
       {
         type: "text",
-        text: "<p><strong>TurboScale</strong> — a high-performance computing and AI infrastructure company. I designed the website and contributed to the product’s visual positioning. The company builds GPU clusters and modular data centers for training and running AI models. In 2024, TurboScale was acquired by the public company ShiftPixy in a deal worth approximately $150M.</p>",
+        text: "<p><strong>TurboScale</strong> — a high-performance computing and AI infrastructure company. I designed the website and contributed to the product’s visual positioning. The company builds GPU clusters and modular data centers for training and running AI models. In 2024, TurboScale announced a <strong>$150M</strong> acquisition deal with the public company ShiftPixy.</p>",
       },
       {
         type: "images",
@@ -412,9 +461,8 @@ export const cases = [
     caseReviews: [],
     paragraphs: [
       {
-        type: "image",
-        image: pathCryptoImage,
-        imageAlt: "Path Crypto case preview",
+        type: "video",
+        video: pathCryptoVideo,
       },
     ],
   },
