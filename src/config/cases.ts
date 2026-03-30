@@ -448,8 +448,13 @@ export const cases = [
     imageAlt: "Path Crypto case preview",
     preview: [
       {
+        type: "video",
+        video: pathCryptoVideo,
+        autoPlay: true,
+      },
+      {
         type: "image",
-        image: pathCryptoImage,
+        image: pathCryptoContextImage,
         imageAlt: "Path Crypto case preview",
       },
     ],
