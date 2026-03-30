@@ -782,12 +782,15 @@ function videoUrl(video: string | { src: string }): string {
       outline: 2px solid var(--color-primary);
       outline-offset: 4px;
     }
+    .caseVideoPlay:hover img {
+      transform: scale(1.1);
+    }
 
     .caseVideoPlay img {
-      width: 8.333vw;
+      width: 10.417vw;
       height: auto;
       display: block;
-      filter: drop-shadow(0 0.139vw 0.694vw rgba(0, 0, 0, 0.45));
+      transition: transform 0.2s ease-in-out;
     }
 
     .caseParagraph {
@@ -1235,7 +1238,7 @@ function videoUrl(video: string | { src: string }): string {
       }
 
       .caseVideoPlay img {
-        width: 120px;
+        width: 150px;
       }
     }
 

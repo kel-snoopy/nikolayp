@@ -39,8 +39,8 @@
   mask-size: contain;
 }
 .icon-play {
-  height: 3.472vw;
-  width: 2.5vw;
+  height: 4.167vw;
+  width: 4.167vw;
   display: inline-block;
   background-color: currentColor;
   mask-image: url("../images/icons/play.svg");
