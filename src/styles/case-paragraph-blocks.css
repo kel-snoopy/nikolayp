@@ -57,7 +57,6 @@
   display: block;
   width: 100%;
   max-width: none;
-  aspect-ratio: 4 / 3;
   min-height: 0;
   background-color: var(--case-media-placeholder-bg);
   object-fit: cover;
