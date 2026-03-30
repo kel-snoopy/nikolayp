@@ -446,9 +446,6 @@ export const cases = [
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
-<<<<<<< HEAD:src/config/homeCases.ts
-    previewVideo: pathCryptoVideo,
-=======
     preview: [
       {
         type: "image",
@@ -456,7 +453,6 @@ export const cases = [
         imageAlt: "Path Crypto case preview",
       },
     ],
->>>>>>> fc62d4a206c8177a5b3c3936f561743685da2122:src/config/cases.ts
     nextCase: {
       id: "neura",
       title: "Neura. Driven blockchain adoption by gamifying ecosystem products.",
