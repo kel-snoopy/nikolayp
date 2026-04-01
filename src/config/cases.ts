@@ -442,7 +442,7 @@ export const cases = [
     impact:
       "Following the product announcement, the social media audience grew from 0 to ~150K followers. The platform was approved by the SEC, and the audience was later integrated into Gemini.",
     fullStoryText:
-      "<p>Path Crypto is a crypto investment platform that allows users to invest in a variety of cryptocurrencies. The platform was launched in 2022 and was approved by the SEC in 2023.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
+      "<p>Path (prev. Stacked) is a platform designed to make crypto investing secure and accessible to a broad audience. I was a key <strong>Product Designer</strong>, responsible for the UI/UX across web and mobile applications, as well as the marketing website.</p><p>Working in a lean team of two designers and a CGI artist, we built the product from scratch <strong>under strict regulatory and compliance constraints</strong>, with a clear goal: pass SEC approval while maintaining a user-friendly, intuitive experience for mainstream users.</p><p>We successfully achieved both. Following the product announcement, the social media audience grew from 0 to ~150K, and the platform was approved by the SEC.</p><p>Here’s the full story behind this work.</p>",
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
@@ -707,8 +707,8 @@ export const cases = [
   },
   {
     id: "neura",
-    public: false,
-    brand: "Neura",
+    public: true,
+    brand: "Neuraverse",
     title: "Drove blockchain adoption by gamifying ecosystem products.",
     meta: {
       dateRange: "2025—2026",
@@ -717,19 +717,19 @@ export const cases = [
       roles: "UI/UX, Brand",
     },
     goal:
-      "Design an immersive metaverse to onboard new users into the blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
+      "Design an immersive metaverse to onboard users into the new lockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
-      "<p>Neura is a blockchain platform that allows users to invest in a variety of cryptocurrencies. The platform was launched in 2025 and was approved by the SEC in 2026.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
+      "<p>Neuraverse is an immersive game built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As Senior Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
     detailsUrl: "/cases/neura",
     image: neuraImage,
-    imageAlt: "Neura case preview",
+    imageAlt: "Neuraverse case preview",
     preview: [
       {
         type: "image",
         image: neuraImage,
-        imageAlt: "Neura case preview",
+        imageAlt: "Neuraverse case preview",
       },
     ],
     nextCase: {
@@ -742,7 +742,7 @@ export const cases = [
       {
         type: "image",
         image: neuraImage,
-        imageAlt: "Neura case preview",
+        imageAlt: "Neuraverse case preview",
       },
     ],
   },
