@@ -112,6 +112,8 @@ import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-web
 
 import reviewerAaronAslopImage from "../images/reviewers/aaron-aslop.jpg";
 
+import neuraVideo from "../images/cases/neuraverse.mp4";
+
 export const cases = [
   {
     id: "ankr",
@@ -726,6 +728,11 @@ export const cases = [
     image: neuraImage,
     imageAlt: "Neuraverse case preview",
     preview: [
+      {
+        type: "video",
+        video: neuraVideo,
+        autoPlay: true,
+      },
       {
         type: "image",
         image: neuraImage,
