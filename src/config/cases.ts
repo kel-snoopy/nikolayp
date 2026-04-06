@@ -113,6 +113,34 @@ import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-web
 import reviewerAaronAslopImage from "../images/reviewers/aaron-aslop.jpg";
 
 import neuraVideo from "../images/cases/neuraverse.mp4";
+import neuraLocationsDefiVillageImage from "../images/cases/neuraverse/locations-defi-village.png";
+import neuraLocationsOracleImage from "../images/cases/neuraverse/locations-oracle.png";
+import neuraLocationsGrandExchangeSlider1Image1 from "../images/cases/neuraverse/locations-the-grand-exchange-slider1-1.png";
+import neuraLocationsGrandExchangeSlider1Image2 from "../images/cases/neuraverse/locations-the-grand-exchange-slider1-2.png";
+import neuraLocationsLadyLuckImage from "../images/cases/neuraverse/locations-the-lady-luck.png";
+import neuraLocationsValidatorHouseSlider1Image1 from "../images/cases/neuraverse/locations-validator-house-slider1-1.png";
+import neuraLocationsValidatorHouseSlider1Image2 from "../images/cases/neuraverse/locations-validator-house-slider1-2.png";
+import neuraContextImage from "../images/cases/neuraverse/neuraverse-context.png";
+import neuraMainMenuImage from "../images/cases/neuraverse/neuraverse-main-menu.png";
+import neuraMyRoleImage from "../images/cases/neuraverse/neuraverse-my-role.png";
+import neuraNavigationImage from "../images/cases/neuraverse/neuraverse-navigation.png";
+import neuraProfileSlider1Image1 from "../images/cases/neuraverse/neuraverse-profile-slider1-1.png";
+import neuraProfileSlider1Image2 from "../images/cases/neuraverse/neuraverse-profile-slider1-2.png";
+import neuraQuestsImage1 from "../images/cases/neuraverse/neuraverse-quests-1.png";
+import neuraQuestsImage2 from "../images/cases/neuraverse/neuraverse-quests-2.png";
+import neuraTutorialHalf1Video from "../images/cases/neuraverse/neuraverse-tutorial-half1.mp4";
+import neuraTutorialHalf2Image from "../images/cases/neuraverse/neuraverse-tutorial-half2.png";
+import neuraTutorialSlider1Video1 from "../images/cases/neuraverse/neuraverse-tutorial-slider1-1.mp4";
+import neuraUiHalf1Video from "../images/cases/neuraverse/neuraverse-ui-half1.mp4";
+import neuraUiHalf2Video from "../images/cases/neuraverse/neuraverse-ui-half2.mp4";
+import neuraVisualLanguageVideo from "../images/cases/neuraverse/neuraverse-visual-language.mp4";
+import neuraWorldMapGridSlider1Image1 from "../images/cases/neuraverse/neuraverse-world-map-grid-slider1-1.png";
+import neuraWorldMapGridSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-grid-slider1-2.png";
+import neuraWorldMapSlider1Image1 from "../images/cases/neuraverse/neuraverse-world-map-slider1-1.png";
+import neuraWorldMapSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-slider1-2.png";
+import neuraWorldMapUiImage from "../images/cases/neuraverse/neuraverse-world-map-ui.png";
+import neuraPathWorldHalf1Video from "../images/cases/neuraverse/path-world-half1.mp4";
+import neuraPathWorldHalf2Video from "../images/cases/neuraverse/path-world-half2.mp4";
 
 export const cases = [
   {
@@ -469,6 +497,7 @@ export const cases = [
       {
         type: "video",
         video: pathCryptoVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -719,7 +748,7 @@ export const cases = [
       roles: "UI/UX, Brand",
     },
     goal:
-      "Design an immersive metaverse to onboard users into the new lockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
+      "Design an immersive game to onboard users into the new lockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
@@ -747,9 +776,216 @@ export const cases = [
     caseReviews: [],
     paragraphs: [
       {
+        type: "video",
+        video: neuraVideo,
+        autoPlay: true,
+      },
+      {
+        type: "text",
+        title: "Context",
+        text: 'In 2025, Web3 infrastructure provider <a href="/cases/ankr" target="_blank">Ankr</a> launched its own blockchain, Neura, together with a set of ecosystem partner products. The key challenge was to drive user adoption, bring activity into the ecosystem, and stress-test the infrastructure through real-world use cases.',
+      },
+      {
         type: "image",
-        image: neuraImage,
-        imageAlt: "Neuraverse case preview",
+        image: neuraContextImage,
+        imageAlt: "Neuraverse context",
+      },
+      {
+        type: "text",
+        title: "Task & My Role",
+        text: "<p>The idea was to create an interactive game experience where locations and characters narratively represented key ecosystem functions, allowing users to access them seamlessly from within the game itself. A set of game mechanics and quest loops was also designed to <strong>drive DAU/MAU growth</strong> through repeated engagement.</p><p><strong>As Senior Product Designer</strong>, I owned most of the in-game interfaces and user flows, while also coordinating and contributing to the creative concept, visual direction, CGI, gameplay mechanics, and design QA during frontend implementation.</p>",
+      },
+      {
+        type: "image",
+        image: neuraMyRoleImage,
+        imageAlt: "Neuraverse my role",
+      },
+      {
+        type: "text",
+        title: "Product Structure & User Flows",
+        text: "<p>The initial concept was built around a world map with a set of locations representing core ecosystem functions, alongside a dedicated quests layer to guide user progression.<p>As the product evolved and the feature set expanded, the experience required more locations, a stronger navigation system, and context-aware tutorials.</p><p>This evolution eventually led to the following structure:</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraNavigationImage, imageAlt: "Neuraverse sitemap" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Visual Language",
+        text: "<p>We chose a traditional heritage-inspired setting infused with advanced high-tech elements, creating a world that feels both atmospheric and futuristic.</p><p>The UI was intentionally kept neutral and minimal, designed to complement the game world rather than compete with it.</p>",
+      },
+      {
+        type: "video",
+        video: neuraVisualLanguageVideo,
+        autoPlay: true,
+      },
+      {
+        type: "text",
+        title: "World Map & Character",
+        text: "<p>The world map became <strong>the core hub</strong> of the experience, giving users access to every location from a single, intuitive entry point.</p><p>We chose an isometric perspective, which made the map easier to scale, simpler to update with new assets, and more natural to navigate. The environments were produced through a <strong>mix of 3D and AI-art</strong>, allowing the team to move fast while preserving visual consistency.</p><p>The main character was fully built in 3D, with movement and idle animations designed for all directions to support smooth exploration across the world.</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraWorldMapSlider1Image1, imageAlt: "Neuraverse world map slider 1" },
+          { image: neuraWorldMapSlider1Image2, imageAlt: "Neuraverse world map slider 2" },
+        ],
+      },
+      {
+        type: "half",
+        images: [
+          { video: neuraPathWorldHalf1Video, imageAlt: "Neuraverse Fountain half 1" },
+          { video: neuraPathWorldHalf2Video, imageAlt: "Neuraverse Character half 2" },
+        ],
+      },
+      {
+        type: "text",
+        text: "My responsibility was to establish <strong>the grid framework</strong> for the world assets and coordinate the artists around it.Once the assets were ready, I composed the full <strong>layered scenes in Figma</strong> for efficient frontend implementation.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraWorldMapGridSlider1Image1, imageAlt: "Neuraverse world map grid slider 1" },
+          { image: neuraWorldMapGridSlider1Image2, imageAlt: "Neuraverse world map grid slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        text: "<p>I also designed the <strong>mouse and keyboard control patterns</strong>, along with the behavior of UI elements and contextual map hints: including labels for available and locked locations, floating action buttons, text bubbles, and feedback states for collected items.</p><p>On top of that, I adapted the entire interaction system for the <strong>mobile version</strong>, ensuring the same clarity and responsiveness across touch-based navigation.</p>",
+      },
+      {
+        type: "image",
+        image: neuraWorldMapUiImage,
+        imageAlt: "Neuraverse world map ui",
+      },
+      {
+        type: "half",
+        images: [
+          { video: neuraUiHalf1Video, imageAlt: "Neuraverse world map ui" },
+          { video: neuraUiHalf2Video, imageAlt: "Neuraverse world map ui" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Tutorials",
+        text: "The onboarding experience combined multiple tutorial layers: <strong>diegetic guidance</strong> through dialogue bubbles from the main character and NPCs, <strong>contextual UI hints</strong>, and <strong>overlay pop-up tutorials</strong>.",
+      },
+      {
+        type: "images",
+        images: [
+          { video: neuraTutorialSlider1Video1, imageAlt: "Neuraverse tutorial slider 1" },
+        ],
+      },
+      {
+        type: "half",
+        images: [
+          { video: neuraTutorialHalf1Video, imageAlt: "Neuraverse tutorial 1" },
+          { image: neuraTutorialHalf2Image, imageAlt: "Neuraverse tutorial 2" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Locations",
+        text: "<p>The locations and side characters were designed to embody specific Neura blockchain features, each serving a clear functional purpose within the ecosystem narrative. Here are some of them:</p><p><strong>Oracle</strong> acts as an <strong>AI helper agent</strong>, allowing users to chat in natural language about the game world, quests, and the Neura blockchain directly within the experience.</p>",
+      },
+      {
+        type: "image",
+        image: neuraLocationsOracleImage,
+        imageAlt: "Neuraverse locations oracle",
+      },
+      {
+        type: "text",
+        text: "<strong>Validator House</strong> lets players interact with network validators embodied as <strong>AI-powered</strong> characters, each with a defined personality and unique conversational behavior.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraLocationsValidatorHouseSlider1Image1, imageAlt: "Neuraverse locations validator house slider 1" },
+          { image: neuraLocationsValidatorHouseSlider1Image2, imageAlt: "Neuraverse locations validator house slider 2" },
+        ],
+        imageAlt: "Neuraverse locations validator house",
+      },
+      {
+        type: "text",
+        text: "<strong>Defi Village</strong> represents Neura’s DeFi layer, allowing players to seamlessly access financial features.",
+      },
+      {
+        type: "image",
+        image: neuraLocationsDefiVillageImage,
+        imageAlt: "Neuraverse locations defi village",
+      },
+      {
+        type: "text",
+        text: "<strong>The Grand Exchange</strong> is one of the core DeFi features, allowing players to swap tokens and explore liquidity pools within the network.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraLocationsGrandExchangeSlider1Image1, imageAlt: "Neuraverse locations grand exchange slider 1" },
+          { image: neuraLocationsGrandExchangeSlider1Image2, imageAlt: "Neuraverse locations grand exchange slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        text: "<strong>The Lady Luck</strong> is a ship that introduces players to other games in the ecosystem, allowing them to “sail” directly into those experiences.",
+      },
+      {
+        type: "image",
+        image: neuraLocationsLadyLuckImage,
+        imageAlt: "Neuraverse locations lady luck",
+      },
+      {
+        type: "text",
+        title: "Main Menu",
+        text: "The main menu allows users to <strong>skip character navigation</strong> and jump directly to any location in just a few clicks. It also serves as an access layer for the rest of the experience, including FAQ, Docs, Quests & Leaderboard, and the project’s social channels.",
+      },
+      {
+        type: "image",
+        image: neuraMainMenuImage,
+        imageAlt: "Neuraverse main menu",
+      },
+      {
+        type: "text",
+        title: "Quests & Leaderboard",
+        text: "This layer functioned as an engagement dashboard, combining ecosystem-driven tasks with a leaderboard system. Most quests were directly tied to actions inside the Neura ecosystem, significantly <strong>improving engagement and active user metrics</strong>.",
+      },
+      {
+        type: "image",
+        image: neuraQuestsImage1,
+        imageAlt: "Neuraverse quests 1",
+      },
+      {
+        type: "image",
+        image: neuraQuestsImage2,
+        imageAlt: "Neuraverse quests 2",
+      },
+      {
+        type: "text",
+        title: "Profile",
+        text: "Just a compact pop-up that brings together profile settings, achievement badges, activity history, and more.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraProfileSlider1Image1, imageAlt: "Neuraverse profile slider 1" },
+          { image: neuraProfileSlider1Image2, imageAlt: "Neuraverse profile slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        class: "__result",
+        title: "Result",
+        text: "<p>The network scaled to <strong>97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions</strong> and proving its reliability to potential partners.</p><p>Neuraverse design case also received two awards from dProfile: <strong>Best of the Day</strong> and <strong>Best 3D</strong>.</p><p>Audience growth and community traction are further highlighted below in a recommendation from the Co-Founder.</p>",
+      },
+    ],
+    caseReviews: [
+      {
+        author: "Tyler Sloan",
+        role: "Co-Founder",
+        avatar: reviewerTylerSloanImage,
+        text: "<p>I truly enjoyed collaborating with Nikolai and deeply appreciated the consistently high quality of his work. For Neura we hit 1M total users in just over 1 month from launch of the Neuraverse. We grew Telegram to 30k+ members, Discord to 50k+ and Twitter to 80k+ in 2 months.</p><p>I’d be more than happy to recommend him and would absolutely love to stay in touch for future design opportunities.</p>",
       },
     ],
   },
