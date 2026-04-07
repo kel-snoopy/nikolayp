@@ -59,9 +59,7 @@ import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
 import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
 import reviewerAlexandreMortreuxImage from "../images/reviewers/alexandre-mortreux.jpg";
 
-import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
-
 import pathCryptoVideo from "../images/cases/path.mp4";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
 import pathCryptoContextImage from "../images/cases/path-crypto/context.png";
@@ -140,6 +138,13 @@ import neuraWorldMapSlider1Image1 from "../images/cases/neuraverse/neuraverse-wo
 import neuraWorldMapSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-slider1-2.png";
 import neuraWorldMapUiImage from "../images/cases/neuraverse/neuraverse-world-map-ui.png";
 import neuraCharacterVideo from "../images/cases/neuraverse/neuraverse-character.mp4";
+
+import chatAppImage from "../images/cases/chat-app.png";
+import chatAppSliderImage2 from "../images/cases/chatapp/chatapp-slider-2.png";
+import chatAppSliderImage3 from "../images/cases/chatapp/chatapp-slider-3.png";
+import chatAppSliderImage4 from "../images/cases/chatapp/chatapp-slider-4.png";
+import chatAppSliderImage5 from "../images/cases/chatapp/chatapp-slider-5.png";
+
 
 export const cases = [
   {
@@ -1055,6 +1060,26 @@ export const cases = [
         type: "image",
         image: chatAppImage,
         imageAlt: "Chat App case preview",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage2,
+        imageAlt: "Chat App case preview 2",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage3,
+        imageAlt: "Chat App case preview 3",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage4,
+        imageAlt: "Chat App case preview 4",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage5,
+        imageAlt: "Chat App case preview 5",
       },
     ],
     nextCase: {
