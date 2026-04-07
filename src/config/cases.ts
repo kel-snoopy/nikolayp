@@ -139,8 +139,6 @@ import neuraWorldMapGridSlider1Image2 from "../images/cases/neuraverse/neuravers
 import neuraWorldMapSlider1Image1 from "../images/cases/neuraverse/neuraverse-world-map-slider1-1.png";
 import neuraWorldMapSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-slider1-2.png";
 import neuraWorldMapUiImage from "../images/cases/neuraverse/neuraverse-world-map-ui.png";
-import neuraPathWorldHalf1Video from "../images/cases/neuraverse/path-world-half1.mp4";
-import neuraPathWorldHalf2Video from "../images/cases/neuraverse/path-world-half2.mp4";
 import neuraCharacterVideo from "../images/cases/neuraverse/neuraverse-character.mp4";
 
 export const cases = [
@@ -173,7 +171,22 @@ export const cases = [
       {
         type: "image",
         image: ankrContextImage,
-        imageAlt: "Ankr context preview",
+        imageAlt: "Ankr context preview 2",
+      },
+      {
+        type: "video",
+        video: ankrProductSlider3Video1,
+        autoPlay: true,
+      },
+      {
+        type: "image",
+        image: ankrContentSlider1Image1,
+        imageAlt: "Ankr context preview 4",
+      },
+      {
+        type: "image",
+        image: ankrProductSlider2Image1,
+        imageAlt: "Ankr context preview 5",
       },
     ],
     nextCase: {
@@ -486,7 +499,22 @@ export const cases = [
       {
         type: "image",
         image: pathCryptoContextImage,
-        imageAlt: "Path Crypto case preview",
+        imageAlt: "Path Crypto case preview 2",
+      },
+      {
+        type: "image",
+        image: pathCryptoSelfDirectedZeroSlider2,
+        imageAlt: "Path Crypto case preview 3",
+      },
+      {
+        type: "image",
+        image: pathCryptoWebsiteSlider1Image1,
+        imageAlt: "Path Crypto case preview 4",
+      },
+      {
+        type: "video",
+        video: pathCryptoDarkModeVideo,
+        autoPlay: true,
       },
     ],
     nextCase: {
@@ -765,7 +793,22 @@ export const cases = [
       {
         type: "image",
         image: neuraContextImage,
-        imageAlt: "Neuraverse case preview",
+        imageAlt: "Neuraverse case preview 2",
+      },
+      {
+        type: "image",
+        image: neuraLocationsGrandExchangeSlider1Image1,
+        imageAlt: "Neuraverse case preview 3",
+      },
+      {
+        type: "image",
+        image: neuraMainMenuImage,
+        imageAlt: "Neuraverse case preview 4",
+      },
+      {
+        type: "image",
+        image: neuraProfileSlider1Image1,
+        imageAlt: "Neuraverse case preview 5",
       },
     ],
     nextCase: {
