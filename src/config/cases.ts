@@ -748,7 +748,7 @@ export const cases = [
       roles: "UI/UX, Brand",
     },
     goal:
-      "Design an immersive game to onboard users into the new lockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
+      "Design an immersive game to onboard users into the new blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
