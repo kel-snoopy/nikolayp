@@ -141,6 +141,7 @@ import neuraWorldMapSlider1Image2 from "../images/cases/neuraverse/neuraverse-wo
 import neuraWorldMapUiImage from "../images/cases/neuraverse/neuraverse-world-map-ui.png";
 import neuraPathWorldHalf1Video from "../images/cases/neuraverse/path-world-half1.mp4";
 import neuraPathWorldHalf2Video from "../images/cases/neuraverse/path-world-half2.mp4";
+import neuraCharacterVideo from "../images/cases/neuraverse/neuraverse-character.mp4";
 
 export const cases = [
   {
@@ -497,7 +498,6 @@ export const cases = [
       {
         type: "video",
         video: pathCryptoVideo,
-        autoPlay: true,
       },
       {
         type: "text",
@@ -764,7 +764,7 @@ export const cases = [
       },
       {
         type: "image",
-        image: neuraImage,
+        image: neuraContextImage,
         imageAlt: "Neuraverse case preview",
       },
     ],
@@ -776,9 +776,9 @@ export const cases = [
     caseReviews: [],
     paragraphs: [
       {
-        type: "video",
-        video: neuraVideo,
-        autoPlay: true,
+        type: "image",
+        image: neuraImage,
+        imageAlt: "Neuraverse case preview",
       },
       {
         type: "text",
@@ -834,11 +834,9 @@ export const cases = [
         ],
       },
       {
-        type: "half",
-        images: [
-          { video: neuraPathWorldHalf1Video, imageAlt: "Neuraverse Fountain half 1" },
-          { video: neuraPathWorldHalf2Video, imageAlt: "Neuraverse Character half 2" },
-        ],
+        type: "video",
+        video: neuraCharacterVideo,
+        autoPlay: true,
       },
       {
         type: "text",
@@ -873,16 +871,16 @@ export const cases = [
         text: "The onboarding experience combined multiple tutorial layers: <strong>diegetic guidance</strong> through dialogue bubbles from the main character and NPCs, <strong>contextual UI hints</strong>, and <strong>overlay pop-up tutorials</strong>.",
       },
       {
-        type: "images",
-        images: [
-          { video: neuraTutorialSlider1Video1, imageAlt: "Neuraverse tutorial slider 1" },
-        ],
-      },
-      {
         type: "half",
         images: [
           { video: neuraTutorialHalf1Video, imageAlt: "Neuraverse tutorial 1" },
           { image: neuraTutorialHalf2Image, imageAlt: "Neuraverse tutorial 2" },
+        ],
+      },
+      {
+        type: "images",
+        images: [
+          { video: neuraTutorialSlider1Video1, imageAlt: "Neuraverse tutorial slider 1" },
         ],
       },
       {
@@ -1003,7 +1001,7 @@ export const cases = [
     goal:
       "Led the design of an advanced mobile messaging app for creators, featuring deep integration of crypto wallets, payments, and digital assets as the project’s sole designer.",
     impact:
-      "Delivered 50+ user flows, 500+ layouts, and 100+ icons, all adapted for dark mode and prepared for iOS development, bringing the product to a production-ready stage.",
+      "Delivered 50+ user flows, 500+ layouts, and 100+ icons, all adapted for dark mode and prepared for iOS development, bringing the project to a production-ready stage.",
     fullStoryText:
       "<p>Chat App is a mobile messaging app that allows users to send and receive messages. The app was launched in 2021 and was approved by the SEC in 2022.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
     detailsUrl: "/cases/chat-app",
