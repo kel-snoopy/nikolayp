@@ -19,6 +19,7 @@ export const extraShots = [
   {
     type: "video",
     video: extraWasm0Video,
+    autoPlay: true,
   },
   {
     type: "image",
@@ -28,6 +29,7 @@ export const extraShots = [
   {
     type: "video",
     video: extraHumancodeVideo,
+    autoPlay: true,
   },
   {
     type: "image",
@@ -37,6 +39,7 @@ export const extraShots = [
   {
     type: "video",
     video: extraZottoSniperVideo,
+    autoPlay: true,
   },
   {
     type: "image",
