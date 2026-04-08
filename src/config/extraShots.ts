@@ -1,36 +1,51 @@
-import ankrImage from "../images/cases/ankr.jpg";
-import ankrVideo from "../images/cases/ankr.mp4";
-import ankrNavigationSlider1Video1 from "../images/cases/ankr/navigation-slider1-1.mp4";
-import ankrNavigationSlider1Image2 from "../images/cases/ankr/navigation-slider1-2.png";
-import ankrNavigationSlider1Image3 from "../images/cases/ankr/navigation-slider1-3.png";
-import ankrNavigationSlider1Image4 from "../images/cases/ankr/navigation-slider1-4.png";
-import ankrNavigation2Image from "../images/cases/ankr/navigation2-2.png";
-import ankrNavigation2Video from "../images/cases/ankr/navigation2-1.mp4";
+import extraCustodySlider1Video from "../images/cases/extrashots/custody-slider-1.mp4";
+import extraCustodySlider2Image from "../images/cases/extrashots/custody-slider-2.png";
+import extraHumancodeVideo from "../images/cases/extrashots/humancode-video.mp4";
+import extraInvaultWalletImage from "../images/cases/extrashots/invault_wallet.png";
+import extraMirageImage from "../images/cases/extrashots/mirage.png";
+import extraMirage1Image from "../images/cases/extrashots/mirage-1.png";
+import extraStakefiImage from "../images/cases/extrashots/stakefi.png";
+import extraWasm0Video from "../images/cases/extrashots/wasm0-video.mp4";
+import extraZottoSniperVideo from "../images/cases/extrashots/zotto-sniper-video.mp4";
 
 export const extraShots = [
   {
+    type: "images",
+    images: [
+      { video: extraCustodySlider1Video },
+      { image: extraCustodySlider2Image, imageAlt: "Custody slider" },
+    ],
+  },
+  {
     type: "video",
-    video: ankrVideo,
+    video: extraWasm0Video,
   },
   {
     type: "image",
-    image: ankrImage,
-    imageAlt: "Ankr case preview",
+    image: extraStakefiImage,
+    imageAlt: "StakeFi",
   },
   {
-    type: "images",
-    images: [
-      { video: ankrNavigationSlider1Video1 },
-      { image: ankrNavigationSlider1Image2, imageAlt: "Ankr navigation slider 2" },
-      { image: ankrNavigationSlider1Image3, imageAlt: "Ankr navigation slider 3" },
-      { image: ankrNavigationSlider1Image4, imageAlt: "Ankr navigation slider 4" },
-    ],
+    type: "video",
+    video: extraHumancodeVideo,
   },
   {
-    type: "half",
-    images: [
-      { video: ankrNavigation2Video },
-      { image: ankrNavigation2Image, imageAlt: "Ankr navigation 2" },
-    ],
+    type: "image",
+    image: extraMirage1Image,
+    imageAlt: "Mirage detail",
+  },
+  {
+    type: "video",
+    video: extraZottoSniperVideo,
+  },
+  {
+    type: "image",
+    image: extraMirageImage,
+    imageAlt: "Mirage",
+  },
+  {
+    type: "image",
+    image: extraInvaultWalletImage,
+    imageAlt: "InVault wallet",
   },
 ] as const;
