@@ -9,7 +9,6 @@ export const profileLinks = {
    * Intro modal: direct video file URL (https://…/file.mp4 or site path like /intro.mp4 from `public/`),
    * or a YouTube / Vimeo page URL.
    */
-  introVideoUrl:
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  introVideoUrl: "/np2026intro.mp4",
 } as const;
 
