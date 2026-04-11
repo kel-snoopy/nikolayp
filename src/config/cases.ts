@@ -107,6 +107,7 @@ import pathCryptoWebsiteSlider3Image1 from "../images/cases/path-crypto/path-web
 import pathCryptoWebsiteSlider3Image2 from "../images/cases/path-crypto/path-website-slider3-2.png";
 import pathCryptoWebsiteSlider3Image3 from "../images/cases/path-crypto/path-website-slider3-3.png";
 import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-website-slider3-4.png";
+import pathDataResearchImage from "../images/cases/path-crypto/path-data-research.png";
 
 import reviewerAaronAslopImage from "../images/reviewers/aaron-aslop.jpg";
 
@@ -690,6 +691,16 @@ export const cases = [
         },
         {
           type: "text",
+          title: "Data & Research",
+          text: "<p>Since this was a new product built from the ground up, there was no existing usage data to rely on.</p><p>The foundation came from <strong>stakeholders vision, market research, competitor analysis, and user expectations</strong> gathered from reviews and discussions across the DeFi and crypto investment space.</p>",
+        },
+        {
+          type: "image",
+          image: pathDataResearchImage,
+          imageAlt: "Path Crypto data research",
+        },
+        {
+          type: "text",
           title: "Mobile App",
           text: "<p>All core functionality was adapted for the iOS app, with a focus on preserving familiar patterns from the web experience. At the same time, mobile-specific UX constraints and Apple Human Interface Guidelines required rethinking several interactions. In many cases, flows had to be redesigned from the ground up to feel native and efficient on mobile.</p>",
         },
@@ -802,7 +813,7 @@ export const cases = [
       },
       {
         type: "image",
-        image: neuraLocationsGrandExchangeSlider1Image1,
+        image: neuraLocationsValidatorHouseSlider1Image1,
         imageAlt: "Neuraverse case preview 3",
       },
       {
