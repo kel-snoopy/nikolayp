@@ -10,5 +10,10 @@ export const profileLinks = {
    * or a YouTube / Vimeo page URL.
    */
   introVideoUrl: "/np2026intro.mp4",
+  /**
+   * Short silent loop shown inside the floating “Intro” play control. Site path from `public/` or absolute URL.
+   * Leave empty to use the static PNG thumbnails instead.
+   */
+  introPreviewLoopUrl: "/np2026intro-preview-loop.mp4",
 } as const;
 
