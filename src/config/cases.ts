@@ -1050,7 +1050,7 @@ export const cases = [
     id: "chat-app",
     public: false,
     brand: "Chat App",
-    title: "Messaging meets DeFi: Designed a crypto-native superapp. ",
+    title: "Messaging meets DeFi: Designed a crypto-native chat app. ",
     meta: {
       dateRange: "2021—2022",
       location: "New-York, NY, Remote",
