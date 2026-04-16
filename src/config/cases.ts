@@ -835,7 +835,6 @@ export const cases = [
       title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
       shortTitle: "Ankr",
     },
-    caseReviews: [],
     paragraphs: [
       {
         type: "image",
