@@ -160,48 +160,48 @@
   border-radius: 0.694vw;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
   .caseImagesPanel {
-    margin: 20px 0;
+    margin: 22px 0;
   }
 
   .caseImagesSlider {
-    gap: 15px;
+    gap: 17px;
   }
 
   .caseImagesSliderViewport {
-    border-radius: 10px;
+    border-radius: 11px;
   }
 
   .caseImagesSliderImg {
-    border-radius: 10px;
+    border-radius: 11px;
   }
 
   .caseImagesSliderNav {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
   }
 
   .caseImagesSliderNavPrev {
-    left: 15px;
+    left: 17px;
   }
 
   .caseImagesSliderNavNext {
-    right: 15px;
+    right: 17px;
   }
 
   .caseImagesSliderDots {
-    gap: 10px;
+    gap: 11px;
   }
 
   .caseImagesSliderDot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
   }
 
   .caseImagesSlider .caseImage,
   .caseImagesSlider .caseVideo {
-    border-radius: 10px;
+    border-radius: 11px;
   }
 }
 

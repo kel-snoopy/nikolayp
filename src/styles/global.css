@@ -158,23 +158,23 @@ button.primaryButton {
   display: none;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
   :root {
-    --header-height: 80px;
+    --header-height: 89px;
   }
 
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .container {
-    max-width: 1165px;
+    max-width: 1294px;
   }
 
   .primaryButton {
-    border-radius: 30px;
-    height: 60px;
-    padding: 20px 10px;
+    border-radius: 33px;
+    height: 67px;
+    padding: 22px 11px;
   }
 }
 
