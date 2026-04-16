@@ -59,9 +59,7 @@ import reviewerTylerSloanImage from "../images/reviewers/tyler-sloan.jpg";
 import reviewerAleksandrIshchenkoImage from "../images/reviewers/aleksandr-ishchenko.jpg";
 import reviewerAlexandreMortreuxImage from "../images/reviewers/alexandre-mortreux.jpg";
 
-import chatAppImage from "../images/cases/chat-app.jpg";
 import neuraImage from "../images/cases/neura.jpg";
-
 import pathCryptoVideo from "../images/cases/path.mp4";
 import pathCryptoImage from "../images/cases/path-crypto.jpg";
 import pathCryptoContextImage from "../images/cases/path-crypto/context.png";
@@ -109,8 +107,45 @@ import pathCryptoWebsiteSlider3Image1 from "../images/cases/path-crypto/path-web
 import pathCryptoWebsiteSlider3Image2 from "../images/cases/path-crypto/path-website-slider3-2.png";
 import pathCryptoWebsiteSlider3Image3 from "../images/cases/path-crypto/path-website-slider3-3.png";
 import pathCryptoWebsiteSlider3Image4 from "../images/cases/path-crypto/path-website-slider3-4.png";
+import pathDataResearchImage from "../images/cases/path-crypto/path-data-research.png";
 
 import reviewerAaronAslopImage from "../images/reviewers/aaron-aslop.jpg";
+
+import neuraVideo from "../images/cases/neuraverse.mp4";
+import neuraLocationsDefiVillageImage from "../images/cases/neuraverse/locations-defi-village.png";
+import neuraLocationsOracleImage from "../images/cases/neuraverse/locations-oracle.png";
+import neuraLocationsGrandExchangeSlider1Image1 from "../images/cases/neuraverse/locations-the-grand-exchange-slider1-1.png";
+import neuraLocationsGrandExchangeSlider1Image2 from "../images/cases/neuraverse/locations-the-grand-exchange-slider1-2.png";
+import neuraLocationsLadyLuckImage from "../images/cases/neuraverse/locations-the-lady-luck.png";
+import neuraLocationsValidatorHouseSlider1Image1 from "../images/cases/neuraverse/locations-validator-house-slider1-1.png";
+import neuraLocationsValidatorHouseSlider1Image2 from "../images/cases/neuraverse/locations-validator-house-slider1-2.png";
+import neuraContextImage from "../images/cases/neuraverse/neuraverse-context.png";
+import neuraMainMenuImage from "../images/cases/neuraverse/neuraverse-main-menu.png";
+import neuraMyRoleImage from "../images/cases/neuraverse/neuraverse-my-role.png";
+import neuraNavigationImage from "../images/cases/neuraverse/neuraverse-navigation.png";
+import neuraProfileSlider1Image1 from "../images/cases/neuraverse/neuraverse-profile-slider1-1.png";
+import neuraProfileSlider1Image2 from "../images/cases/neuraverse/neuraverse-profile-slider1-2.png";
+import neuraQuestsImage1 from "../images/cases/neuraverse/neuraverse-quests-1.png";
+import neuraQuestsImage2 from "../images/cases/neuraverse/neuraverse-quests-2.png";
+import neuraTutorialHalf1Video from "../images/cases/neuraverse/neuraverse-tutorial-half1.mp4";
+import neuraTutorialHalf2Image from "../images/cases/neuraverse/neuraverse-tutorial-half2.png";
+import neuraTutorialSlider1Video1 from "../images/cases/neuraverse/neuraverse-tutorial-slider1-1.mp4";
+import neuraUiHalf1Video from "../images/cases/neuraverse/neuraverse-ui-half1.mp4";
+import neuraUiHalf2Video from "../images/cases/neuraverse/neuraverse-ui-half2.mp4";
+import neuraVisualLanguageVideo from "../images/cases/neuraverse/neuraverse-visual-language.mp4";
+import neuraWorldMapGridSlider1Image1 from "../images/cases/neuraverse/neuraverse-world-map-grid-slider1-1.png";
+import neuraWorldMapGridSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-grid-slider1-2.png";
+import neuraWorldMapSlider1Image1 from "../images/cases/neuraverse/neuraverse-world-map-slider1-1.png";
+import neuraWorldMapSlider1Image2 from "../images/cases/neuraverse/neuraverse-world-map-slider1-2.png";
+import neuraWorldMapUiImage from "../images/cases/neuraverse/neuraverse-world-map-ui.png";
+import neuraCharacterVideo from "../images/cases/neuraverse/neuraverse-character.mp4";
+
+import chatAppImage from "../images/cases/chat-app.png";
+import chatAppSliderImage2 from "../images/cases/chatapp/chatapp-slider-2.png";
+import chatAppSliderImage3 from "../images/cases/chatapp/chatapp-slider-3.png";
+import chatAppSliderImage4 from "../images/cases/chatapp/chatapp-slider-4.png";
+import chatAppSliderImage5 from "../images/cases/chatapp/chatapp-slider-5.png";
+
 
 export const cases = [
   {
@@ -142,7 +177,22 @@ export const cases = [
       {
         type: "image",
         image: ankrContextImage,
-        imageAlt: "Ankr context preview",
+        imageAlt: "Ankr context preview 2",
+      },
+      {
+        type: "video",
+        video: ankrProductSlider3Video1,
+        autoPlay: true,
+      },
+      {
+        type: "image",
+        image: ankrContentSlider1Image1,
+        imageAlt: "Ankr context preview 4",
+      },
+      {
+        type: "image",
+        image: ankrProductSlider2Image1,
+        imageAlt: "Ankr context preview 5",
       },
     ],
     nextCase: {
@@ -442,7 +492,7 @@ export const cases = [
     impact:
       "Following the product announcement, the social media audience grew from 0 to ~150K followers. The platform was approved by the SEC, and the audience was later integrated into Gemini.",
     fullStoryText:
-      "<p>Path Crypto is a crypto investment platform that allows users to invest in a variety of cryptocurrencies. The platform was launched in 2022 and was approved by the SEC in 2023.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
+      "<p>Path (prev. Stacked) is a platform designed to make crypto investing secure and accessible to a broad audience. I was a key <strong>Product Designer</strong>, responsible for the UI/UX across web and mobile applications, as well as the marketing website.</p><p>Working in a lean team of two designers and a CGI artist, we built the product from scratch <strong>under strict regulatory and compliance constraints</strong>, with a clear goal: pass SEC approval while maintaining a user-friendly, intuitive experience for mainstream users.</p><p>We successfully achieved both. Following the product announcement, the social media audience grew from 0 to ~150K, and the platform was approved by the SEC.</p><p>Here’s the full story behind this work.</p>",
     detailsUrl: "/cases/path-crypto",
     image: pathCryptoImage,
     imageAlt: "Path Crypto case preview",
@@ -455,7 +505,22 @@ export const cases = [
       {
         type: "image",
         image: pathCryptoContextImage,
-        imageAlt: "Path Crypto case preview",
+        imageAlt: "Path Crypto case preview 2",
+      },
+      {
+        type: "image",
+        image: pathCryptoSelfDirectedZeroSlider2,
+        imageAlt: "Path Crypto case preview 3",
+      },
+      {
+        type: "image",
+        image: pathCryptoWebsiteSlider1Image1,
+        imageAlt: "Path Crypto case preview 4",
+      },
+      {
+        type: "video",
+        video: pathCryptoDarkModeVideo,
+        autoPlay: true,
       },
     ],
     nextCase: {
@@ -626,6 +691,16 @@ export const cases = [
         },
         {
           type: "text",
+          title: "Data & Research",
+          text: "<p>Since this was a new product built from the ground up, there was no existing usage data to rely on.</p><p>The foundation came from <strong>stakeholders vision, market research, competitor analysis, and user expectations</strong> gathered from reviews and discussions across the DeFi and crypto investment space.</p>",
+        },
+        {
+          type: "image",
+          image: pathDataResearchImage,
+          imageAlt: "Path Crypto data research",
+        },
+        {
+          type: "text",
           title: "Mobile App",
           text: "<p>All core functionality was adapted for the iOS app, with a focus on preserving familiar patterns from the web experience. At the same time, mobile-specific UX constraints and Apple Human Interface Guidelines required rethinking several interactions. In many cases, flows had to be redesigned from the ground up to feel native and efficient on mobile.</p>",
         },
@@ -689,6 +764,12 @@ export const cases = [
             { image: pathCryptoWebsiteSlider3Image4, imageAlt: "Path Crypto website slider 3-4" },
           ],
         },
+        {
+          type: "text",
+          class: "__result",
+          title: "Result",
+          text: "Following the product announcement, the social media audience grew from 0 to <strong>~150K followers</strong>. Path was recognized as a <strong>top fintech company</strong> in the Midwest by Purpose Jobs, and successfully passed SEC approval. The audience was later integrated into Gemini.",
+        },
     ],
     caseReviews: [
       {
@@ -701,8 +782,8 @@ export const cases = [
   },
   {
     id: "neura",
-    public: false,
-    brand: "Neura",
+    public: true,
+    brand: "Neuraverse",
     title: "Drove blockchain adoption by gamifying ecosystem products.",
     meta: {
       dateRange: "2025—2026",
@@ -711,19 +792,39 @@ export const cases = [
       roles: "UI/UX, Brand",
     },
     goal:
-      "Design an immersive metaverse to onboard new users into the blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
+      "Design an immersive game to onboard users into the new blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
-      "<p>Neura is a blockchain platform that allows users to invest in a variety of cryptocurrencies. The platform was launched in 2025 and was approved by the SEC in 2026.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
+      "<p>Neuraverse is an immersive game built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As Senior Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
     detailsUrl: "/cases/neura",
     image: neuraImage,
-    imageAlt: "Neura case preview",
+    imageAlt: "Neuraverse case preview",
     preview: [
       {
+        type: "video",
+        video: neuraVideo,
+        autoPlay: true,
+      },
+      {
         type: "image",
-        image: neuraImage,
-        imageAlt: "Neura case preview",
+        image: neuraContextImage,
+        imageAlt: "Neuraverse case preview 2",
+      },
+      {
+        type: "image",
+        image: neuraLocationsValidatorHouseSlider1Image1,
+        imageAlt: "Neuraverse case preview 3",
+      },
+      {
+        type: "image",
+        image: neuraMainMenuImage,
+        imageAlt: "Neuraverse case preview 4",
+      },
+      {
+        type: "image",
+        image: neuraProfileSlider1Image1,
+        imageAlt: "Neuraverse case preview 5",
       },
     ],
     nextCase: {
@@ -736,7 +837,212 @@ export const cases = [
       {
         type: "image",
         image: neuraImage,
-        imageAlt: "Neura case preview",
+        imageAlt: "Neuraverse case preview",
+      },
+      {
+        type: "text",
+        title: "Context",
+        text: 'In 2025, Web3 infrastructure provider <a href="/cases/ankr" target="_blank">Ankr</a> launched its own blockchain, Neura, together with a set of ecosystem partner products. The key challenge was to drive user adoption, bring activity into the ecosystem, and stress-test the infrastructure through real-world use cases.',
+      },
+      {
+        type: "image",
+        image: neuraContextImage,
+        imageAlt: "Neuraverse context",
+      },
+      {
+        type: "text",
+        title: "Task & My Role",
+        text: "<p>The idea was to create an interactive game experience where locations and characters narratively represented key ecosystem functions, allowing users to access them seamlessly from within the game itself. A set of game mechanics and quest loops was also designed to <strong>drive DAU/MAU growth</strong> through repeated engagement.</p><p><strong>As Senior Product Designer</strong>, I owned most of the in-game interfaces and user flows, while also coordinating and contributing to the creative concept, visual direction, CGI, gameplay mechanics, and design QA during frontend implementation.</p>",
+      },
+      {
+        type: "image",
+        image: neuraMyRoleImage,
+        imageAlt: "Neuraverse my role",
+      },
+      {
+        type: "text",
+        title: "Product Structure & User Flows",
+        text: "<p>The initial concept was built around a world map with a set of locations representing core ecosystem functions, alongside a dedicated quests layer to guide user progression.<p>As the product evolved and the feature set expanded, the experience required more locations, a stronger navigation system, and context-aware tutorials.</p><p>This evolution eventually led to the following structure:</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraNavigationImage, imageAlt: "Neuraverse sitemap" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Visual Language",
+        text: "<p>We chose a traditional heritage-inspired setting infused with advanced high-tech elements, creating a world that feels both atmospheric and futuristic.</p><p>The UI was intentionally kept neutral and minimal, designed to complement the game world rather than compete with it.</p>",
+      },
+      {
+        type: "video",
+        video: neuraVisualLanguageVideo,
+        autoPlay: true,
+      },
+      {
+        type: "text",
+        title: "World Map & Character",
+        text: "<p>The world map became <strong>the core hub</strong> of the experience, giving users access to every location from a single, intuitive entry point.</p><p>We chose an isometric perspective, which made the map easier to scale, simpler to update with new assets, and more natural to navigate. The environments were produced through a <strong>mix of 3D and AI-art</strong>, allowing the team to move fast while preserving visual consistency.</p><p>The main character was fully built in 3D, with movement and idle animations designed for all directions to support smooth exploration across the world.</p>",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraWorldMapSlider1Image1, imageAlt: "Neuraverse world map slider 1" },
+          { image: neuraWorldMapSlider1Image2, imageAlt: "Neuraverse world map slider 2" },
+        ],
+      },
+      {
+        type: "video",
+        video: neuraCharacterVideo,
+        autoPlay: true,
+      },
+      {
+        type: "text",
+        text: "My responsibility was to establish <strong>the grid framework</strong> for the world assets and coordinate the artists around it.Once the assets were ready, I composed the full <strong>layered scenes in Figma</strong> for efficient frontend implementation.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraWorldMapGridSlider1Image1, imageAlt: "Neuraverse world map grid slider 1" },
+          { image: neuraWorldMapGridSlider1Image2, imageAlt: "Neuraverse world map grid slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        text: "<p>I also designed the <strong>mouse and keyboard control patterns</strong>, along with the behavior of UI elements and contextual map hints: including labels for available and locked locations, floating action buttons, text bubbles, and feedback states for collected items.</p><p>On top of that, I adapted the entire interaction system for the <strong>mobile version</strong>, ensuring the same clarity and responsiveness across touch-based navigation.</p>",
+      },
+      {
+        type: "image",
+        image: neuraWorldMapUiImage,
+        imageAlt: "Neuraverse world map ui",
+      },
+      {
+        type: "half",
+        images: [
+          { video: neuraUiHalf1Video, imageAlt: "Neuraverse world map ui" },
+          { video: neuraUiHalf2Video, imageAlt: "Neuraverse world map ui" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Tutorials",
+        text: "The onboarding experience combined multiple tutorial layers: <strong>diegetic guidance</strong> through dialogue bubbles from the main character and NPCs, <strong>contextual UI hints</strong>, and <strong>overlay pop-up tutorials</strong>.",
+      },
+      {
+        type: "half",
+        images: [
+          { video: neuraTutorialHalf1Video, imageAlt: "Neuraverse tutorial 1" },
+          { image: neuraTutorialHalf2Image, imageAlt: "Neuraverse tutorial 2" },
+        ],
+      },
+      {
+        type: "images",
+        images: [
+          { video: neuraTutorialSlider1Video1, imageAlt: "Neuraverse tutorial slider 1" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Locations",
+        text: "<p>The locations and side characters were designed to embody specific Neura blockchain features, each serving a clear functional purpose within the ecosystem narrative. Here are some of them:</p><p><strong>Oracle</strong> acts as an <strong>AI helper agent</strong>, allowing users to chat in natural language about the game world, quests, and the Neura blockchain directly within the experience.</p>",
+      },
+      {
+        type: "image",
+        image: neuraLocationsOracleImage,
+        imageAlt: "Neuraverse locations oracle",
+      },
+      {
+        type: "text",
+        text: "<strong>Validator House</strong> lets players interact with network validators embodied as <strong>AI-powered</strong> characters, each with a defined personality and unique conversational behavior.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraLocationsValidatorHouseSlider1Image1, imageAlt: "Neuraverse locations validator house slider 1" },
+          { image: neuraLocationsValidatorHouseSlider1Image2, imageAlt: "Neuraverse locations validator house slider 2" },
+        ],
+        imageAlt: "Neuraverse locations validator house",
+      },
+      {
+        type: "text",
+        text: "<strong>Defi Village</strong> represents Neura’s DeFi layer, allowing players to seamlessly access financial features.",
+      },
+      {
+        type: "image",
+        image: neuraLocationsDefiVillageImage,
+        imageAlt: "Neuraverse locations defi village",
+      },
+      {
+        type: "text",
+        text: "<strong>The Grand Exchange</strong> is one of the core DeFi features, allowing players to swap tokens and explore liquidity pools within the network.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraLocationsGrandExchangeSlider1Image1, imageAlt: "Neuraverse locations grand exchange slider 1" },
+          { image: neuraLocationsGrandExchangeSlider1Image2, imageAlt: "Neuraverse locations grand exchange slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        text: "<strong>The Lady Luck</strong> is a ship that introduces players to other games in the ecosystem, allowing them to “sail” directly into those experiences.",
+      },
+      {
+        type: "image",
+        image: neuraLocationsLadyLuckImage,
+        imageAlt: "Neuraverse locations lady luck",
+      },
+      {
+        type: "text",
+        title: "Main Menu",
+        text: "The main menu allows users to <strong>skip character navigation</strong> and jump directly to any location in just a few clicks. It also serves as an access layer for the rest of the experience, including FAQ, Docs, Quests & Leaderboard, and the project’s social channels.",
+      },
+      {
+        type: "image",
+        image: neuraMainMenuImage,
+        imageAlt: "Neuraverse main menu",
+      },
+      {
+        type: "text",
+        title: "Quests & Leaderboard",
+        text: "This layer functioned as an engagement dashboard, combining ecosystem-driven tasks with a leaderboard system. Most quests were directly tied to actions inside the Neura ecosystem, significantly <strong>improving engagement and active user metrics</strong>.",
+      },
+      {
+        type: "image",
+        image: neuraQuestsImage1,
+        imageAlt: "Neuraverse quests 1",
+      },
+      {
+        type: "image",
+        image: neuraQuestsImage2,
+        imageAlt: "Neuraverse quests 2",
+      },
+      {
+        type: "text",
+        title: "Profile",
+        text: "Just a compact pop-up that brings together profile settings, achievement badges, activity history, and more.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: neuraProfileSlider1Image1, imageAlt: "Neuraverse profile slider 1" },
+          { image: neuraProfileSlider1Image2, imageAlt: "Neuraverse profile slider 2" },
+        ],
+      },
+      {
+        type: "text",
+        class: "__result",
+        title: "Result",
+        text: "<p>The network scaled to <strong>97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions</strong> and proving its reliability to potential partners.</p><p>Neuraverse design case also received two awards from dProfile: <strong>Best of the Day</strong> and <strong>Best 3D</strong>.</p><p>Audience growth and community traction are further highlighted below in a recommendation from the Co-Founder.</p>",
+      },
+    ],
+    caseReviews: [
+      {
+        author: "Tyler Sloan",
+        role: "Co-Founder",
+        avatar: reviewerTylerSloanImage,
+        text: "<p>I truly enjoyed collaborating with Nikolai and deeply appreciated the consistently high quality of his work. For Neura we hit 1M total users in just over 1 month from launch of the Neuraverse. We grew Telegram to 30k+ members, Discord to 50k+ and Twitter to 80k+ in 2 months.</p><p>I’d be more than happy to recommend him and would absolutely love to stay in touch for future design opportunities.</p>",
       },
     ],
   },
@@ -744,7 +1050,7 @@ export const cases = [
     id: "chat-app",
     public: false,
     brand: "Chat App",
-    title: "Messaging meets DeFi: Designed a crypto-native superapp. ",
+    title: "Messaging meets DeFi: Designed a crypto-native chat app. ",
     meta: {
       dateRange: "2021—2022",
       location: "New-York, NY, Remote",
@@ -754,7 +1060,7 @@ export const cases = [
     goal:
       "Led the design of an advanced mobile messaging app for creators, featuring deep integration of crypto wallets, payments, and digital assets as the project’s sole designer.",
     impact:
-      "Delivered 50+ user flows, 500+ layouts, and 100+ icons, all adapted for dark mode and prepared for iOS development, bringing the product to a production-ready stage.",
+      "Delivered 50+ user flows, 500+ layouts, and 100+ icons, all adapted for dark mode and prepared for iOS development, bringing the project to a production-ready stage.",
     fullStoryText:
       "<p>Chat App is a mobile messaging app that allows users to send and receive messages. The app was launched in 2021 and was approved by the SEC in 2022.</p><p>As the sole designer on the project, I was responsible for designing the entire user experience, from the initial onboarding process to the final investment journey. I worked closely with the product team to ensure that the design was both functional and beautiful.</p><p>Here’s the full story behind this work.</p>",
     detailsUrl: "/cases/chat-app",
@@ -765,6 +1071,26 @@ export const cases = [
         type: "image",
         image: chatAppImage,
         imageAlt: "Chat App case preview",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage2,
+        imageAlt: "Chat App case preview 2",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage3,
+        imageAlt: "Chat App case preview 3",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage4,
+        imageAlt: "Chat App case preview 4",
+      },
+      {
+        type: "image",
+        image: chatAppSliderImage5,
+        imageAlt: "Chat App case preview 5",
       },
     ],
     nextCase: {

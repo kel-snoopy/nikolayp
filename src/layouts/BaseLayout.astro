@@ -37,6 +37,7 @@ const header = {
 };
 
 const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
+const introPreviewLoopUrl = profileLinks.introPreviewLoopUrl.trim();
 
 const siteManifest = {
   name: header.name,
@@ -159,7 +160,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             <span class="brandName">Intro</span>
             <span class="brandVideo">
               <span class="icon-play-small"></span>
-              <span class="brandVideoTime desktop-only">0:50</span>
+              <span class="brandVideoTime desktop-only">0:49</span>
             </span>
           </button>
         </div>
@@ -249,18 +250,34 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           aria-controls="video-intro-modal"
           aria-label="Watch a Quick Intro"
         >
-          <img
-            class="videoCtaPhoto desktop-only"
-            src={videoCtaSrc.src}
-            alt=""
-            loading="lazy"
-          />
-          <img
-            class="videoCtaPhoto mobile-only"
-            src={videoCtaMobileSrc.src}
-            alt=""
-            loading="lazy"
-          />
+          {introPreviewLoopUrl ? (
+            <video
+              id="video-cta-preview"
+              class="videoCtaPreview"
+              src={introPreviewLoopUrl}
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster={videoCtaSrc.src}
+              aria-hidden="true"
+            />
+          ) : (
+            <>
+              <img
+                class="videoCtaPhoto desktop-only"
+                src={videoCtaSrc.src}
+                alt=""
+                loading="lazy"
+              />
+              <img
+                class="videoCtaPhoto mobile-only"
+                src={videoCtaMobileSrc.src}
+                alt=""
+                loading="lazy"
+              />
+            </>
+          )}
           <span class="videoCtaPlay icon-play"></span>
         </button>
       </div>
@@ -403,6 +420,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         var modalClose = document.getElementById("video-intro-close");
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
+        var ctaPreview = document.getElementById("video-cta-preview");
         var lastIntroOpener = null;
         var CTA_DISMISS_KEY = "videoIntroCtaDismissed";
 
@@ -427,12 +445,40 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           });
         }
 
+        function ctaPreviewMotionOk() {
+          try {
+            return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          } catch (e) {
+            return true;
+          }
+        }
+
+        function resumeCtaPreview() {
+          if (!ctaPreview || !ctaPreviewMotionOk()) return;
+          try {
+            ctaPreview.play();
+          } catch (err) {}
+        }
+
+        if (ctaPreview) {
+          if (ctaPreviewMotionOk()) {
+            try {
+              ctaPreview.play();
+            } catch (err0) {}
+          }
+        }
+
         function openVideoModal(e) {
           if (e && e.currentTarget) lastIntroOpener = e.currentTarget;
           if (!modal) return;
           modal.hidden = false;
           modal.setAttribute("aria-hidden", "false");
           document.body.style.overflow = "hidden";
+          if (ctaPreview) {
+            try {
+              ctaPreview.pause();
+            } catch (e1) {}
+          }
           if (iframe && iframe.dataset.embedBase) {
             var base = iframe.dataset.embedBase;
             var sep = base.indexOf("?") >= 0 ? "&" : "?";
@@ -468,6 +514,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             } catch (err2) {}
           } else if (openBtn) openBtn.focus();
           lastIntroOpener = null;
+          resumeCtaPreview();
         }
 
         if (openBtn) openBtn.addEventListener("click", openVideoModal);
@@ -1124,12 +1171,16 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         transform: translate(-50%,-50%) scale(1.2);
       }
 
-      .videoCtaPhoto {
+      .videoCtaPhoto,
+      .videoCtaPreview {
         width: 100%;
         height: 100%;
         min-height: 0;
         object-fit: cover;
         display: block;
+      }
+      .videoCtaPreview {
+        pointer-events: none;
       }
       .videoCtaPhoto.mobile-only {
         display: none;
