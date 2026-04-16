@@ -283,8 +283,9 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             <defs>
               <path id="videoCtaArcPath" d="M 17.3 130.1 A 88 88 0 0 0 182.7 130.1"/>
             </defs>
-            <text class="videoCtaArcText" fill="white" font-size="18" font-weight="400" letter-spacing="0.8">
-              <textPath href="#videoCtaArcPath" startOffset="50%" text-anchor="middle">Meet Me In 49 Seconds</textPath>
+            <text class="videoCtaArcText" fill="white" font-size="18" font-weight="400" letter-spacing="0.5" dy="6">
+              <textPath class="desktop-only" href="#videoCtaArcPath" startOffset="50%" text-anchor="middle">Meet Me In 49 Seconds</textPath>
+              <textPath class="mobile-only" href="#videoCtaArcPath" startOffset="50%" text-anchor="middle">Meet Me</textPath>
             </text>
           </svg>
         </button>
