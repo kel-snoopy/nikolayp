@@ -70,28 +70,28 @@
   border-radius: 0.694vw;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1600px) {
   .caseVideoPanel {
-    margin: 20px 0;
-    border-radius: 10px;
+    margin: 22px 0;
+    border-radius: 11px;
   }
 
   .caseImagePanel {
-    margin: 20px 0;
-    border-radius: 10px;
+    margin: 22px 0;
+    border-radius: 11px;
   }
 
   .caseHalfPanel {
-    margin: 20px 0;
+    margin: 22px 0;
   }
 
   .caseHalfGrid {
-    border-radius: 10px;
+    border-radius: 11px;
   }
 
   .caseImage,
   .caseVideo {
-    border-radius: 10px;
+    border-radius: 11px;
   }
 }
 
