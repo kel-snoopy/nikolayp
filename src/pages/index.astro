@@ -53,7 +53,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
     </div>
   </section>
 
-  {cases.map((caseItem) => (
+  {cases.filter((caseItem) => caseItem.showOnHomepage).map((caseItem) => (
     <section
       class:list={["homeCase", !caseItem.public && "homeCase--private"]}
       aria-labelledby={`case-${caseItem.id}-title`}

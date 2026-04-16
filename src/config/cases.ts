@@ -151,6 +151,7 @@ export const cases = [
   {
     id: "ankr",
     public: true,
+    showOnHomepage: true,
     brand: "Ankr",
     title: "Elevated the market position of a blockchain infrastructure provider.",
     meta: {
@@ -479,6 +480,7 @@ export const cases = [
   {
     id: "path-crypto",
     public: true,
+    showOnHomepage: true,
     brand: "Path Crypto",
     title: "End-to-end design for an SEC-approved crypto investing platform.",
     meta: {
@@ -783,6 +785,7 @@ export const cases = [
   {
     id: "neura",
     public: true,
+    showOnHomepage: true,
     brand: "Neuraverse",
     title: "Drove blockchain adoption by gamifying ecosystem products.",
     meta: {
@@ -1049,6 +1052,7 @@ export const cases = [
   {
     id: "chat-app",
     public: false,
+    showOnHomepage: true,
     brand: "Chat App",
     title: "Messaging meets DeFi: Designed a crypto-native chat app. ",
     meta: {
