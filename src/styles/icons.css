@@ -80,6 +80,19 @@
   mask-size: contain;
   transition: all 0.2s linear;
 }
+.icon-arrow-right-small {
+  width: 1.3889vw;
+  height: 1.3889vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/arrow-right-small.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  margin-left: -2px;
+  transition: all 0.2s linear;
+  vertical-align: top;
+}
 
 @media screen and (min-width: 1600px) {
   .icon-telegram {
@@ -111,6 +124,10 @@
     height: 56px;
   }
   .icon-arrow-right {
+    width: 22px;
+    height: 22px;
+  }
+  .icon-arrow-right-small {
     width: 22px;
     height: 22px;
   }
@@ -146,6 +163,10 @@
     height: 13.333vw;
   }
   .icon-arrow-right {
+    width: 5.33vw;
+    height: 5.33vw;
+  }
+  .icon-arrow-right-small {
     width: 5.33vw;
     height: 5.33vw;
   }
