@@ -45,7 +45,7 @@ function videoUrl(video: string | { src: string }): string {
             loop
             muted
             playsinline
-            preload="auto"
+            preload="metadata"
             src={videoUrl(p.video)}
           >
             Your browser does not support the video tag.
@@ -84,7 +84,7 @@ function videoUrl(video: string | { src: string }): string {
                   loop
                   muted
                   playsinline
-                  preload="auto"
+                  preload="metadata"
                   src={videoUrl(
                     (it as { video: string | { src: string } }).video
                   )}
@@ -125,7 +125,7 @@ function videoUrl(video: string | { src: string }): string {
                           loop
                           muted
                           playsinline
-                          preload="auto"
+                          preload="metadata"
                           src={videoUrl(image.video)}
                         >
                           Your browser does not support the video tag.
