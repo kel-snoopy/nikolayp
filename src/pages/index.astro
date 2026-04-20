@@ -87,7 +87,10 @@ function previewItems(caseItem: (typeof cases)[number]) {
             <h4>Goal</h4>
             <p>{caseItem.goal}</p>
             {caseItem.public ? (
-              <a class="caseDetails" href={caseItem.detailsUrl}>Details →</a>
+              <a class="caseDetails" href={caseItem.detailsUrl}>
+                <span class="caseDetails-label">Details</span>
+                <i class="icon-arrow-right-small"></i>
+              </a>
             ) : (
               <span class="caseDetails __coming-soon">Details Coming Soon</span>
             )}

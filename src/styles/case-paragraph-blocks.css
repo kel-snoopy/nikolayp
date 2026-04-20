@@ -47,7 +47,7 @@
   border-radius: 0.694vw;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: auto;
   background-color: var(--case-media-placeholder-bg);
   object-fit: cover;
 }
