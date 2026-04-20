@@ -14,6 +14,41 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const slugStr = typeof slug === "string" ? slug : String(slug ?? "");
 const caseItem = cases.find((c) => c.id === slugStr)!;
+const caseSeo: Record<
+  string,
+  { title: string; description: string; ogImage: string; ogImageAlt: string }
+> = {
+  ankr: {
+    title:
+      "Ankr Case Study | Web3 Infrastructure Provider UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Driving audience growth and enterprise adoption by shaping the design language and product flows across Ankr’s website, products, and client solutions.",
+    ogImage: "/og/ankr.png",
+    ogImageAlt: "Ankr case study cover",
+  },
+  "path-crypto": {
+    title:
+      "Path Case Study | Crypto Investment Platform UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Designed a crypto investment platform from scratch under SEC compliance. UX, web and mobile apps, wallet flows, and product design case study.",
+    ogImage: "/og/path-crypto.png",
+    ogImageAlt: "Path case study cover",
+  },
+  neura: {
+    title:
+      "Neuraverse Case Study | Web3 Game UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Designed the UX for Neuraverse, a Web3 game driving 1M+ blockchain users. Game interface, onboarding, engagement systems, and product design process.",
+    ogImage: "/og/neura.png",
+    ogImageAlt: "Neuraverse case study cover",
+  },
+};
+const seo = caseSeo[slugStr] ?? {
+  title: `${caseItem.brand} | Nikolai Posvezhnyi`,
+  description: caseItem.goal,
+  ogImage: "/og/home.png",
+  ogImageAlt: `${caseItem.brand} case cover`,
+};
 
 /** Vite imports `.mp4` as a string URL; images use `{ src }`. */
 function videoUrl(video: string | { src: string }): string {
@@ -21,7 +56,12 @@ function videoUrl(video: string | { src: string }): string {
 }
 ---
 
-<BaseLayout title={caseItem.brand}>
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogImage={seo.ogImage}
+  ogImageAlt={seo.ogImageAlt}
+>
   <section class="casePage">
     <div class="caseTop">
       <div class="caseLeft">
