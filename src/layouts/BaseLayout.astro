@@ -2,7 +2,13 @@
 import "../styles/global.css";
 import "../styles/icons.css";
 
-const { title = "NikolayP2", page: pageOverride } = Astro.props;
+const {
+  title = "NikolayP2",
+  description = "",
+  ogImage = "",
+  ogImageAlt = "",
+  page: pageOverride,
+} = Astro.props;
 
 /** Maps URL to `home` | `about` | `case` for the `<html>` class (override with `page` prop). */
 function pageClassFromPathname(pathname: string): string {
@@ -38,6 +44,14 @@ const header = {
 
 const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
 const introPreviewLoopUrl = profileLinks.introPreviewLoopUrl.trim();
+const canonicalUrl = Astro.site
+  ? new URL(`${Astro.url.pathname}${Astro.url.search}`, Astro.site).toString()
+  : `${Astro.url.pathname}${Astro.url.search}`;
+const resolvedOgImage = ogImage
+  ? Astro.site
+    ? new URL(ogImage, Astro.site).toString()
+    : ogImage
+  : "";
 
 const siteManifest = {
   name: header.name,
@@ -70,6 +84,19 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       rel="stylesheet"
     />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nikolai Posvezhnyi" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
     <link rel="icon" href={faviconIco} sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
     <link rel="icon" type="image/png" sizes="16x16" href={favicon16} />
