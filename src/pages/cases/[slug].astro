@@ -14,6 +14,41 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const slugStr = typeof slug === "string" ? slug : String(slug ?? "");
 const caseItem = cases.find((c) => c.id === slugStr)!;
+const caseSeo: Record<
+  string,
+  { title: string; description: string; ogImage: string; ogImageAlt: string }
+> = {
+  ankr: {
+    title:
+      "Ankr Case Study | Web3 Infrastructure Provider UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Driving audience growth and enterprise adoption by shaping the design language and product flows across Ankr’s website, products, and client solutions.",
+    ogImage: "/og/ankr.png",
+    ogImageAlt: "Ankr case study cover",
+  },
+  "path-crypto": {
+    title:
+      "Path Case Study | Crypto Investment Platform UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Designed a crypto investment platform from scratch under SEC compliance. UX, web and mobile apps, wallet flows, and product design case study.",
+    ogImage: "/og/path-crypto.png",
+    ogImageAlt: "Path case study cover",
+  },
+  neura: {
+    title:
+      "Neuraverse Case Study | Web3 Game UI/UX & Product Design | Nikolai Posvezhnyi",
+    description:
+      "Designed the UX for Neuraverse, a Web3 game driving 1M+ blockchain users. Game interface, onboarding, engagement systems, and product design process.",
+    ogImage: "/og/neura.png",
+    ogImageAlt: "Neuraverse case study cover",
+  },
+};
+const seo = caseSeo[slugStr] ?? {
+  title: `${caseItem.brand} | Nikolai Posvezhnyi`,
+  description: caseItem.goal,
+  ogImage: "/og/home.png",
+  ogImageAlt: `${caseItem.brand} case cover`,
+};
 
 /** Vite imports `.mp4` as a string URL; images use `{ src }`. */
 function videoUrl(video: string | { src: string }): string {
@@ -21,7 +56,12 @@ function videoUrl(video: string | { src: string }): string {
 }
 ---
 
-<BaseLayout title={caseItem.brand}>
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  ogImage={seo.ogImage}
+  ogImageAlt={seo.ogImageAlt}
+>
   <section class="casePage">
     <div class="caseTop">
       <div class="caseLeft">
@@ -52,7 +92,7 @@ function videoUrl(video: string | { src: string }): string {
               loop
               muted
               playsinline
-              preload="auto"
+              preload="metadata"
               src={videoUrl(p.video)}
             >
               Your browser does not support the video tag.
@@ -121,7 +161,7 @@ function videoUrl(video: string | { src: string }): string {
                     loop
                     muted
                     playsinline
-                    preload="auto"
+                    preload="metadata"
                     src={videoUrl(it.video)}
                   >
                     Your browser does not support the video tag.
@@ -160,7 +200,7 @@ function videoUrl(video: string | { src: string }): string {
                             loop
                             muted
                             playsinline
-                            preload="auto"
+                            preload="metadata"
                             src={videoUrl(image.video)}
                           >
                             Your browser does not support the video tag.
@@ -782,12 +822,15 @@ function videoUrl(video: string | { src: string }): string {
       outline: 2px solid var(--color-primary);
       outline-offset: 4px;
     }
+    .caseVideoPlay:hover img {
+      transform: scale(1.1);
+    }
 
     .caseVideoPlay img {
-      width: 8.333vw;
+      width: 10.417vw;
       height: auto;
       display: block;
-      filter: drop-shadow(0 0.139vw 0.694vw rgba(0, 0, 0, 0.45));
+      transition: transform 0.2s ease-in-out;
     }
 
     .caseParagraph {
@@ -1090,152 +1133,152 @@ function videoUrl(video: string | { src: string }): string {
       margin: 0 0 1.3889vw;
     }
 
-    @media (min-width: 1440px) {
+    @media (min-width: 1600px) {
       .casePage {
-        padding: 100px 0 50px;
+        padding: 111px 0 56px;
       }
 
       .caseTop {
-        margin-bottom: 34px;
-        gap: 10px;
-      }
-
-      .caseBrand {
-        font-size: 20px;
-        margin-bottom: 15px;
-      }
-
-      .caseTitle {
-        font-size: 50px;
-        margin-bottom: 15px;
-      }
-
-      .caseMeta {
-        font-size: 16px;
-        line-height: 20px;
+        margin-bottom: 38px;
         gap: 11px;
       }
 
+      .caseBrand {
+        font-size: 22px;
+        margin-bottom: 17px;
+      }
+
+      .caseTitle {
+        font-size: 56px;
+        margin-bottom: 17px;
+      }
+
+      .caseMeta {
+        font-size: 18px;
+        line-height: 22px;
+        gap: 12px;
+      }
+
       .caseRight {
-        padding-top: 36px;
+        padding-top: 40px;
       }
 
       .caseRight :global(p) {
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 17px;
       }
 
       .caseParagraph {
-        margin: 50px auto;
-        max-width: 695px;
+        margin: 56px auto;
+        max-width: 772px;
       }
 
       .caseParagraphTitle {
-        font-size: 20px;
-        margin: 50px 0 15px;
+        font-size: 22px;
+        margin: 56px 0 17px;
       }
 
       .caseParagraphText :global(p) {
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 17px;
       }
       .caseParagraph.__result .caseParagraphText :global(p) {
-        font-size: 20px;
+        font-size: 22px;
       }
 
       .extraShots {
-        height: 80px;
-        padding: 30px 0;
+        height: 89px;
+        padding: 33px 0;
       }
 
       .extraShotsLeft {
-        gap: 10px;
+        gap: 11px;
       }
 
       .extraShotsLabel,
       .extraShotsNextCase {
-        font-size: 20px;
+        font-size: 22px;
       }
 
       .extraShotsPlus {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
       }
 
       .caseReviews {
-        margin-top: 50px;
+        margin-top: 56px;
       }
 
       .caseReviewsSlider {
-        gap: 15px;
+        gap: 17px;
       }
 
       .caseReviewsSliderTrack {
-        gap: 10px;
+        gap: 11px;
       }
 
       .caseReviewsSliderViewport {
-        border-radius: 10px;
+        border-radius: 11px;
       }
 
       .caseReviewsSliderNav {
-        width: 50px;
-        height: 50px;
+        width: 56px;
+        height: 56px;
       }
 
       .caseReviewsSliderNavPrev {
-        left: 15px;
+        left: 17px;
       }
 
       .caseReviewsSliderNavNext {
-        right: 15px;
+        right: 17px;
       }
 
       .caseReviewsSliderDots {
-        gap: 10px;
+        gap: 11px;
       }
 
       .caseReviewsSliderDot {
-        width: 8px;
-        height: 8px;
+        width: 9px;
+        height: 9px;
       }
 
       .caseReviewCard {
-        border-radius: 10px;
-        gap: 20px;
-        min-height: 655px;
+        border-radius: 11px;
+        gap: 22px;
+        min-height: 728px;
       }
 
       .caseReviewContent {
-        max-width: 695px;
+        max-width: 772px;
       }
 
       .caseReviewAvatar {
-        width: 60px;
-        min-width: 60px;
-        min-height: 60px;
-        margin-bottom: 10px;
+        width: 67px;
+        min-width: 67px;
+        min-height: 67px;
+        margin-bottom: 11px;
       }
 
       .caseReviewAuthor {
-        font-size: 16px;
+        font-size: 18px;
       }
 
       .caseReviewRole {
-        font-size: 16px;
-        margin-bottom: 15px;
+        font-size: 18px;
+        margin-bottom: 17px;
       }
 
       .caseReviewText,
       .caseReviewText :global(p) {
-        font-size: 20px;
-        margin-bottom: 20px;
+        font-size: 22px;
+        margin-bottom: 22px;
       }
 
       .caseVideoPlay img {
-        width: 120px;
+        width: 167px;
       }
     }
 

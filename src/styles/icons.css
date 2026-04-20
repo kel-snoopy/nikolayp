@@ -39,8 +39,8 @@
   mask-size: contain;
 }
 .icon-play {
-  height: 3.472vw;
-  width: 2.5vw;
+  height: 4.167vw;
+  width: 4.167vw;
   display: inline-block;
   background-color: currentColor;
   mask-image: url("../images/icons/play.svg");
@@ -80,39 +80,56 @@
   mask-size: contain;
   transition: all 0.2s linear;
 }
+.icon-arrow-right-small {
+  width: 1.3889vw;
+  height: 1.3889vw;
+  display: inline-block;
+  background-color: currentColor;
+  mask-image: url("../images/icons/arrow-right-small.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  margin-left: -2px;
+  transition: all 0.2s linear;
+  vertical-align: top;
+}
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1600px) {
   .icon-telegram {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
   }
   .icon-plus {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
   .icon-minus {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
   .icon-close {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
   .icon-play {
-    height: 60px;
-    width: 60px;
+    height: 67px;
+    width: 67px;
   }
   .icon-play-small {
-    width: 9px;
-    height: 15px;
+    width: 10px;
+    height: 17px;
   }
   .icon-close-circle {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
   }
   .icon-arrow-right {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
+  }
+  .icon-arrow-right-small {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -146,6 +163,10 @@
     height: 13.333vw;
   }
   .icon-arrow-right {
+    width: 5.33vw;
+    height: 5.33vw;
+  }
+  .icon-arrow-right-small {
     width: 5.33vw;
     height: 5.33vw;
   }

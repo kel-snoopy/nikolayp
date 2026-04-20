@@ -2,7 +2,13 @@
 import "../styles/global.css";
 import "../styles/icons.css";
 
-const { title = "NikolayP2", page: pageOverride } = Astro.props;
+const {
+  title = "NikolayP2",
+  description = "",
+  ogImage = "",
+  ogImageAlt = "",
+  page: pageOverride,
+} = Astro.props;
 
 /** Maps URL to `home` | `about` | `case` for the `<html>` class (override with `page` prop). */
 function pageClassFromPathname(pathname: string): string {
@@ -37,6 +43,15 @@ const header = {
 };
 
 const introMedia = getIntroVideoMedia(profileLinks.introVideoUrl);
+const introPreviewLoopUrl = profileLinks.introPreviewLoopUrl.trim();
+const canonicalUrl = Astro.site
+  ? new URL(`${Astro.url.pathname}${Astro.url.search}`, Astro.site).toString()
+  : `${Astro.url.pathname}${Astro.url.search}`;
+const resolvedOgImage = ogImage
+  ? Astro.site
+    ? new URL(ogImage, Astro.site).toString()
+    : ogImage
+  : "";
 
 const siteManifest = {
   name: header.name,
@@ -69,6 +84,19 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       rel="stylesheet"
     />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nikolai Posvezhnyi" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {resolvedOgImage && <meta property="og:image" content={resolvedOgImage} />}
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
     <link rel="icon" href={faviconIco} sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />
     <link rel="icon" type="image/png" sizes="16x16" href={favicon16} />
@@ -138,7 +166,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         </div>
         <div class="headerFxTint"></div>
       </div>
-      <div class="nav">
+      <div class="navBlock">
         <div class="brand" aria-label="Author">
           <a class="brandLink" href="/">
             <img
@@ -159,7 +187,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             <span class="brandName">Intro</span>
             <span class="brandVideo">
               <span class="icon-play-small"></span>
-              <span class="brandVideoTime desktop-only">1:04</span>
+              <span class="brandVideoTime desktop-only">0:49</span>
             </span>
           </button>
         </div>
@@ -171,7 +199,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
         </nav>
 
-        <nav class="navLinks mobile-only" aria-label="External links">
+        <div class="navLinks mobile-only" aria-label="External links">
           <button
             type="button"
             id="contacts-menu-open"
@@ -183,7 +211,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             <span class="navLinksLabel">Contacts</span>
             <span class="icon-plus" aria-hidden="true"></span>
           </button>
-        </nav>
+        </div>
       </div>
     </header>
 
@@ -249,19 +277,44 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           aria-controls="video-intro-modal"
           aria-label="Watch a Quick Intro"
         >
-          <img
-            class="videoCtaPhoto desktop-only"
-            src={videoCtaSrc.src}
-            alt=""
-            loading="lazy"
-          />
-          <img
-            class="videoCtaPhoto mobile-only"
-            src={videoCtaMobileSrc.src}
-            alt=""
-            loading="lazy"
-          />
+          {introPreviewLoopUrl ? (
+            <video
+              id="video-cta-preview"
+              class="videoCtaPreview"
+              src={introPreviewLoopUrl}
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              poster={videoCtaSrc.src}
+              aria-hidden="true"
+            />
+          ) : (
+            <>
+              <img
+                class="videoCtaPhoto desktop-only"
+                src={videoCtaSrc.src}
+                alt=""
+                loading="lazy"
+              />
+              <img
+                class="videoCtaPhoto mobile-only"
+                src={videoCtaMobileSrc.src}
+                alt=""
+                loading="lazy"
+              />
+            </>
+          )}
           <span class="videoCtaPlay icon-play"></span>
+          <svg class="videoCtaArc" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <path id="videoCtaArcPath" d="M 17.3 130.1 A 88 88 0 0 0 182.7 130.1"/>
+            </defs>
+            <text class="videoCtaArcText" fill="white" font-size="18" font-weight="400" letter-spacing="0.5" dy="6">
+              <textPath class="desktop-only" href="#videoCtaArcPath" startOffset="50%" text-anchor="middle">Meet Me In 49 Seconds</textPath>
+              <textPath class="mobile-only" href="#videoCtaArcPath" startOffset="50%" text-anchor="middle">Meet Me</textPath>
+            </text>
+          </svg>
         </button>
       </div>
     </div>
@@ -341,12 +394,12 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         <span class="contactsFullscreenCloseLabel">Close</span>
         <span class="icon-minus"></span>
       </button>
-      <nav class="contactsFullscreenNav" aria-label="Contact links">
+      <div class="contactsFullscreenNav" aria-label="Contact links">
         <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
         <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
         <a href={`mailto:${header.email}`}>Email</a>
         <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
-      </nav>
+      </div>
     </div>
 
     <script is:inline>
@@ -403,6 +456,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         var modalClose = document.getElementById("video-intro-close");
         var iframe = document.getElementById("video-intro-iframe");
         var htmlVideo = document.getElementById("video-intro-html5");
+        var ctaPreview = document.getElementById("video-cta-preview");
         var lastIntroOpener = null;
         var CTA_DISMISS_KEY = "videoIntroCtaDismissed";
 
@@ -427,12 +481,40 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           });
         }
 
+        function ctaPreviewMotionOk() {
+          try {
+            return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          } catch (e) {
+            return true;
+          }
+        }
+
+        function resumeCtaPreview() {
+          if (!ctaPreview || !ctaPreviewMotionOk()) return;
+          try {
+            ctaPreview.play();
+          } catch (err) {}
+        }
+
+        if (ctaPreview) {
+          if (ctaPreviewMotionOk()) {
+            try {
+              ctaPreview.play();
+            } catch (err0) {}
+          }
+        }
+
         function openVideoModal(e) {
           if (e && e.currentTarget) lastIntroOpener = e.currentTarget;
           if (!modal) return;
           modal.hidden = false;
           modal.setAttribute("aria-hidden", "false");
           document.body.style.overflow = "hidden";
+          if (ctaPreview) {
+            try {
+              ctaPreview.pause();
+            } catch (e1) {}
+          }
           if (iframe && iframe.dataset.embedBase) {
             var base = iframe.dataset.embedBase;
             var sep = base.indexOf("?") >= 0 ? "&" : "?";
@@ -468,6 +550,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             } catch (err2) {}
           } else if (openBtn) openBtn.focus();
           lastIntroOpener = null;
+          resumeCtaPreview();
         }
 
         if (openBtn) openBtn.addEventListener("click", openVideoModal);
@@ -903,7 +986,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         );
       }
 
-      .nav {
+      .navBlock {
         position: relative;
         z-index: 1;
         display: flex;
@@ -929,6 +1012,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .brandLinkButton {
         background: none;
         border: none;
+        color: var(--color-fg);
         cursor: pointer;
         font-size: 1.111vw;
         font-weight: 500;
@@ -975,6 +1059,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       }
 
       .navLinksLabel {
+        color: var(--color-fg);
         font-weight: 500;
       }
 
@@ -993,6 +1078,9 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         cursor: pointer;
         padding: 0;
         margin: 0;
+      }
+      .contactsMenuOpen {
+        color: var(--color-fg);
       }
 
       .contactsFullscreen {
@@ -1109,7 +1197,6 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         -webkit-appearance: none;
         font: inherit;
         color: inherit;
-        background: var(--case-media-placeholder-bg);
         border: none;
         padding: 0;
         margin: 0;
@@ -1117,16 +1204,19 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         width: 100%;
       }
       .videoCtaCircle:hover .videoCtaPlay {
-        color: #f1f1f1;
         transform: translate(-50%,-50%) scale(1.2);
       }
 
-      .videoCtaPhoto {
+      .videoCtaPhoto,
+      .videoCtaPreview {
         width: 100%;
         height: 100%;
         min-height: 0;
         object-fit: cover;
         display: block;
+      }
+      .videoCtaPreview {
+        pointer-events: none;
       }
       .videoCtaPhoto.mobile-only {
         display: none;
@@ -1139,7 +1229,6 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         transform: translate(-50%, -50%);
         color: #ffffff;
         pointer-events: none;
-        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
         transition: transform 0.2s ease-in-out;
       }
 
@@ -1151,16 +1240,10 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .videoCtaArc {
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         width: 100%;
-        height: 52%;
+        height: 100%;
         pointer-events: none;
-      }
-
-      .videoCtaArcText {
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
       }
 
       .videoIntroModal {
@@ -1354,22 +1437,22 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         opacity: 0.3;
       }
 
-      @media (min-width: 1440px) {
+      @media (min-width: 1600px) {
         .header {
-          padding: 20px 30px 30px 20px;
+          padding: 22px 33px 33px 22px;
         }
 
         .brand {
-          gap: 20px;
+          gap: 22px;
         }
 
         .brandLink {
-          gap: 10px;
+          gap: 11px;
         }
 
         .brandLinkButton {
-          font-size: 16px;
-          gap: 10px;
+          font-size: 18px;
+          gap: 11px;
         }
 
         .brandVideo {
@@ -1377,80 +1460,80 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         }
 
         .avatar {
-          width: 40px;
-          min-width: 40px;
-          min-height: 40px;
+          width: 44px;
+          min-width: 44px;
+          min-height: 44px;
         }
 
         .navLinks {
-          gap: 20px;
+          gap: 22px;
         }
 
         .videoCta {
-          bottom: 20px;
-          right: 20px;
-          width: 180px;
+          bottom: 22px;
+          right: 22px;
+          width: 200px;
         }
 
         .videoIntroModalClose {
-          top: 20px;
-          right: 20px;
+          top: 22px;
+          right: 22px;
         }
 
         .hero {
-          padding: 100px 0;
+          padding: 111px 0;
         }
 
         .hero.__bottom {
-          padding: 180px 0;
+          padding: 200px 0;
         }
 
         .heroTitle,
         .heroAccent {
-          font-size: 50px;
+          font-size: 56px;
         }
 
         .heroAccent {
-          margin-bottom: 20px;
+          margin-bottom: 22px;
         }
 
         .heroDescription {
-          max-width: 480px;
+          max-width: 533px;
         }
 
         .heroActions {
-          margin-top: 25px;
-          gap: 5px;
+          margin-top: 28px;
+          gap: 6px;
         }
 
         .heroEmail {
-          width: 180px;
+          width: 200px;
         }
 
         .footerInner {
-          padding: 30px 0;
-          gap: 15px;
+          padding: 33px 0;
+          gap: 17px;
         }
 
         .footerLinks {
-          gap: 25px;
+          gap: 28px;
         }
 
         .contactsFullscreenClose {
-          top: 58px;
-          right: 58px;
-          font-size: 58px;
+          top: 64px;
+          right: 64px;
+          font-size: 64px;
           line-height: 1;
-          gap: 8px;
+          gap: 9px;
         }
 
         .contactsFullscreenNav {
-          gap: 77px;
+          gap: 86px;
         }
 
         .contactsFullscreenNav a {
-          font-size: 69px;
-          line-height: 77px;
+          font-size: 77px;
+          line-height: 86px;
         }
       }
 
