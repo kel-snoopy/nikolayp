@@ -770,7 +770,7 @@ export const cases = [
           type: "text",
           class: "__result",
           title: "Result",
-          text: "Following the product announcement, the social media audience grew from 0 to <strong>~150K followers</strong>. Path was recognized as a <strong>top fintech company</strong> in the Midwest by Purpose Jobs, and successfully passed SEC approval. The audience was later integrated into Gemini.",
+          text: "<p>Following the product announcement, the social media audience grew from 0 to <strong>~150K followers</strong>. Path was recognized as a <strong>top fintech company</strong> in the Midwest by Purpose Jobs, and successfully passed SEC approval. The audience was later integrated into Gemini.</p>",
         },
     ],
     caseReviews: [
