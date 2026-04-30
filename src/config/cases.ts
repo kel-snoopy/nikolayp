@@ -146,8 +146,205 @@ import chatAppSliderImage3 from "../images/cases/chatapp/chatapp-slider-3.png";
 import chatAppSliderImage4 from "../images/cases/chatapp/chatapp-slider-4.png";
 import chatAppSliderImage5 from "../images/cases/chatapp/chatapp-slider-5.png";
 
+import web3apiImage from "../images/cases/web3-api.png";
+import web3apiBefore1Image from "../images/cases/web3-api/web3-api-before-1.png";
+import web3apiBefore2Image from "../images/cases/web3-api/web3-api-before-2.png";
+import web3apiCompetitor1Image from "../images/cases/web3-api/web3-api-competitor-1.png";
+import web3apiCompetitor2Image from "../images/cases/web3-api/web3-api-competitor-2.png";
+import web3apiCompetitor3Image from "../images/cases/web3-api/web3-api-competitor-3.png";
+import web3apiCompetitor4Image from "../images/cases/web3-api/web3-api-competitor-4.png";
+import web3apiOutcomesImage from "../images/cases/web3-api/web3-api-outcomes.png";
+import web3apiResearchImage from "../images/cases/web3-api/web3-api-research.png";
+import web3apiResultImage from "../images/cases/web3-api/web3-api-result.png";
+import web3apiProcess1Image from "../images/cases/web3-api/web3-api-process-1.png";
+import web3apiProcess2Image from "../images/cases/web3-api/web3-api-process-2.png";
+import web3apiProcess3Image from "../images/cases/web3-api/web3-api-process-3.png";
+import web3apiProcess4Image from "../images/cases/web3-api/web3-api-process-4.png";
+import web3apiSolution1Image from "../images/cases/web3-api/web3-api-solution-1.png";
+import web3apiSolution2Image from "../images/cases/web3-api/web3-api-solution-2.png";
+import web3apiSolution3Image from "../images/cases/web3-api/web3-api-solution-3.png";
+import web3apiImageMobile from "../images/cases/web3-api/web3-api-solution-mobile.png";
+
 
 export const cases = [
+  {
+    id: "web3api",
+    public: true,
+    showOnHomepage: true,
+    brand: "Ankr Web3 API",
+    title: "Pricing Redesign: Achieve a 44% increase in financial results.",
+    meta: {
+      dateRange: "2023",
+      location: "San-Francisco, CA, Remote",
+      stack: "Web",
+      roles: "UI/UX, Growth",
+    },
+    goal:
+      "Help users understand the value of each tier, compare benefits, and drive conversion to the Premium plan.",
+    impact:
+      "Deposits increased by 49% from Q3 2023 to Q4 2023, with financial results growing by 44% on average.",
+    fullStoryText:
+      "<p><strong>Situation.</strong> Web3 API is Ankr’s leading developer platform, processing over 8B monthly requests across multiple blockchain networks. However, users struggled to understand the differences between pricing tiers and the value of paid plans.</p><p><strong>Action.</strong> I audited the existing solution, analyzed metrics and user feedback with the PM, and reviewed competitor solutions. Based on these insights, I redesigned the flow with a focus on clarity and comparison, and supported its implementation with the dev team.</p><p><strong>Result.</strong> After launch, deposits increased by 49% from Q3 to Q4, with financial results growing by 44% on average.</p><p>Here’s the full story behind this work.</p>",
+    detailsUrl: "/cases/web3api",
+    image: web3apiImage,
+    imageAlt: "Web3 API case preview",
+    preview: [
+      {
+        type: "image",
+        image: web3apiImage,
+        imageAlt: "Web3 API context preview 1",
+      },
+      {
+        type: "image",
+        image: web3apiSolution3Image,
+        imageAlt: "Web3 API context preview 2",
+      },
+      {
+        type: "image",
+        image: web3apiImageMobile,
+        imageAlt: "Web3 API context preview 3",
+      },
+    ],
+    nextCase: {
+      id: "ankr",
+      title: "Ankr. Elevated the market position of a blockchain infrastructure provider.",
+      shortTitle: "Ankr",
+    },
+    paragraphs: [
+      {
+        type: "image",
+        image: web3apiImage,
+        imageAlt: "Web3 API overview",
+      },
+      {
+        type: "text",
+        title: "About Web3 API",
+        text: "Web3 API is Ankr’s leading developer platform, enabling over 8 billion monthly requests across multiple blockchain networks. It offers a single dashboard for managing connections, usage analytics, and performance insights.",
+      },
+      {
+        type: "image",
+        image: ankrProductSlider2Image1,
+        imageAlt: "Web3 API overview",
+      },
+      {
+        type: "text",
+        title: "Problem",
+        text: "The pricing plans block on the Web3 API landing page and in the SaaS dApp wasn’t reaching its full potential. It hadn’t been updated or thoughtfully designed since launch. So it was time to rethink it.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: web3apiBefore1Image, imageAlt: "Web3 API before state 1" },
+          { image: web3apiBefore2Image, imageAlt: "Web3 API before state 2" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Research",
+        text: "<ol><li>After a call with the Web3 API Product Manager and a review of the metrics, I confirmed a high and <strong>increasing drop-off rate</strong>, along with <strong>low CTR to Premium</strong>.</li><li> I also <strong>uncovered insights</strong> from the Hotjar feedback widget and our support team: users struggled to compare plans in detail and understand the value of paid tiers.</li></ol>",
+      },
+      {
+        type: "image",
+        image: web3apiResearchImage,
+        imageAlt: "Web3 API research",
+      },
+      {
+        type: "text",
+        text: "3. I <strong>analyzed competitor pricing pages</strong> and identified best practices we were missing.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: web3apiCompetitor1Image, imageAlt: "Web3 API competitor 1" },
+          { image: web3apiCompetitor2Image, imageAlt: "Web3 API competitor 2" },
+          { image: web3apiCompetitor3Image, imageAlt: "Web3 API competitor 3" },
+        ],
+      },
+      {
+        type: "text",
+        text: "All competitors have a comparison table like this directly below the pricing tiers.",
+      },
+      {
+        type: "image",
+        image: web3apiCompetitor4Image,
+        imageAlt: "Web3 API competitor 4",
+      },
+      {
+        type: "text",
+        title: "Design Process",
+        text: "Relying on the research, I quickly iterated through potential solutions, exploring different layouts, patterns, and elements.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: web3apiProcess1Image, imageAlt: "Web3 API process 1" },
+          { image: web3apiProcess2Image, imageAlt: "Web3 API process 2" },
+          { image: web3apiProcess3Image, imageAlt: "Web3 API process 3" },
+          { image: web3apiProcess4Image, imageAlt: "Web3 API process 4" },
+        ],
+      },
+      {
+        type: "text",
+        title: "Solution",
+        text: "<p>The Sales team added the “Deel” tier at the last minute, and I combined the strongest aspects of each iteration into a final solution. The new pricing block features:</p><p><ol><li>A B2B-grade look and feel, with a clear, value-driven headline and copy</li><li>Premium-focused plan cards that highlight value and encourage upgrades</li><li>A dedicated layout for the Enterprise tier, emphasizing its uniqueness</li><li>Emotional “WOW” touch — an abstract background.</li></ol></p>",
+      },
+      {
+        type: "image",
+        image: web3apiSolution1Image,
+        imageAlt: "Web3 API mobile solution",
+      },
+      {
+        type: "text",
+        text: "I also designed a comparison table to enable clear side-by-side comparison, with structured benefits, segmentation, and hierarchy.",
+      },
+      {
+        type: "images",
+        images: [
+          { image: web3apiSolution2Image, imageAlt: "Web3 API solution 2" },
+          { image: web3apiSolution3Image, imageAlt: "Web3 API solution 3" },
+        ],
+      },
+      {
+        type: "text",
+        text: "Everything was quickly adapted for mobile, but there’s still room for improvement with more time and resources.",
+      },
+      {
+        type: "image",
+        image: web3apiImageMobile,
+        imageAlt: "Web3 API mobile solution",
+      },
+      {
+        type: "text",
+        class: "__result",
+        title: "Impact",
+        text: "These updates significantly improved the overall user experience, reflected in improved metrics and a reduction in support tickets related to plans.",
+      },
+      {
+        type: "image",
+        image: web3apiOutcomesImage,
+        imageAlt: "Web3 API outcomes",
+      },
+      {
+        type: "text",
+        class: "__result",
+        text: "<p>From a business perspective, we observed a boost in all financial metrics in mid-October, including the number of deposits and deductions across various currencies.</p><p><strong>1. The number of deposits went up 49%</strong> from Q3 to Q4</p><p><strong>2. Financial results grew by an average of 44%</strong></p>",
+      },
+      {
+        type: "image",
+        image: web3apiResultImage,
+        imageAlt: "Web3 API result",
+      },
+    ],
+    caseReviews: [
+      {
+        author: "Tyler Sloan",
+        role: "Head of Product",
+        avatar: reviewerTylerSloanImage,
+        text: "<p>I had the pleasure of working closely with Nikolay at Ankr where he contributed to the design and launch of several successful products. He has a strong understanding of Web3 UI/UX and consistently translates complex blockchain concepts into clear, intuitive user experiences. Nikolay also works exceptionally quickly while maintaining a high bar for quality, which helped our product and engineering teams move fast without sacrificing thoughtful design.</p><p>He’s a collaborative and reliable partner, and I’d highly recommend him to any team looking for a talented Web3 designer who delivers high-impact work.</p>",
+      },
+    ],
+  },
+
   {
     id: "ankr",
     public: true,
