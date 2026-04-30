@@ -219,7 +219,7 @@ export const cases = [
       {
         type: "text",
         title: "About Web3 API",
-        text: "Web3 API is Ankr’s leading developer platform, enabling over 8 billion monthly requests across multiple blockchain networks. It offers a single dashboard for managing connections, usage analytics, and performance insights.",
+        text: "Web3 API is <a href='/cases/ankr' target='_blank' rel='noopener noreferrer'>Ankr</a>’s leading developer platform, enabling over 8 billion monthly requests across multiple blockchain networks. It offers a single dashboard for managing connections, usage analytics, and performance insights.",
       },
       {
         type: "image",
@@ -286,7 +286,7 @@ export const cases = [
       {
         type: "text",
         title: "Solution",
-        text: "<p>The Sales team added the “Deel” tier at the last minute, and I combined the strongest aspects of each iteration into a final solution. The new pricing block features:</p><p><ol><li>A B2B-grade look and feel, with a clear, value-driven headline and copy</li><li>Premium-focused plan cards that highlight value and encourage upgrades</li><li>A dedicated layout for the Enterprise tier, emphasizing its uniqueness</li><li>Emotional “WOW” touch — an abstract background.</li></ol></p>",
+        text: "<p>The Sales team added the “Deal” tier at the last minute, and I combined the strongest aspects of each iteration into a final solution. The new pricing block features:</p><p><ol><li>A B2B-grade look and feel, with a clear, value-driven headline and copy</li><li>Premium-focused plan cards that highlight value and encourage upgrades</li><li>A dedicated layout for the Enterprise tier, emphasizing its uniqueness</li><li>Emotional “WOW” touch — an abstract background.</li></ol></p>",
       },
       {
         type: "image",
@@ -560,7 +560,7 @@ export const cases = [
       {
         type: "text",
         title: "Product Work",
-        text: "<p>As part of Ankr’s product design efforts, I collaborated with the teams behind Web3 API and Staking, advising on UI/UX flows and contributing directly to several key interfaces. Among other contributions, I designed the pricing and plan comparison page for the API platform, as well as Learn More pages for Liquid Staking tokens.</p>",
+        text: "<p>As part of Ankr’s product design efforts, I collaborated with the teams behind Web3 API and Staking, advising on UI/UX flows and contributing directly to several key interfaces. Among other contributions, <a href='/cases/web3api' target='_blank' rel='noopener noreferrer'>I redesigned the pricing</a> and plan comparison blocks for the API platform, as well as Learn More pages for Liquid Staking tokens.</p>",
       },
       {
         type: "image",
