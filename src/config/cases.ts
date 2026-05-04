@@ -992,11 +992,11 @@ export const cases = [
       roles: "UI/UX, Brand",
     },
     goal:
-      "Design an immersive game to onboard users into the new blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
+      "Designed a game with AI-agent characters to onboard users into a new blockchain ecosystem and drive growth in transactions, addresses, and other key network metrics.",
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
-      "<p>Neuraverse is an immersive game built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As Senior Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
+      "<p>Neuraverse is an immersive game with AI-agent characters built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As Senior Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
     detailsUrl: "/cases/neura",
     image: neuraImage,
     imageAlt: "Neuraverse case preview",
