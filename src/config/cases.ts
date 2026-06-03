@@ -984,7 +984,7 @@ export const cases = [
     public: true,
     showOnHomepage: true,
     brand: "Neuraverse",
-    title: "Drove blockchain adoption by gamifying ecosystem products.",
+    title: "Drove AI & blockchain adoption by gamifying ecosystem products.",
     meta: {
       dateRange: "2025—2026",
       location: "San-Francisco, CA, Remote",
@@ -996,7 +996,7 @@ export const cases = [
     impact:
       "The network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving its reliability to potential partners.",
     fullStoryText:
-      "<p>Neuraverse is an immersive game with AI-agent characters built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As Senior Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
+      "<p>Neuraverse is an immersive game with AI-agent characters built to showcase the power of Ankr Labs’ new Neura blockchain through real user interaction and ecosystem onboarding.</p><p><strong>As AI-Native Product Designer</strong>, I led the UI/UX, while also contributing to the creative concept, visual direction, CGI, and design QA.</p><p>According to the Co-Founder, we hit 1M total users in just over 1 month after launch, while the community scaled to 30K+ on Telegram, 50K+ on Discord, and 80K+ on Twitter within two months.</p><p>On the infrastructure side, the network scaled to 97M+ transactions, 8.2M blocks, and 1.18M wallet addresses, sustaining ~427K daily transactions and proving production-level reliability to potential partners.</p><p>Here’s the full story.</p>",
     detailsUrl: "/cases/neura",
     image: neuraImage,
     imageAlt: "Neuraverse case preview",
@@ -1051,7 +1051,7 @@ export const cases = [
       {
         type: "text",
         title: "Task & My Role",
-        text: "<p>The idea was to create an interactive game experience where locations and characters narratively represented key ecosystem functions, allowing users to access them seamlessly from within the game itself. A set of game mechanics and quest loops was also designed to <strong>drive DAU/MAU growth</strong> through repeated engagement.</p><p><strong>As Senior Product Designer</strong>, I owned most of the in-game interfaces and user flows, while also coordinating and contributing to the creative concept, visual direction, CGI, gameplay mechanics, and design QA during frontend implementation.</p>",
+        text: "<p>The idea was to create an interactive game experience where locations and characters narratively represented key ecosystem functions, allowing users to access them seamlessly from within the game itself. A set of game mechanics and quest loops was also designed to <strong>drive DAU/MAU growth</strong> through repeated engagement.</p><p><strong>As AI-Native Product Designer</strong>, I owned most of the in-game interfaces and user flows, while also coordinating and contributing to the creative concept, visual direction, CGI, gameplay mechanics, and design QA during frontend implementation.</p>",
       },
       {
         type: "image",
