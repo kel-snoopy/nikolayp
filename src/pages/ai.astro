@@ -1,0 +1,669 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import aiIcon from "../images/ai/ai-enabled-icon.svg";
+import toolChatgpt from "../images/ai/tool-chatgpt.png";
+import toolClaude from "../images/ai/tool-claude.png";
+import toolCursor from "../images/ai/tool-cursor.png";
+import toolKrea from "../images/ai/tool-krea.png";
+import toolLovable from "../images/ai/tool-lovable.png";
+import toolUxpilot from "../images/ai/tool-uxpilot.png";
+import caseRevolut from "../images/ai/ai-case-revolut.png";
+import caseWelcomelend from "../images/ai/ai-case-welcomelend.png";
+import caseBoundyai from "../images/ai/ai-case-boundyai.png";
+import caseNeuraverse from "../images/ai/ai-case-neuraverse.png";
+import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
+---
+
+<BaseLayout
+  title="AI-Native Designer | How It Works | Nikolai Posvezhnyi"
+  description="AI is changing jobs and industries. Here's how it changed my workflow and how I've integrated AI features into products."
+  page="ai"
+>
+  <section class="aiHero">
+    <div class="aiHeroInner">
+      <div class="aiHeroIcon" aria-hidden="true">
+        <img src={aiIcon.src} alt="" />
+      </div>
+
+      <h1 class="aiHeroTitle">
+        <span class="aiHeroAccent">AI-Native Designer</span>
+        <span class="aiHeroMain">How It Works</span>
+      </h1>
+      <p class="aiHeroDescription">
+        AI is changing jobs and industries. Here&rsquo;s how it changed my
+        workflow and how I&rsquo;ve integrated AI features into products.
+      </p>
+      <p class="aiHeroNote">
+        Btw, this page was created by me with AI. No devs involved.
+      </p>
+    </div>
+  </section>
+  <section class="aiWorkflow">
+    <div class="aiWorkflowHeader">
+      <h2 class="aiWorkflowTitle">AI-Enabled Workflow</h2>
+      <p class="aiWorkflowDescription">
+        AI is now used at every stage of the product design process. What
+        used to take weeks can now be done in days. My current setup looks
+        like this:
+      </p>
+    </div>
+
+    <div class="aiWorkflowGrid">
+      <div class="aiWorkflowItem">
+        <div class="aiWorkflowIcons">
+          <img src={toolChatgpt.src} alt="ChatGPT" class="aiWorkflowIcon" />
+        </div>
+        <h3 class="aiWorkflowItemTitle">Research &amp; Define</h3>
+        <p class="aiWorkflowItemDescription">
+          Market, audience, and competitor insights are uncovered in minutes
+          instead of hours of Googling.
+        </p>
+        <p class="aiWorkflowItemTools">ChatGPT</p>
+      </div>
+
+      <div class="aiWorkflowItem">
+        <div class="aiWorkflowIcons">
+          <img src={toolUxpilot.src} alt="UX Pilot" class="aiWorkflowIcon" />
+          <img src={toolLovable.src} alt="Lovable" class="aiWorkflowIcon" />
+        </div>
+        <h3 class="aiWorkflowItemTitle">Ideate &amp; Prototype</h3>
+        <p class="aiWorkflowItemDescription">
+          Generate concepts, and wireframes in minutes. Explore alternative
+          directions faster and validate ideas early.
+        </p>
+        <p class="aiWorkflowItemTools">UX Pilot, Lovable</p>
+      </div>
+
+      <div class="aiWorkflowItem">
+        <div class="aiWorkflowIcons">
+          <img src={toolKrea.src} alt="Krea.ai" class="aiWorkflowIcon" />
+          <img src={toolChatgpt.src} alt="ChatGPT" class="aiWorkflowIcon" />
+        </div>
+        <h3 class="aiWorkflowItemTitle">Design &amp; UX Copy</h3>
+        <p class="aiWorkflowItemDescription">
+          Create illustrations, graphics, video, animations, UX copy, and
+          marketing assets faster.
+        </p>
+        <p class="aiWorkflowItemTools">Krea.ai, ChatGPT</p>
+      </div>
+
+      <div class="aiWorkflowItem">
+        <div class="aiWorkflowIcons">
+          <img src={toolClaude.src} alt="Claude" class="aiWorkflowIcon" />
+          <img src={toolCursor.src} alt="Cursor" class="aiWorkflowIcon" />
+        </div>
+        <h3 class="aiWorkflowItemTitle">Build &amp; Ship</h3>
+        <p class="aiWorkflowItemDescription">
+          Turn designs into functional websites, prototypes, and MVPs without
+          waiting for engineering resources.
+        </p>
+        <p class="aiWorkflowItemTools">Claude, Cursor</p>
+      </div>
+
+      <div class="aiWorkflowItem">
+        <div class="aiWorkflowIcons">
+          <img src={toolChatgpt.src} alt="ChatGPT" class="aiWorkflowIcon" />
+        </div>
+        <h3 class="aiWorkflowItemTitle">Measure &amp; Improve</h3>
+        <p class="aiWorkflowItemDescription">
+          Analyze data, summarize feedback, and uncover optimization
+          opportunities that drive product growth.
+        </p>
+        <p class="aiWorkflowItemTools">ChatGPT</p>
+      </div>
+    </div>
+  </section>
+  <section class="aiCases">
+    <div class="aiCasesHeader">
+      <h2 class="aiCasesTitle">Designing AI-Experiences</h2>
+      <p class="aiCasesDescription">
+        Using AI is no longer enough. The real value comes from understanding
+        where AI can improve user experiences, streamline operations, and unlock
+        new business opportunities.
+      </p>
+    </div>
+  
+    <div class="aiCasesGrid">
+      <a
+        class="aiCaseCard"
+        href="https://www.figma.com/proto/rsDEsJxJBvxnapQSMxggV6/Revolut-HT-Presentation?node-id=2-7&p=f&viewport=-130,485,0.02&t=jHyxlTgm3GVfurYS-1&scaling=contain&content-scaling=fixed&starting-point-node-id=2:7&page-id=0:1"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <div class="aiCaseImage">
+          <img src={caseRevolut.src} alt="Revolut case preview" />
+        </div>
+        <div class="aiCaseMeta">
+          <span class="aiCaseBrand">Revolut</span>
+          <span class="aiCaseTag">/</span>
+          <span class="aiCaseTag">Live Support Investigation Platform</span>
+        </div>
+        <p class="aiCaseDescription">
+          Turning complex bank support cases into guided investigations with AI.
+        </p>
+        <span class="aiCaseLink">
+          See Presentation &amp; Prototype
+          <i class="icon-arrow-up-right-small"></i>
+        </span>
+      </a>
+  
+      <a
+        class="aiCaseCard"
+        href="https://www.figma.com/proto/O8KPgzgMwNKWfioCSAZeCI/WelcomeLend?node-id=43-1603"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <div class="aiCaseImage">
+          <img src={caseWelcomelend.src} alt="WelcomeLend case preview" />
+        </div>
+        <div class="aiCaseMeta">
+          <span class="aiCaseBrand">WelcomeLend</span>
+          <span class="aiCaseTag">/</span>
+          <span class="aiCaseTag">CRE Matchmaking System</span>
+        </div>
+        <p class="aiCaseDescription">
+          Helping real estate developers find the right investors through
+          AI-powered recommendations.
+        </p>
+        <span class="aiCaseLink">
+          See Prototype
+          <i class="icon-arrow-up-right-small"></i>
+        </span>
+      </a>
+  
+      <a
+        class="aiCaseCard"
+        href="https://www.figma.com/proto/PE9X8lNgKDrc0oJd7pfY9e/Boundy-AI-Presentation?node-id=1-304&page-id=0%3A1&t=ymQIwaUYQlKzTTEw-1"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <div class="aiCaseImage">
+          <img src={caseBoundyai.src} alt="Boundy AI case preview" />
+        </div>
+        <div class="aiCaseMeta">
+          <span class="aiCaseBrand">Boundy AI</span>
+          <span class="aiCaseTag">/</span>
+          <span class="aiCaseTag">AI Device Identity</span>
+        </div>
+        <p class="aiCaseDescription">
+          Creating the brand and visual language for an AI-powered companion.
+        </p>
+        <span class="aiCaseLink">
+          See Project
+          <i class="icon-arrow-up-right-small"></i>
+        </span>
+      </a>
+  
+      <a class="aiCaseCard" href="/cases/neura/">
+        <div class="aiCaseImage">
+          <img src={caseNeuraverse.src} alt="Neuraverse case preview" />
+        </div>
+        <div class="aiCaseMeta">
+          <span class="aiCaseBrand">Neuraverse</span>
+          <span class="aiCaseTag">/</span>
+          <span class="aiCaseTag">Web3 Game</span>
+        </div>
+        <p class="aiCaseDescription">
+          Designing AI-agents that guide, engage, and retain players throughout
+          their journey.
+        </p>
+        <span class="aiCaseLink">
+          See Full Case
+          <i class="icon-arrow-right-small"></i>
+        </span>
+      </a>
+  
+      <a
+        class="aiCaseCard"
+        href="https://www.figma.com/proto/4wQa0TNx1ehHpwjiIXfccS/Fundraise-Up-Growth-Presentation?node-id=1-7&viewport=160,243,0.23&t=8NhkQuXaQwmiE9Gs-1&scaling=min-zoom&content-scaling=fixed&page-id=0:1"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        <div class="aiCaseImage">
+          <img src={caseFundraiseup.src} alt="Fundraise Up case preview" />
+        </div>
+        <div class="aiCaseMeta">
+          <span class="aiCaseBrand">Fundraise Up</span>
+          <span class="aiCaseTag">/</span>
+          <span class="aiCaseTag">Donation Platform</span>
+        </div>
+        <p class="aiCaseDescription">
+          Exploring AI-driven experiences to improve donor engagement, retention,
+          and campaign performance.
+        </p>
+        <span class="aiCaseLink">
+          See Presentation
+          <i class="icon-arrow-up-right-small"></i>
+        </span>
+      </a>
+    </div>
+  </section>
+<style>
+  .aiCases {
+    padding: 6.9444vw 0;
+  border-bottom: 1px solid var(--color-gray);
+  box-sizing: border-box;
+}
+
+.aiCaseLink .icon-arrow-up-right-small {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7M17 7H8M17 7V16'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17L17 7M17 7H8M17 7V16'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  vertical-align: middle;
+  margin-left: 0em;
+}
+
+  .aiCasesHeader {
+    max-width: 33.333vw;
+    margin: 0 auto 3.4722vw;
+    text-align: center;
+  }
+
+  .aiCasesTitle {
+    margin: 0 0 1.388vw;
+    font-weight: 500;
+    font-size: 3.4722vw;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  .aiCasesDescription {
+    margin: 0;
+    font-size: 1.111vw;
+  }
+
+  .aiCasesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.388vw;
+  row-gap: 3.4722vw;
+}
+
+  .aiCaseCard {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .aiCaseImage {
+    margin: 0 0 1.388vw;
+    border-radius: 0.8333vw;
+    overflow: hidden;
+    background-color: var(--case-media-placeholder-bg);
+  }
+
+  .aiCaseImage img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .aiCaseMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6944vw;
+  margin: 0 0 0.6944vw;
+  font-size: 1.111vw;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+  .aiCaseBrand {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+  .aiCaseDescription {
+    margin: 0 0 0.6944vw;
+    max-width: 80.00%;
+    font-weight: 500;
+    font-size: 1.5278vw;
+    line-height: 1.3;
+    color: var(--color-fg);
+  }
+
+  .aiCaseLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3472vw;
+    font-size: 1.111vw;
+    color: var(--color-primary);
+  }
+
+  .aiCaseCard:hover .aiCaseLink {
+  color: #ff6633;
+}
+
+.aiCaseCard:hover .aiCaseDescription {
+  color: var(--color-primary-hover);
+}
+
+  .aiWorkflow {
+    padding: 6.9444vw 0;
+    border-bottom: 1px solid var(--color-gray);
+    box-sizing: border-box;
+  }
+
+  .aiWorkflowHeader {
+    max-width: 33.333vw;
+    margin: 0 auto 4.5833vw;
+    text-align: center;
+  }
+
+  .aiWorkflowTitle {
+    margin: 0 0 1.388vw;
+    font-weight: 500;
+    font-size: 3.4722vw;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  .aiWorkflowDescription {
+    margin: 0;
+    font-size: 1.111vw;
+  }
+
+  .aiWorkflowGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.388vw;
+  }
+
+  .aiWorkflowItem {
+    text-align: center;
+  }
+
+  .aiWorkflowIcons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5556vw;
+    margin: 0 0 1.388vw;
+  }
+
+  .aiWorkflowIcon {
+    display: block;
+    width: 4.1667vw;
+    height: 4.1667vw;
+    border-radius: 0.8333vw;
+  }
+
+  .aiWorkflowItemTitle {
+    margin: 0 0 0.694vw;
+    font-weight: 500;
+    font-size: 1.25vw;
+    line-height: 1.2;
+    color: var(--color-fg);
+  }
+
+  .aiWorkflowItemDescription {
+    margin: 0 0 0.694vw;
+    font-size: 0.9028vw;
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .aiWorkflowItemTools {
+    margin: 0;
+    font-size: 0.9028vw;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .aiHero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-top: 6.9444vw;
+    padding-bottom: 10.4167vw;
+
+    text-align: center;
+    border-bottom: 1px solid var(--color-gray);
+    box-sizing: border-box;
+  }
+
+  .aiHeroInner {
+    margin: 0 auto;
+  }
+
+  .aiHeroIcon {
+    width: calc(5.5556vw * 145 / 80);
+    height: 5.5556vw;
+    margin: 0 auto 1.0417vw;
+  }
+
+  .aiHeroIcon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .aiHeroTitle {
+    margin: 0 0 1.388vw;
+    font-weight: 500;
+    font-size: 5.5556vw;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .aiHeroAccent {
+    display: block;
+    color: var(--color-primary);
+  }
+
+  .aiHeroMain {
+    display: block;
+    color: var(--color-fg);
+  }
+
+  .aiHeroDescription,
+  .aiHeroNote {
+    max-width: 33.333vw;
+    margin: 0 auto;
+    font-size: 1.111vw;
+  }
+
+  .aiHeroNote {
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  @media (min-width: 1600px) {
+    .aiCases,
+    .aiWorkflow {
+      padding: 100px 0;
+    }
+
+    .aiCasesHeader {
+      max-width: 533px;
+      margin-bottom: 50px;
+    }
+
+    .aiCasesTitle,
+    .aiWorkflowTitle {
+      margin-bottom: 20px;
+      font-size: 50px;
+    }
+
+    .aiCasesDescription,
+    .aiWorkflowDescription,
+    .aiHeroDescription,
+    .aiHeroNote {
+      font-size: 16px;
+    }
+
+    .aiHeroDescription,
+    .aiHeroNote {
+      max-width: 480px;
+    }
+
+    .aiWorkflowGrid {
+  gap: 20px;
+}
+
+.aiCasesGrid {
+  column-gap: 10px;
+  row-gap: 50px;
+}
+
+    .aiCaseImage {
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+
+    .aiCaseMeta {
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.aiCaseDescription {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+    .aiCaseLink {
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .aiWorkflowHeader {
+      max-width: 533px;
+      margin-bottom: 66px;
+    }
+
+    .aiWorkflowIcons {
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .aiWorkflowIcon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+    }
+
+    .aiWorkflowItemTitle {
+      font-size: 18px;
+    }
+
+    .aiWorkflowItemDescription,
+    .aiWorkflowItemTools {
+      font-size: 13px;
+    }
+
+    .aiHero {
+      padding-top: 100px;
+      padding-bottom: 150px;
+    }
+
+    .aiHeroIcon {
+      width: 145px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+
+    .aiHeroTitle {
+      margin-bottom: 22px;
+      font-size: 80px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .aiCases,
+    .aiWorkflow {
+      padding: 12vw 4vw;
+    }
+
+    .aiCasesHeader,
+    .aiWorkflowHeader {
+      max-width: 100%;
+      margin-bottom: 8vw;
+    }
+
+    .aiCasesTitle,
+    .aiWorkflowTitle {
+      font-size: 8vw;
+    }
+
+    .aiCasesDescription,
+    .aiWorkflowDescription {
+      font-size: 4vw;
+    }
+
+    .aiCasesGrid,
+    .aiWorkflowGrid {
+      grid-template-columns: 1fr;
+      gap: 8vw;
+    }
+
+    .aiCaseImage {
+      margin-bottom: 4vw;
+      border-radius: 2vw;
+    }
+
+    .aiCaseMeta {
+      gap: 2vw;
+      margin-bottom: 3vw;
+      font-size: 3.5vw;
+    }
+
+    .aiCaseDescription {
+      margin-bottom: 3vw;
+      font-size: 5.5vw;
+    }
+
+    .aiCaseLink {
+      font-size: 3.5vw;
+    }
+
+    .aiWorkflowIcon {
+      width: 16vw;
+      height: 16vw;
+    }
+
+    .aiWorkflowItemTitle {
+      font-size: 5vw;
+    }
+
+    .aiWorkflowItemDescription,
+    .aiWorkflowItemTools {
+      font-size: 3.5vw;
+    }
+
+    .aiHero {
+      min-height: 86.7vh;
+      height: auto;
+      padding: 12vw 4vw;
+    }
+
+    .aiHeroIcon {
+      width: 14vw;
+      margin-bottom: 5.3vw;
+    }
+
+    .aiHeroTitle {
+      margin-bottom: 4vw;
+      font-size: 11vw;
+    }
+
+    .aiHeroDescription,
+    .aiHeroNote {
+      max-width: 100%;
+      font-size: 4vw;
+    }
+
+    .aiHeroNote {
+      margin-top: 2vw;
+    }
+  }
+</style>
