@@ -26,7 +26,7 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
       </div>
 
       <h1 class="aiHeroTitle">
-        <span class="aiHeroAccent">AI-Native Designer</span>
+        <span class="aiHeroAccent">AI-Enabled Designer</span>
         <span class="aiHeroMain">How It Works</span>
       </h1>
       <p class="aiHeroDescription">
@@ -34,13 +34,13 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
         workflow and how I&rsquo;ve integrated AI features into products.
       </p>
       <p class="aiHeroNote">
-        Btw, this page was created by me with AI. No devs involved.
+        Btw, this page was created by me with AI. No devs involved.
       </p>
     </div>
   </section>
   <section class="aiWorkflow">
     <div class="aiWorkflowHeader">
-      <h2 class="aiWorkflowTitle">AI-Enabled Workflow</h2>
+      <h2 class="aiWorkflowTitle">AI-Native Workflow</h2>
       <p class="aiWorkflowDescription">
         AI is now used at every stage of the product design process. What
         used to take weeks can now be done in days. My current setup looks
@@ -115,11 +115,9 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
   </section>
   <section class="aiCases">
     <div class="aiCasesHeader">
-      <h2 class="aiCasesTitle">Designing AI-Experiences</h2>
+      <h2 class="aiCasesTitle">Designing AI Experiences</h2>
       <p class="aiCasesDescription">
-        Using AI is no longer enough. The real value comes from understanding
-        where AI can improve user experiences, streamline operations, and unlock
-        new business opportunities.
+        The real value comes from understanding where AI can improve user experiences, streamline operations, and unlock new business opportunities.
       </p>
     </div>
   
@@ -374,10 +372,10 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
   }
 
   .aiWorkflowGrid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.388vw;
-  }
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.388vw;
+}
 
   .aiWorkflowItem {
     text-align: center;
@@ -542,8 +540,8 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     }
 
     .aiWorkflowIcons {
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 0.625vw; /* эквивалент 10px */
+      margin-bottom: 0.9375vw; /* эквивалент 15px */
     }
 
     .aiWorkflowIcon {
@@ -560,6 +558,10 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     .aiWorkflowItemTools {
       font-size: 13px;
     }
+
+    .aiWorkflowItemDescription {
+      margin-bottom: 0.625vw; /* эквивалент 10px */
+}
 
     .aiHero {
       padding-top: 100px;
@@ -581,13 +583,16 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
   @media (max-width: 600px) {
     .aiCases,
     .aiWorkflow {
-      padding: 12vw 4vw;
+      padding-top: 13.8889vw; /* 50px */
+  padding-bottom: 13.8889vw; /* 50px */
+    padding-left: 0;
+    padding-right: 0;
     }
 
     .aiCasesHeader,
     .aiWorkflowHeader {
+      margin-bottom: 13.8889vw; /* 50px */
       max-width: 100%;
-      margin-bottom: 8vw;
     }
 
     .aiCasesTitle,
@@ -600,11 +605,21 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
       font-size: 4vw;
     }
 
-    .aiCasesGrid,
-    .aiWorkflowGrid {
-      grid-template-columns: 1fr;
-      gap: 8vw;
-    }
+    .aiCasesGrid {
+    grid-template-columns: 1fr;
+    gap: 13.8889vw;
+  }
+
+  .aiWorkflowGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4.1667vw; /* 15px */
+  row-gap: 13.8889vw; /* 50px */
+}
+
+.aiWorkflowIcons {
+  gap: 2vw; /* 10px */
+  margin-bottom: 4.1667vw; /* 15px */
+}
 
     .aiCaseImage {
       margin-bottom: 4vw;
@@ -620,6 +635,7 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     .aiCaseDescription {
       margin-bottom: 3vw;
       font-size: 5.5vw;
+      max-width: none;
     }
 
     .aiCaseLink {
@@ -632,38 +648,64 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     }
 
     .aiWorkflowItemTitle {
-      font-size: 5vw;
-    }
+  margin-bottom: 2vw; /* 10px */
+  font-size: 4vw;
+  line-height: 5.6vw;
+}
 
-    .aiWorkflowItemDescription,
-    .aiWorkflowItemTools {
-      font-size: 3.5vw;
-    }
+.aiWorkflowItemDescription {
+margin-bottom: 2.7778vw; /* 10px */
+}
+
+.aiWorkflowItemDescription,
+.aiWorkflowItemTools {
+  font-size: 3.3333vw;   /* 12px */
+  line-height: 4.1667vw; /* 15px */
+}
+
+.aiWorkflowItem:last-child {
+  grid-column: 1 / -1;
+  width: calc((100% - 4.1667vw) / 2);
+  justify-self: center;
+}
 
     .aiHero {
-      min-height: 86.7vh;
-      height: auto;
-      padding: 12vw 4vw;
-    }
+  height: 86.7vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: -5vh;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
 
-    .aiHeroIcon {
-      width: 14vw;
-      margin-bottom: 5.3vw;
-    }
+.aiHeroInner {
+  width: 100%;
+}
 
-    .aiHeroTitle {
-      margin-bottom: 4vw;
-      font-size: 11vw;
-    }
+.aiHeroIcon {
+  height: 16.6667vw;
+  width: 30.2083vw;
+  margin: 0 auto 6.9444vw;
+}
 
-    .aiHeroDescription,
-    .aiHeroNote {
-      max-width: 100%;
-      font-size: 4vw;
-    }
+.aiHeroTitle {
+  margin: 0 0 5.5556vw;
+  font-size: 15vw;
+  line-height: 15vw;
+}
 
-    .aiHeroNote {
-      margin-top: 2vw;
-    }
+.aiHeroDescription,
+.aiHeroNote {
+  max-width: 100%;
+  font-size: 4.1667vw;
+  line-height: 5.2778vw;
+}
+
+.aiHeroNote {
+  margin-top: 2vw;
+}
   }
 </style>
