@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import aiIcon from "../images/ai/ai-enabled-icon.svg";
 import toolChatgpt from "../images/ai/tool-chatgpt.png";
 import toolClaude from "../images/ai/tool-claude.png";
 import toolCursor from "../images/ai/tool-cursor.png";
@@ -23,9 +22,56 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
 >
   <section class="aiHero">
     <div class="aiHeroInner">
-      <div class="aiHeroIcon" aria-hidden="true">
-        <img src={aiIcon.src} alt="" />
-      </div>
+    <button class="aiHeroIcon aiHeroMagic" type="button" aria-label="Play AI animation">
+      <svg viewBox="0 0 145 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <mask id="aiMagicMask">
+            <rect width="145" height="80" fill="black" />
+            <path
+              fill="white"
+              d="M105 0C127.091 0 145 17.9086 145 40C145 62.0914 127.091 80 105 80H40C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0H105ZM105 10C88.4315 10 75 23.4315 75 40C75 56.5685 88.4315 70 105 70C121.569 70 135 56.5685 135 40C135 23.4315 121.569 10 105 10Z"
+            />
+          </mask>
+        
+          <linearGradient
+  id="aiMagicGradient"
+  gradientUnits="userSpaceOnUse"
+  x1="0"
+  y1="40"
+  x2="1015"
+  y2="40"
+>
+  <stop offset="0%" stop-color="#FF4001" />
+  <stop offset="20%" stop-color="#A221FF" />
+  <stop offset="40%" stop-color="#0073FF" />
+  <stop offset="60%" stop-color="#0073FF" />
+  <stop offset="80%" stop-color="#A221FF" />
+  <stop offset="100%" stop-color="#FF4001" />
+</linearGradient>
+        </defs>
+    
+        <g mask="url(#aiMagicMask)">
+          <rect class="aiMagicBgBase" x="0" y="0" width="145" height="80" />
+          <rect
+          class="aiMagicBgWave"
+          x="0"
+          y="0"
+          width="1015"
+          height="80"
+        />
+        </g>
+    
+        <path
+          class="aiMagicStar aiMagicStarLarge"
+          d="M37.2656 25.1875C36.9289 24.2774 35.6415 24.2775 35.3047 25.1875L32.9219 31.625C31.6513 35.0583 28.9441 37.7656 25.5107 39.0361L19.0732 41.418C18.1633 41.7548 18.1632 43.0422 19.0732 43.3789L25.5107 45.7617C28.9442 47.0323 31.6514 49.7394 32.9219 53.1729L35.3047 59.6104C35.6416 60.52 36.9287 60.5201 37.2656 59.6104L39.6475 53.1729C40.918 49.7394 43.6252 47.0323 47.0586 45.7617L53.4961 43.3789C54.406 43.0421 54.406 41.7548 53.4961 41.418L47.0586 39.0361C43.6252 37.7657 40.918 35.0584 39.6475 31.625L37.2656 25.1875Z"
+        />
+    
+        <path
+          class="aiMagicStar aiMagicStarSmall"
+          d="M53.0068 17.4658C52.8361 17.0046 52.1835 17.0047 52.0127 17.4658L50.8047 20.7295C50.1606 22.4695 48.7889 23.8424 47.0488 24.4863L43.7852 25.6934C43.324 25.8641 43.3239 26.5168 43.7852 26.6875L47.0488 27.8945C48.789 28.5385 50.1607 29.9112 50.8047 31.6514L52.0127 34.915C52.1836 35.3758 52.836 35.3759 53.0068 34.915L54.2139 31.6514C54.8579 29.9111 56.2304 28.5385 57.9707 27.8945L61.2344 26.6875C61.6953 26.5167 61.6952 25.8642 61.2344 25.6934L57.9707 24.4863C56.2304 23.8424 54.8579 22.4697 54.2139 20.7295L53.0068 17.4658Z"
+        />
+      </svg>
+    </button>
 
       <h1 class="aiHeroTitle">
         <span class="aiHeroAccent">AI-Enabled Designer</span>
@@ -239,6 +285,80 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     </div>
   </section>
 <style>
+
+.aiHeroMagic {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.aiHeroMagic svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.aiMagicStar {
+  fill: #ffffff;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.aiHeroMagic.is-playing .aiMagicStarLarge {
+  animation: aiMagicStarLargeSwap 1.5s ease-in-out;
+}
+
+.aiHeroMagic.is-playing .aiMagicStarSmall {
+  animation: aiMagicStarSmallSwap 1.5s ease-in-out;
+}
+
+.aiMagicBgBase {
+  fill: #ff4001;
+}
+
+.aiMagicBgWave {
+  fill: url(#aiMagicGradient);
+  opacity: 0;
+}
+
+.aiHeroMagic.is-playing .aiMagicBgWave {
+  opacity: 1;
+  animation: aiMagicWave 1.5s ease-in-out;
+}
+
+@keyframes aiMagicWave {
+  0% {
+    transform: translateX(145px);
+  }
+  100% {
+    transform: translateX(-1015px);
+  }
+}
+
+
+@keyframes aiMagicStarLargeSwap {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-0.3472vw, 0.3472vw) scale(0.52);
+  }
+}
+
+@keyframes aiMagicStarSmallSwap {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-0.3472vw, 0.3472vw) scale(1.85);
+  }
+}
+
   .aiCases {
     padding: 6.9444vw 0;
   border-bottom: 1px solid var(--color-gray);
@@ -442,11 +562,12 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
     margin: 0 auto 1.0417vw;
   }
 
-  .aiHeroIcon img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+  .aiHeroIcon img,
+.aiHeroIcon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
   .aiHeroTitle {
     margin: 0 0 1.388vw;
@@ -711,3 +832,21 @@ margin-bottom: 2.7778vw; /* 10px */
 }
   }
 </style>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".aiHeroMagic").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (button.classList.contains("is-playing")) return;
+
+        button.classList.add("is-playing");
+
+        window.setTimeout(function () {
+          button.classList.remove("is-playing");
+        }, 1500);
+      });
+    });
+  });
+</script>
+
+</BaseLayout>
