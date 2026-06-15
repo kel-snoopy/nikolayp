@@ -16,12 +16,14 @@ function pageClassFromPathname(pathname: string): string {
   if (normalized === "/") return "home";
   if (normalized === "/about" || normalized.startsWith("/about/")) return "about";
   if (normalized === "/cases" || normalized.startsWith("/cases/")) return "case";
+  if (normalized === "/ai" || normalized.startsWith("/ai/")) return "ai";
   return "";
 }
 
 const pageClass = pageOverride ?? pageClassFromPathname(Astro.url.pathname);
 
 import avatarSrc from "../images/avatar.jpg";
+import aiMenuIcon from "../images/icons/ai-menu-small.svg";
 import videoCtaSrc from "../images/video-cta.png";
 import videoCtaMobileSrc from "../images/video-cta-mobile.png";
 import faviconIco from "../images/favicon/favicon.ico?url";
@@ -193,6 +195,17 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         </div>
 
         <nav class="navLinks desktop-only" aria-label="External links">
+          <a href="/ai" class="navLinkAi" class:list={[pageClass === "ai" && "isActive"]}>
+            <img
+              src={aiMenuIcon.src}
+              class="navLinkAiIcon"
+              alt=""
+              aria-hidden="true"
+              width="20"
+              height="20"
+            />
+            <span class="navLinkAiText">AI</span>
+          </a>
           <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
           <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
           <a href={`mailto:${header.email}`}>Email</a>
@@ -395,6 +408,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         <span class="icon-minus"></span>
       </button>
       <div class="contactsFullscreenNav" aria-label="Contact links">
+        <a href="/ai">AI</a>
         <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
         <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
         <a href={`mailto:${header.email}`}>Email</a>
@@ -1065,7 +1079,31 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
       .navLinks {
         display: flex;
+        align-items: center;
         gap: 1.388vw;
+      }
+
+      .navLinkAi {
+        display: inline-flex;
+        align-items: center;
+        line-height: 1;
+      }
+
+      .navLinkAiIcon {
+        display: block;
+        width: 1.111vw;
+        height: 1.111vw;
+        flex-shrink: 0;
+      }
+
+      .navLinkAiText {
+        display: block;
+        line-height: 1;
+      }
+
+      .navLinkAi:hover .navLinkAiText,
+      .navLinkAi.isActive .navLinkAiText {
+        color: var(--color-primary);
       }
       .navLinks.mobile-only {
         display: none;
@@ -1467,6 +1505,11 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .navLinks {
           gap: 22px;
+        }
+
+        .navLinkAiIcon {
+          width: 20px;
+          height: 20px;
         }
 
         .videoCta {
