@@ -28,9 +28,9 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
           <mask id="aiMagicMask">
             <rect width="145" height="80" fill="black" />
             <path
-              fill="white"
-              d="M105 0C127.091 0 145 17.9086 145 40C145 62.0914 127.091 80 105 80H40C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0H105ZM105 10C88.4315 10 75 23.4315 75 40C75 56.5685 88.4315 70 105 70C121.569 70 135 56.5685 135 40C135 23.4315 121.569 10 105 10Z"
-            />
+  fill="white"
+  d="M105 0C127.091 0 145 17.9086 145 40C145 62.0914 127.091 80 105 80H40C17.9086 80 0 62.0914 0 40C0 17.9086 17.9086 0 40 0H105Z"
+/>
           </mask>
         
           <linearGradient
@@ -60,7 +60,13 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
           height="80"
         />
         </g>
-    
+    <circle
+          class="aiMagicHandle"
+          cx="105"
+          cy="40"
+          r="30"
+          fill="#ffffff"
+        />
         <path
           class="aiMagicStar aiMagicStarLarge"
           d="M37.2656 25.1875C36.9289 24.2774 35.6415 24.2775 35.3047 25.1875L32.9219 31.625C31.6513 35.0583 28.9441 37.7656 25.5107 39.0361L19.0732 41.418C18.1633 41.7548 18.1632 43.0422 19.0732 43.3789L25.5107 45.7617C28.9442 47.0323 31.6514 49.7394 32.9219 53.1729L35.3047 59.6104C35.6416 60.52 36.9287 60.5201 37.2656 59.6104L39.6475 53.1729C40.918 49.7394 43.6252 47.0323 47.0586 45.7617L53.4961 43.3789C54.406 43.0421 54.406 41.7548 53.4961 41.418L47.0586 39.0361C43.6252 37.7657 40.918 35.0584 39.6475 31.625L37.2656 25.1875Z"
@@ -356,6 +362,33 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
 
   50% {
     transform: translate(-20%, 20%) scale(1.85);
+  }
+}
+
+.aiMagicHandle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.aiHeroMagic.is-playing .aiMagicHandle {
+  animation: aiMagicHandleResist 0.6s ease-out;
+}
+
+@keyframes aiMagicHandleResist {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-12%);
+  }
+  55% {
+    transform: translateX(4%);
+  }
+  75% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
