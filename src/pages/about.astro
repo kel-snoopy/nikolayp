@@ -1,0 +1,527 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import tagsImg from "../images/about/tags.png";
+import portoImg from "../images/about/porto.png";
+import iconSystemThinking from "../images/about/system-thinking.png";
+import iconEmotionalDesign from "../images/about/emotional-design.png";
+import iconAiEnabled from "../images/about/ai-enabled.png";
+import iconMarried from "../images/about/married.png";
+import flagsImg from "../images/about/flags.png";
+import meImg from "../images/about/me.png";
+import hikingImg from "../images/about/hiking.png";
+import matryoshkaImg from "../images/about/matryoshka.png";
+import catImg from "../images/about/cat.png";
+---
+
+<BaseLayout
+  title="About | Nikolai Posvezhnyi"
+  description="About Nikolai Posvezhnyi — Senior Product Designer"
+  page="about"
+>
+  <div class="abt">
+    <div class="abt-a">
+      <div class="abt-a-top">
+        <p class="abt-a-top__title">12 years<br>in design</p>
+        <img class="abt-a-top__tags" src={tagsImg.src} alt="" aria-hidden="true" />
+      </div>
+      <div class="abt-a-bot">
+        <img class="abt-a-bot__photo" src={portoImg.src} alt="Porto" />
+        <p class="abt-a-bot__title">Based<br>in Porto</p>
+      </div>
+    </div>
+    <div class="abt-b">
+        <div class="abt-b-left">
+          <div class="abt-b-1 abt-bcard abt-bcard--dark">
+            <img class="abt-bcard__icon" src={iconSystemThinking.src} alt="" aria-hidden="true" width="118" height="118" />
+            <p class="abt-bcard__label">System<br>thinking</p>
+          </div>
+          <div class="abt-b-2 abt-bcard">
+            <img class="abt-bcard__icon" src={iconEmotionalDesign.src} alt="" aria-hidden="true" width="118" height="118" />
+            <p class="abt-bcard__label abt-bcard__label--red">Emotional<br>design</p>
+          </div>
+          <div class="abt-b-3 abt-bcard">
+            <img class="abt-bcard__icon" src={iconAiEnabled.src} alt="" aria-hidden="true" width="118" height="118" />
+            <p class="abt-bcard__label">AI-Enabled</p>
+          </div>
+        </div>
+      
+        <div class="abt-b-right abt-bright">
+          <p class="abt-bright__title">Visited 126 cities<br>in 23 countries</p>
+          <img class="abt-bright__flags" src={flagsImg.src} alt="" aria-hidden="true" />
+        </div>
+      </div>
+    <div class="abt-c"><span class="abt-c__title">About Me</span></div>
+    <div class="abt-d">
+        <div class="abt-d-left">
+          <div class="abt-d-1 abt-d1card">
+            <span class="abt-d1card__label">Cat lover</span>
+            <img class="abt-d1card__img" src={catImg.src} alt="" aria-hidden="true" />
+          </div>
+          <div class="abt-d-2 abt-photocard">
+            <img class="abt-photocard__img" src={hikingImg.src} alt="" aria-hidden="true" />
+            <span class="abt-photocard__label">Hiking</span>
+          </div>
+          <div class="abt-d-3 abt-d3card">
+            <span class="abt-d3card__label">Raised<br>in Russia</span>
+            <img class="abt-d3card__img" src={matryoshkaImg.src} alt="" aria-hidden="true" width="80" height="80" />
+          </div>
+          <div class="abt-d-4 abt-textcard">
+            <span class="abt-textcard__label">Movies &<br>Videogames</span>
+          </div>
+        </div>
+      
+        <div class="abt-d-right abt-bcard abt-bcard--red abt-bcard--pill">
+          <img class="abt-bcard__icon" src={iconMarried.src} alt="" aria-hidden="true" width="118" height="118" />
+          <p class="abt-bcard__label abt-bcard__label--white">Married</p>
+        </div>
+      </div>
+    <div class="abt-e abt-ephoto">
+      <img class="abt-ephoto__img" src={meImg.src} alt="Nikolai Posvezhnyi" />
+    </div>
+  </div>
+
+  <style>
+    :global(html.about body)        { background: #F0F0F0; }
+    :global(html.about .homeBottom),
+    :global(html.about .footer)     { display: none; }
+
+    :global(html.about main.container) {
+      max-width: none;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .abt {
+      display: grid;
+      grid-template-columns: 3fr 6fr 3fr;
+      grid-template-rows: 0.3fr 0.4fr 0.3fr;
+      gap: 0.6944vw;
+      padding: var(--header-height) 1.3889vw 1.3889vw;
+      box-sizing: border-box;
+      flex: 1;
+      min-height: 55.556vw; /* 800px at 1440px viewport */
+    }
+
+    .abt > div {
+      background: #ffffff00;
+      border-radius: 2.0833vw;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .abt-a {
+      grid-column: 1;
+      grid-row: 1 / 4;
+      background: transparent;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6944vw;
+    }
+
+    .abt-a-top,
+    .abt-a-bot {
+      background: #fff;
+      border-radius: 2.0833vw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .abt-a-top,
+    .abt-a-bot {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .abt-a-top__title {
+      position: absolute;
+      top: 1.3889vw;
+      left: 1.3889vw;
+      margin: 0;
+      font-size: 3.4722vw;
+      line-height: 3.4722vw;
+      font-weight: 500;
+      color: #000;
+      z-index: 1;
+    }
+
+    .abt-a-bot__photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .abt-a-bot__title {
+      position: absolute;
+      bottom: 1.3889vw;
+      left: 1.3889vw;
+      margin: 0;
+      font-size: 3.4722vw;
+      line-height: 3.4722vw;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.02em;
+      z-index: 1;
+    }
+
+    .abt-a-top__tags {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (min-width: 1600px) {
+      .abt-a-top__title {
+        top: 20px;
+        left: 20px;
+        font-size: 50px;
+        line-height: 50px;
+      }
+      .abt-a-bot__title {
+        bottom: 20px;
+        left: 20px;
+        font-size: 50px;
+        line-height: 50px;
+      }
+    }
+
+    .abt-b {
+      grid-column: 2 / 4;
+      grid-row: 1;
+      display: flex;
+      gap: 0.6944vw;
+    }
+
+    .abt-b-left,
+    .abt-b-right {
+      flex: 1;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .abt-b-left {
+      display: flex;
+      gap: 0.6944vw;
+    }
+
+    .abt-b-1,
+    .abt-b-2,
+    .abt-b-3,
+    .abt-b-right {
+      flex: 1;
+      background: #fff;
+      border-radius: 2.0833vw;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    /* B-right card */
+    .abt-bright {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.3889vw;
+    }
+
+    .abt-bright__title {
+      margin: 0;
+      font-size: 3.4722vw;
+      line-height: 3.4722vw;
+      font-weight: 500;
+      color: #000;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .abt-bright__flags {
+      display: block;
+      height: 2.0833vw;
+      width: auto;
+    }
+
+    @media (min-width: 1600px) {
+      .abt-bright { gap: 20px; }
+      .abt-bright__title { font-size: 50px; line-height: 50px; }
+      .abt-bright__flags { height: 30px; }
+    }
+    .abt-bcard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 6%;
+    }
+
+    .abt-bcard--dark {
+      background: #000;
+    }
+
+    .abt-bcard__icon {
+      width: 8.1944vw;
+      height: 8.1944vw;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .abt-bcard__label {
+      margin: 0.2083vw 0 0;
+      font-size: 1.3889vw;
+      line-height: 1.3889vw;
+      font-weight: 500;
+      color: #000;
+      text-align: center;
+    }
+
+    .abt-bcard__label--red {
+      color: var(--color-primary);
+    }
+
+    .abt-bcard--dark .abt-bcard__label {
+      color: #fff;
+    }
+
+    .abt-bcard--red {
+      background: var(--color-primary);
+      padding-bottom: 3%;
+    }
+
+    .abt-bcard.abt-bcard--pill {
+      border-radius: 999px;
+    }
+
+    .abt-bcard__label--white {
+      color: #fff;
+    }
+
+    .abt > .abt-c {
+      grid-column: 2;
+      grid-row: 2;
+      background: #fff;
+      border-radius: 2.0833vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .abt-c__title {
+      font-size: 5.5556vw;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: #000;
+    }
+
+    .abt > .abt-e {
+      grid-column: 3;
+      grid-row: 2 / 4;
+      border-radius: 2.0833vw;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .abt-ephoto__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .abt-d {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 0.6944vw;
+    }
+
+    .abt-d-left {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0.6944vw;
+      min-width: 0;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    .abt-d-right {
+      border-radius: 2.0833vw;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .abt-d-1,
+    .abt-d-2,
+    .abt-d-3,
+    .abt-d-4 {
+      background: #fff;
+      border-radius: 2.0833vw;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    /* d2 is a photocard inside a grid cell — needs explicit position/overflow */
+    .abt-d-2.abt-photocard {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    /* d1: overflow visible so cat hangs below card */
+    .abt-d-1.abt-d1card {
+      overflow: visible;
+    }
+
+    .abt-d1card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 1.7361vw;
+      position: relative;
+    }
+
+    .abt-d1card__label {
+      font-size: 1.3889vw;
+      line-height: 1.3889vw;
+      font-weight: 500;
+      color: #000;
+    }
+
+    .abt-d1card__img {
+      width: 5.5556vw;
+      height: 7.2917vw;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin-right: 1.0417vw;
+      margin-top: 1.3889vw; /* смещаем вниз от центра */
+    }
+
+    .abt-d3card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 1.7361vw;
+    }
+
+    .abt-d3card__label {
+      font-size: 1.3889vw;
+      line-height: 1.3889vw;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    .abt-d3card__img {
+      width: 5.5556vw;
+      height: 5.5556vw;
+      object-fit: contain;
+      flex-shrink: 0;
+      margin-right: 1.0417vw;
+    }
+
+    .abt-textcard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .abt-textcard__label {
+      font-size: 1.3889vw;
+      line-height: 1.3889vw;
+      font-weight: 500;
+      color: #000;
+      text-align: center;
+    }
+
+    /* photo card with centered label */
+    .abt-photocard {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .abt-photocard__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .abt-photocard__label {
+      position: relative;
+      z-index: 1;
+      font-size: 1.3889vw;
+      line-height: 1.3889vw;
+      font-weight: 500;
+      color: #fff;
+      text-align: center;
+    }
+
+    @media (min-width: 1600px) {
+      .abt {
+        gap: 10px;
+        padding: calc(var(--header-height)) 20px 20px;
+        min-height: 889px; /* 800 * 1600/1440 */
+      }
+
+      .abt > div,
+      .abt-a-top,
+      .abt-a-bot,
+      .abt-b-1,
+      .abt-b-2,
+      .abt-b-3,
+      .abt-b-right,
+      .abt-d-right,
+      .abt-d-1,
+      .abt-d-2,
+      .abt-d-3,
+      .abt-d-4 {
+        border-radius: 30px;
+      }
+
+      .abt-c__title { font-size: 80px; }
+
+      .abt-bcard--pill { border-radius: 999px; }
+
+      .abt-bcard__icon  { width: 118px; height: 118px; }
+      .abt-bcard__label { margin-top: 3px; font-size: 20px; line-height: 20px; }
+
+      .abt-b-left,
+      .abt-d-left {
+        gap: 10px;
+      }
+
+      .abt-b {
+        gap: 10px;
+      }
+
+      .abt-d {
+        gap: 10px;
+      }
+
+      .abt-photocard__label { font-size: 20px; line-height: 20px; }
+      .abt-textcard__label  { font-size: 20px; line-height: 20px; }
+      .abt-d3card { padding-left: 25px; }
+      .abt-d3card__label { font-size: 20px; line-height: 20px; }
+      .abt-d3card__img { width: 80px; height: 80px; margin-right: 15px; }
+      .abt-d1card { padding-left: 25px; }
+      .abt-d1card__label { font-size: 20px; line-height: 20px; }
+      .abt-d1card__img { width: 80px; height: 105px; margin-right: 15px; margin-top: 20px; }
+    }
+  </style>
+</BaseLayout>
