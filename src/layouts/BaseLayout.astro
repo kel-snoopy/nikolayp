@@ -107,7 +107,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
     <link rel="mask-icon" href={safariPinnedTab} color="#000000" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="msapplication-TileImage" content={mstile150} />
-    <!-- First paint already “raised from below” — avoids flash at final position then snap-down. -->
+    <!-- First paint already "raised from below" — avoids flash at final position then snap-down. -->
     <script is:inline>
       (function () {
         try {
@@ -206,10 +206,11 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             />
             <span class="navLinkAiText">AI</span>
           </a>
+          <a href="/about" class:list={[pageClass === "about" && "isActive"]}>About</a>
           <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
-          <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
           <a href={`mailto:${header.email}`}>Email</a>
-          <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
+          <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LI</a>
+          <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">TG</a>
         </nav>
 
         <div class="navLinks mobile-only" aria-label="External links">
@@ -221,7 +222,7 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
             aria-controls="contacts-menu"
             aria-haspopup="dialog"
           >
-            <span class="navLinksLabel">Contacts</span>
+            <span class="navLinksLabel">Menu</span>
             <span class="icon-plus" aria-hidden="true"></span>
           </button>
         </div>
@@ -409,9 +410,10 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       </button>
       <div class="contactsFullscreenNav" aria-label="Contact links">
         <a href="/ai">AI</a>
+        <a href="/about" class:list={[pageClass === "about" && "isActive"]}>About</a>
         <a href={header.cvUrl} target="_blank" rel="noreferrer noopener">CV</a>
-        <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
         <a href={`mailto:${header.email}`}>Email</a>
+        <a href={header.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>        
         <a href={header.telegramUrl} target="_blank" rel="noreferrer noopener">Telegram</a>
       </div>
     </div>
@@ -1018,9 +1020,16 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         display: flex;
         align-items: center;
         gap: 0.6944vw;
+        /* +10px hit area — visually invisible */
+        padding: 0.6944vw;
+        margin: -0.6944vw;
       }
       html.home .brandLink:hover {
         color: var(--color-fg);
+      }
+      html.home .brandLink {
+        pointer-events: none;
+        cursor: default;
       }
 
       .brandLinkButton {
@@ -1031,8 +1040,8 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         font-size: 1.111vw;
         font-weight: 500;
         line-height: 1.25;
-        padding: 0;
-        margin: 0;
+        padding: 0.6944vw;
+        margin: -0.6944vw;
         display: flex;
         align-items: center;
         gap: 0.6944vw;
@@ -1083,6 +1092,12 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         gap: 1.388vw;
       }
 
+      /* +10px hit area on all desktop nav links — visually invisible */
+      .navLinks a {
+        padding: 0.6944vw;
+        margin: -0.6944vw;
+      }
+
       .navLinkAi {
         display: inline-flex;
         align-items: center;
@@ -1105,6 +1120,22 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
       .navLinkAi.isActive .navLinkAiText {
         color: var(--color-primary);
       }
+
+      /* Active page: highlight nav link red, disable interaction.
+         Must override global.css ".header .navLinks a" which sets color + -webkit-text-fill-color. */
+      .header .navLinks a.isActive,
+      .header .navLinks a.isActive:link,
+      .header .navLinks a.isActive:visited,
+      .header .navLinks a.isActive:active {
+        color: var(--color-primary);
+        -webkit-text-fill-color: var(--color-primary);
+        pointer-events: none;
+        cursor: default;
+      }
+      .header .navLinks a.isActive .navLinkAiText {
+        color: var(--color-primary);
+        -webkit-text-fill-color: var(--color-primary);
+      }
       .navLinks.mobile-only {
         display: none;
       }
@@ -1117,8 +1148,12 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         padding: 0;
         margin: 0;
       }
+
+      /* +10px hit area on mobile Menu button — visually invisible */
       .contactsMenuOpen {
         color: var(--color-fg);
+        padding: 0.6944vw;
+        margin: -0.6944vw;
       }
 
       .contactsFullscreen {
@@ -1171,11 +1206,20 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         font-weight: 500;
         color: var(--color-bg, #ffffff);
         text-decoration: none;
+        /* +10px hit area — visually invisible */
+        padding: 0.6944vw 0.6944vw;
+        margin: -0.6944vw -0.6944vw;
       }
 
       .contactsFullscreenNav a:hover {
         color: var(--color-primary, #ff4001);
         text-decoration: none;
+      }
+      .contactsFullscreenNav a.isActive {
+        color: var(--color-primary, #ff4001);
+        text-decoration: none;
+        pointer-events: none;
+        cursor: default;
       }
 
       .videoCta {
@@ -1486,11 +1530,17 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
 
         .brandLink {
           gap: 11px;
+          /* +10px hit area capped at 1600px+ breakpoint */
+          padding: 10px;
+          margin: -10px;
         }
 
         .brandLinkButton {
           font-size: 18px;
           gap: 11px;
+          /* +10px hit area capped at 1600px+ breakpoint */
+          padding: 10px;
+          margin: -10px;
         }
 
         .brandVideo {
@@ -1507,9 +1557,25 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           gap: 22px;
         }
 
+        /* +10px hit area capped at 1600px+ breakpoint */
+        .navLinks a {
+          padding: 10px;
+          margin: -10px;
+        }
+
         .navLinkAiIcon {
           width: 20px;
           height: 20px;
+        }
+
+        .contactsMenuOpen {
+          padding: 10px;
+          margin: -10px;
+        }
+
+        .contactsFullscreenNav a {
+          padding: 10px;
+          margin: -10px;
         }
 
         .videoCta {
@@ -1593,6 +1659,9 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           font-size: 4vw;
           line-height: 1.25;
           gap: 1.333vw;
+          /* +10px hit area on mobile — visually invisible */
+          padding: 2.6667vw;
+          margin: -2.6667vw;
         }
         .navLinks .icon-plus {
           width: 3.73vw;
@@ -1605,6 +1674,9 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
         }
         .brandLink {
           gap: 1.3333vw;
+          /* +10px hit area on mobile */
+          padding: 2.6667vw;
+          margin: -2.6667vw;
         }
 
         .avatar {
@@ -1694,9 +1766,17 @@ const siteManifestHref = `data:application/manifest+json;charset=utf-8,${encodeU
           font-size: 4vw;
           line-height: 1.33;
           gap: 2.6667vw;
+          /* +10px hit area on mobile */
+          padding: 2.6667vw;
+          margin: -2.6667vw;
+        }
+
+        /* +10px hit area for fullscreen nav links on mobile */
+        .contactsFullscreenNav a {
+          padding: 2.6667vw;
+          margin: -2.6667vw;
         }
       }
     </style>
   </body>
 </html>
-
