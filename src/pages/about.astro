@@ -705,5 +705,120 @@ import catImg from "../images/about/cat.png";
     margin-right: 2.133vw;
   }
 }
+
+.abt-a-top,
+.abt-a-bot,
+.abt-b-1,
+.abt-b-2,
+.abt-b-3,
+.abt-b-right,
+.abt-c,
+.abt-d-1,
+.abt-d-2,
+.abt-d-3,
+.abt-d-4,
+.abt-d-right,
+.abt-e {
+  opacity: 0;
+  transition: opacity 360ms ease;
+  will-change: opacity;
+}
+
+.abt-a-top.is-visible,
+.abt-a-bot.is-visible,
+.abt-b-1.is-visible,
+.abt-b-2.is-visible,
+.abt-b-3.is-visible,
+.abt-b-right.is-visible,
+.abt-c.is-visible,
+.abt-d-1.is-visible,
+.abt-d-2.is-visible,
+.abt-d-3.is-visible,
+.abt-d-4.is-visible,
+.abt-d-right.is-visible,
+.abt-e.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abt-a-top,
+  .abt-a-bot,
+  .abt-b-1,
+  .abt-b-2,
+  .abt-b-3,
+  .abt-b-right,
+  .abt-c,
+  .abt-d-1,
+  .abt-d-2,
+  .abt-d-3,
+  .abt-d-4,
+  .abt-d-right,
+  .abt-e {
+    opacity: 1;
+    transition: none;
+  }
+}
   </style>
+
+  <script is:inline>
+  window.addEventListener("DOMContentLoaded", function () {
+    var prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    var heroCard = document.querySelector(".abt-c");
+
+var normalCards = Array.from(
+  document.querySelectorAll(
+    ".abt-a-top, .abt-b-1, .abt-b-2, .abt-b-3, .abt-b-right, .abt-d-1, .abt-d-2, .abt-d-3, .abt-d-4, .abt-d-right"
+  )
+);
+
+    var lastCards = Array.from(
+      document.querySelectorAll(".abt-a-bot, .abt-e")
+    );
+
+    var shuffle = function (array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+    };
+
+    var cards = [heroCard]
+  .concat(shuffle(normalCards))
+  .concat(lastCards);
+
+    if (prefersReducedMotion) {
+      cards.forEach(function (card) {
+        card.classList.add("is-visible");
+      });
+      return;
+    }
+
+    window.setTimeout(function () {
+      cards.forEach(function (card, index) {
+        var delay;
+      
+        if (index < cards.length - 2) {
+          // первые карточки появляются очень быстро
+          delay = index * 18;
+        } else {
+          // две последние (A-bottom и E) чуть позже
+          delay =
+            (cards.length - 2) * 18 +
+            (index - (cards.length - 2) + 1) * 80;
+        }
+      
+        window.setTimeout(function () {
+          card.classList.add("is-visible");
+        }, delay);
+      });
+    }, 80);
+  });
+</script>
+
 </BaseLayout>
