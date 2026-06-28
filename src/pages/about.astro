@@ -12,11 +12,13 @@ import hikingImg from "../images/about/hiking.png";
 import matryoshkaImg from "../images/about/matryoshka.png";
 import catImg from "../images/about/cat.png";
 ---
-
+ 
 <BaseLayout
-  title="About | Nikolai Posvezhnyi"
-  description="About Nikolai Posvezhnyi — Senior Product Designer"
+  title="About Me | Nikolai Posvezhnyi"
+  description="Senior Product Designer with 12 years of experience in FinTech, AI, SaaS, and Web3. Based in Porto, focused on emotional design, systems thinking, and AI-enabled products."
   page="about"
+  ogImage="/og/about.png"
+  ogImageAlt="About Nikolai Posvezhnyi"
 >
   <div class="abt">
     <div class="abt-a">
@@ -43,6 +45,10 @@ import catImg from "../images/about/cat.png";
             <img class="abt-bcard__icon" src={iconAiEnabled.src} alt="" aria-hidden="true" width="118" height="118" />
             <p class="abt-bcard__label">AI-Enabled</p>
           </div>
+          <div class="abt-b-mobile-married abt-bcard abt-bcard--red">
+  <img class="abt-bcard__icon" src={iconMarried.src} alt="" aria-hidden="true" />
+  <p class="abt-bcard__label abt-bcard__label--white">Married</p>
+</div>
         </div>
       
         <div class="abt-b-right abt-bright">
@@ -79,12 +85,12 @@ import catImg from "../images/about/cat.png";
       <img class="abt-ephoto__img" src={meImg.src} alt="Nikolai Posvezhnyi" />
     </div>
   </div>
-
+ 
   <style>
     :global(html.about body)        { background: #F0F0F0; }
     :global(html.about .homeBottom),
     :global(html.about .footer)     { display: none; }
-
+ 
     :global(html.about main.container) {
       max-width: none;
       width: 100%;
@@ -95,7 +101,7 @@ import catImg from "../images/about/cat.png";
       height: 100vh;
       box-sizing: border-box;
     }
-
+ 
     .abt {
       display: grid;
       grid-template-columns: 3fr 6fr 3fr;
@@ -106,14 +112,14 @@ import catImg from "../images/about/cat.png";
       flex: 1;
       min-height: 55.556vw; /* 800px at 1440px viewport */
     }
-
+ 
     .abt > div {
       background: #ffffff00;
       border-radius: 2.0833vw;
       min-width: 0;
       min-height: 0;
     }
-
+ 
     .abt-a {
       grid-column: 1;
       grid-row: 1 / 4;
@@ -123,7 +129,7 @@ import catImg from "../images/about/cat.png";
       flex-direction: column;
       gap: 0.6944vw;
     }
-
+ 
     .abt-a-top,
     .abt-a-bot {
       background: #fff;
@@ -131,13 +137,13 @@ import catImg from "../images/about/cat.png";
       flex: 1;
       min-height: 0;
     }
-
+ 
     .abt-a-top,
     .abt-a-bot {
       position: relative;
       overflow: hidden;
     }
-
+ 
     .abt-a-top__title {
       position: absolute;
       top: 1.3889vw;
@@ -149,7 +155,7 @@ import catImg from "../images/about/cat.png";
       color: #000;
       z-index: 1;
     }
-
+ 
     .abt-a-bot__photo {
       position: absolute;
       inset: 0;
@@ -158,7 +164,7 @@ import catImg from "../images/about/cat.png";
       object-fit: cover;
       display: block;
     }
-
+ 
     .abt-a-bot__title {
       position: absolute;
       bottom: 1.3889vw;
@@ -171,7 +177,7 @@ import catImg from "../images/about/cat.png";
       letter-spacing: -0.02em;
       z-index: 1;
     }
-
+ 
     .abt-a-top__tags {
       position: absolute;
       bottom: 0;
@@ -180,7 +186,7 @@ import catImg from "../images/about/cat.png";
       height: auto;
       display: block;
     }
-
+ 
     @media (min-width: 1600px) {
       .abt-a-top__title {
         top: 20px;
@@ -195,26 +201,26 @@ import catImg from "../images/about/cat.png";
         line-height: 50px;
       }
     }
-
+ 
     .abt-b {
       grid-column: 2 / 4;
       grid-row: 1;
       display: flex;
       gap: 0.6944vw;
     }
-
+ 
     .abt-b-left,
     .abt-b-right {
       flex: 1;
       min-width: 0;
       min-height: 0;
     }
-
+ 
     .abt-b-left {
       display: flex;
       gap: 0.6944vw;
     }
-
+ 
     .abt-b-1,
     .abt-b-2,
     .abt-b-3,
@@ -225,7 +231,7 @@ import catImg from "../images/about/cat.png";
       min-width: 0;
       min-height: 0;
     }
-
+ 
     /* B-right card */
     .abt-bright {
       display: flex;
@@ -234,7 +240,7 @@ import catImg from "../images/about/cat.png";
       justify-content: center;
       gap: 1.3889vw;
     }
-
+ 
     .abt-bright__title {
       margin: 0;
       font-size: 3.4722vw;
@@ -244,13 +250,13 @@ import catImg from "../images/about/cat.png";
       letter-spacing: -0.02em;
       text-align: center;
     }
-
+ 
     .abt-bright__flags {
       display: block;
       height: 2.0833vw;
       width: auto;
     }
-
+ 
     @media (min-width: 1600px) {
       .abt-bright { gap: 20px; }
       .abt-bright__title { font-size: 50px; line-height: 50px; }
@@ -263,18 +269,18 @@ import catImg from "../images/about/cat.png";
       justify-content: center;
       padding-bottom: 6%;
     }
-
+ 
     .abt-bcard--dark {
       background: #000;
     }
-
+ 
     .abt-bcard__icon {
       width: 8.1944vw;
       height: 8.1944vw;
       display: block;
       flex-shrink: 0;
     }
-
+ 
     .abt-bcard__label {
       margin: 0.2083vw 0 0;
       font-size: 1.3889vw;
@@ -283,28 +289,32 @@ import catImg from "../images/about/cat.png";
       color: #000;
       text-align: center;
     }
-
+ 
     .abt-bcard__label--red {
       color: var(--color-primary);
     }
-
+ 
     .abt-bcard--dark .abt-bcard__label {
       color: #fff;
     }
-
+ 
     .abt-bcard--red {
       background: var(--color-primary);
       padding-bottom: 3%;
     }
-
+ 
     .abt-bcard.abt-bcard--pill {
       border-radius: 999px;
     }
-
+ 
     .abt-bcard__label--white {
       color: #fff;
     }
 
+    .abt-b-mobile-married {
+      display: none;
+    }
+ 
     .abt > .abt-c {
       grid-column: 2;
       grid-row: 2;
@@ -314,7 +324,7 @@ import catImg from "../images/about/cat.png";
       align-items: center;
       justify-content: center;
     }
-
+ 
     .abt-c__title {
       font-size: 5.5556vw;
       font-weight: 500;
@@ -322,7 +332,7 @@ import catImg from "../images/about/cat.png";
       line-height: 1;
       color: #000;
     }
-
+ 
     .abt > .abt-e {
       grid-column: 3;
       grid-row: 2 / 4;
@@ -330,7 +340,7 @@ import catImg from "../images/about/cat.png";
       overflow: hidden;
       position: relative;
     }
-
+ 
     .abt-ephoto__img {
       position: absolute;
       inset: 0;
@@ -339,13 +349,13 @@ import catImg from "../images/about/cat.png";
       object-fit: cover;
       display: block;
     }
-
+ 
     .abt-d {
       display: grid;
       grid-template-columns: 3fr 1fr;
       gap: 0.6944vw;
     }
-
+ 
     .abt-d-left {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -355,13 +365,13 @@ import catImg from "../images/about/cat.png";
       min-height: 0;
       overflow: visible;
     }
-
+ 
     .abt-d-right {
       border-radius: 2.0833vw;
       min-width: 0;
       min-height: 0;
     }
-
+ 
     .abt-d-1,
     .abt-d-2,
     .abt-d-3,
@@ -371,19 +381,19 @@ import catImg from "../images/about/cat.png";
       min-width: 0;
       min-height: 0;
     }
-
+ 
     /* d2 is a photocard inside a grid cell — needs explicit position/overflow */
     .abt-d-2.abt-photocard {
       position: relative;
       overflow: hidden;
       background: transparent;
     }
-
+ 
     /* d1: overflow visible so cat hangs below card */
     .abt-d-1.abt-d1card {
       overflow: visible;
     }
-
+ 
     .abt-d1card {
       display: flex;
       align-items: center;
@@ -391,14 +401,14 @@ import catImg from "../images/about/cat.png";
       padding-left: 1.7361vw;
       position: relative;
     }
-
+ 
     .abt-d1card__label {
       font-size: 1.3889vw;
       line-height: 1.3889vw;
       font-weight: 500;
       color: #000;
     }
-
+ 
     .abt-d1card__img {
       width: 5.5556vw;
       height: 7.2917vw;
@@ -407,21 +417,21 @@ import catImg from "../images/about/cat.png";
       margin-right: 1.0417vw;
       margin-top: 1.3889vw; /* смещаем вниз от центра */
     }
-
+ 
     .abt-d3card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-left: 1.7361vw;
     }
-
+ 
     .abt-d3card__label {
       font-size: 1.3889vw;
       line-height: 1.3889vw;
       font-weight: 500;
       color: var(--color-primary);
     }
-
+ 
     .abt-d3card__img {
       width: 5.5556vw;
       height: 5.5556vw;
@@ -429,13 +439,13 @@ import catImg from "../images/about/cat.png";
       flex-shrink: 0;
       margin-right: 1.0417vw;
     }
-
+ 
     .abt-textcard {
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
+ 
     .abt-textcard__label {
       font-size: 1.3889vw;
       line-height: 1.3889vw;
@@ -443,7 +453,7 @@ import catImg from "../images/about/cat.png";
       color: #000;
       text-align: center;
     }
-
+ 
     /* photo card with centered label */
     .abt-photocard {
       position: relative;
@@ -452,7 +462,7 @@ import catImg from "../images/about/cat.png";
       align-items: center;
       justify-content: center;
     }
-
+ 
     .abt-photocard__img {
       position: absolute;
       inset: 0;
@@ -461,7 +471,7 @@ import catImg from "../images/about/cat.png";
       object-fit: cover;
       display: block;
     }
-
+ 
     .abt-photocard__label {
       position: relative;
       z-index: 1;
@@ -471,14 +481,14 @@ import catImg from "../images/about/cat.png";
       color: #fff;
       text-align: center;
     }
-
+ 
     @media (min-width: 1600px) {
       .abt {
         gap: 10px;
         padding: calc(var(--header-height)) 20px 20px;
         min-height: 889px; /* 800 * 1600/1440 */
       }
-
+ 
       .abt > div,
       .abt-a-top,
       .abt-a-bot,
@@ -493,27 +503,27 @@ import catImg from "../images/about/cat.png";
       .abt-d-4 {
         border-radius: 30px;
       }
-
+ 
       .abt-c__title { font-size: 80px; }
-
-      .abt-bcard--pill { border-radius: 999px; }
-
+ 
+      .abt-bcard.abt-bcard--pill { border-radius: 999px; }
+ 
       .abt-bcard__icon  { width: 118px; height: 118px; }
       .abt-bcard__label { margin-top: 3px; font-size: 20px; line-height: 20px; }
-
+ 
       .abt-b-left,
       .abt-d-left {
         gap: 10px;
       }
-
+ 
       .abt-b {
         gap: 10px;
       }
-
+ 
       .abt-d {
         gap: 10px;
       }
-
+ 
       .abt-photocard__label { font-size: 20px; line-height: 20px; }
       .abt-textcard__label  { font-size: 20px; line-height: 20px; }
       .abt-d3card { padding-left: 25px; }
@@ -523,5 +533,177 @@ import catImg from "../images/about/cat.png";
       .abt-d1card__label { font-size: 20px; line-height: 20px; }
       .abt-d1card__img { width: 80px; height: 105px; margin-right: 15px; margin-top: 20px; }
     }
+
+    @media (max-width: 767px) {
+  :global(html.about main.container) {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  :global(html.about .homeBottom),
+  :global(html.about .footer) {
+    display: block;
+  }
+
+  .abt {
+    --m-pad: 4vw;        /* 15px */
+    --m-gap: 3.2vw;      /* 12px */
+    --m-gap-sm: 2.133vw; /* 8px */
+    --m-radius: 5.333vw; /* 20px */
+    --m-radius-sm: 3.733vw; /* 14px */
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--m-gap);
+    padding: calc(var(--header-height) + 2.667vw) var(--m-pad) var(--m-pad);
+    min-height: 0;
+  }
+
+  .abt-c {
+    display: none !important;
+  }
+
+  .abt-a,
+  .abt-b,
+  .abt-d {
+    display: contents;
+  }
+
+  .abt-a-top {
+    order: 1;
+    width: 100%;
+    aspect-ratio: 344 / 386;
+    border-radius: var(--m-radius);
+  }
+
+  .abt-b-left {
+    order: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--m-gap-sm);
+  }
+
+  .abt-b-1,
+.abt-b-2,
+.abt-b-3,
+.abt-b-mobile-married {
+  display: flex;
+  aspect-ratio: 1 / 1.25;
+  border-radius: var(--m-radius);
+}
+
+.abt-b-mobile-married {
+  border-radius: 999px;
+  display: flex;
+  }    
+
+  .abt-d-right {
+    display: none;
+  }
+
+  .abt-a-bot {
+    order: 3;
+    width: 100%;
+    aspect-ratio: 344 / 386;
+    border-radius: var(--m-radius);
+  }
+
+  .abt-b-right {
+    order: 4;
+    width: 100%;
+    aspect-ratio: 344 / 150;
+    border-radius: var(--m-radius);
+  }
+
+  .abt-d-left {
+    order: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--m-gap-sm);
+  }
+
+  .abt-d-1,
+.abt-d-2,
+.abt-d-3,
+.abt-d-4 {
+  aspect-ratio: 168 / 72;
+  border-radius: var(--m-radius);
+}
+
+.abt > .abt-e {
+  order: 6;
+  width: 100%;
+  aspect-ratio: 344 / 460;
+  border-radius: var(--m-radius);
+  overflow: hidden;
+}
+
+  .abt-a-top__title,
+  .abt-a-bot__title {
+    font-size: 11.2vw;
+    line-height: 10.667vw;
+    letter-spacing: -0.04em;
+  }
+
+  .abt-a-top__title {
+    top: 5.333vw;
+    left: 5.333vw;
+  }
+
+  .abt-a-bot__title {
+    bottom: 5.333vw;
+    left: 5.333vw;
+  }
+
+  .abt-bright {
+    gap: 2.133vw;
+  }
+
+  .abt-bright__title {
+    font-size: 6.933vw;
+    line-height: 6.4vw;
+    letter-spacing: -0.04em;
+  }
+
+  .abt-bright__flags {
+    height: 4.8vw;
+  }
+
+  .abt-bcard {
+    padding-bottom: 8%;
+  }
+
+  .abt-bcard__icon {
+    width: 9.6vw;
+    height: 9.6vw;
+  }
+
+  .abt-bcard__label,
+.abt-d1card__label,
+.abt-d3card__label,
+.abt-textcard__label,
+.abt-photocard__label {
+  font-size: 3.2vw;
+  line-height: 3.467vw;
+}
+
+  .abt-d1card,
+  .abt-d3card {
+    padding-left: 3.2vw;
+  }
+
+  .abt-d1card__img {
+    width: 12vw;
+    height: auto;
+    margin-right: 2.133vw;
+    margin-top: 2.133vw;
+  }
+
+  .abt-d3card__img {
+    width: 11.2vw;
+    height: 11.2vw;
+    margin-right: 2.133vw;
+  }
+}
   </style>
 </BaseLayout>

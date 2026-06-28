@@ -203,3 +203,24 @@ button.primaryButton {
     padding: 5.333vw 2.6667vw;
   }
 }
+
+/* Active nav link: red + non-interactive */
+.header .navLinks a.isActive,
+.header .navLinks a.isActive:link,
+.header .navLinks a.isActive:visited,
+.header .navLinks a.isActive:active {
+  color: var(--color-primary);
+  -webkit-text-fill-color: var(--color-primary);
+  pointer-events: none;
+  cursor: default;
+}
+.header .navLinks a.isActive .navLinkAiText {
+  color: var(--color-primary);
+  -webkit-text-fill-color: var(--color-primary);
+}
+
+.contactsFullscreenNav a.isActive {
+  color: var(--color-primary, #ff4001);
+  pointer-events: none;
+  cursor: default;
+}
