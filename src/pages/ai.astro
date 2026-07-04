@@ -88,7 +88,7 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
         workflow and how I&rsquo;ve integrated AI features into products.
       </p>
       <p class="aiHeroNote">
-        Btw, this page was created by me with AI. No devs involved.
+        Btw, this page was created by me with AI. No devs involved.
       </p>
     </div>
   </section>
@@ -415,6 +415,15 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
   margin-left: 0em;
 }
 
+.aiCaseLink i {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.aiCaseCard:hover .aiCaseLink i {
+  transform: translateX(0.3125vw);
+}
+
   .aiCasesHeader {
     max-width: 33.333vw;
     margin: 0 auto 3.4722vw;
@@ -487,7 +496,7 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
   .aiCaseLink {
     display: inline-flex;
     align-items: center;
-    gap: 0.3472vw;
+    gap: 0.125vw;
     font-size: 1.111vw;
     color: var(--color-primary);
   }
@@ -686,8 +695,12 @@ import caseFundraiseup from "../images/ai/ai-case-fundraiseup.png";
 }
 
     .aiCaseLink {
-      gap: 5px;
+      gap: 2px;
       font-size: 16px;
+    }
+
+    .aiCaseCard:hover .aiCaseLink i {
+      transform: translateX(5px);
     }
 
     .aiWorkflowHeader {

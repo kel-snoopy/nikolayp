@@ -329,23 +329,23 @@ function previewItems(caseItem: (typeof cases)[number]) {
       text-align: center;
     }
 
-.heroTitle {
-  color: var(--color-fg);
-  font-weight: 500;
-  font-size: 5.5556vw;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 0;
-}
+    .heroTitle {
+      color: var(--color-fg);
+      font-weight: 500;
+      font-size: 5.5556vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0;
+    }
 
-.heroAccent {
-  margin: 0 0 1.388vw 0;
-  font-weight: 500;
-  font-size: 5.5556vw;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--color-primary);
-}
+    .heroAccent {
+      margin: 0 0 1.388vw 0;
+      font-weight: 500;
+      font-size: 5.5556vw;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--color-primary);
+    }
 
     .heroDescription {
       margin: 0 auto 0;
@@ -432,6 +432,16 @@ function previewItems(caseItem: (typeof cases)[number]) {
       color: var(--color-primary);
       position: relative;
       z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.125vw;
+    }
+    .caseDetails i {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .caseTop:hover .caseDetails i {
+      transform: translateX(0.3125vw);
     }
     .caseDetails:hover {
       color: #ff6633;
@@ -579,19 +589,19 @@ function previewItems(caseItem: (typeof cases)[number]) {
         padding: 200px 0;
       }
 
-      @media (min-width: 1600px) {
-        .heroTitle,
-        .heroAccent {
-          font-size: 80px;
-        }
-      
-        .bottomCtaTitle,
-        .bottomCtaAccent {
-          font-size: 56px;
-          margin-bottom: 22px;
-        }
+      .heroTitle,
+      .heroAccent {
+        font-size: 80px;
       }
 
+      .bottomCtaTitle,
+      .bottomCtaAccent {
+        font-size: 56px;
+      }
+
+      .bottomCtaAccent {
+        margin-bottom: 22px;
+      }
 
       .heroDescription {
         max-width: 533px;
@@ -647,6 +657,14 @@ function previewItems(caseItem: (typeof cases)[number]) {
         border-radius: 13px;
       }
 
+      .caseDetails {
+        gap: 2px;
+      }
+
+      .caseTop:hover .caseDetails i {
+        transform: translateX(5px);
+      }
+
       .extraShotsDetails summary.extraShots {
         height: 91px;
         padding: 33px 0;
@@ -686,13 +704,13 @@ function previewItems(caseItem: (typeof cases)[number]) {
         padding: 40vw 0;
       }
       .heroTitle {
-        font-size: 12vw;
-        line-height: 1;
+        font-size: 15vw;
+        line-height: 15vw;
         margin: 0 0 1.333vw 0;
       }
       .heroAccent {
-        font-size: 12vw;
-        line-height: 1;
+        font-size: 15vw;
+        line-height: 15vw;
         margin: 0 0 6.6667vw 0;
       }
 
