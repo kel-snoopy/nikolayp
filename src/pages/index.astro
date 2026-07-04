@@ -329,24 +329,23 @@ function previewItems(caseItem: (typeof cases)[number]) {
       text-align: center;
     }
 
-    .heroTitle {
-      color: var(--color-fg);
-      font-weight: 500;
-      font-size: 3.472vw;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin: 0;
-    }
+.heroTitle {
+  color: var(--color-fg);
+  font-weight: 500;
+  font-size: 5.5556vw;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
 
-    .heroAccent {
-      margin: 0 0 1.388vw 0;
-      font-weight: 500;
-      font-size: 3.472vw;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      color: var(--color-primary);
-      letter-spacing: -0.02em;
-    }
+.heroAccent {
+  margin: 0 0 1.388vw 0;
+  font-weight: 500;
+  font-size: 5.5556vw;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--color-primary);
+}
 
     .heroDescription {
       margin: 0 auto 0;
@@ -580,17 +579,19 @@ function previewItems(caseItem: (typeof cases)[number]) {
         padding: 200px 0;
       }
 
-      .heroTitle,
-      .heroAccent,
-      .bottomCtaTitle,
-      .bottomCtaAccent {
-        font-size: 56px;
+      @media (min-width: 1600px) {
+        .heroTitle,
+        .heroAccent {
+          font-size: 80px;
+        }
+      
+        .bottomCtaTitle,
+        .bottomCtaAccent {
+          font-size: 56px;
+          margin-bottom: 22px;
+        }
       }
 
-      .heroAccent,
-      .bottomCtaAccent {
-        margin-bottom: 22px;
-      }
 
       .heroDescription {
         max-width: 533px;
