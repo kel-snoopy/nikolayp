@@ -35,7 +35,7 @@ function previewItems(caseItem: (typeof cases)[number]) {
       <h1 class="heroTitle">Senior Product&nbsp;Designer</h1>
       <h2 class="heroAccent">FinTech / Growth / AI</h2>
             <p class="heroDescription">
-        10+ years of experience driving user engagement and business growth through UX and leadership, with a focus on data-heavy B2C and B2B SaaS, FinTech, AI, and Web3 products.
+            10+ years of experience driving user engagement and business growth through UX and leadership. Currently designing crypto experiences at <a href="https://www.revolut.com" target="_blank" rel="noopener noreferrer">@Revolut</a>.
       </p>
 
       <div class="heroActions">
@@ -350,6 +350,17 @@ function previewItems(caseItem: (typeof cases)[number]) {
     .heroDescription {
       margin: 0 auto 0;
       max-width: 33.333vw;
+    }
+
+    .heroDescription a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .heroDescription a:hover {
+      color: var(--color-fg);
+      text-decoration: underline;
     }
 
     .heroActions {
